@@ -1,0 +1,1 @@
+Brightway2 is a framework for life cycle assessment calculations.

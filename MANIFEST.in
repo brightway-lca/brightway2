@@ -1,0 +1,4 @@
+include *.txt
+include bw2calc/*.py
+include bw2calc/io/*.py
+include bw2calc/proxies/*.py
