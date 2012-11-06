@@ -11,7 +11,15 @@ class Result(object):
         return u"Query result with %i entries" % len(self.result)
 
     def __repr__(self):
-        return repr(self.result)
+        if len(self.result) > 20:
+            data = dict([(key, self.result[key]) for key in \
+                self.result.keys()[:20]])
+        elif not len(self.result):
+            return "Query result:\n\tNo query results found."
+        else:
+            data = self.result
+        return "Query result: (total %i)\n" % len(self.result) \
+            + "\n".join(["%s: %s" % (key, data[key]["name"]) for key in data])
 
     def __getitem__(self, key):
         return self.result[key]
