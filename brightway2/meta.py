@@ -5,15 +5,15 @@ class Mapping(PickledDict):
     _filename = "mapping.pickle"
 
     def add(self, keys):
-        index = max(self._data.values())
+        index = max(self.data.values())
         for i, key in enumerate(keys):
-            if key not in self._data:
-                self._data[key] = index + i + 1
+            if key not in self.data:
+                self.data[key] = index + i + 1
         self.flush()
 
     def delete(self, keys):
         for key in keys:
-            del self._data[key]
+            del self.data[key]
         self.flush()
 
     def __setitem__(self, key, value):
@@ -27,16 +27,16 @@ class Databases(SerializedDict):
     _filename = "databases.json"
 
     def increment_version(self, database):
-        self._data[database]["version"] += 1
+        self.data[database]["version"] += 1
         self.flush()
-        return self._data[database]["version"]
+        return self.data[database]["version"]
 
     def version(self, database):
-        return self._data[database]["version"]
+        return self.data[database]["version"]
 
     def __unicode__(self):
         return u"Brightway2 databases metadata with %i objects" % len(
-            self._data)
+            self.data)
 
 
 class Methods(SerializedDict):
@@ -52,7 +52,7 @@ class Methods(SerializedDict):
 
     def __unicode__(self):
         return u"Brightway2 methods metadata with %i objects" % len(
-            self._data)
+            self.data)
 
 
 mapping = Mapping()
