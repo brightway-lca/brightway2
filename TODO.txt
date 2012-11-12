@@ -1,5 +1,3 @@
 - import_method can't handle SimaPro XML files (where exchanges are numbered sequentially)
-- import_method should skip SimaPro XML files
 - RobustFinder to find processes or flows which aren't correctly specified (import scripts)
-- import_ecospold can't handle SimaPro XML files (where exchanges are numbered sequentially)
-- Manager.copy() should copy databases
+- Manager.copy() should copy databases and methods

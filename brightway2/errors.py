@@ -4,3 +4,7 @@ class MissingIntermediateData(StandardError):
 
 class UnknownExchange(StandardError):
     pass
+
+
+class UnknownObject(StandardError):
+    pass

@@ -1,22 +1,11 @@
 # -*- coding: utf-8 -*
-from brightway2 import config, Manager, mapping, methods
+from brightway2 import Database, mapping, Method, methods
 from lxml import objectify
 import os
-import string
-import random
 try:
     import cPickle as pickle
 except:
     import pickle
-
-
-def abbreviate(names, length=8):
-    abbrev = lambda x: x if x[0] in string.digits else x[0].lower()
-    name = " ".join(names).split(" ")[0].lower() + \
-        "".join([abbrev(x) for x in " ".join(names).split(" ")[1:]])
-    random_string = ''.join(random.choice(string.letters + string.digits
-        ) for i in xrange(length))
-    return name + "-" + random_string
 
 
 def import_ia_dir(dirpath):
@@ -33,7 +22,7 @@ Import impact assessment methods and weightings from ecospold XML format.
     """
     def __init__(self, filename):
         self.filename = filename
-        self.biosphere_data = Manager("biosphere").load()
+        self.biosphere_data = Database("biosphere").load()
         # Note that this is only used for the first root method found in
         # the file
         root = objectify.parse(open(self.filename)).getroot()
@@ -44,12 +33,9 @@ Import impact assessment methods and weightings from ecospold XML format.
         ref_func = ds.metaInformation.processInformation.referenceFunction
         name = (ref_func.get("category"), ref_func.get("subCategory"),
             ref_func.get("name"))
-        abbreviation = abbreviate(name)
-        print abbreviation, name
-        filepath = os.path.join(config.dir, "ia", "%s.pickle" % abbreviation)
         description = ref_func.get("generalComment") or ""
         unit = ref_func.get("unit") or ""
-        data = []
+        data = {}
         for cf in ds.flowData.iterchildren():
             if ("biosphere", int(cf.get("number"))) not in mapping:
                 # Add new biosphere flow
@@ -72,18 +58,15 @@ Import impact assessment methods and weightings from ecospold XML format.
                 new_flow["type"] = "resource" if resource else "emission"
 
                 # Write modified biosphere database
-                biosphere = Manager("biosphere")
+                biosphere = Database("biosphere")
                 bio_data = biosphere.load()
                 bio_data[("biosphere", code)] = new_flow
                 biosphere.write(bio_data)
                 return ("biosphere", code)
-            data.append((("biosphere", int(cf.get("number"))), float(cf.get(
-                "meanValue"))))
-        methods.add(name, {
-            'abbreviation': abbreviation,
-            'description': description,
-            'unit': unit
-            })
-        pickle.dump(data, open(filepath, "wb"),
-            protocol=pickle.HIGHEST_PROTOCOL)
-        methods.process(name)
+            data[("biosphere", int(cf.get("number")))] = float(
+                cf.get("meanValue"))
+        assert name not in methods
+        method = Method(name)
+        method.register(unit, description, len(data))
+        method.write(data)
+        method.process()

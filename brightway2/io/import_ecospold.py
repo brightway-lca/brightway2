@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*
 from __future__ import division
-from brightway2 import Manager, mapping
+from brightway2 import Database, mapping
 from brightway2.logs import get_logger
 from brightway2.errors import UnknownExchange
 from lxml import objectify
@@ -73,7 +73,7 @@ class EcospoldImporter(object):
 
         data = dict([((name, int(o["code"])), o) for o in data])
 
-        manager = Manager(name)
+        manager = Database(name)
         manager.register("Ecospold 1", depends, len(data))
         manager.write(data)
 
@@ -95,7 +95,7 @@ class EcospoldImporter(object):
             data["exchanges"] = []
 
             # Write modified biosphere database
-            biosphere = Manager("biosphere")
+            biosphere = Database("biosphere")
             bio_data = biosphere.load()
             bio_data[("biosphere", code)] = data
             biosphere.write(bio_data)

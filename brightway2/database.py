@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*
-from . import meta, config, mapping
-from errors import MissingIntermediateData
+from . import databases, config, mapping
+from errors import MissingIntermediateData, UnknownObject
 import os
 import numpy as np
 from query import Query
@@ -11,41 +11,53 @@ except ImportError:
     import pickle
 
 
-class Manager(object):
+class Database(object):
     def __init__(self, database, *args, **kwargs):
         self.database = database
-        if self.database not in meta:
+        if self.database not in databases:
             print "Warning: %s not a currently installed database" % database
 
     def query(self, *queries):
         return Query(*queries)(self.load())
 
     def copy(self, name):
-        # TODO
-        self.write_database(self._data, name)
+        # Todo: register copied method
+        raise NotImplemented
+        def relabel_exchanges(obj, keys):
+            for e in obj['exchanges']:
+                if e["input"] in data:
+                    e["input"] = (name, e["input"][1])
+            return obj
+        data = self.load()
+        data = dict([((name, k[1]), relabel_exchanges(v)) for k, v in data.iteritems()])
+        self.write(data, name)
 
     def register(self, format, depends, num_processes):
-        assert self.database not in meta
-        meta.add(self.database, {
+        assert self.database not in databases
+        databases[self.database] = {
             "from format": format,
             "depends": depends,
             "number": num_processes,
             "version": 0
-            })
+            }
 
     def deregister(self):
-        meta.delete(self.database)
+        del databases[self.database]
 
-    def write(self, data):
-        meta.increment_version(self.database)
+    def write(self, data, name=None):
+        if self.database not in databases:
+            raise UnknownObject("This database is not yet registered")
+        databases.increment_version(self.database)
         mapping.add(data.keys())
         filename = "%s.%i.pickle" % (self.database,
-            meta.version(self.database))
+            databases.version(self.database))
         filepath = os.path.join(config.dir, "intermediate", filename)
         with open(filepath, "wb") as f:
             pickle.dump(data, f, protocol=pickle.HIGHEST_PROTOCOL)
 
     def load(self, version=None):
+        if self.database not in databases:
+            raise UnknownObject("This database is not yet registered")
         files = filter(lambda x: ".".join(x.split(".")[:-2]) == self.database,
             os.listdir(os.path.join(config.dir, "intermediate")))
         if not files:
@@ -100,3 +112,9 @@ class Manager(object):
             self.database)
         with open(filepath, "wb") as f:
             pickle.dump(arr, f, protocol=pickle.HIGHEST_PROTOCOL)
+
+    def __unicode__(self):
+        return u"Brightway2 database %s" % self.database
+
+    def __str__(self):
+        return self.__unicode__()

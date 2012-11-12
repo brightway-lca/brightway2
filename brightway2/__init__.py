@@ -1,14 +1,6 @@
-from _config import Config
-config = Config()
-
-from _meta import Meta
-meta = Meta()
-
-from _mapping import Mapping
-mapping = Mapping()
-
-from _methods import Methods
-methods = Methods()
-
-from manager import Manager
+# -*- coding: utf-8 -*
+from _config import config
+from meta import databases, methods, mapping
+from database import Database
+from method import Method
 from query import Is, Isnt, Contains, In, Exchange, iIs, iIsnt, iIs, iContains

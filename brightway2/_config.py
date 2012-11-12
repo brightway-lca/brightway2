@@ -4,11 +4,15 @@ import os
 
 class Config(object):
     def __init__(self, path=None):
-        self.dir = self.get_home_directory(path)
-        self.check_dir()
+        self.reset(path)
 
     def check_dir(self):
         pass
+
+    def reset(self, path=None):
+        """Reset to original configuration. Useful for testing."""
+        self.dir = self.get_home_directory(path)
+        self.check_dir()
 
     def get_home_directory(self, path):
         if path:
@@ -29,3 +33,6 @@ class Config(object):
         self.check_dir()
 
     dir = property(_get_dir, _set_dir)
+
+
+config = Config()
