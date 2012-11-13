@@ -9,3 +9,8 @@ The Database class
 .. autoclass:: brightway2.Database
 	:members:
 	:inherited-members:
+
+
+.. autoclass:: brightway2.Method
+	:members:
+	:inherited-members:

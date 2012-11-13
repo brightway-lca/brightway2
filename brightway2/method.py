@@ -23,6 +23,11 @@ def abbreviate(names, length=8):
 
 
 class Method(object):
+    """A manager for a method. This class can register or deregister databases, write intermediate data, process data to parameter arrays, query, validate, and copy databases.
+
+    Databases are automatically versioned.
+
+    The Database class never holds intermediate data, but it can load or write intermediate data. The only attribute is *database*, which is the name of the database being managed."""
     def __init__(self, method, *args, **kwargs):
         self.method = method
         if self.method not in methods:
