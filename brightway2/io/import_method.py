@@ -2,32 +2,41 @@
 from brightway2 import Database, mapping, Method, methods
 from lxml import objectify
 import os
+import progressbar
 try:
     import cPickle as pickle
 except:
     import pickle
 
 
-def import_ia_dir(dirpath):
-    for filename in filter(lambda x: x.lower()[-4:] == ".xml",
-            os.listdir(dirpath)):
-        filepath = os.path.join(dirpath, filename)
-        print "Working on %s" % filepath
-        EcospoldImpactAssessmentImporter(filepath)
-
-
 class EcospoldImpactAssessmentImporter(object):
     """
 Import impact assessment methods and weightings from ecospold XML format.
     """
-    def __init__(self, filename):
-        self.filename = filename
+    def importer(self, path):
+        if os.path.isdir(path):
+            files = [os.path.join(path, filter(lambda x: x[-4:].lower(
+                ) == ".xml", os.listdir(path)))]
+        else:
+            files = [path]
+
         self.biosphere_data = Database("biosphere").load()
-        # Note that this is only used for the first root method found in
-        # the file
-        root = objectify.parse(open(self.filename)).getroot()
-        for dataset in root.iterchildren():
-            self.add_method(dataset)
+        if progressbar:
+            widgets = ['Files: ', progressbar.Percentage(), ' ',
+                progressbar.Bar(marker=progressbar.RotatingMarker()), ' ',
+                progressbar.ETA()]
+            pbar = progressbar.ProgressBar(widgets=widgets, maxval=len(files)
+                ).start()
+
+        for index, filepath in enumerate(files):
+            # Note that this is only used for the first root method found in
+            # the file
+            root = objectify.parse(open(filepath)).getroot()
+            for dataset in root.iterchildren():
+                self.add_method(dataset)
+            pbar.update(index)
+
+        pbar.finish()
 
     def add_method(self, ds):
         ref_func = ds.metaInformation.processInformation.referenceFunction

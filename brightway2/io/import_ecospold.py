@@ -6,32 +6,31 @@ from brightway2.errors import UnknownExchange
 from lxml import objectify
 import math
 import os
+import progressbar
 from stats_toolkit.distributions import *
-try:
-    import progressbar
-except ImportError:
-    progressbar = None
 
 BIOSPHERE = ("air", "water", "soil", "resource")
 
 
 class EcospoldImporter(object):
-    def import_directory(self, path, name, depends=["biosphere", ]):
+    def importer(self, path, name, depends=["biosphere", ]):
         data = []
         log = get_logger(name)
         log.critical(u"Starting import of %s (from %s)" % (name, path))
-        files = filter(lambda x: x[-4:].lower() == ".xml", os.listdir(path))
+        if os.path.isdir(path):
+            files = [os.path.join(path, filter(lambda x: x[-4:].lower(
+                ) == ".xml", os.listdir(path)))]
+        else:
+            files = [path]
 
-        if progressbar:
-            widgets = ['Files: ', progressbar.Percentage(), ' ',
-                progressbar.Bar(marker=progressbar.RotatingMarker()), ' ',
-                progressbar.ETA()]
-            pbar = progressbar.ProgressBar(widgets=widgets, maxval=len(files)
-                ).start()
+        widgets = ['Files: ', progressbar.Percentage(), ' ',
+            progressbar.Bar(marker=progressbar.RotatingMarker()), ' ',
+            progressbar.ETA()]
+        pbar = progressbar.ProgressBar(widgets=widgets, maxval=len(files)
+            ).start()
 
         for index, filename in enumerate(files):
-            root = objectify.parse(open(os.path.join(path, filename))
-                ).getroot()
+            root = objectify.parse(open(filename)).getroot()
 
             if root.tag != '{http://www.EcoInvent.org/EcoSpold01}ecoSpold':
                 # Unrecognized file type
@@ -41,11 +40,7 @@ class EcospoldImporter(object):
             for dataset in root.iterchildren():
                 data.append(self._process_dataset(dataset))
 
-            if progressbar:
-                pbar.update(index)
-
-        if progressbar:
-            pbar.finish()
+            pbar.update(index)
 
         # Hackish
         for o in data:
@@ -76,6 +71,8 @@ class EcospoldImporter(object):
         manager = Database(name)
         manager.register("Ecospold 1", depends, len(data))
         manager.write(data)
+
+        pbar.finish()
 
     def _find_in_dependent_database(self, code, exc, depends):
         for db in depends:
@@ -132,7 +129,6 @@ class EcospoldImporter(object):
                 continue
 
             this = {
-                "pedigree matrix": exc.get("generalComment"),
                 "code": int(exc.get("number")),
                 "_matching": {
                     "categories": (exc.get("category"), exc.get("subCategory")),
@@ -141,6 +137,9 @@ class EcospoldImporter(object):
                     "name": exc.get("name")
                     }
                 }
+
+            if exc.get("generalComment"):
+                this["pedigree matrix"] = exc.get("generalComment")
 
             uncertainty = int(exc.get("uncertaintyType", 0))
             mean = exc.get("meanValue")
