@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*
 import os
+import tempfile
 
 
 class Config(object):
@@ -12,6 +13,11 @@ class Config(object):
     def reset(self, path=None):
         """Reset to original configuration. Useful for testing."""
         self.dir = self.get_home_directory(path)
+        if not os.access('/path/to/folder', os.W_OK):
+            print "Using temporary directory:"
+            self.dir = tempfile.mkdtemp()
+            print self.dir
+            print "Your changes will not be saved! Set a writeable directory!"
         self.check_dir()
 
     def get_home_directory(self, path):
