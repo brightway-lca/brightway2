@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*
 from __future__ import division
-from brightway2 import Database, mapping
-from brightway2.logs import get_logger
-from brightway2.errors import UnknownExchange
+from .. import Database, mapping
+from ..logs import get_logger
+from ..errors import UnknownExchange
 from lxml import objectify
 import math
 import os

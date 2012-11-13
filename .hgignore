@@ -1,6 +1,6 @@
 syntax:glob
 dist
-docs/build
+docs/_build
 *.pyc
 *~
 MANIFEST

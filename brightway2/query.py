@@ -36,6 +36,7 @@ class Result(object):
 
 
 class Query(object):
+    """A Database or Method query."""
     def __init__(self, *queries):
         self.queries = list(queries)
 

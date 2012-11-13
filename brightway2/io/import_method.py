@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*
-from brightway2 import Database, mapping, Method, methods
+from .. import Database, mapping, Method, methods
 from lxml import objectify
 import os
 import progressbar

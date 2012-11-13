@@ -1,2 +1,2 @@
 from import_ecospold import EcospoldImporter
-from import_method import EcospoldImpactAssessmentImporter, import_ia_dir
+from import_method import EcospoldImpactAssessmentImporter
