@@ -5,6 +5,7 @@ import os
 import numpy as np
 from query import Query
 from utils import natural_sort, MAX_INT_32
+from validate import db_validator
 try:
     import cPickle as pickle
 except ImportError:
@@ -23,6 +24,7 @@ class Database(object):
     def copy(self, name):
         # Todo: register copied method
         raise NotImplemented
+
         def relabel_exchanges(obj, keys):
             for e in obj['exchanges']:
                 if e["input"] in data:
@@ -43,6 +45,10 @@ class Database(object):
 
     def deregister(self):
         del databases[self.database]
+
+    def validate(self, data):
+        db_validator(data)
+        return True
 
     def write(self, data, name=None):
         if self.database not in databases:

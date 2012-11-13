@@ -6,6 +6,7 @@ import numpy as np
 import os
 import random
 import string
+from validate import ia_validator
 try:
     import cPickle as pickle
 except ImportError:
@@ -50,7 +51,13 @@ class Method(object):
     def deregister(self):
         del methods[self.method]
 
+    def validate(self, data):
+        ia_validator(data)
+        return True
+
     def write(self, data):
+        if self.method not in methods:
+            raise UnknownObject("This database is not yet registered")
         mapping.add(data.keys())
         filepath = os.path.join(config.dir, "intermediate",
             "%s.pickle" % self.get_abbreviation())
