@@ -13,7 +13,7 @@ class Config(object):
     def reset(self, path=None):
         """Reset to original configuration. Useful for testing."""
         self.dir = self.get_home_directory(path)
-        if not os.access('/path/to/folder', os.W_OK):
+        if not os.access(self.dir, os.W_OK):
             print "Using temporary directory:"
             self.dir = tempfile.mkdtemp()
             print self.dir

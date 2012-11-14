@@ -1,5 +1,26 @@
 # -*- coding: utf-8 -*
 import collections
+import operator
+
+operators = {
+    "<": operator.lt,
+    "<=": operator.le,
+    "==": operator.eq,
+    "is": operator.eq,
+    "!=": operator.ne,
+    ">=": operator.ge,
+    ">": operator.gt,
+    "in": operator.contains,
+    "nin": lambda x, y: not operator.contains(x, y),
+    "iin": lambda x, y: x.lower() in y.lower()
+}
+
+
+def try_op(f, x, y):
+    try:
+        return f(x, y)
+    except:
+        return False
 
 
 class Result(object):
@@ -50,88 +71,30 @@ class Query(object):
 
 
 class Filter(object):
-    def __init__(self, field, value):
-        self.field = field
+    def __init__(self, key, value, function):
+        self.key = key
         self.value = value
+        self.function = function
+        if not callable(function):
+            self.function = operators.get(function, None)
+        if not self.function:
+            raise ValueError("No valid function found")
 
     def __call__(self, data):
-        """Should return a filtered dictionary, same form as before"""
-        return dict((k, v) for k, v in data.iteritems() if self.filter(v))
-
-    def filter(self, o):
-        raise NotImplemented
+        return dict(((k, v) for k, v in data.iteritems() if try_op(
+            self.function, v.get(self.key, None), self.value)))
 
 
-# class Category(object):
+# class Exchange(object):
 #     def __init__(self, *args):
 #         self.filters = args
 
 #     def __call__(self, data):
+#         """All filters should pass for at least one exchange"""
 #         return dict([
 #             (k, v) for k, v in data.iteritems() if \
-#                 all([
-#                     any([f.filter(x) for x in v["categories"]]) \
-#                     for f in self.filters
+#                 any([
+#                     all([f.filter(e) for f in self.filters]) \
+#                     for e in v["exchanges"]
 #                 ])
 #             ])
-
-
-class Exchange(object):
-    def __init__(self, *args):
-        self.filters = args
-
-    def __call__(self, data):
-        """All filters should pass for at least one exchange"""
-        return dict([
-            (k, v) for k, v in data.iteritems() if \
-                any([
-                    all([f.filter(e) for f in self.filters]) \
-                    for e in v["exchanges"]
-                ])
-            ])
-
-
-class In(Filter):
-    def filter(self, o):
-        return self.value in o.get(self.field, [])
-
-
-class Is(Filter):
-    def filter(self, o):
-        return self.value == o.get(self.field, "")
-
-
-class Isnt(Filter):
-    def filter(self, o):
-        return self.value != o.get(self.field, None)
-
-
-class Contains(Filter):
-    def filter(self, o):
-        return self.value in o.get(self.field, None)
-
-
-class iFilter(Filter):
-    def __init__(self, field, value):
-        self.field = field
-        self.value = value.lower()
-
-
-class iIs(iFilter):
-    def filter(self, o):
-        return self.value == o.get(self.field, "").lower()
-
-
-class iIsnt(iFilter):
-    def filter(self, o):
-        return self.value != o.get(self.field, "").lower()
-
-
-class iIn(iFilter):
-    def filter(self, o):
-        return self.value in [x.lower() for x in o.get(self.field, [])]
-
-
-class iContains(iFilter):
-    def filter(self, o):
-        return self.value in (o.get(self.field, '').lower() or None)
