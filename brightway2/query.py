@@ -7,12 +7,15 @@ operators = {
     "<=": operator.le,
     "==": operator.eq,
     "is": operator.eq,
+    "not": operator.ne,
     "!=": operator.ne,
     ">=": operator.ge,
     ">": operator.gt,
     "in": operator.contains,
-    "nin": lambda x, y: not operator.contains(x, y),
-    "iin": lambda x, y: x.lower() in y.lower()
+    "notin": lambda x, y: not operator.contains(x, y),
+    "iin": lambda x, y: x.lower() in y.lower(),
+    "inot": lambda x, y: x.lower() != y.lower(),
+    "iis": lambda x, y: x.lower() == y.lower(),
 }
 
 
