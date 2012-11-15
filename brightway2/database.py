@@ -17,14 +17,19 @@ class Database(object):
 
     Databases are automatically versioned.
 
-    The Database class never holds intermediate data, but it can load or write intermediate data. The only attribute is *database*, which is the name of the database being managed."""
+    The Database class never holds intermediate data, but it can load or write intermediate data. The only attribute is *database*, which is the name of the database being managed.
+
+    Instantiation does not load any data. If this database is not yet registered in the metadata store, a warning is written to ``stdout``.
+
+    Args:
+        *database* (str): Name of the database to manage.
+
+    """
     def __init__(self, database):
         """Instantiate a Database object.
 
         Does not load any data. If this database is not yet registered in the metadata store, a warning is written to **stdout**.
 
-        Args:
-            *database* (str): Name of the database to manage.
 
         """
         self.database = database
@@ -42,17 +47,21 @@ class Database(object):
             *name* (str): Name of the new database.
 
         """
-        # Todo: register copied method
-        raise NotImplemented
-        assert name not in databases, ValueError("This database exists")
         def relabel_exchanges(obj, keys):
             for e in obj['exchanges']:
                 if e["input"] in data:
                     e["input"] = (name, e["input"][1])
             return obj
+
+        assert name not in databases, ValueError("This database exists")
         data = self.load()
         data = dict([((name, k[1]), relabel_exchanges(v)) for k, v in data.iteritems()])
-        self.write(data, name)
+        new_database = Database(name)
+        new_database.register(
+            format="Brightway2 copy",
+            depends=databases[self.database]["depends"],
+            num_processes=len(data))
+        new_database.write(data)
 
     def register(self, format, depends, num_processes):
         """Register a database with the metadata store.
@@ -62,7 +71,7 @@ class Database(object):
         Args:
             *format* (str): Format that the database was converted from, e.g. "Ecospold"
             *depends* (list): Names of the databases that this database references, e.g. "biosphere"
-            num_processes (int): Number of processes in this database.
+            *num_processes* (int): Number of processes in this database.
 
         """
         assert self.database not in databases
@@ -78,7 +87,7 @@ class Database(object):
         del databases[self.database]
 
     def validate(self, data):
-        """Validate data (that is presumably not yet written).
+        """Validate data. Must be called manually.
 
         Args:
             *data* (dict): The data, in its processed form.
@@ -87,8 +96,13 @@ class Database(object):
         db_validator(data)
         return True
 
-    def write(self, data, name=None):
-        """"""
+    def write(self, data):
+        """Serialize data to disk.
+
+        Args:
+            *data* (dict): Inventory data
+
+        """
         if self.database not in databases:
             raise UnknownObject("This database is not yet registered")
         databases.increment_version(self.database)
@@ -128,7 +142,14 @@ class Database(object):
             return pickle.load(open(filepath, "rb"))
 
     def process(self, version=None):
-        """Create numpy structured arrays from database"""
+        """Process intermediate data from a Python dictionary to a `NumPy <http://numpy.scipy.org/>`_ `Structured <http://docs.scipy.org/doc/numpy/reference/arrays.classes.html#record-arrays-numpy-rec>`_ `Array <http://docs.scipy.org/doc/numpy/user/basics.rec.html>`_. A structured array (also called record arrays) is a heterogeneous array, where each column has a different label and data type. These structured arrays act as a standard data format for LCA and Monte Carlo calculations, and are the native data format for the Stats Arrays package.
+
+        Processed arrays are saved in the ``processed`` directory.
+
+        Args:
+            *version* (int, optional): The version of the database to process
+
+        """
         data = self.load(version)
         num_exchanges = sum([len(obj["exchanges"]) for obj in data.values()])
         assert data
