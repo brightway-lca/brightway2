@@ -10,11 +10,17 @@ except ImportError:
 
 
 class SerializedDict(object):
+    """Base class for dictionary that can be serlialized to of unserialized from disk. Uses JSON as its storage format. Has most of the methods of a dictionary.
+
+    Upon instantiation, the serialized dictionary is read from disk."""
     def __init__(self):
+        if not getattr(self, "_filename"):
+            raise NotImplemented("SerializedDict must be subclassed, and the filename must be set.")
         self._filepath = os.path.join(config.dir, self._filename)
         self.load()
 
     def load(self):
+        """Load the serialized data. Creates the file if not yet present."""
         try:
             self.data = self.deserialize()
         except IOError:
@@ -23,10 +29,12 @@ class SerializedDict(object):
             self.flush()
 
     def flush(self):
+        """Serialize the current data to disk."""
         self.serialize()
 
     @property
     def list(self):
+        """List the keys of the dictionary. This is a property, and does not need to be called."""
         return sorted(self.data.keys())
 
     def __getitem__(self, key):
@@ -56,26 +64,36 @@ class SerializedDict(object):
         return self.data.values()
 
     def serialize(self, filepath=None):
+        """Method to do the actual serialization. Can be replaced with other serialization formats.
+
+        Args:
+            *filepath* (str, optional): Provide an alternate filepath (e.g. for backup).
+
+        """
         with open(filepath or self._filepath, "w") as f:
             json.dump(self.pack(self.data), f, indent=2)
 
     def deserialize(self):
+        """Load the serialized data. Can be replaced with other serialization formats."""
         return self.unpack(json.load(open(self._filepath, "r")))
 
     def pack(self, data):
+        """Transform the data, if necessary. Needed because JSON must have strings as dictionary keys."""
         return data
 
     def unpack(self, data):
+        """Return serialized data to true form."""
         return data
 
     def backup(self):
-        """Write a backup version of the data to backups directory"""
+        """Write a backup version of the data to the ``backups`` directory."""
         filepath = os.path.join(config.dir, "backups",
             self._filename + ".%s.backup" % int(time()))
         self.serialize(filepath)
 
 
 class PickledDict(SerializedDict):
+    """Subclass of ``SerializedDict`` that uses the pickle format instead of JSON."""
     def serialize(self):
         with open(self._filepath, "wb") as f:
             pickle.dump(self.pack(self.data), f,

@@ -16,6 +16,7 @@ operators = {
     "iin": lambda x, y: x.lower() in y.lower(),
     "inot": lambda x, y: x.lower() != y.lower(),
     "iis": lambda x, y: x.lower() == y.lower(),
+    "len": lambda x, y: len(x) == y,
 }
 
 

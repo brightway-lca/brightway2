@@ -10,7 +10,6 @@ The Database class
 	:members:
 	:inherited-members:
 
-
 .. autoclass:: brightway2.Method
 	:members:
 	:inherited-members:

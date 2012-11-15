@@ -1,4 +1,7 @@
 Introduction to Brightway2
 **************************
 
-This is it!
+Brightway2 has the following features:
+
+* Foo
+* Bar
