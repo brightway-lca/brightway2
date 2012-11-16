@@ -1,0 +1,15 @@
+==========================================
+Brightway2 life cycle assessment framework
+==========================================
+
+Brightway2 is a framework for advanced life cycle assessment calculations. It consists of several components which each accomplish specific tasks. This core component does data management, including interacting with metadata, life cycle inventories, and impact assessment methods.
+
+Brightway2 is inspired by the Brightway software, which was developed during Chris Mutel's PhD work at ETH Zurich, but is a complete rewrite focusing on simplicity, power, and ease of use. Brightway2 can run on all major operating systems.
+
+Learn more at the following sites:
+
+	http://brightwaylca.org
+
+Online documentation is at:
+
+	https://brightway2.readthedocs.org/
