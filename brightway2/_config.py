@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*
 import os
+import json
 import tempfile
 
 
@@ -20,13 +21,30 @@ class Config(object):
 
     def reset(self, path=None):
         """Reset to original configuration. Useful for testing."""
-        self.dir = self.get_home_directory(path)
+        # Use _dir instead of dir beacuse need to check dir ourselves
+        self._dir = self.get_home_directory(path)
         if not self.check_dir():
             self.dir = tempfile.mkdtemp()
             self.is_temp_dir = True
             print "Your changes will not be saved! Set a writeable directory!"
             print "Current data directory is:"
             print self.dir
+        self.load_preferences()
+
+    def load_preferences(self):
+        """Load a set of preferences from a file in the home directory.
+
+        Preferences as stored as ``config.p``."""
+        try:
+            self.p = json.load(open(os.path.join(
+                self.dir, "preferences.json")))
+        except:
+            self.p = {}
+
+    def save_preferences(self):
+        """Serialize preferences to disk."""
+        with open(os.path.join(self.dir, "preferences.json"), "w") as f:
+            json.dump(self.p, f, indent=2)
 
     def get_home_directory(self, path=None):
         """Get data directory, trying in order:
