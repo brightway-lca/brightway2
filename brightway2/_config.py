@@ -58,13 +58,13 @@ class Config(object):
 
         To set the environment variable:
 
-        * Unix/Max: ``export BRIGHTWAY2-DIR=/path/to/brightway2/directory``
-        * Windows: ``set BRIGHTWAY2-DIR=\path\to\brightway2\directory``
+        * Unix/Max: ``export BRIGHTWAY2_DIR=/path/to/brightway2/directory``
+        * Windows: ``set BRIGHTWAY2_DIR=\path\to\brightway2\directory``
 
         """
         if path:
             return path
-        envvar = os.getenv("BRIGHTWAY2-DIR")
+        envvar = os.getenv("BRIGHTWAY2_DIR")
         if envvar:
             return envvar
         else:
