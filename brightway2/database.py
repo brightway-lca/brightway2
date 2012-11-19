@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*
+# -*- coding: utf-8 -*-
 from . import databases, config, mapping
 from errors import MissingIntermediateData, UnknownObject
 import os
@@ -10,6 +10,9 @@ try:
     import cPickle as pickle
 except ImportError:
     import pickle
+
+# TODO: def backup
+# TODO: def revert
 
 
 class Database(object):

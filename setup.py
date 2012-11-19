@@ -21,7 +21,7 @@ setup(
   author="Chris Mutel",
   author_email="cmutel@gmail.com",
   license=open('LICENSE.txt').read(),
-  requires=["voluptuous", "nose", "progressbar", "numpy"],
+  requires=["voluptuous", "nose", "progressbar", "numpy", "lxml"],
   url="https://bitbucket.org/cmutel/brightway2",
-  long_description=open('README.txt').read(),
+  long_description=open('README').read(),
 )

@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*
+# -*- coding: utf-8 -*-
 from . import config, mapping, methods
 from copy import copy
 from errors import UnknownObject, MissingIntermediateData
-from utils import MAX_INT_32
+from utils import MAX_INT_32, random_string
 import numpy as np
 import os
-import random
 import string
 from validate import ia_validator
 try:
@@ -18,9 +17,7 @@ def abbreviate(names, length=8):
     abbrev = lambda x: x if x[0] in string.digits else x[0].lower()
     name = " ".join(names).split(" ")[0].lower() + \
         "".join([abbrev(x) for x in " ".join(names).split(" ")[1:]])
-    random_string = ''.join(random.choice(string.letters + string.digits
-        ) for i in xrange(length))
-    return name + "-" + random_string
+    return name + "-" + random_string(length)
 
 
 class Method(object):
