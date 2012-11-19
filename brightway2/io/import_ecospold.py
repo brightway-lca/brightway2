@@ -194,4 +194,6 @@ class EcospoldImporter(object):
 
             data.append(this)
 
+        # Sort for consistent order to make import comparisons easier
+        data.sort(key=lambda x: x["input"])
         return data
