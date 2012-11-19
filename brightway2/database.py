@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
 from . import databases, config, mapping
 from errors import MissingIntermediateData, UnknownObject
-import os
-import numpy as np
 from query import Query
+from time import time
 from utils import natural_sort, MAX_INT_32
 from validate import db_validator
+import datetime
+import numpy as np
+import os
 try:
     import cPickle as pickle
 except ImportError:
     import pickle
-
-# TODO: def backup
-# TODO: def revert
 
 
 class Database(object):
@@ -38,6 +37,10 @@ class Database(object):
         self.database = database
         if self.database not in databases:
             print "Warning: %s not a currently installed database" % database
+
+    @property
+    def version(self):
+        return databases.version(self.database)
 
     def query(self, *queries):
         """Search through the database. See :class:`query.Query` for details."""
@@ -65,6 +68,26 @@ class Database(object):
             depends=databases[self.database]["depends"],
             num_processes=len(data))
         new_database.write(data)
+
+    def backup(self):
+        """Save a backup to ``backups`` folder."""
+        data = self.load()
+        filepath = os.path.join(config.dir, "backups", self.filename() + \
+            ".%s.backup" % int(time()))
+        with open(filepath, "wb") as f:
+            pickle.dump(data, f, protocol=pickle.HIGHEST_PROTOCOL)
+        return filepath
+
+    def revert(self, version):
+        """Return data to a previous state.
+
+        .. warning:: Reverted changes can be overwritten.
+
+        """
+        assert version in [x[0] for x in self.versions()], "Version not found"
+        self.backup()
+        databases[self.database]["version"] = version
+        self.process(version)
 
     def register(self, format, depends, num_processes):
         """Register a database with the metadata store.
@@ -99,6 +122,11 @@ class Database(object):
         db_validator(data)
         return True
 
+    def filename(self, version=None):
+        """Filename for given version; Default is current."""
+        return "%s.%i.pickle" % (self.database,
+            version or self.version)
+
     def write(self, data):
         """Serialize data to disk.
 
@@ -110,9 +138,7 @@ class Database(object):
             raise UnknownObject("This database is not yet registered")
         databases.increment_version(self.database)
         mapping.add(data.keys())
-        filename = "%s.%i.pickle" % (self.database,
-            databases.version(self.database))
-        filepath = os.path.join(config.dir, "intermediate", filename)
+        filepath = os.path.join(config.dir, "intermediate", self.filename())
         with open(filepath, "wb") as f:
             pickle.dump(data, f, protocol=pickle.HIGHEST_PROTOCOL)
 
@@ -130,19 +156,21 @@ class Database(object):
         """
         if self.database not in databases:
             raise UnknownObject("This database is not yet registered")
-        files = filter(lambda x: ".".join(x.split(".")[:-2]) == self.database,
-            os.listdir(os.path.join(config.dir, "intermediate")))
-        if not files:
-            raise MissingIntermediateData("Can't load intermediate data")
-        if version == None:
+        try:
             return pickle.load(open(os.path.join(config.dir, "intermediate",
-                natural_sort(files)[-1]), "rb"))
-        else:
-            filepath = os.path.join(config.dir, "intermediate",
-                "%s.%i.pickle" % (self.database, version))
-            if not os.path.exists(filepath):
-                raise MissingIntermediateData("This version not found")
-            return pickle.load(open(filepath, "rb"))
+                self.filename(version)), "rb"))
+        except OSError:
+            raise MissingIntermediateData("This version (%i) not found" % version)
+
+    def versions(self):
+        """Return list of (version, datetime created) tuples"""
+        directory = os.path.join(config.dir, "intermediate")
+        files = natural_sort(filter(
+            lambda x: ".".join(x.split(".")[:-2]) == self.database,
+            os.listdir(directory)))
+        return sorted([(int(name.split(".")[-2]),
+            datetime.datetime.fromtimestamp(os.stat(os.path.join(
+            config.dir, directory, name)).st_mtime)) for name in files])
 
     def process(self, version=None):
         """Process intermediate data from a Python dictionary to a `NumPy <http://numpy.scipy.org/>`_ `Structured <http://docs.scipy.org/doc/numpy/reference/arrays.classes.html#record-arrays-numpy-rec>`_ `Array <http://docs.scipy.org/doc/numpy/user/basics.rec.html>`_. A structured array (also called record arrays) is a heterogeneous array, where each column has a different label and data type. These structured arrays act as a standard data format for LCA and Monte Carlo calculations, and are the native data format for the Stats Arrays package.
