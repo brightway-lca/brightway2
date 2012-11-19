@@ -19,7 +19,7 @@ db_validator = Schema({valid_tuple: {
     "categories": list or tuple,
     "location": object,
     required("name"): basestring,
-    required("type"): "process" or "emission" or "process",
+    required("type"): "process" or "emission" or "resource",
     "unit": basestring,
     required("exchanges"): [{
         required("amount"): float,
