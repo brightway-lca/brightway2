@@ -1,2 +1,0 @@
-- import_method can't handle SimaPro XML files (where exchanges are numbered sequentially)
-- RobustFinder to find processes or flows which aren't correctly specified (import scripts)
