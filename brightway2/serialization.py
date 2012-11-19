@@ -1,12 +1,47 @@
-# -*- coding: utf-8 -*
+# -*- coding: utf-8 -*-
 import os
 from . import config
 from time import time
-import json
+try:
+    import anyjson
+except ImportError:
+    anyjson = None
+    import json
 try:
     import cPickle as pickle
 except ImportError:
     import pickle
+
+
+class JsonWrapper(object):
+    @classmethod
+    def dump(self, data, file):
+        if anyjson:
+            with open(file, "w") as f:
+                f.write(anyjson.serialize(data))
+        else:
+            json.dump(data, file, indent=2)
+
+    @classmethod
+    def load(self, file):
+        if anyjson:
+            return anyjson.deserialize(open(file).read())
+        else:
+            return json.load(open(file))
+
+    @classmethod
+    def dumps(self, data):
+        if anyjson:
+            return anyjson.serialize(data)
+        else:
+            return json.dumps(data)
+
+    @classmethod
+    def loads(self, data):
+        if anyjson:
+            return anyjson.deserialize(data)
+        else:
+            return json.loads(data)
 
 
 class SerializedDict(object):
@@ -54,6 +89,9 @@ class SerializedDict(object):
         del self.data[name]
         self.flush()
 
+    def __len__(self):
+        return len(self.data)
+
     def iteritems(self):
         return self.data.iteritems()
 
@@ -70,12 +108,11 @@ class SerializedDict(object):
             *filepath* (str, optional): Provide an alternate filepath (e.g. for backup).
 
         """
-        with open(filepath or self._filepath, "w") as f:
-            json.dump(self.pack(self.data), f, indent=2)
+        JsonWrapper.dump(self.pack(self.data), filepath or self._filepath)
 
     def deserialize(self):
         """Load the serialized data. Can be replaced with other serialization formats."""
-        return self.unpack(json.load(open(self._filepath, "r")))
+        return self.unpack(JsonWrapper.load(self._filepath))
 
     def pack(self, data):
         """Transform the data, if necessary. Needed because JSON must have strings as dictionary keys."""
