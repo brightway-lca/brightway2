@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*
 import collections
 import operator
+import itertools
 
 operators = {
     "<": operator.lt,
@@ -25,6 +26,17 @@ def try_op(f, x, y):
         return f(x, y)
     except:
         return False
+
+
+class Dictionaries(object):
+    """A wrapper for a single call to iteritems() for multiple dictionaries.
+
+    Useful for a ``Query`` across multiple databases."""
+    def __init__(self, *args):
+        self.dicts = args
+
+    def iteritems(self):
+        return itertools.chain(*[x.iteritems() for x in self.dicts])
 
 
 class Result(object):
@@ -112,10 +124,10 @@ class Query(object):
 
 
 class Filter(object):
-    def __init__(self, key, value, function):
+    def __init__(self, key, function, value):
         self.key = key
-        self.value = value
         self.function = function
+        self.value = value
         if not callable(function):
             self.function = operators.get(function, None)
         if not self.function:
