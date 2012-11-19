@@ -16,7 +16,7 @@ for dirpath, dirnames, filenames in os.walk('brightway2'):
 
 setup(
   name='brightway2',
-  version="0.7",
+  version="0.7.1",
   packages=packages,
   author="Chris Mutel",
   author_email="cmutel@gmail.com",

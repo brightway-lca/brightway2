@@ -156,9 +156,15 @@ class Database(object):
         """
         if self.database not in databases:
             raise UnknownObject("This database is not yet registered")
+        if version == None and config.p["use_cache"] and \
+                self.database in config.cache:
+            return config.cache[self.database]
         try:
-            return pickle.load(open(os.path.join(config.dir, "intermediate",
+            data = pickle.load(open(os.path.join(config.dir, "intermediate",
                 self.filename(version)), "rb"))
+            if version == None and config.p["use_cache"]:
+                config.cache[self.database] = data
+            return data
         except OSError:
             raise MissingIntermediateData("This version (%i) not found" % version)
 
