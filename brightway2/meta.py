@@ -82,3 +82,9 @@ class Methods(SerializedDict):
 mapping = Mapping()
 databases = Databases()
 methods = Methods()
+
+
+def reset_meta():
+    mapping.__init__()
+    databases.__init__()
+    methods.__init__()

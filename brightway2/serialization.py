@@ -16,11 +16,11 @@ except ImportError:
 class JsonWrapper(object):
     @classmethod
     def dump(self, data, file):
-        if anyjson:
-            with open(file, "w") as f:
+        with open(file, "w") as f:
+            if anyjson:
                 f.write(anyjson.serialize(data))
-        else:
-            json.dump(data, file, indent=2)
+            else:
+                json.dump(data, f, indent=2)
 
     @classmethod
     def load(self, file):
