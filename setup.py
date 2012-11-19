@@ -16,12 +16,12 @@ for dirpath, dirnames, filenames in os.walk('brightway2'):
 
 setup(
   name='brightway2',
-  version="0.7",
+  version="0.9",
   packages=packages,
   author="Chris Mutel",
   author_email="cmutel@gmail.com",
   license=open('LICENSE.txt').read(),
-  requires=["voluptuous", "nose", "progressbar", "numpy", "lxml"],
+  requires=["voluptuous", "nose", "progressbar", "numpy", "lxml", "fuzzywuzzy"],
   url="https://bitbucket.org/cmutel/brightway2",
   long_description=open('README').read(),
 )
