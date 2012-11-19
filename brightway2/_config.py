@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*
+# -*- coding: utf-8 -*-
 import os
 import json
 import tempfile
@@ -11,6 +11,9 @@ class Config(object):
         *path* (str, optional): The path of the data directory. Must be writeable.
 
     """
+    version = 0.1
+    basic_directories = ("processed", "intermediate", "backups", "logs")
+
     def __init__(self, path=None):
         self.is_temp_dir = False
         self.reset(path)
@@ -71,13 +74,20 @@ class Config(object):
         """Return ``True`` if directory already exists or can be created."""
         path = os.path.join(self.dir, dirname)
         if self.check_dir(path):
-            return True
+            return path
         else:
             try:
                 os.mkdir(path)
-                return True
+                return path
             except:
                 return False
+
+    def create_basic_directories(self):
+        """Create basic directory structure.
+
+        Useful when first starting or for tests."""
+        for name in self.basic_directories:
+            os.mkdir(os.path.join(self.dir, name))
 
     def _get_dir(self):
         return self._dir
