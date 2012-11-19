@@ -71,6 +71,7 @@ Table of contents:
    databases
    querying
    technical
+   changelog
 
 Indices and tables
 ==================
