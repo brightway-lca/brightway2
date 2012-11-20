@@ -8,11 +8,13 @@ class Config(object):
     """A singleton that store configuration settings. Default data directory is ``brightway`` in the user's home directory, and is stored as ``config.dir``. Other configuration settings can also be assigned as needed.
 
     Args:
-        *path* (str, optional): The path of the data directory. Must be writeable.
+        * *path* (str, optional): The path of the data directory. Must be writeable.
 
     """
     version = 0.1
     basic_directories = ("processed", "intermediate", "backups", "logs")
+
+    # TODO: Create directory if needed (and basic dirs)
 
     def __init__(self, path=None):
         self.is_temp_dir = False
@@ -69,7 +71,7 @@ class Config(object):
         if envvar:
             return envvar
         else:
-            return os.path.expanduser("~/brightway2")
+            return os.path.join(os.path.expanduser("~"), "brightway2")
 
     def request_dir(self, dirname):
         """Return ``True`` if directory already exists or can be created."""

@@ -105,7 +105,7 @@ class SerializedDict(object):
         """Method to do the actual serialization. Can be replaced with other serialization formats.
 
         Args:
-            *filepath* (str, optional): Provide an alternate filepath (e.g. for backup).
+            * *filepath* (str, optional): Provide an alternate filepath (e.g. for backup).
 
         """
         JsonWrapper.dump(self.pack(self.data), filepath or self._filepath)

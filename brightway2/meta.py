@@ -13,7 +13,7 @@ class Mapping(PickledDict):
         """Add a set of keys. These keys can already be in the mapping; only new keys will be added.
 
         Args:
-            *keys* (list): The keys to add.
+            * *keys* (list): The keys to add.
 
         """
         index = max(self.data.values())

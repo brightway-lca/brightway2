@@ -45,7 +45,7 @@ class Result(object):
     The dataset can also be sorted, using ``sort(field)``; the underlying data is then a ``collections.OrderedDict``.
 
     Args:
-        *result* (dict): The filtered dataset.
+        * *result* (dict): The filtered dataset.
 
     """
     def __init__(self, result):
@@ -69,8 +69,8 @@ class Result(object):
         """Sort the filtered dataset. Operates in place; does not return anything.
 
         Args:
-            *field* (str): The key used for sorting.
-            *reverse* (bool, optional): Reverse normal sorting order.
+            * *field* (str): The key used for sorting.
+            * *reverse* (bool, optional): Reverse normal sorting order.
 
         """
         self.result = collections.OrderedDict(sorted(self.result.iteritems(),
@@ -102,7 +102,7 @@ class Query(object):
     Filters are applied by calling the ``Query`` object, and passing the dataset to filter as the argument. Calling a ``Query`` with some data returns a ``Result`` object with the filtered dataset.
 
     Args:
-        *filters* (filters): One or more ``Filter`` objects.
+        * *filters* (filters): One or more ``Filter`` objects.
 
     """
     def __init__(self, *filters):
@@ -143,9 +143,9 @@ class Filter(object):
         * Category (a list of categories and subcategories) includes *foo*: ``Filter("category", "in", "foo")``
 
     Args:
-        *key* (str): The field to filter on.
-        *function* (str or object): One of the pre-defined filters, or a callable object.
-        *value* (object): The value to test against.
+        * *key* (str): The field to filter on.
+        * *function* (str or object): One of the pre-defined filters, or a callable object.
+        * *value* (object): The value to test against.
 
     Returns:
         A ``Result`` object which wraps a new data dictionary.

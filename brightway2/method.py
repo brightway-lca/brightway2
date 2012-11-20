@@ -30,7 +30,7 @@ class Method(object):
     Methods are hierarchally structured, and this structure is preserved in the method name. It is a tuple of strings, like ``('ecological scarcity 2006', 'total', 'natural resources')``.
 
     Args:
-        *method* (tuple): Name of the method to manage. Must be a tuple of strings.
+        * *method* (tuple): Name of the method to manage. Must be a tuple of strings.
 
     """
     def __init__(self, method, *args, **kwargs):
@@ -50,7 +50,7 @@ class Method(object):
         """Make a copy of the method.
 
         Args:
-            *name* (tuple, optional): Name of the new method.
+            * *name* (tuple, optional): Name of the new method.
 
         """
         name = name or self.method[:-1] + ("Copy of " + self.method[-1],)
@@ -66,9 +66,9 @@ class Method(object):
         Methods must be registered before data can be written.
 
         Args:
-            *unit* (str): Unit for impact assessment CFs
-            *description* (str): Description
-            num_cfs (int): Number of characterization factors
+            * *unit* (str): Unit for impact assessment CFs
+            * *description* (str): Description
+            * *num_cfs* (int): Number of characterization factors
 
         """
         assert self.method not in methods
@@ -87,7 +87,7 @@ class Method(object):
         """Validate data. Must be called manually.
 
         Args:
-            *data* (dict): The data, in its processed form.
+            * *data* (dict): The data, in its processed form.
 
         """
         ia_validator(data)
@@ -97,7 +97,7 @@ class Method(object):
         """Serialize data to disk.
 
         Args:
-            *data* (dict): Inventory data
+            * *data* (dict): Inventory data
 
         """
         if self.method not in methods:

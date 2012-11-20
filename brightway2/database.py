@@ -52,24 +52,77 @@ class Database(object):
         """Search through the database. See :class:`query.Query` for details."""
         return Query(*queries)(self.load())
 
+    def relabel_data(self, data, new_name):
+        """Relabel database keys and exchanges.
+
+        In a database which internally refer to the same database, update to new database name ``new_name``.
+
+        Needed to copy a database completely or cut out a section of a database.
+
+        For example:
+
+        .. code-block:: python
+
+            data = {
+                ("old and boring", 1):
+                    {"exchanges": [
+                        {"input": ("old and boring", 42),
+                        "amount": 1.0},
+                        ]
+                    },
+                ("old and boring", 2):
+                    {"exchanges": [
+                        {"input": ("old and boring", 1),
+                        "amount": 4.0}
+                        ]
+                    }
+                }
+            print relabel_database(data, "shiny new")
+            >> {
+                ("shiny new", 1):
+                    {"exchanges": [
+                        {"input": ("old and boring", 42),
+                        "amount": 1.0},
+                        ]
+                    },
+                ("shiny new", 2):
+                    {"exchanges": [
+                        {"input": ("shiny new", 1),
+                        "amount": 4.0}
+                        ]
+                    }
+                }
+
+        In the example, the exchange to ``("old and boring", 42)`` does not change, as this is not part of the updated data.
+
+        Args:
+            * *data* (dict): The database data to modify
+            * *new_name* (str): The name of the modified database
+
+        Returns:
+            The modified database
+
+        """
+        def relabel_exchanges(obj, new_name):
+            for e in obj['exchanges']:
+                if e["input"] in data:
+                    e["input"] = (new_name, e["input"][1])
+            return obj
+
+        return dict([((new_name, k[1]), self.relabel_exchanges(v, new_name)) \
+            for k, v in data.iteritems()])
+
     def copy(self, name):
         """Make a copy of the database.
 
         Internal links within the database will be updated to match the new database name.
 
         Args:
-            *name* (str): Name of the new database.
+            * *name* (str): Name of the new database.
 
         """
-        def relabel_exchanges(obj, keys):
-            for e in obj['exchanges']:
-                if e["input"] in data:
-                    e["input"] = (name, e["input"][1])
-            return obj
-
         assert name not in databases, ValueError("This database exists")
-        data = self.load()
-        data = dict([((name, k[1]), relabel_exchanges(v)) for k, v in data.iteritems()])
+        data = self.relabel_data(self.load(), name)
         new_database = Database(name)
         new_database.register(
             format="Brightway2 copy",
@@ -84,11 +137,10 @@ class Database(object):
             Filepath of backup.
 
         """
-        data = self.load()
-        filepath = os.path.join(config.dir, "backups", self.filename() + \
+        filepath = os.path.join(config.request_dir("backups"), self.filename() + \
             ".%s.backup" % int(time()))
         with open(filepath, "wb") as f:
-            pickle.dump(data, f, protocol=pickle.HIGHEST_PROTOCOL)
+            pickle.dump(self.load(), f, protocol=pickle.HIGHEST_PROTOCOL)
         return filepath
 
     def revert(self, version):
@@ -97,7 +149,7 @@ class Database(object):
         .. warning:: Reverted changes can be overwritten.
 
         Args:
-            *version* (int): Number of the version to revert to.
+            * *version* (int): Number of the version to revert to.
 
         """
         assert version in [x[0] for x in self.versions()], "Version not found"
@@ -111,9 +163,9 @@ class Database(object):
         Databases must be registered before data can be written.
 
         Args:
-            *format* (str): Format that the database was converted from, e.g. "Ecospold"
-            *depends* (list): Names of the databases that this database references, e.g. "biosphere"
-            *num_processes* (int): Number of processes in this database.
+            * *format* (str): Format that the database was converted from, e.g. "Ecospold"
+            * *depends* (list): Names of the databases that this database references, e.g. "biosphere"
+            * *num_processes* (int): Number of processes in this database.
 
         """
         assert self.database not in databases
@@ -134,7 +186,7 @@ class Database(object):
         Raises ``voluptuous.Invalid`` if data does not validate.
 
         Args:
-            *data* (dict): The data, in its processed form.
+            * *data* (dict): The data, in its processed form.
 
         """
         db_validator(data)
@@ -153,7 +205,7 @@ class Database(object):
         """Serialize data to disk.
 
         Args:
-            *data* (dict): Inventory data
+            * *data* (dict): Inventory data
 
         """
         if self.database not in databases:
@@ -170,7 +222,7 @@ class Database(object):
         Can also load previous versions of this database's intermediate data.
 
         Args:
-            *version* (int): Version of the database to load. Default is *None*, for the latest version.
+            * *version* (int): Version of the database to load. Default is *None*, for the latest version.
 
         Returns:
             The intermediate data, a dictionary.
@@ -211,7 +263,7 @@ class Database(object):
         Processed arrays are saved in the ``processed`` directory.
 
         Args:
-            *version* (int, optional): The version of the database to process
+            * *version* (int, optional): The version of the database to process
 
         """
         data = self.load(version)
