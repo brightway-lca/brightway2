@@ -18,3 +18,18 @@ class DatabaseTest(BW2Test):
 
     def test_copy(self):
         pass
+
+    def test_relabel_data(self):
+        pass
+
+    def test_revert(self):
+        pass
+
+    def test_register(self):
+        pass
+
+    def test_load(self):
+        pass
+
+    def test_versions(self):
+        pass
