@@ -3,3 +3,4 @@ numpy
 nose
 progressbar
 voluptuous
+bw-stats-toolkit
