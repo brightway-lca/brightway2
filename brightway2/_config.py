@@ -4,27 +4,6 @@ import json
 import tempfile
 
 
-class Cache(object):
-    def __init__(self, use_me):
-        self.use = use_me
-        self.data = {}
-
-    def __getitem__(self, key):
-        if not self.use:
-            return False
-        return self.data[key]
-
-    def __setitem__(self, key, value):
-        if not self.use:
-            return False
-        else:
-            self.data[key] = value
-            return True
-
-    def __contains__(self, key):
-        return self.use and key in self.data
-
-
 class Config(object):
     """A singleton that store configuration settings. Default data directory is ``brightway`` in the user's home directory, and is stored as ``config.dir``. Other configuration settings can also be assigned as needed.
 
@@ -38,7 +17,7 @@ class Config(object):
     def __init__(self, path=None):
         self.is_temp_dir = False
         self.reset(path)
-        self.cache = Cache(self.p["use_cache"])
+        self.cache = {}
 
     def check_dir(self, dir=None):
         """Check is directory is writeable."""
