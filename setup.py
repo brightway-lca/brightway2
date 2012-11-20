@@ -22,7 +22,7 @@ setup(
   author_email="cmutel@gmail.com",
   license=open('LICENSE.txt').read(),
   requires=["voluptuous", "nose", "progressbar", "numpy", "lxml",
-    "bw-stats-toolkit", "scipy"],
+    "scipy"],
   url="https://bitbucket.org/cmutel/brightway2",
   long_description=open('README').read(),
 )
