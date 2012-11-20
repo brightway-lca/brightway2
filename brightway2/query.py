@@ -66,7 +66,7 @@ class Result(object):
             + "\n".join(["%s: %s" % (key, data[key]["name"]) for key in data])
 
     def sort(self, field, reverse=False):
-        """Sort the filtered dataset. Acts (effectively) in place; does not return anything.
+        """Sort the filtered dataset. Operates in place; does not return anything.
 
         Args:
             *field* (str): The key used for sorting.
@@ -74,7 +74,7 @@ class Result(object):
 
         """
         self.result = collections.OrderedDict(sorted(self.result.iteritems(),
-            key=lambda t: t[1].get(field, None)), reverse=reverse)
+            key=lambda t: t[1].get(field, None), reverse=reverse))
 
     # Generic dictionary methods
     def __len__(self):
@@ -99,10 +99,10 @@ class Result(object):
 class Query(object):
     """A container for a set of filters applied to a dataset.
 
-    Filters are applied by calling the ``Query`` object, and passing the dataset to filter as the argument. Calling a ``Query`` returns a ``Result`` object with the filtered dataset.
+    Filters are applied by calling the ``Query`` object, and passing the dataset to filter as the argument. Calling a ``Query`` with some data returns a ``Result`` object with the filtered dataset.
 
     Args:
-        *filters* (``Filter``(s)): One or more Filter objects.
+        *filters* (filters): One or more ``Filter`` objects.
 
     """
     def __init__(self, *filters):
@@ -124,6 +124,33 @@ class Query(object):
 
 
 class Filter(object):
+    """A filter on a dataset.
+
+    The following functions are supported:
+
+        * "<", "<=", "==", ">", ">=": Mathematical relations
+        * "is", "not": Identity relations. Work on any Python object.
+        * "in", "notin": List or string relations.
+        * "iin", "iis", "inot": Case-insensitive string relations.
+        * "len": Length relation.
+
+    In addition, any function which defines a relationship between an input and an output can also be used.
+
+    Examples:
+
+        * All ``name`` values are *foo*: ``Filter("name", "is", "foo")``
+        * All ``name`` values include the string *foo*: ``Filter("name", "in", "foo")``
+        * Category (a list of categories and subcategories) includes *foo*: ``Filter("category", "in", "foo")``
+
+    Args:
+        *key* (str): The field to filter on.
+        *function* (str or object): One of the pre-defined filters, or a callable object.
+        *value* (object): The value to test against.
+
+    Returns:
+        A ``Result`` object which wraps a new data dictionary.
+
+    """
     def __init__(self, key, function, value):
         self.key = key
         self.function = function

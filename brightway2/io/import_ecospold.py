@@ -13,7 +13,16 @@ BIOSPHERE = ("air", "water", "soil", "resource")
 
 
 class EcospoldImporter(object):
+    """Import inventory datasets from ecospold XML format.
+
+    Does not have any arguments; instead, instantiate the class, and then import using the ``importer`` method, i.e. ``EcospoldImporter().importer(filepath)``."""
     def importer(self, path, name, depends=["biosphere", ]):
+        """Import an inventory dataset, or a directory of inventory datasets.
+
+        Args:
+            *path* (str): A filepath or directory.
+
+        """
         data = []
         log = get_logger(name)
         log.critical(u"Starting import of %s (from %s)" % (name, path))
@@ -69,7 +78,7 @@ class EcospoldImporter(object):
         data = dict([((name, int(o["code"])), o) for o in data])
 
         manager = Database(name)
-        manager.register("Ecospold 1", depends, len(data))
+        manager.register(("Ecospold", 1), depends, len(data))
         manager.write(data)
 
         pbar.finish()

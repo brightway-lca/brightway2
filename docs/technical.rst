@@ -43,3 +43,24 @@ Documentation
 =============
 
 Documentation is uses `Sphinx <http://sphinx.pocoo.org/>`_ to build the source files into other forms. Building is as simple as changing to the docs directory, and running ``make.bat html`` in Windows and ``make html`` in OS X and Linux.
+
+Database
+========
+
+.. autoclass:: brightway2.Database
+    :members:
+
+Method
+======
+
+.. autoclass:: brightway2.Method
+    :members:
+
+Import and Export
+=================
+
+.. autoclass:: brightway2.io.EcospoldImporter
+    :members:
+
+.. autoclass:: brightway2.io.EcospoldImpactAssessmentImporter
+    :members:

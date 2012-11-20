@@ -42,17 +42,21 @@ This is the easiest way to get started using Brightway2 on **Windows**. If you a
 
 First, download the latest version of `Python (x,y) <https://code.google.com/p/pythonxy/wiki/Downloads>`_, and install it. This is the easiest way to get the `NumPy <http://numpy.scipy.org/>`_ and `SciPy <http://scipy.org/>`_ libraries.
 
+* `Python (x,y) <https://code.google.com/p/pythonxy/wiki/Downloads>`_
+
 Second, download and install the XML processing library `lxml <http://pythonxy.googlecode.com/files/lxml-3.0.1-1_py27.exe>`_.
+
+* `lxml <http://pythonxy.googlecode.com/files/lxml-3.0.1-1_py27.exe>`_
 
 Third, open a command prompt (Start -> Run), and type in the following:
 
-.. pull-quote::
+.. code-block:: bash
 	
 	pip install bw2all
 
-Finally, in another command prompt, start Brightway2:
+Finally, again in the command prompt, start Brightway2:
 
-.. pull-quote::
+.. code-block:: bash
 
 	bw2-web.py
 
@@ -68,7 +72,7 @@ Table of contents:
 
    installation
    introduction
-   databases
+   usage
    querying
    technical
    changelog

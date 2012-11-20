@@ -1,5 +1,5 @@
-Introduction to Brightway2
-**************************
+Introduction
+************
 
 Brightway2 has the following features:
 

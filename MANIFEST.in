@@ -1,4 +1,4 @@
 include *.txt
-include bw2calc/*.py
-include bw2calc/io/*.py
-include bw2calc/proxies/*.py
+include brightway2/*.py
+include brightway2/io/*.py
+include brightway2/proxies/*.py

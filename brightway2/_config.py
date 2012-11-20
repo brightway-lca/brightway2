@@ -59,7 +59,7 @@ class Config(object):
 
         To set the environment variable:
 
-        * Unix/Max: ``export BRIGHTWAY2_DIR=/path/to/brightway2/directory``
+        * Unix/Mac: ``export BRIGHTWAY2_DIR=/path/to/brightway2/directory``
         * Windows: ``set BRIGHTWAY2_DIR=\path\to\brightway2\directory``
 
         """

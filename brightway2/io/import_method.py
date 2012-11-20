@@ -10,10 +10,16 @@ except:
 
 
 class EcospoldImpactAssessmentImporter(object):
-    """
-Import impact assessment methods and weightings from ecospold XML format.
-    """
+    """Import impact assessment methods and weightings from ecospold XML format.
+
+Does not have any arguments; instead, instantiate the class, and then import using the ``importer`` method, i.e. ``EcospoldImpactAssessmentImporter().importer(filepath)``."""
     def importer(self, path):
+        """Import an impact assessment method, or a directory of impact assessment methods.
+
+        Args:
+            *path* (str): A filepath or directory.
+
+        """
         if os.path.isdir(path):
             files = [os.path.join(path, filter(lambda x: x[-4:].lower(
                 ) == ".xml", os.listdir(path)))]

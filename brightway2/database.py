@@ -40,6 +40,12 @@ class Database(object):
 
     @property
     def version(self):
+        """The current version number (integer) of this database.
+
+        Returns:
+            Version number
+
+        """
         return databases.version(self.database)
 
     def query(self, *queries):
@@ -48,6 +54,8 @@ class Database(object):
 
     def copy(self, name):
         """Make a copy of the database.
+
+        Internal links within the database will be updated to match the new database name.
 
         Args:
             *name* (str): Name of the new database.
@@ -70,7 +78,12 @@ class Database(object):
         new_database.write(data)
 
     def backup(self):
-        """Save a backup to ``backups`` folder."""
+        """Save a backup to ``backups`` folder.
+
+        Returns:
+            Filepath of backup.
+
+        """
         data = self.load()
         filepath = os.path.join(config.dir, "backups", self.filename() + \
             ".%s.backup" % int(time()))
@@ -82,6 +95,9 @@ class Database(object):
         """Return data to a previous state.
 
         .. warning:: Reverted changes can be overwritten.
+
+        Args:
+            *version* (int): Number of the version to revert to.
 
         """
         assert version in [x[0] for x in self.versions()], "Version not found"
@@ -115,15 +131,21 @@ class Database(object):
     def validate(self, data):
         """Validate data. Must be called manually.
 
+        Raises ``voluptuous.Invalid`` if data does not validate.
+
         Args:
             *data* (dict): The data, in its processed form.
 
         """
         db_validator(data)
-        return True
 
     def filename(self, version=None):
-        """Filename for given version; Default is current."""
+        """Filename for given version; Default is current.
+
+        Returns:
+            Filename (not path)
+
+        """
         return "%s.%i.pickle" % (self.database,
             version or self.version)
 
@@ -169,7 +191,12 @@ class Database(object):
             raise MissingIntermediateData("This version (%i) not found" % version)
 
     def versions(self):
-        """Return list of (version, datetime created) tuples"""
+        """Get a list of available versions of this database.
+
+        Returns:
+            List of (version, datetime created) tuples.
+
+        """
         directory = os.path.join(config.dir, "intermediate")
         files = natural_sort(filter(
             lambda x: ".".join(x.split(".")[:-2]) == self.database,
