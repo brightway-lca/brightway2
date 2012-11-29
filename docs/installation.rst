@@ -106,7 +106,7 @@ Second, install the Brightway2 metapackage:
 
 .. code-block:: bash
     
-    pip install bw2all
+    pip install brightay2
 
 If you want to install packages manually, or not install everything, Brightway2 uses the following Python packages:
 

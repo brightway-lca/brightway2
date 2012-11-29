@@ -4,7 +4,6 @@ scipy
 nose
 progressbar
 voluptuous
-bw-stats-toolkit
 flask
 docopt
 bw2calc
