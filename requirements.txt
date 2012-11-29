@@ -5,3 +5,11 @@ nose
 progressbar
 voluptuous
 bw-stats-toolkit
+flask
+docopt
+bw2calc
+bw2ui
+bw2analyzer
+bw2data
+requests
+bw-stats-toolkit>=0.7

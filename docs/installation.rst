@@ -120,6 +120,7 @@ If you want to install packages manually, or not install everything, Brightway2 
 The Brightway2 packages are:
 
 * brightway2
+* bw2data
 * bw2calc
 * bw2ui
 * bw2analyzer

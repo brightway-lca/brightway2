@@ -1,4 +1,2 @@
 include *.txt
 include brightway2/*.py
-include brightway2/io/*.py
-include brightway2/proxies/*.py

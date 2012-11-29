@@ -52,7 +52,7 @@ Third, open a command prompt (Start -> Run), and type in the following:
 
 .. code-block:: bash
 	
-	pip install bw2all
+	pip install brightway2
 
 Finally, again in the command prompt, start Brightway2:
 
@@ -73,8 +73,6 @@ Table of contents:
    installation
    introduction
    usage
-   querying
-   technical
    changelog
 
 Indices and tables
