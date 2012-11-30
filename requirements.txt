@@ -4,6 +4,7 @@ scipy
 nose
 progressbar
 voluptuous
+fuzzywuzzy
 flask
 docopt
 bw2calc
