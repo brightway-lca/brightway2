@@ -6,6 +6,8 @@ Brightway2 life cycle assessment framework
 
 Brightway2 is a simple framework for life cycle assessment (LCA). Its focus is on efficient calculation and visualization. Brightway2 is a complete rewrite of the original Brightway, which was a previous LCA framework developed during the PhD thesis of Chris Mutel.
 
+.. warning:: Brightway2 is in heavy development, and while it is used by mutiple people every day, it is probably not ready for people who don't like digging into source code and filing bug reports.
+
 Why another LCA framework?
 ==========================
 

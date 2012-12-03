@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
   name='brightway2',
-  version="0.8",
+  version="0.8.1",
   packages=["brightway2"],
   author="Chris Mutel",
   author_email="cmutel@gmail.com",
