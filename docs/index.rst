@@ -76,7 +76,7 @@ Table of contents:
    installation
    introduction
    usage
-   changelog
+   current_status
 
 Indices and tables
 ==================
