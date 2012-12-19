@@ -6,8 +6,7 @@ Brightway2 life cycle assessment framework
 
 Brightway2 is a simple framework for life cycle assessment (LCA). Its focus is on efficient calculation and visualization. Brightway2 is a complete rewrite of the original Brightway, which was a previous LCA framework developed during the PhD thesis of Chris Mutel.
 
-.. attention:: 
-    Brightway2 is in heavy development, and while it is used by mutiple people every day, it is probably not ready for people who don't like digging into source code and filing bug reports.
+.. warning:: Brightway2 is in heavy development, and while it is used by mutiple people every day, it is probably not ready for people who don't like digging into source code and filing bug reports.
 
 Why another LCA framework?
 ==========================
@@ -25,9 +24,10 @@ The life cycle assessment calculators are the most advanced part of Brightway2. 
 New data visualizations
 -----------------------
 
-(Include visualizations here)
+.. image:: images/new-graphics.png
+    :align: center
 
-Treemaps and Hinton matrices are already part of the standard LCA report, and new visualizations using the D3 library are planned. See the examples.
+Treemaps and Hinton matrices are already part of the standard LCA report, and new visualizations using the D3 library are planned.
 
 Simple data handling
 --------------------
@@ -41,11 +41,20 @@ Brightway2 uses a very simple data structure. Instead of a database, which is po
 Quick start
 ===========
 
-This is the easiest way to get started using Brightway2 on **Windows**. If you are interested in using the full power of the Brightway2 framework, or are using **Mac OS X** or **Linux**, see other installation options (link).
+This is the easiest way to get started using Brightway2 on **Windows**. If you are interested in using the full power of the Brightway2 framework, or are using **Mac OS X** or **Linux**, see other installation options:
+
+* :ref:`windows-install`
+* :ref:`os-x-install`
+* :ref:`linux-install`
 
 First, download the latest version of `Python (x,y) <https://code.google.com/p/pythonxy/wiki/Downloads>`_, and install it. This is the easiest way to get the `NumPy <http://numpy.scipy.org/>`_ and `SciPy <http://scipy.org/>`_ libraries.
 
 * `Python (x,y) <https://code.google.com/p/pythonxy/wiki/Downloads>`_
+
+.. note:: Be sure to check the option to install **pip**:
+
+.. image:: images/python-xy-pip.png
+    :align: center
 
 Second, download and install the XML processing library `lxml <http://pythonxy.googlecode.com/files/lxml-3.0.1-1_py27.exe>`_.
 

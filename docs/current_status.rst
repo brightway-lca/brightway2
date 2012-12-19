@@ -49,7 +49,7 @@ Upcoming features and releases
 brightway2-analyzer
 ===================
 
-Current version: **0.1**
+Current version: **0.1.1**
 
 Upcoming features and releases
 ------------------------------
@@ -74,7 +74,7 @@ Upcoming features and releases
 brightway2-ui
 =============
 
-Current version: **0.4.2**
+Current version: **0.4.3**
 
 Upcoming features and releases
 ------------------------------
@@ -102,7 +102,7 @@ Upcoming features and releases
 * Add database explorer
 * Add method explorer
 
-0.4.3 (in progress)
+0.4.4 (in progress)
 -------------------
 
 * Continue cleanup of LCA results page

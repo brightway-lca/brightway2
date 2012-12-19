@@ -1,10 +1,17 @@
 Installation
 ************
 
+.. _windows-install:
+
 Windows 
 =======
 
-Although Brightway2 is relatively simple, installation of the numerical and scientific libraries can be difficult as there is no default compilers installed on most Windows machines. The only sensible way is to use a precompiled set of packages, such as `Python (x,y) <https://code.google.com/p/pythonxy/wiki/Downloads>`_ or the `Enthought Python Distribution <http://www.enthought.com/products/epd.php>`_. If using Python (x,y), be sure to install `lxml <http://pythonxy.googlecode.com/files/lxml-3.0.1-1_py27.exe>`_ separately.
+Although Brightway2 is relatively simple, installation of the numerical and scientific libraries can be difficult as there is no default compilers installed on most Windows machines. The only sensible way is to use a precompiled set of packages, such as `Python (x,y) <https://code.google.com/p/pythonxy/wiki/Downloads>`_. Using `Anaconda Community Edition <http://continuum.io/anacondace.html>`_, or the `Enthought Python Distribution <http://www.enthought.com/products/epd.php>`_ is also possible, but not tested (they have custom package management commands). If using Python (x,y), be sure to install `lxml <http://pythonxy.googlecode.com/files/lxml-3.0.1-1_py27.exe>`_ separately.
+
+.. warning:: If you use python (x,y), be sure to check the option to install **pip**:
+
+.. image:: images/python-xy-pip.png
+    :align: center
 
 If you are stubborn and/or brave, you can try to install Python, NumPy, SciPy and lxml by yourself. The are various compiled binaries for each of these packages available at various places around the net. You should also install `pip <http://www.pip-installer.org/>`_.
 
@@ -30,6 +37,8 @@ Before you do anything else, go back and read what ``virtualenv`` does :) Now yo
     pip install -e hg+https://bitbucket.org/cmutel/brightway2-calc#egg=bw2calc
     pip install -e hg+https://bitbucket.org/cmutel/brightway2-ui#egg=bw2ui
     pip install -e hg+https://bitbucket.org/cmutel/brightway2-analyzer#egg=bw2analyzer
+
+.. _os-x-install:
 
 Max OS X
 ========
@@ -61,6 +70,8 @@ If you want to develop with Brightway, then don't install the metapackage. Inste
     pip install -e hg+https://bitbucket.org/cmutel/brightway2-calc#egg=bw2calc
     pip install -e hg+https://bitbucket.org/cmutel/brightway2-ui#egg=bw2ui
     pip install -e hg+https://bitbucket.org/cmutel/brightway2-analyzer#egg=bw2analyzer
+
+.. _linux-install:
 
 Linux
 =====
