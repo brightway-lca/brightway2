@@ -15,13 +15,19 @@ Although Brightway2 is relatively simple, installation of the numerical and scie
 
 If you are stubborn and/or brave, you can try to install Python, NumPy, SciPy and lxml by yourself. The are various compiled binaries for each of these packages available at various places around the net. You should also install `pip <http://www.pip-installer.org/>`_.
 
+LCA practitioners
+-----------------
+
 After the basic installation, you can install all additional Brightway2 packages and dependencies in one command in the command shell:
 
 .. code-block:: bash
 	
 	pip install bw2all
 
-If you want to develop with Brightway, then don't install the metapackage. Instead, first install `virtualenv <http://www.virtualenv.org/>`_ and `virtualenv for Powershell <https://bitbucket.org/guillermooo/virtualenvwrapper-powershell>`_:
+Developers
+----------
+
+If you want to develop with Brightway2, then don't install the metapackage. Instead, first install `virtualenv <http://www.virtualenv.org/>`_ and `virtualenv for Powershell <https://bitbucket.org/guillermooo/virtualenvwrapper-powershell>`_:
 
 .. code-block:: bash
     
@@ -32,8 +38,7 @@ Before you do anything else, go back and read what ``virtualenv`` does :) Now yo
 
 .. code-block:: bash
 
-    pip install progressbar flask docopt voluptuous requests bw-stats-toolkit nose sphinx
-    pip install -e hg+https://bitbucket.org/cmutel/brightway2#egg=brightway2
+    pip install -e hg+https://bitbucket.org/cmutel/brightway2-data#egg=bw2data
     pip install -e hg+https://bitbucket.org/cmutel/brightway2-calc#egg=bw2calc
     pip install -e hg+https://bitbucket.org/cmutel/brightway2-ui#egg=bw2ui
     pip install -e hg+https://bitbucket.org/cmutel/brightway2-analyzer#egg=bw2analyzer
@@ -45,7 +50,7 @@ Max OS X
 
 There are two main alternatives for installing packages on OS X: `Macports <http://www.macports.org/>`_ and `Homebrew <http://mxcl.github.com/homebrew/>`_. Brightway2 is developed primarily on OS X using Macports, but as it depends on a few standard libraries, either alternative should work well. Homebrew users will have to adapt the following instructions.
 
-Follow the `instructions <http://www.macports.org/install.php>`_ and install Macports. Note that both Macports and Homebrew require Xcode to be installed first.
+Follow the `instructions <http://www.macports.org/install.php>`_ and install Macports. Note that both Macports and Homebrew require Xcode to be installed first. Xcode can be installed from the OS X installation disk (for 10.6 or lower), the app store (10.7 or higher), or `other unofficial sources <https://github.com/kennethreitz/osx-gcc-installer>`_.
 
 Next, install the needed Python libraries using this command in the Terminal:
 
@@ -53,11 +58,17 @@ Next, install the needed Python libraries using this command in the Terminal:
 
 	sudo port install py27-scipy py27-numpy py27-pip py27-progressbar py27-libxml2
 
+LCA practitioners
+-----------------
+
 To only work with Brightway2, finish your installation using another Terminal command:
 
 .. code-block:: bash
 	
-	sudo pip install bw2all
+	sudo pip install brightway2
+
+Developers
+----------
 
 If you want to develop with Brightway, then don't install the metapackage. Instead, we will create a `virtualenv <http://www.virtualenv.org/>`_ for the Brightway2 dependencies and framework. First, read what ``virtualenv`` does; then, run the following in a Terminal:
 
@@ -65,8 +76,8 @@ If you want to develop with Brightway, then don't install the metapackage. Inste
     
     sudo port install virtualenv virtualenvwrapper py27-cython py27-nose py27-sphinx py27-flask py27-requests
     mkvirtualenv bw2 --system-site-packages
-    pip install docopt voluptuous bw-stats-toolkit
-    pip install -e hg+https://bitbucket.org/cmutel/brightway2#egg=brightway2
+    pip install docopt voluptuous bw-stats-toolkit fuzzywuzzy
+    pip install -e hg+https://bitbucket.org/cmutel/brightway2-data#egg=bw2data
     pip install -e hg+https://bitbucket.org/cmutel/brightway2-calc#egg=bw2calc
     pip install -e hg+https://bitbucket.org/cmutel/brightway2-ui#egg=bw2ui
     pip install -e hg+https://bitbucket.org/cmutel/brightway2-analyzer#egg=bw2analyzer
@@ -84,19 +95,25 @@ First, install the required ``apt`` packages. You can select them in the graphic
 
 	sudo apt-get install python-scipy python-numpy python-nose python-pip python-progressbar python-libxml2 python-sphinx python-virtualenv python-virtualenvwrapper
 
-Then install Brightway2 using another terminal command:
+LCA practitioners
+-----------------
+
+Install Brightway2 using another terminal command:
 
 .. code-block:: bash
 
-	sudo pip install bw2all
+	sudo pip install brightway2
+
+Developers
+----------
 
 If you want to develop with Brightway, then don't install the metapackage. Instead, we will create a `virtualenv <http://www.virtualenv.org/>`_ for the Brightway2 dependencies and framework. First, read what ``virtualenv`` does; then, run the following in a Terminal:
 
 .. code-block:: bash
     
     mkvirtualenv bw2 --system-site-packages
-    pip install docopt voluptuous bw-stats-toolkit flask requests
-    pip install -e hg+https://bitbucket.org/cmutel/brightway2#egg=brightway2
+    pip install docopt voluptuous bw-stats-toolkit flask requests fuzzywuzzy
+    pip install -e hg+https://bitbucket.org/cmutel/brightway2-data#egg=bw2data
     pip install -e hg+https://bitbucket.org/cmutel/brightway2-calc#egg=bw2calc
     pip install -e hg+https://bitbucket.org/cmutel/brightway2-ui#egg=bw2ui
     pip install -e hg+https://bitbucket.org/cmutel/brightway2-analyzer#egg=bw2analyzer
@@ -124,13 +141,13 @@ If you want to install packages manually, or not install everything, Brightway2 
 * progressbar 
 * flask
 * docopt
+* fuzzywuzzy
 * voluptuous
 * requests
 * bw-stats-toolkit
 
 The Brightway2 packages are:
 
-* brightway2
 * bw2data
 * bw2calc
 * bw2ui

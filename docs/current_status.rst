@@ -4,7 +4,7 @@ Current package staus
 brightway2-data
 ===============
 
-Current version: **0.8**
+Current version: **0.8.1**
 
 Upcoming features and releases
 ------------------------------
@@ -14,15 +14,11 @@ Upcoming features and releases
 
 * Bug fixes and small changes from 0.9
 
-0.9
----
+0.9 (in progress)
+-----------------
 
 * Export and import from other Brightway2 instances (with JSON?)
 * Import SimaPro and other broken Ecospold files
-
-0.8.1 (in progress)
--------------------
-
 * Comprehensive documentation 
 * Comprehensive tests (including coverage)
 
