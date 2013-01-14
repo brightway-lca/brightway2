@@ -60,7 +60,7 @@ Second, download and install the XML processing library `lxml <http://pythonxy.g
 
 * `lxml <http://pythonxy.googlecode.com/files/lxml-3.0.1-1_py27.exe>`_
 
-Third, open a command prompt (Start -> Run), and type in the following:
+Third, open a command prompt (Start -> Command Prompt), and type in the following:
 
 .. code-block:: bash
 	
