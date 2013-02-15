@@ -27,7 +27,7 @@ setup(
   license=open('LICENSE.txt').read(),
   install_requires=packages,
   url="https://bitbucket.org/cmutel/brightway2",
-  long_description=open('README').read(),
+  long_description=open('README.rst').read(),
   classifiers=[
     'Development Status :: 4 - Beta',
     'Intended Audience :: End Users/Desktop',
