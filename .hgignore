@@ -5,3 +5,4 @@ docs/_build
 *~
 MANIFEST
 *.sublime*
+brightway2.egg-info
