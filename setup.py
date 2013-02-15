@@ -20,7 +20,7 @@ packages = [
 
 setup(
   name='brightway2',
-  version="0.8.2",
+  version="0.9.0-alpha",
   packages=["brightway2"],
   author="Chris Mutel",
   author_email="cmutel@gmail.com",
@@ -28,4 +28,20 @@ setup(
   install_requires=packages,
   url="https://bitbucket.org/cmutel/brightway2",
   long_description=open('README').read(),
+  classifiers=[
+    'Development Status :: 4 - Beta',
+    'Intended Audience :: End Users/Desktop',
+    'Intended Audience :: Developers',
+    'Intended Audience :: Science/Research',
+    'License :: OSI Approved :: BSD License',
+    'Operating System :: MacOS :: MacOS X',
+    'Operating System :: Microsoft :: Windows',
+    'Operating System :: POSIX',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 2.7',
+    'Programming Language :: Python :: 2 :: Only',
+    'Topic :: Scientific/Engineering :: Information Analysis',
+    'Topic :: Scientific/Engineering :: Mathematics',
+    'Topic :: Scientific/Engineering :: Visualization',
+    ],
 )

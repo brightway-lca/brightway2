@@ -3,7 +3,7 @@ Installation
 
 .. _windows-install:
 
-Windows 
+Windows
 =======
 
 Although Brightway2 is relatively simple, installation of the numerical and scientific libraries can be difficult as there is no default compilers installed on most Windows machines. The only sensible way is to use a precompiled set of packages, such as `Python (x,y) <https://code.google.com/p/pythonxy/wiki/Downloads>`_. Using `Anaconda Community Edition <http://continuum.io/anacondace.html>`_, or the `Enthought Python Distribution <http://www.enthought.com/products/epd.php>`_ is also possible, but not tested (they have custom package management commands). If using Python (x,y), be sure to install `lxml <http://pythonxy.googlecode.com/files/lxml-3.0.1-1_py27.exe>`_ separately.
@@ -21,8 +21,8 @@ LCA practitioners
 After the basic installation, you can install all additional Brightway2 packages and dependencies in one command in the command shell:
 
 .. code-block:: bash
-	
-	pip install bw2all
+
+	pip install brightway2
 
 Developers
 ----------
@@ -30,7 +30,7 @@ Developers
 If you want to develop with Brightway2, then don't install the metapackage. Instead, first install `virtualenv <http://www.virtualenv.org/>`_ and `virtualenv for Powershell <https://bitbucket.org/guillermooo/virtualenvwrapper-powershell>`_:
 
 .. code-block:: bash
-    
+
     pip install virtualenv virtualenvwrapper-powershell
     mkvirtualenv bw2 --system-site-packages
 
@@ -64,7 +64,7 @@ LCA practitioners
 To only work with Brightway2, finish your installation using another Terminal command:
 
 .. code-block:: bash
-	
+
 	sudo pip install brightway2
 
 Developers
@@ -73,7 +73,7 @@ Developers
 If you want to develop with Brightway, then don't install the metapackage. Instead, we will create a `virtualenv <http://www.virtualenv.org/>`_ for the Brightway2 dependencies and framework. First, read what ``virtualenv`` does; then, run the following in a Terminal:
 
 .. code-block:: bash
-    
+
     sudo port install virtualenv virtualenvwrapper py27-cython py27-nose py27-sphinx py27-flask py27-requests
     mkvirtualenv bw2 --system-site-packages
     pip install docopt voluptuous bw-stats-toolkit fuzzywuzzy
@@ -110,7 +110,7 @@ Developers
 If you want to develop with Brightway, then don't install the metapackage. Instead, we will create a `virtualenv <http://www.virtualenv.org/>`_ for the Brightway2 dependencies and framework. First, read what ``virtualenv`` does; then, run the following in a Terminal:
 
 .. code-block:: bash
-    
+
     mkvirtualenv bw2 --system-site-packages
     pip install docopt voluptuous bw-stats-toolkit flask requests fuzzywuzzy
     pip install -e hg+https://bitbucket.org/cmutel/brightway2-data#egg=bw2data
@@ -133,12 +133,12 @@ Installation of Brightway2 has two steps. First, install the following scientifi
 Second, install the Brightway2 metapackage:
 
 .. code-block:: bash
-    
+
     pip install brightay2
 
 If you want to install packages manually, or not install everything, Brightway2 uses the following Python packages:
 
-* progressbar 
+* progressbar
 * flask
 * docopt
 * fuzzywuzzy
