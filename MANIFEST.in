@@ -1,2 +1,3 @@
+include README.rst
 include *.txt
 include brightway2/*.py

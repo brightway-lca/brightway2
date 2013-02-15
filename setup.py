@@ -20,7 +20,7 @@ packages = [
 
 setup(
   name='brightway2',
-  version="0.9.0-alpha",
+  version="0.9.0-alpha2",
   packages=["brightway2"],
   author="Chris Mutel",
   author_email="cmutel@gmail.com",
