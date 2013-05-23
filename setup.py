@@ -10,12 +10,12 @@ packages = [
     "fuzzywuzzy",
     "flask",
     "docopt",
-    "bw2calc",
-    "bw2ui",
-    "bw2analyzer",
-    "bw2data",
-    "requests",
-    "bw-stats-toolkit",
+    "bw2calc>=0.9.2.1",
+    "bw2ui>=0.6.1",
+    "bw2analyzer>=0.3.1",
+    "bw2data>=0.9.0-alpha3",
+    "requests>=1.1.0",
+    "bw-stats-toolkit>=0.7",
 ]
 
 setup(

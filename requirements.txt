@@ -7,9 +7,9 @@ voluptuous
 fuzzywuzzy
 flask
 docopt
-bw2calc>=0.9.0-alpha
-bw2ui>=0.6.0-alpha
-bw2analyzer>=0.3.0-alpha
-bw2data>=0.9.0-alpha
+bw2calc>=0.9.2.1
+bw2ui>=0.6.1
+bw2analyzer>=0.3.1
+bw2data>=0.9.0-alpha3
 requests
 bw-stats-toolkit>=0.7
