@@ -6,12 +6,14 @@ Installation
 Windows
 =======
 
-Although Brightway2 is relatively simple, installation of the numerical and scientific libraries can be difficult as there is no default compilers installed on most Windows machines. The only sensible way is to use a precompiled set of packages, such as `Python (x,y) <https://code.google.com/p/pythonxy/wiki/Downloads>`_. Using `Anaconda Community Edition <http://continuum.io/anacondace.html>`_, or the `Enthought Python Distribution <http://www.enthought.com/products/epd.php>`_ is also possible, but not tested (they have custom package management commands). If using Python (x,y), be sure to install `lxml <http://pythonxy.googlecode.com/files/lxml-3.0.1-1_py27.exe>`_ separately.
+Although Brightway2 is relatively simple, installation of the numerical and scientific libraries can be difficult as there is no default compilers installed on most Windows machines. The only sensible way is to use a precompiled set of packages, such as `Python (x,y) <https://code.google.com/p/pythonxy/wiki/Downloads>`_. After installing Python (x,y), be sure to install `lxml <http://pythonxy.googlecode.com/files/lxml-3.0.1-1_py27.exe>`_ separately.
 
-.. warning:: If you use python (x,y), be sure to check the option to install **pip**:
+.. warning:: Be sure to check the option to install **pip**:
 
 .. image:: images/python-xy-pip.png
     :align: center
+
+.. warning:: Using other packaged version of Python, e.g. `Anaconda <http://continuum.io/downloads.html>`_ or `Enthought Canopy <https://www.enthought.com/products/canopy/>`_ is not supported. While convenient, these packaged version change basic assumptions about the Python environment that can break Brightway2 functionality.
 
 If you are stubborn and/or brave, you can try to install Python, NumPy, SciPy and lxml by yourself. The are various compiled binaries for each of these packages available at various places around the net. You should also install `pip <http://www.pip-installer.org/>`_.
 
