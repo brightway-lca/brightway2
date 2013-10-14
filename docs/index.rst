@@ -9,7 +9,7 @@ Brightway2 is a new framework for life cycle assessment (LCA). Its focus is on e
 Please see `the main Brightway2 site <http://brightwaylca.org>`_ for an introduction.
 
 .. note::
-    Brightway2 is currently only compatible with python 2.7, not python 3. Brightway2 will remain 2.7 only until `flask <http://pypi.python.org/pypi/Flask>`_ and its dependencies are ported to Python 3.
+    Brightway2 is currently only compatible with python 2.7, not python 3. Not all Brightway2 dependencies are compatible with Python 3.
 
 Documentation
 =============
@@ -21,6 +21,7 @@ Table of contents:
 
    quickstart
    installation
+   configuration
    tutorials
    key-concepts
    contributing

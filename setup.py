@@ -15,7 +15,7 @@ packages = [
     "bw2analyzer>=0.4",
     "bw2data>=0.10.1",
     "requests>=1.1.0",
-    "bw-stats-toolkit>=0.7",
+    "stats_arrays>=0.2.2",
 ]
 
 setup(
