@@ -35,8 +35,10 @@ Brightway2 is configured and ready!
 Configuration through the command line
 --------------------------------------
 
-Configuration can also be done with the command line utility ``bw2-controller.py``. First create a data directory somewhere, and note the location. Then run:
+Configuration can also be done with the command line utility ``bw2-controller.py``. Simply run the following command, and confirm that you want to create the data directory.
 
 .. code-block:: bash
 
     bw2-controller.py setup --data-dir=/my/created/directory
+
+.. warning:: You must have permission to create the data directory in the specified path
