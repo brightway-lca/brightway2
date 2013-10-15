@@ -22,6 +22,7 @@ Table of contents:
    quickstart
    installation
    configuration
+   faq
    tutorials
    key-concepts
    contributing
