@@ -1,8 +1,10 @@
 Key concepts
 ************
 
-The data directory
-==================
+.. _data-directory:
+
+Data directory
+==============
 
 All Brightway2 data is stored in a data directory, but the location of the directory can be chosen by the user. The data directory is just a bunch of subdirectories and files, so it is safe for backup programs or sync services like Dropbox.
 
