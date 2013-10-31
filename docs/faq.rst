@@ -18,5 +18,6 @@ Here are some IDEs which are often recommended:
     * `PyCharm <http://www.jetbrains.com/pycharm/>`_
     * `PyDev + Eclipse <http://pydev.org/>`_
     * `Komodo <http://www.activestate.com/python-ide>`_
+    * `WingWare <http://wingware.com/>`_
 
 See also the `discussion on the Python wiki <https://wiki.python.org/moin/IntegratedDevelopmentEnvironments>`_ and a `long StackOverflow discussion <http://stackoverflow.com/questions/81584/what-ide-to-use-for-python/>`_.

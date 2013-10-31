@@ -107,6 +107,8 @@ When you import an *ecospold* dataset, the codes that are generated automaticall
 
 We want to have a way of identifying datasets which is consistent from machine to machine, so that it is easier to share and work with datasets without have to relink activities. The way Brightways identifies an activity or flow is with the `MD5 <http://en.wikipedia.org/wiki/MD5>`_ hash of a few attributes: the ``name``, ``location``, ``unit``, and ``categories``. The function is ``bw2data.utils.activity_hash``, but the procedure is simple: concatenate the name, each category, the unit and the location, all as lower-case strings. If an attribute doesn't have a value, ignore it. Then take the `MD5 <http://en.wikipedia.org/wiki/MD5>`_ hash of the resulting string.
 
+.. _exchanges:
+
 Exchanges
 ---------
 
@@ -240,7 +242,7 @@ The document structure is:
         * *sigma* (float, optional): A statistical parameter whose meaning depends on the :ref:`uncertainty-type`.
     * *location* (string, optional): A location identifier. Default is *GLO*.
     * *name* (string): Name of this activity.
-    * *type* (string): One of ``process``, ``emission``, or ``resource``, but you can add custom types. Not needed for calculations; intended for data processing.
+    * *type* (string): One of ``production``, ``biosphere``, or ``technosphere``, but you can add custom types. See :ref:`exchanges`.
     * *unit* (string): Unit of this activity. Units are normalized when written to disk.
 
 .. note::
