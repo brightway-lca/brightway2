@@ -204,10 +204,10 @@ You can install editable Brightway2 packages using `mercurial <http://mercurial.
 
 You can also simply clone the bitbucket repositories.
 
+.. _developer-os-x:
+
 Quickstart for OS X developers
 ------------------------------
-
-.. _developer-os-x:
 
 Set up python:
 
