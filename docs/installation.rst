@@ -82,6 +82,8 @@ Max OS X
 
 .. note:: If you are using ``Anaconda``, see :ref:`anaconda`.
 
+.. note:: See also the :ref:`developer-os-x` notes.
+
 There are two main OS X-specific alternatives for installing Python packages: `Macports <http://www.macports.org/>`_ and `Homebrew <http://mxcl.github.com/homebrew/>`_. Brightway2 is developed primarily on OS X using Macports, but as it depends on a few standard libraries, either alternative should work well. Homebrew users will have to adapt the following instructions.
 
 Follow the `instructions <http://www.macports.org/install.php>`_ and install Macports. Note that both Macports and Homebrew require Xcode to be installed first. Xcode can be installed from the OS X installation disk (for 10.6 or lower), the app store (10.7 or higher), or `other unofficial sources <https://github.com/kennethreitz/osx-gcc-installer>`_.
@@ -92,11 +94,23 @@ Next, install the needed Python libraries using this command in the Terminal:
 
 	sudo port install py27-scipy py27-numpy py27-pip py27-progressbar py27-libxml2
 
-Finish your installation using another Terminal command:
+Point to the correct Python executable:
 
 .. code-block:: bash
 
-	sudo pip install brightway2
+    sudo port select --set python python27
+
+Next, install the Brightway2 source code using another Terminal command:
+
+.. code-block:: bash
+
+	sudo pip-2.7 install brightway2
+
+Unfortunately, the Brightway2 scripts aren't in our ``PATH`` environment variable yet. Fix this by adding the following line to file ``.profile`` in your home directory, and then start a new terminal window:
+
+.. code-block:: bash
+
+    export PATH=$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin
 
 .. _linux-install:
 
@@ -189,3 +203,45 @@ You can install editable Brightway2 packages using `mercurial <http://mercurial.
     pip install -e hg+https://bitbucket.org/cmutel/brightway2-analyzer#egg=bw2analyzer
 
 You can also simply clone the bitbucket repositories.
+
+Quickstart for OS X developers
+------------------------------
+
+.. _developer-os-x:
+
+Set up python:
+
+.. code-block:: bash
+
+    sudo port install py27-scipy py27-numpy py27-pip py27-progressbar py27-libxml2 py27-nose py27-sphinx py27-requests py27-flask py27-virtualenvwrapper mercurial +bash_completion
+    sudo port select --set python python27
+
+Change the shell to macports ``bash``:
+
+.. code-block:: bash
+
+    chsh -s /opt/local/bin/bash
+
+Add the following lines to ``~/.profile``, if not already present:
+
+.. code-block:: bash
+
+    source /opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenvwrapper.sh
+
+    if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
+      . /opt/local/etc/profile.d/bash_completion.sh
+    fi
+
+Create ``virtualenv`` and install Brightway2:
+
+.. code-block:: bash
+
+    mkvirtualenv bw2
+    toggleglobalsitepackages
+    pip install brightway2
+
+Because this is using a virtualenv, you will need to activate the virtualenv each time you start a new terminal with:
+
+.. code-block:: bash
+
+    workon bw2
