@@ -92,7 +92,7 @@ Next, install the needed Python libraries using this command in the Terminal:
 
 .. code-block:: bash
 
-	sudo port install py27-scipy py27-numpy py27-pip py27-progressbar py27-libxml2
+	sudo port install py27-scipy py27-numpy py27-pip py27-progressbar py27-libxml2 py27-nose py27-sphinx py27-requests py27-flask
 
 Point to the correct Python executable:
 
@@ -106,7 +106,7 @@ Next, install the Brightway2 source code using another Terminal command:
 
 	sudo pip-2.7 install brightway2
 
-Unfortunately, the Brightway2 scripts aren't in our ``PATH`` environment variable yet. Fix this by adding the following line to file ``.profile`` in your home directory, and then start a new terminal window:
+Unfortunately, the Brightway2 scripts aren't in our ``PATH`` environment variable yet. Fix this by adding the following line to the end of the ``.profile`` file in your home directory, and then start a new terminal window:
 
 .. code-block:: bash
 
@@ -222,7 +222,7 @@ Change the shell to macports ``bash``:
 
     chsh -s /opt/local/bin/bash
 
-Add the following lines to ``~/.profile``, if not already present:
+Add the following lines to the file ``.profile`` in your home directory, if not already present:
 
 .. code-block:: bash
 
