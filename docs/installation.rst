@@ -67,6 +67,7 @@ Some requirements are installed by the ``conda`` package manager, but many other
 Install Brightway2 using ``pip``:
 
 .. code-block:: bash
+
     pip install brightway2
 
 See also `pip packages in anaconda <http://stackoverflow.com/questions/18640305/how-to-keep-track-of-pip-installed-packages-in-an-anaconda-conda-env>`_.

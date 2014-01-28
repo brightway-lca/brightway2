@@ -8,8 +8,8 @@ progressbar
 requests
 scipy
 voluptuous
-bw2calc>=0.10.1
-bw2ui>=0.7
-bw2analyzer>=0.4
-bw2data>=0.10.1
-bw-stats-toolkit>=0.7
+bw2calc
+bw2ui
+bw2analyzer
+bw2data
+stats_arrays>=0.2.2

@@ -10,17 +10,17 @@ packages = [
     "fuzzywuzzy",
     "flask",
     "docopt",
-    "bw2calc>=0.10.1",
-    "bw2ui>=0.7",
-    "bw2analyzer>=0.4",
-    "bw2data>=0.10.1",
+    "bw2calc",
+    "bw2ui",
+    "bw2analyzer",
+    "bw2data",
     "requests>=1.1.0",
     "stats_arrays>=0.2.2",
 ]
 
 setup(
     name='brightway2',
-    version="0.10",
+    version="0.11",
     packages=["brightway2"],
     author="Chris Mutel",
     author_email="cmutel@gmail.com",
@@ -29,7 +29,7 @@ setup(
     url="https://bitbucket.org/cmutel/brightway2",
     long_description=open('README.rst').read(),
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: End Users/Desktop',
         'Intended Audience :: Developers',
         'Intended Audience :: Science/Research',

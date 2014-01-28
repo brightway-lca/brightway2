@@ -14,7 +14,10 @@ Please see `the main Brightway2 site <http://brightwaylca.org>`_ for an introduc
 Documentation
 =============
 
-Table of contents:
+Documentation is available on several levels. First, this general documentation gives an overview to the main ideas and structures in Brightway2. The actual code is split into several different :ref:`packages` - e.g data, calculations, analysis - and each package has documentation that gives more specific details on its functions. Finally, there are a set of ipython notebook :ref:`tutorials` and :ref:`examples` that can be read or downloaded and run, and provide more practical advice on applying Brightway2.
+
+Table of contents
+=================
 
 .. toctree::
    :maxdepth: 2

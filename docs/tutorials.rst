@@ -1,30 +1,26 @@
+Tutorials and Examples
+**********************
+
+.. _tutorials:
+
 Tutorials
-*********
+=========
 
-Getting started
-===============
+There is a tutorial that will take you from a beginner to a Brightway2 pro in five steps. You should read this documentation, and at least be familiar with the specific package documentation, to get the most out of tutorial.
 
-<insert online tutorial here>
+The tutorial notebooks are most effective when downloaded and executed - that is the power of IPython notebooks! Run them, change them, and play around. Learn by making mistakes. Brightway2 allows you to pretty easily delete your data directory and start again.
 
-The command line interface
-==========================
+    * `Tutorial 1 - Getting Started <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/Tutorial%201%20-%20Getting%20Started.ipynb>`_
+    * `Tutorial 2 - Working with Data <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/Tutorial%202%20-%20Working%20with%20data.ipynb>`_
+    * `Tutorial 3 - LCA Calculations <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/Tutorial%203%20-%20Basic%20LCA%20Calculations.ipynb>`_
+    * `Tutorial 4 - Meta-analysis <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/Tutorial%204%20-%20Meta-analysis.ipynb>`_
+    * `Tutorial 5 - Defining a New Matrix <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/Tutorial%205%20-%20Defining%20A%20New%20Matrix.ipynb>`_
 
-The following commands are available:
+.. _examples:
 
-    * ``bw2-controller.py list databases``: List all installed databases
-    * ``bw2-controller.py list methods``: List all installed methods
-    * ``bw2-controller.py details <name>``: Give details on inventory database ``<name>``. If the database name has spaces in it, it should be quoted, like this: ``"name with spaces"``.
-    * ``bw2-controller.py copy <name> <newname>``: Copy inventory database ``<name>`` to new name ``<newname>``.
-    * ``bw2-controller.py backup <name>``: Make a backup copy of inventory database ``<name>``.
-    * ``bw2-controller.py validate <name>``: Validate the data in inventory database ``<name>``.
-    * ``bw2-controller.py versions <name>``: List the versions available of inventory database ``<name>``.
-    * ``bw2-controller.py revert <name> <revision>``: Revert inventory database ``<name>`` to version number ``<revision>``.
-    * ``bw2-controller.py remove <name>``: Deregister inventory database ``<name>``. Does not delete data, only removes it from the Brightway2 register.
-    * ``bw2-controller.py import <path> <name>``: Import a set of inventory data in the Ecospold data format from location ``<path>`` to inventory database ``<name>``.
-    * ``bw2-controller.py export <name> [--include-dependencies]``: Export inventory database ``<name>`` to a bw2package format. If ``--include-dependencies`` is part of the command, the bw2package will include the dependent databases as well.
-    * ``bw2-controller.py setup``: Do the initial setup for when Brightway2 is first installed.
+Examples
+========
 
-Other online examples
-=====================
+While the examples are given as IPython notebooks, they might use data sources or computational resources which are not available to everyone, and therefore not all of them can be easily rerun on your local machine.
 
-<insert link to examples page here>
+**This section will be filled in when the example are cleaned up a bit**.

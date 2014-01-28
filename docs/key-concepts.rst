@@ -323,12 +323,10 @@ This returns the following:
      [(u'biosphere', u'b0a29177e77471a49b5a7d6a88212bf8'), 32000, u'GLO'],
      [(u'biosphere', u'72c1cf2fee31a2cb6cdc39abda29a0df'), 32000, u'GLO']]
 
-Each list elements has three components.
+Each list elements has two required components and a third optional component.
     #. A reference to a biosphere flow, e.g. ``(u'biosphere', u'21c70338ff2e1cdc8e468f4c90f113a1')``.
-    #. The numeric characterization factor.
-    #. A location, which is used because Brightway2 will soon gain the ability to do regionalized LCA.
-
-The current format does not include fields for characterizing the uncertainty of the characterization factors, but the processed characterization matrices do, and it is anticipated that this functionality will be added relatively soon.
+    #. The numeric characterization factor. This can either be a number, or a uncertainty dictionary (see :ref:`uncertainty-type`).
+    #. An optional location, used for regionalized impact assessment. The global location ``GLO`` is given as a default is not location is specified.
 
 .. note::
     LCIA method documents can be validated with ``bw2data.validate.ia_validator(my_data)``, or ``Method(("my", "method", "name")).validate(my_data)``.
@@ -435,22 +433,19 @@ There is a separate format for impact assessment methods, which are stored in a 
         {
             "metadata": {
                 "name": [list, of, names],
-                "description": description,
-                "num_cfs": number of cfs,
+                "description": (optional) description,
                 "abbreviation": abbreviation of method name,
-                "unit": unit of impact assessment method
+                "unit": (optional) unit of impact assessment method
             },
             "cfs": [
                 {
                     "database": database name, e.g. biosphere,
                     "code": code of the biosphere flow,
-                    "location": location where the characterization factor is valid (optional),
-                    "amount": characterization factor amount,
-                    "uncertainty type": integer uncertainty type,
-                    "sigma": uncertainty parameter,
-                    "maximum": uncertainty parameter,
-                    "minimum": uncertainty parameter
+                    "location": location where the characterization factor is valid,
+                    "amount": characterization factor (number or uncertainty dictionary),
                 }
             ]
         }
     ]
+
+.. warning:: The bw2package format is expected to change soon, to become more generic. This new format will be fixed for future compatibility.
