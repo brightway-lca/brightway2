@@ -15,13 +15,16 @@ Structure
 
     data directory
         files:
-            databases.json ---- Metadata about LCI databases
             geomapping.pickle - Listing of all locations in all databases and methods
             mapping.pickle ---- Listing of all activities in all LCI databases
-            methods.json ------ Metdata about LCIA methods
-            preference.json --- User settings
+            databases.json ---- Metadata about LCI databases
+            methods.json ------ Metadata about LCIA methods
+            normalizations.json Metadata about LCIA normalizations
+            preferences.json -- User settings
+            weightings.json --- Metadata about LCIA weightings
         subdirectories:
             backups ----------- Directory for LCI database backups
+            downloads --------- Location where downloaded data is stored
             intermediate ------ Directory where LCI database and LCIA method documents are stored
             logs -------------- Logs of Brightway2 activity
             processed --------- Compressed numerical arrays made from LCI and LCIA documents
@@ -70,7 +73,8 @@ An activity dataset is a document - just some text, with a minial amount of form
 .. code-block:: python
 
     {'categories': ['biomass', 'fuels'],
-     'exchanges': [{'amount': 11968.25,
+     'exchanges': [{
+       'amount': 11968.25,
        'code': 7,
        'comment': 'From gasoline',
        'group': 2,
@@ -181,15 +185,11 @@ The returned metadata is:
 .. code-block:: python
 
     {u'depends': [u'biosphere'],
-     u'from format': [u'Ecospold', 1],
-     u'number': 4087,
      u'version': 1}
 
 Databases have the following metadata:
 
     * *depends*: A list of database names that this database links into and depends upon.
-    * *from format*: The format this database was imported from. Can be a string or a list.
-    * *number*: Number of inventory datasets.
     * *version*: The integer version number of this database. Each time a database is saved this number is automatically incremented.
 
 .. _database-documents:
@@ -206,44 +206,40 @@ Here is a selection from an example dataset from the US LCI:
     {'categories': ['Wood Product Manufacturing',
       'Softwood Veneer and Plywood Mnf.'],
      'code': 1,
-     'exchanges': [{'amount': 1.0,
+     'exchanges': [{
+       'amount': 1.0,
        'code': 6,
        'group': 2,
-       'input': ('US LCI', u'6ddb4cc00f9e42aa48515248256c31dc'),
+       'input': ('US LCI', '6ddb4cc00f9e42aa48515248256c31dc'),
        'type': 'production',
        'uncertainty type': 0},
       {'amount': 7.349999999999999e-06,
        'code': 5,
        'group': 4,
-       'input': ('biosphere', u'51447e58e03a40a2bbd9abf45214b7d3'),
+       'input': ('biosphere', '51447e58e03a40a2bbd9abf45214b7d3'),
        'type': 'biosphere',
        'uncertainty type': 0}],
      'location': 'RNA',
      'name': 'Green veneer, at plywood plant, US PNW',
      'type': 'process',
-     'unit': u'kilogram'}
+     'unit': 'kilogram'}
 
 The document structure is:
 
+    * *name* (string): Name of this activity.
+    * *type* (string): One of ``production``, ``biosphere``, or ``technosphere``, but you can add custom types. See :ref:`exchanges`.
     * *categories* (list of strings, optional): A list of categories and subcategories. Can have any length.
-    * *code* (string or number, optional): An identifier from the imported database, if available.
+    * *location* (string, optional): A location identifier. Default is *GLO*.
+    * *unit* (string): Unit of this activity. Units are normalized when written to disk.
     * *exchanges* (list): A list of activity inputs and outputs, with its own schema.
-        * *amount* (float): Amount of this exchange.
-        * *uncertainty type* (integer): Integer code for uncertainty distribution of this exchange, see :ref:`uncertainty-type` for more information.
+        * *input* (database name, database code): The technological activity that is linked to, e.g. ``("my new database", "production of ice cream")`` or ``('biosphere', '51447e58e03a40a2bbd9abf45214b7d3')``. See also :ref:`dataset-codes`.
         * *type* (string): One of ``production``, ``technosphere``, and ``biosphere``.
             * ``production`` is an exchange that describes how much this activity produces. A ``production`` exchange is not required - the default value is 1.
             * ``technosphere`` is an input of a technosphere flow from another activity dataset.
             * ``biosphere`` is a resource consumption or emission to the environment.
-        * *input* (database name, database code): The technological activity that is linked to, e.g. ``("my new database", "production of ice cream")`` or ``('biosphere', '51447e58e03a40a2bbd9abf45214b7d3')``. See also :ref:`dataset-codes`.
+        * *amount* (float): Amount of this exchange.
+        * *uncertainty type* (integer): Integer code for uncertainty distribution of this exchange, see :ref:`uncertainty-type` for more information. There can be other uncertainty fields as well.
         * *comment* (string, optional): A comment on this exchange. Used to store pedigree matrix data in ecoinvent v2.
-        * *code*: (string or number, optional): An identifier from the imported database, if available.
-        * *maximum* (float, optional): A statistical parameter whose meaning depends on the :ref:`uncertainty-type`.
-        * *miniumum* (float, optional): A statistical parameter whose meaning depends on the :ref:`uncertainty-type`.
-        * *sigma* (float, optional): A statistical parameter whose meaning depends on the :ref:`uncertainty-type`.
-    * *location* (string, optional): A location identifier. Default is *GLO*.
-    * *name* (string): Name of this activity.
-    * *type* (string): One of ``production``, ``biosphere``, or ``technosphere``, but you can add custom types. See :ref:`exchanges`.
-    * *unit* (string): Unit of this activity. Units are normalized when written to disk.
 
 .. note::
     Technological ``exchanges`` are a list of **inputs**.
@@ -293,14 +289,12 @@ The returned metadata is:
 
     {u'abbreviation': u'ecologicals1997tt-UHk4Z8Pr',
      u'description': u'Swiss method',
-     u'num_cfs': 1249,
      u'unit': u'UBP'}
 
 Methods have the following metadata:
 
     * *abbreviation*: Becuase LCIA methods have long and complicated names, Brightway2 abbreviates them to get a safe filename to save the data.
     * *description*: A description of this method or submethod.
-    * *num_cfs*: Number of characterization factors.
     * *unit*: The unit of this method or submethod.
 
 LCIA method documents
@@ -324,9 +318,10 @@ This returns the following:
      [(u'biosphere', u'72c1cf2fee31a2cb6cdc39abda29a0df'), 32000, u'GLO']]
 
 Each list elements has two required components and a third optional component.
+
     #. A reference to a biosphere flow, e.g. ``(u'biosphere', u'21c70338ff2e1cdc8e468f4c90f113a1')``.
     #. The numeric characterization factor. This can either be a number, or a uncertainty dictionary (see :ref:`uncertainty-type`).
-    #. An optional location, used for regionalized impact assessment. The global location ``GLO`` is given as a default is not location is specified.
+    #. An optional location, used for regionalized impact assessment. The global location ``GLO`` is inserted as a default if not location is specified.
 
 .. note::
     LCIA method documents can be validated with ``bw2data.validate.ia_validator(my_data)``, or ``Method(("my", "method", "name")).validate(my_data)``.
