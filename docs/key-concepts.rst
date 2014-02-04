@@ -399,48 +399,7 @@ LCA reports calculated with ``bw2analyzer.report.SerializedLCAReport`` are writt
         }
     }
 
-Data interchange
-----------------
+Data interchange & archiving
+----------------------------
 
-Brightway2 has a format for transferring inventory data between computers. This format is called ``bw2package``, and is an inventory database written to JSON, and then compressed with bzip2. ``bw2package`` is compressed JSON because ``pickle`` is `not a safe data transfer format <http://docs.python.org/2/library/pickle.html>`_, and because JSON is readable by other programs and programming languages. The JSON dataformat is:
-
-.. code-block:: python
-
-    {
-        database name: {
-            "metadata": {
-                "from format": format the data was converted from, e.g. ecospold,
-                "depends": name of databases that this database links into,
-                "number": number of datasets in this database,
-                "version": version number of this database
-            },
-            "data": {
-                code: dataset,
-            }
-        }
-    }
-
-There is a separate format for impact assessment methods, which are stored in a ``bw2iapackage`` file. This is also compressed JSON, and has a similar format:
-
-.. code-block:: python
-
-    [
-        {
-            "metadata": {
-                "name": [list, of, names],
-                "description": (optional) description,
-                "abbreviation": abbreviation of method name,
-                "unit": (optional) unit of impact assessment method
-            },
-            "cfs": [
-                {
-                    "database": database name, e.g. biosphere,
-                    "code": code of the biosphere flow,
-                    "location": location where the characterization factor is valid,
-                    "amount": characterization factor (number or uncertainty dictionary),
-                }
-            ]
-        }
-    ]
-
-.. warning:: The bw2package format is expected to change soon, to become more generic. This new format will be fixed for future compatibility.
+Brightway2 has a format for transferring data between computers, and for archiving data for more permanent storage. This format is called a *bw2package*, and is just JSON data compressed using the bzip2 algorithm.
