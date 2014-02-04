@@ -8,23 +8,10 @@ Windows
 
 Although Brightway2 is relatively simple, installation of the numerical and scientific libraries can be difficult as there is no default compilers installed on most Windows machines. The only sensible way is to use a precompiled set of packages.
 
-Preferred installation: Python(x,y)
------------------------------------
-
-Download and install the `Python(x,y) executable <https://code.google.com/p/pythonxy/wiki/Downloads>`_. All the necessary background libraries will be installed.
-
-After the basic installation, you can install all additional Brightway2 packages and dependencies in one command in the command shell:
-
-.. code-block:: bash
-
-    pip install brightway2
-
 .. _canopy:
 
-Alternate installation: Enthought Canopy
-----------------------------------------
-
-.. warning:: This is not the preferred installation method!
+Recommended installation: Enthought Canopy
+------------------------------------------
 
 .. warning:: `Canopy Express <https://www.enthought.com/canopy-express/>`_ will not work with Brightway2, as it does `not include the lxml package <https://enthought.com/products/canopy/package-index/>`_.
 
@@ -45,12 +32,25 @@ Or in the ipython shell in the editor:
 .. image:: images/canopy-console-ipython.png
     :align: center
 
+Alternate installation: Python(x,y)
+-----------------------------------
+
+.. warning:: This is not the preferred installation method. It will probably work, but you are on your own if it doesn't.
+
+Download and install the `Python(x,y) executable <https://code.google.com/p/pythonxy/wiki/Downloads>`_. All the necessary background libraries will be installed.
+
+After the basic installation, you can install all additional Brightway2 packages and dependencies in one command in the command shell:
+
+.. code-block:: bash
+
+    pip install brightway2
+
 .. _anaconda:
 
 Alternate installation: Continuum Anaconda
 ------------------------------------------
 
-.. warning:: This is not the preferred installation method!
+.. warning:: This is not the preferred installation method. It will probably work, but you are on your own if it doesn't.
 
 .. warning:: Brightway2 is only compatible with Python version 2.7, not yet with Python 3
 

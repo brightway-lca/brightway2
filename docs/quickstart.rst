@@ -10,23 +10,23 @@ This is the easiest way to get started using Brightway2 on **Windows**. If you a
 Installing Python
 -----------------
 
-Download the latest version of `Python (x,y) <https://code.google.com/p/pythonxy/wiki/Downloads>`_, and install it. This is the easiest way to get the `numerical <http://numpy.scipy.org/>`_ and `scientific <http://scipy.org/>`_ libraries.
+The easiest way to install Brightway2 is to use `Enthought Canopy <https://www.enthought.com/products/canopy/>`_, which is a full Python distribution. It is free for academics. See the installation documentation for other options.
 
-* `Python (x,y) <https://code.google.com/p/pythonxy/wiki/Downloads>`_
+.. warning:: `Canopy Express <https://www.enthought.com/canopy-express/>`_ will not work with Brightway2, as it does `not include the lxml package <https://enthought.com/products/canopy/package-index/>`_.
 
-Installing Brightway2
----------------------
-
-Open a command prompt (Start -> Command Prompt), and type in the following:
+After installing Canopy and all Canopy packages, install the free package ``pip``. You can then install Brightway2 in the ipython shell in the editor:
 
 .. code-block:: bash
 
-    pip install brightway2
+    !pip install brightway2
+
+.. image:: images/canopy-console-ipython.png
+    :align: center
 
 Running Brightway2
 ------------------
 
-Finally, again in the command prompt, start Brightway2:
+Finally, in a command prompt, start Brightway2:
 
 .. code-block:: bash
 
