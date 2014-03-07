@@ -227,7 +227,7 @@ Here is a selection from an example dataset from the US LCI:
 The document structure is:
 
     * *name* (string): Name of this activity.
-    * *type* (string): One of ``production``, ``biosphere``, or ``technosphere``, but you can add custom types. See :ref:`exchanges`.
+    * *type* (string): If this is ``process``, Brightway2 will treat this as a inventory process with inputs and output(s).
     * *categories* (list of strings, optional): A list of categories and subcategories. Can have any length.
     * *location* (string, optional): A location identifier. Default is *GLO*.
     * *unit* (string): Unit of this activity. Units are normalized when written to disk.
