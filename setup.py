@@ -10,17 +10,17 @@ packages = [
     "fuzzywuzzy",
     "flask",
     "docopt",
-    "bw2calc",
+    "bw2calc>=0.12",
     "bw2ui",
-    "bw2analyzer",
-    "bw2data",
+    "bw2analyzer>=0.5",
+    "bw2data>=0.14.1",
     "requests>=1.1.0",
     "stats_arrays>=0.2.2",
 ]
 
 setup(
     name='brightway2',
-    version="0.11",
+    version="0.12",
     packages=["brightway2"],
     author="Chris Mutel",
     author_email="cmutel@gmail.com",
