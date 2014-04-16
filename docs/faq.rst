@@ -45,4 +45,54 @@ See also:
 
 Also, google for how every new JSON library which has great promise (e.g. `uJSON <https://pypi.python.org/pypi/ujson>`_, `YAJL <http://lloyd.github.io/yajl/>`_, etc., etc.) is subtly incompatible or broken in some key ways with the actual JSON spec.
 
+Problems
+========
 
+I get unicode errors!
+---------------------
+
+A typical error message is:
+
+.. code-block:: python
+
+    UnicodeEncodeError: 'ascii' codec can't encode character u'\xe1' in position 426: ordinal not in range(128)
+
+The problem here is that python tries to convert a character from unicode to an encoding which doesn't support that character. A common default encoding in python 2.X is ascii, which doesn't support much. You can fix this by changing the default encoding:
+
+.. code-block:: python
+
+    import sys
+    reload(sys)
+    sys.setdefaultencoding("utf-8")
+
+See also:
+
+    * `PrintFails <https://wiki.python.org/moin/PrintFails>`_
+    * `Why does Python print unicode characters when the default encoding is ASCII? <http://stackoverflow.com/questions/2596714/why-does-python-print-unicode-characters-when-the-default-encoding-is-ascii>`_
+    * `IPython Notebook: What is the default encoding? <http://stackoverflow.com/questions/15420672/ipython-notebook-what-is-the-default-encoding>`_
+    * `Absolute minimum everyone should know about Unicode <http://www.joelonsoftware.com/articles/Unicode.html>`_
+
+The global warming potential values are different in SimaPro
+------------------------------------------------------------
+
+The default LCIA characterization factors in Brightway2 come from version 2 of the ecoinvent database. For most LCIA methods, these are identical to those found in SimaPro. However, there are important differences for global warming potential:
+
+1. SimaPro does not include a characterization factors for carbon monoxide, but ecoinvent does. Here is the ecoinvent language:
+
+    Emitted CO is transformed in the atmosphere to |CO2| after some time. Not all LCIA methods do consider the global warming potential of CO. Most methods are based on factors published by the IPCC (IPCC 2001). It is assumed that |CO2| emissions are calculated with the carbon content of the burned fuels and thus all carbon in the fuel is considered. In ecoinvent CO emissions are subtracted from the theoretical |CO2| emissions. Thus a GWP factor is calculated for CO (1.57 kg |CO2|-eq per kg CO). Otherwise processes with higher CO emissions would benefit from this gap. This is especially important for biomass combustion. Neglecting the formation of CO2 from CO would lead in this case to a negative sum of the global warming potential score.
+
+The value of 1.57 is the ratio of the molecular weights of |CO2| and CO.
+
+
+2. SimaPro gives biogenic methane a characterization factor of 22 kg |CO2|-eq, while ecoinvent gives 25, the same value as for other types of methane.
+
+.. note:: There may be other differences as well - these are the ones we have found.
+
+.. |CO2| replace:: CO\ :sub:`2`
+
+References:
+
+* `IPCC third assessment report <http://www.ipcc.ch/ipccreports/tar/wg1/249.htm>`_
+* `IPCC fourth assessment report <http://www.ipcc.ch/publications_and_data/ar4/wg1/en/ch2s2-10-3-2.html>`_
+* `SimaPro method manual <http://www.pre-sustainability.com/download/DatabaseManualMethods-oct2013.pdf>`_ (see page 38)
+* `ecoinvent report <http://www.ecoinvent.org/fileadmin/documents/en/03_LCIA-Implementation-v2.2.pdf>`_ (see page 26)
