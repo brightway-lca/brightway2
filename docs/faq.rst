@@ -30,6 +30,15 @@ Brightway version 1 was a set of programs written during the PhD of Chris Mutel.
 Data formats
 ============
 
+Why are activity dataset keys so confusing? `('ecoinvent 2.2', '5bbf2e66f2d75d60726974ac44ab4225')` seems insane!
+-----------------------------------------------------------------------------------------------------------------
+
+It is insane, in the sense that it doesn't make any sense at all to people. Rather, `5bbf2e66f2d75d60726974ac44ab4225` is a computer-generated unique ID. The basic problem is that we need one unique ID for an activity dataset, but there is no ID provided in the ecospold 1 data format. Instead, an activity is uniquely identified by its name, location, category, subcategory, unit, and whether or not it is an infrastructure process! `5bbf2e66f2d75d60726974ac44ab4225` is just an easy way of representing all this information in one string. It is a pain, but there is no good way around it.
+
+Unfortunately, ecospold 2 (the data format used in ecoinvent 3) isn't more approachable - keys will now look like `('ecoinvent 3', 'fff06f42-6c5f-4aea-b695-93bcaba55fed')`. Sorry. At least this time it is ecoinvent generating the unique ID, and not Brightway2.
+
+For an easier way to work with activities on the command line, see `Tutorial 2a - Using bw2simple to make life easier <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/Tutorial 2a - Using bw2simple to make life easier.ipynb>`_, based on the helper package `bw2simple <https://bitbucket.org/cmutel/brightway2-simple>`_.
+
 Why pickle? Serialization *X* is so much better!
 ------------------------------------------------
 
