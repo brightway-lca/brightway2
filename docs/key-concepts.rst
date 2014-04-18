@@ -118,13 +118,34 @@ Exchanges
 
 Exchanges are a list of the inputs and outputs of an activity. For example an activity might consume some resources, emit some emissions, and have other technoligcal goods as emissions. Each activity also has at least one technological output.
 
-Each exchange has a ``type``, which indicates where the exchange goes to or comes from. The predefined types are as follows:
+Each exchange has a ``type``. There are three standard exchange types in Brightway2, but you can define your own if you need to define different kinds of systems.
 
-    * ``production``: How much of the main output is produced by this dataset. A ``production`` exchange is not required, and when absent, a default value of 1 is used.
-    * ``technosphere``: An input of a technological flow.
-    * ``biosphere``: A consumption of a resource, or an emission to the environment. These flows are normally from the :ref:`biosphere-database`.
+Production exchanges
+--------------------
 
-Brightway2 cannot, by itself, directly handle multi-output activities. However, you can include multi-output activites with substitution (see #TODO), and the **ecospold** importer will allocate multi-output datasets. This lack of support for multi-output datasets is due to Brightway2 being centered on matrix-calculations, which require a square technosphere matrix. If each dataset did not have precisely one output, the technosphere matrix would be rectangular, and therefore not generally solvable.
+A production exchange defines how much of the output is produced by an activity. For example, the process "make a fizzbang" would produce one kilogram of fizzbang (the amount is normally one, but doesn't have to be).
+
+Production exchanges have the type ``production``.
+
+.. note:: A production exchange is **not** required. A default value of one will be applied if no production exchange is defined. This default value is usually the most logical amount, so should only be changed in special circumstances.
+
+.. warning:: Using a production value other than one can be confusing. See the blog post `What happens with a non-unitary production amount in LCA? <http://example.com>`_.
+
+.. warning:: Multioutput processes can be used in Brightway2, but only under special circumstances. See the blog post `Multi-output processes in matrix-based LCA <http://example.com>`_.
+
+Technosphere exchanges
+----------------------
+
+A technosphere exchange is an input which will be placed in the technosphere matrix. For example, the process "make a fizzbang" could have an input of seven kilograms of lollies.
+
+Technosphere exchanges have the type ``technosphere``.
+
+Biosphere exchanges
+-------------------
+
+A biosphere exchange is a consumption of a resource or and emission to the environment associated with a process; its value will be placed in the biosphere matrix.
+
+Biosphere exchanges have the type ``biosphere``.
 
 Impact assessment methods
 =========================
