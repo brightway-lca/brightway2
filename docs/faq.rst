@@ -81,8 +81,19 @@ See also:
     * `IPython Notebook: What is the default encoding? <http://stackoverflow.com/questions/15420672/ipython-notebook-what-is-the-default-encoding>`_
     * `Absolute minimum everyone should know about Unicode <http://www.joelonsoftware.com/articles/Unicode.html>`_
 
-The global warming potential values are different in SimaPro
-------------------------------------------------------------
+I get errors about the progressbar / The progressbar doesn't work in iPython notebook!
+--------------------------------------------------------------------------------------
+
+Brightway2-data specifies that a fork of the standard progressbar package should be installed, but `some people don't like this ideas <https://groups.google.com/forum/#!topic/pypa-dev/tJ6HHPQpyJ4>`_, so it doesn't always work. Try this from the command shell/terminal:
+
+    pip install https://github.com/fnoble/python-progressbar/tarball/master#egg=progressbar-2.4
+
+Or, from inside ipython (you will have to restart ipython for the new library to take effect):
+
+    !pip install https://github.com/fnoble/python-progressbar/tarball/master#egg=progressbar-2.4
+
+The global warming potential values are different in SimaPro!
+-------------------------------------------------------------
 
 The default LCIA characterization factors in Brightway2 come from version 2 of the ecoinvent database. For most LCIA methods, these are identical to those found in SimaPro. However, there are important differences for global warming potential:
 
