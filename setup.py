@@ -5,7 +5,7 @@ packages = [
     "numpy",
     "scipy",
     "nose",
-    "progressbar",
+    "progressbar-ipython",
     "voluptuous",
     "fuzzywuzzy",
     "flask",
@@ -20,7 +20,7 @@ packages = [
 
 setup(
     name='brightway2',
-    version="0.12",
+    version="0.13",
     packages=["brightway2"],
     author="Chris Mutel",
     author_email="cmutel@gmail.com",
