@@ -93,7 +93,7 @@ Next, install the needed Python libraries using this command in the Terminal:
 
 .. code-block:: bash
 
-	sudo port install py27-scipy py27-numpy py27-pip py27-progressbar py27-libxml2 py27-nose py27-sphinx py27-requests py27-flask
+	sudo port install python_select py27-scipy py27-numpy py27-pip py27-progressbar py27-libxml2 py27-nose py27-sphinx py27-requests py27-flask
 
 Point to the correct Python executable:
 
