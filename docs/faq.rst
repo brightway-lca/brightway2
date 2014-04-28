@@ -60,6 +60,10 @@ Problems
 I get unicode errors!
 ---------------------
 
+.. note:: Since Brightway2 version 0.14, all strings should be unicode (i.e. they have a 'u' in front of the string, like ``u"foo"``), and not normal bytestrings. If you are careful to make sure your data is unicode, you shouldn't have this problem. See also the `recursive_str_to_unicode utility function <http://bw2data.readthedocs.org/en/latest/utils.html#bw2data.utils.recursive_str_to_unicode>`_.
+
+.. note:: You can specify the encoding of text in your python files as UTF-8 by putting the following as the *first line* in each file: ``# -*- coding: utf-8 -*``
+
 A typical error message is:
 
 .. code-block:: python
