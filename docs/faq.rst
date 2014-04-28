@@ -81,6 +81,23 @@ See also:
     * `IPython Notebook: What is the default encoding? <http://stackoverflow.com/questions/15420672/ipython-notebook-what-is-the-default-encoding>`_
     * `Absolute minimum everyone should know about Unicode <http://www.joelonsoftware.com/articles/Unicode.html>`_
 
+When upgrading on Windows, I get errors about something called ``vcvarsall.bat``
+--------------------------------------------------------------------------------
+
+The problem here is that ``pip -U install foo`` will try to upgrade all dependencies of ``foo``. If, for example, scipy is a dependency, and a newer version is available, then pip will try to compile it. Compilation of scipy requires a C compiler, which is why python looks for ``vcvarsall.bat``, which you don't have.
+
+If you are using something like EPD or Anaconda, you should first make sure that all of your libraries are up to date already. Usually they will build the difficult packages so that you don't have to. In many cases, this should solve the problem, as you will then have the latest version of your dependencies.
+
+If this doesn't solve the problem, then you have two options:
+
+First, you can tell pip not to update all the dependencies. For example, to get the latest version of the Brightway core modules, you would run:
+
+.. code-block:: bash
+
+    pip install -U --no-deps brightway2 bw2ui bw2data bw2calc bw2analyzer stats_arrays
+
+Second, you can try to install a C compiler. You can find `decent instructions online <http://shop.wickeddevice.com/2013/12/11/windows-7-python-virtualenv-and-the-unable-to-find-vcvarsall-bat-error/>`_, as well as discussion on `Stack <http://stackoverflow.com/questions/3047542/building-lxml-for-python-2-7-on-windows/5122521#5122521>`_ `Overflow <http://stackoverflow.com/questions/6551724/how-do-i-point-easy-install-to-vcvarsall-bat>`_.
+
 The global warming potential values are different in SimaPro!
 -------------------------------------------------------------
 
