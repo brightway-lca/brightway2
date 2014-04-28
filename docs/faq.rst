@@ -30,7 +30,7 @@ Brightway version 1 was a set of programs written during the PhD of Chris Mutel.
 Data formats
 ============
 
-Why are activity dataset keys so confusing? `('ecoinvent 2.2', '5bbf2e66f2d75d60726974ac44ab4225')` seems insane!
+Why are activity dataset keys so confusing? `('ecoinvent 2.2', '5bbf...')` seems insane!
 -----------------------------------------------------------------------------------------------------------------
 
 It is insane, in the sense that it doesn't make any sense at all to people. Rather, `5bbf2e66f2d75d60726974ac44ab4225` is a computer-generated unique ID. The basic problem is that we need one unique ID for an activity dataset, but there is no ID provided in the ecospold 1 data format. Instead, an activity is uniquely identified by its name, location, category, subcategory, unit, and whether or not it is an infrastructure process! `5bbf2e66f2d75d60726974ac44ab4225` is just an easy way of representing all this information in one string. It is a pain, but there is no good way around it.
@@ -78,12 +78,18 @@ The problem here is that python tries to convert a character from unicode to an 
     reload(sys)
     sys.setdefaultencoding("utf-8")
 
-See also:
+For understanding the difference between bytestrings and unicode:
 
     * `PrintFails <https://wiki.python.org/moin/PrintFails>`_
     * `Why does Python print unicode characters when the default encoding is ASCII? <http://stackoverflow.com/questions/2596714/why-does-python-print-unicode-characters-when-the-default-encoding-is-ascii>`_
     * `IPython Notebook: What is the default encoding? <http://stackoverflow.com/questions/15420672/ipython-notebook-what-is-the-default-encoding>`_
     * `Absolute minimum everyone should know about Unicode <http://www.joelonsoftware.com/articles/Unicode.html>`_
+
+For help in fixing strings:
+
+    * `Fixing Unicode mistakes and more: the ftfy package <http://blog.luminoso.com/2012/08/24/fixing-unicode-mistakes-and-more-the-ftfy-package/>`_
+    * `Is there a way to determine the encoding of text file? <http://stackoverflow.com/questions/436220/python-is-there-a-way-to-determine-the-encoding-of-text-file>`_
+    * `Chardet: The Universal Character Encoding Detector <https://pypi.python.org/pypi/chardet>`_
 
 When upgrading on Windows, I get errors about something called ``vcvarsall.bat``
 --------------------------------------------------------------------------------
