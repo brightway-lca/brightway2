@@ -1,4 +1,4 @@
-Copyright (c) 2013, Chris Mutel and ETH Zürich
+Copyright (c) 2014, Chris Mutel and ETH Zürich
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without 

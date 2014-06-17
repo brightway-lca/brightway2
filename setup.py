@@ -1,21 +1,20 @@
 from setuptools import setup
 
 packages = [
-    "lxml",
-    "numpy",
-    "scipy",
-    "nose",
-    "progressbar-ipython",
-    "voluptuous",
-    "fuzzywuzzy",
-    "flask",
-    "docopt",
-    "bw2calc>=0.14",
-    "bw2ui>=0.12.1",
     "bw2analyzer>=0.5",
+    "bw2calc>=0.14",
     "bw2data>=0.16",
+    "bw2ui>=0.12.1",
+    "docopt",
+    "flask",
+    "lxml",
+    "nose",
+    "numpy",
+    "progressbar-ipython",
     "requests>=1.1.0",
+    "scipy",
     "stats_arrays>=0.2.4",
+    "voluptuous",
 ]
 
 setup(

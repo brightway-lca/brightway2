@@ -7,7 +7,7 @@ Get started with the web interface. In a shell or command prompt, type:
 
 .. code-block:: bash
 
-    bw2-web.py
+    bw2-web
 
 .. image:: images/configuration-1.png
     :align: center
@@ -35,10 +35,10 @@ Brightway2 is configured and ready!
 Configuration through the command line
 --------------------------------------
 
-Configuration can also be done with the command line utility ``bw2-controller.py``. Simply run the following command, and confirm that you want to create the data directory.
+Configuration can also be done with the command line utility ``bw2-controller``. Simply run the following command, and confirm that you want to create the data directory.
 
 .. code-block:: bash
 
-    bw2-controller.py setup --data-dir=/my/created/directory
+    bw2-controller setup --data-dir=/my/blank/directory
 
 .. warning:: You must have permission to create the data directory in the specified path

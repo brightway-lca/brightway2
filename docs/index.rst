@@ -9,25 +9,25 @@ Brightway2 is a new framework for life cycle assessment (LCA). Its focus is on e
 Please see `the main Brightway2 site <http://brightwaylca.org>`_ for an introduction.
 
 .. note::
-    Brightway2 is currently only compatible with python 2.7, not python 3. Not all Brightway2 dependencies are compatible with Python 3.
+    Brightway2 is currently only compatible with python 2.7, not python 3. Work on Python 3 support is ongoing.
 
 Documentation
 =============
 
-Documentation is available on several levels. First, this general documentation gives an overview to the main ideas and structures in Brightway2. The actual code is split into several different :ref:`packages` - e.g data, calculations, analysis - and each package has documentation that gives more specific details on its functions. Finally, there are a set of ipython notebook :ref:`tutorials` and :ref:`examples` that can be read or downloaded and run, and provide more practical advice on applying Brightway2.
+Documentation is available on several levels. First, this general documentation gives an overview to the main ideas and structures in Brightway2. The actual code is split into several different :ref:`packages` - e.g data, calculations, analysis, ui - and each package has documentation that gives more specific details on its functions. Finally, there are a set of ipython notebook :ref:`tutorials` and :ref:`examples` that can be read or downloaded and run, and provide more practical advice on applying Brightway2.
 
 Table of contents
 =================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
 
    quickstart
    installation
    configuration
    faq
    tutorials
-   key-concepts
+   key-concepts/index
    contributing
    packages
    credits

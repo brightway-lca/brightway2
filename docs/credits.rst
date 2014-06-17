@@ -13,7 +13,7 @@ Contact the developers
 
 Brightway2 has a mailing list: brightway2@googlegroups.com. You can register at the `Google groups site <https://groups.google.com/forum/?fromgroups#!forum/brightway2>`_.
 
-You can also email Chris directly at cmutel@gmail.com.
+You can also email Chris directly at ``cmutel@gmail.com``.
 
 License
 =======
@@ -22,7 +22,7 @@ Brightway2 is licensed under the `BSD license <http://opensource.org/licenses/BS
 
 ::
 
-    Copyright (c) 2013, Chris Mutel and ETH Zürich
+    Copyright (c) 2014, Chris Mutel and ETH Zürich
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

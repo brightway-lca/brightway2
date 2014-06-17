@@ -32,23 +32,14 @@ Or in the ipython shell in the editor:
 .. image:: images/canopy-console-ipython.png
     :align: center
 
-Alternate installation: Python(x,y)
------------------------------------
-
-.. warning:: This is not the preferred installation method. It will probably work, but you are on your own if it doesn't.
-
-Download and install the `Python(x,y) executable <https://code.google.com/p/pythonxy/wiki/Downloads>`_. All the necessary background libraries will be installed.
-
-After the basic installation, you can install all additional Brightway2 packages and dependencies in one command in the command shell:
-
-.. code-block:: bash
-
-    pip install brightway2
+.. note:: see also `Installing packages into Canopy User Python from the OS command line <https://support.enthought.com/entries/23389761>`_ `uninstalling Canopy <https://support.enthought.com/entries/23580651-Uninstalling-Canopy>`_.
 
 .. _anaconda:
 
 Alternate installation: Continuum Anaconda
 ------------------------------------------
+
+.. note:: Anaconda is probably the best package for power users, because of its high-level support for virtualenvs, but it isn't as easy as EPD.
 
 .. warning:: This is not the preferred installation method. It will probably work, but you are on your own if it doesn't.
 
@@ -72,7 +63,18 @@ Install Brightway2 using ``pip``:
 
 See also `pip packages in anaconda <http://stackoverflow.com/questions/18640305/how-to-keep-track-of-pip-installed-packages-in-an-anaconda-conda-env>`_.
 
-.. note:: When I did a test install on Windows XP, Anaconda did not associate ``.py`` files with Python. To run e.g. ``bw2-web.py`` I had to change to the ``C:\Python27\Scripts`` directory
+Alternate installation: Python(x,y)
+-----------------------------------
+
+.. warning:: This is not the preferred installation method. It will probably work, but you are on your own if it doesn't.
+
+Download and install the `Python(x,y) executable <https://code.google.com/p/pythonxy/wiki/Downloads>`_. All the necessary background libraries will be installed.
+
+After the basic installation, you can install all additional Brightway2 packages and dependencies in one command in the command shell:
+
+.. code-block:: bash
+
+    pip install brightway2
 
 .. _os-x-install:
 
@@ -85,7 +87,7 @@ Max OS X
 
 .. note:: See also the :ref:`developer-os-x` notes.
 
-There are two main OS X-specific alternatives for installing Python packages: `Macports <http://www.macports.org/>`_ and `Homebrew <http://mxcl.github.com/homebrew/>`_. Brightway2 is developed primarily on OS X using Macports, but as it depends on a few standard libraries, either alternative should work well. Homebrew users will have to adapt the following instructions.
+There are two main OS X-specific alternatives for installing Python packages: `Macports <http://www.macports.org/>`_ and `Homebrew <http://mxcl.github.com/homebrew/>`_. Brightway2 is developed primarily on OS X using Macports, but as it depends on a few standard libraries, either alternative should work well. Homebrew users will have to adapt the following instructions, but reports are that this is relatively simple.
 
 Follow the `instructions <http://www.macports.org/install.php>`_ and install Macports. Note that both Macports and Homebrew require Xcode to be installed first. Xcode can be installed from the OS X installation disk (for 10.6 or lower), the app store (10.7 or higher), or `other unofficial sources <https://github.com/kennethreitz/osx-gcc-installer>`_.
 
@@ -93,7 +95,7 @@ Next, install the needed Python libraries using this command in the Terminal:
 
 .. code-block:: bash
 
-	sudo port install python_select py27-scipy py27-numpy py27-pip py27-progressbar py27-libxml2 py27-nose py27-sphinx py27-requests py27-flask
+	sudo port install python_select py27-scipy py27-numpy py27-pip py27-libxml2 py27-nose py27-sphinx py27-requests py27-flask
 
 Point to the correct Python executable:
 
@@ -128,7 +130,7 @@ First, install the required ``apt`` packages. You can select them in the graphic
 
 .. code-block:: bash
 
-	sudo apt-get install python-scipy python-numpy python-nose python-pip python-progressbar python-libxml2 python-sphinx python-virtualenv python-virtualenvwrapper
+	sudo apt-get install python-scipy python-numpy python-nose python-pip python-libxml2 python-sphinx python-virtualenv python-virtualenvwrapper
 
 Next, install Brightway2 using another terminal command:
 
@@ -163,26 +165,18 @@ Requirements
 
 If you want to install packages manually, or not install everything, Brightway2 uses the following Python packages:
 
-* scipy
-* numpy
-* lxml
-* progressbar
-* flask
+* colorama
 * docopt
-* fuzzywuzzy
-* voluptuous
+* flask
+* flask
+* lxml
+* numpy
+* progressbar-ipython
 * requests
-* bw-stats-toolkit
-
-Brightway2 packages
--------------------
-
-The Brightway2 packages are:
-
-* bw2data
-* bw2calc
-* bw2ui
-* bw2analyzer
+* scipy
+* stats_arrays
+* unicodecsv
+* voluptuous
 
 Developers
 ==========
@@ -214,7 +208,7 @@ Set up python:
 
 .. code-block:: bash
 
-    sudo port install py27-scipy py27-numpy py27-pip py27-progressbar py27-libxml2 py27-nose py27-sphinx py27-requests py27-flask py27-virtualenvwrapper mercurial +bash_completion
+    sudo port install py27-scipy py27-numpy py27-pip py27-libxml2 py27-nose py27-sphinx py27-requests py27-flask py27-virtualenvwrapper mercurial +bash_completion
     sudo port select --set python python27
 
 Change the shell to macports ``bash``:

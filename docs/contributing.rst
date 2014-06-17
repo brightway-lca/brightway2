@@ -135,11 +135,6 @@ To this:
         else:
             return spsolve(technosphere.data, demand.data)
 
-Add the Gini coefficient test of LCA result inequality
-------------------------------------------------------
-
-LCA inequality tests are a measure of how much an individual LCA score is determined by just a few LCI datasets, and as such is important for measuring data quality and result robustness. The `concentration index <http://en.wikipedia.org/wiki/Concentration_ratio>`_ and the `Herfindahl index <http://en.wikipedia.org/wiki/Herfindahl_index>`_ are already included in ``bw2analyzer.contribution.ContributionAnalysis``, but the `Gini coefficient <http://en.wikipedia.org/wiki/Gini_coefficient>`_, which is more widely known would be nice to have as well.
-
 Ecospold exporter
 -----------------
 
@@ -172,3 +167,12 @@ Sankey diagrams are helpful for showing the flows of raw material inputs or envi
     #. Graph layout and display of additional information in D3
 
 .. _Force-directed graph: http://tributary.io/inlet/4681149
+
+Playing well with others
+========================
+
+Because the data model of Brightway2 is relatively simple, there is a lot of potential for providing data, especially numerical data and matrices, in the formats needed by other programming languages. Here are some examples:
+
+* Export matrices and do calculations in Matlab (see `exporting a sparse matrix to Matlab <http://stackoverflow.com/questions/21214659/exporting-a-scipy-sparse-matrix-from-python2-7-to-matlab>`_).
+* Calling data management `functions in python <https://github.com/stevengj/PyCall.jl>`_, and then doing `calculations in Julia <http://julia.readthedocs.org/en/latest/stdlib/sparse/>`_.
+* Exporting numerical data to raw binary formats, and then loading and doing calculations in a hip functional language like `scala <http://www.scala-lang.org/>`_ or `f# <http://fsharp.org/>`_.
