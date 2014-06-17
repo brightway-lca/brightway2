@@ -6,17 +6,16 @@ A database is an organizing unit
 
 In Brightway2, a ``database`` is the term used to organize a set of activity datasets. Databases can be big, like ecoinvent, or as small as one dataset. You can have as many databases as you like, and databases can link into other databases. You can also have two databases that each depend on each other.
 
-Database metadata
------------------
+Databases can be stored in different ways
+=========================================
 
-Fooo......
+The default storage backend for databases stores each database in a separate file. This is the easiest and most convenient approach for most cases. However, Brightway2 also supports pluggable database backends, which can change how databases are stored and queried.
 
-Database can be stored in different ways
-========================================
+Brightway2-data also provides `JSONDatabase <http://bw2data.readthedocs.org/en/latest/inventory.html#version-control-friendly-each-database-is-a-json-file>`_, which stores each dataset as a separate file serialized to JSON. This approach works well with version-control systems, as each change can be saved individually.
 
-THe default...
+.. warning:: Before using ``JSONDatabase``, please read `its documentation <http://bw2data.readthedocs.org/en/latest/inventory.html#version-control-friendly-each-database-is-a-json-file>`_ carefully.
 
-JSON...
+`Custom backends <http://bw2data.readthedocs.org/en/latest/inventory.html#custom-database-backends>`_, such as using an actual database, can also be defined.
 
 LCI datasets are documents
 ==========================

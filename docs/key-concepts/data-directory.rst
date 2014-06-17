@@ -48,7 +48,7 @@ The user can specify the ``data directory`` location in three different ways. In
 To set an environment variable:
 
     * Unix/Mac: ``export BRIGHTWAY2_DIR=/path/to/brightway2/directory``. Add this to your ``.profile`` or similar file to have this set each time you open a terminal window.
-    * Windows 7/8: Use ``setx BRIGHTWAY2_DIR=\path\to\brightway2\directory`` to set an environment variable permanently. Power users should consider SeetEnv <http://www.codeproject.com/Articles/12153/SetEnv>`_.
+    * Windows 7/8: Use ``setx BRIGHTWAY2_DIR=\path\to\brightway2\directory`` to set an environment variable permanently. Power users should consider `SetEnv <http://www.codeproject.com/Articles/12153/SetEnv>`_.
 
 The second thing that Brightway2 will try is a file called ``.brightway2path`` in your home directory. If this file is present, it should have one line, which is the directory location. No quoting or special characters are needed.
 
