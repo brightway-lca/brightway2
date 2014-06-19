@@ -2,4 +2,4 @@
 from bw2data import *
 from bw2calc import *
 
-__version__ = (0, 14)
+__version__ = (1, 0, "RC1")

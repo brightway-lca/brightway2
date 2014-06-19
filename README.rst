@@ -23,4 +23,3 @@ Packages:
 * brightway2-calc: https://bitbucket.org/cmutel/brightway2-calc
 * brightway2-analyzer: https://bitbucket.org/cmutel/brightway2-analyzer
 * brightway2-ui: https://bitbucket.org/cmutel/brightway2-ui
-* brightway2-web-reports: https://bitbucket.org/cmutel/brightway2-web-reports
