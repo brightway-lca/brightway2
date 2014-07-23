@@ -1,10 +1,13 @@
-Credits
-*******
-
 Authors
 =======
 
-* Chris Mutel
+Brightway2 was developed by `Chris Mutel <http://chris.mutel.org/>`_.
+
+Additional contributers:
+
+* `Bernhard Steubing <http://www.ifu.ethz.ch/ESD/people/bsteubin>`_
+* `Niko Heeren <http://www.ifu.ethz.ch/staff/nheeren/index_EN>`_
+* `lowks <https://bitbucket.org/lowks>`_
 
 .. _contact-developers:
 

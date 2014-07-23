@@ -64,7 +64,7 @@ A database consists of inventory datasets, and inventory datasets have a very fl
 The document structure is:
 
 * *name* (string): Name of this activity.
-* *type* (string): If this is ``"process"``, or omitted completely, Brightway2 will treat this as a inventory process with inputs and output(s). If you want to store additional information in a Database outside of the list of processes, specify a custom type here. For example, if you wanted to separate processes and products, you could create database entries for the products, with the type ``"product"``.
+* *type* (string): If this is ``"process"``, or omitted completely, Brightway2 will treat this as a inventory process with inputs and output(s). If you want to store additional information in a Database outside of the list of processes, specify a custom type here. For example, the list of biosphere flows is also an inventory database, but as these are flows, not processes, they have the type ``"emission"``. Similarly, if you wanted to separate processes and products, you could create database entries for the products, with the type ``"product"``.
 * *categories* (list of strings, optional): A list of categories and subcategories. Can have any length.
 * *location* (string, optional): A location identifier. Default is *GLO* (but this can be changed in the user preferences; see `bw2data.config <http://bw2data.readthedocs.org/en/latest/configuration.html#bw2data._config.Config.global_location>`_).
 * *unit* (string): Unit of this activity. Units are normalized when written to disk.
@@ -152,7 +152,7 @@ The integer ``uncertainty type`` fields are defined in a separate software packa
 .. note:: The default value for ``uncertainty type`` is ``0``, i.e. no uncertainty.
 
 .. note::
-    All distributions (where it is applicable) can be bounded, i.e. you can specify and minimum and maximum value in addition to other parameters. This can be helpful in ensuring, for example, that distributions are always positive.
+    All distributions (where it is applicable) can be bounded, i.e. you can specify a minimum and maximum value in addition to other parameters. This can be helpful in ensuring, for example, that distributions are always positive.
 
 LCIA Methods
 ============

@@ -1,7 +1,7 @@
-bw2analyzer>=0.5
-bw2calc>=0.14
-bw2data>=0.16
-bw2ui>=0.12.1
+-e hg+https://bitbucket.org/cmutel/brightway2-analyzer#egg=bw2analyzer
+-e hg+https://bitbucket.org/cmutel/brightway2-calc#egg=bw2calc
+-e hg+https://bitbucket.org/cmutel/brightway2-data#egg=bw2data
+bw2ui>=0.14
 docopt
 flask
 lxml

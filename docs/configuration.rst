@@ -1,9 +1,22 @@
 .. _configuration:
 
-Configuration
-*************
+The ``config`` object
+---------------------
 
-Get started with the web interface. In a shell or command prompt, type:
+Configuration is managed by the ``config`` object: a `singleton <http://en.wikipedia.org/wiki/Singleton_pattern>`_ object instantiated the first time you import brightway2. It stores the Brightway2 data directory, and has utility functions to change the data directory. It also stores information about whether or not it is being run on Windows, or used in an iPython shell. The ``config`` object can be imported from ``brightway2`` or ``bw2data``:
+
+.. code-block:: python
+
+    from brightway2 import config
+    config.dir
+    >> '/Users/cmutel/brightway2'
+
+See also: the technical documentation for the :ref:`configuration-technical` object.
+
+Configuration through the web interface
+---------------------------------------
+
+In a terminal shell or command prompt, type:
 
 .. code-block:: bash
 
@@ -35,10 +48,34 @@ Brightway2 is configured and ready!
 Configuration through the command line
 --------------------------------------
 
+.. note:: You must have permission to create the data directory in the specified path
+
 Configuration can also be done with the command line utility ``bw2-controller``. Simply run the following command, and confirm that you want to create the data directory.
 
 .. code-block:: bash
 
     bw2-controller setup --data-dir=/my/blank/directory
 
-.. warning:: You must have permission to create the data directory in the specified path
+Configuration in a python shell
+-------------------------------
+
+The data directory can be set in the python shell, either permanently:
+
+.. code-block:: python
+
+    from brightway2 import set_data_dir
+    set_data_dir("/path/to/directory")
+
+or just for the current python session (useful if you have different data directories for each project):
+
+.. code-block:: python
+
+    from brightway2 import set_data_dir
+    set_data_dir("/path/to/directory", permanent=False)
+
+User preferences
+----------------
+
+The ``config`` object also stores user preferences. User preferences include things like the default number of Monte Carlo iterations to run, but it is just a dictionary, and can be added to as desired.
+
+.. warning:: Preferences are not saved automatically - you must call ``config.save_preferences()``.

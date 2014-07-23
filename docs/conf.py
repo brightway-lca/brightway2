@@ -20,12 +20,6 @@ version = '1.0'
 # The full version, including alpha/beta/rc tags.
 release = '1.0RC1'
 
-import sys
-from os.path import abspath, dirname
-
-# Make sure we use this copy of Brightway2
-sys.path.insert(1, abspath(dirname(dirname(__file__))))
-
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
@@ -183,6 +177,10 @@ latex_elements = {
 # Additional stuff for the LaTeX preamble.
 #'preamble': '',
 }
+
+latex_preamble = """
+\setcounter{tocdepth}{2}
+"""
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).

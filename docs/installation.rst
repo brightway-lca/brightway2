@@ -1,12 +1,9 @@
-Installation
-************
-
 .. _windows-install:
 
 Windows
 =======
 
-Although Brightway2 is relatively simple, installation of the numerical and scientific libraries can be difficult as there is no default compilers installed on most Windows machines. The only sensible way is to use a precompiled set of packages.
+Although Brightway2 is relatively simple, installation of the numerical and scientific libraries can be difficult as there is no default compilers installed on most Windows machines. This issue is well-known in the Python community (see `Pycon keynote <https://www.youtube.com/watch?v=d1a4Jbjc-vU>`_, recent `reddit discussion <http://www.reddit.com/r/Python/comments/2bbd5t/stop_struggling_with_python_on_windows/>`_). The only sensible way is to use a precompiled set of packages.
 
 .. _canopy:
 
@@ -41,8 +38,6 @@ Alternate installation: Continuum Anaconda
 
 .. note:: Anaconda is probably the best package for power users, because of its high-level support for virtualenvs, but it isn't as easy as EPD.
 
-.. warning:: This is not the preferred installation method. It will probably work, but you are on your own if it doesn't.
-
 .. warning:: Brightway2 is only compatible with Python version 2.7, not yet with Python 3
 
 `Continuum Anaconda <http://continuum.io/downloads.html>`_ provides another Python environment and package manager, and is free.
@@ -66,8 +61,6 @@ See also `pip packages in anaconda <http://stackoverflow.com/questions/18640305/
 Alternate installation: Python(x,y)
 -----------------------------------
 
-.. warning:: This is not the preferred installation method. It will probably work, but you are on your own if it doesn't.
-
 Download and install the `Python(x,y) executable <https://code.google.com/p/pythonxy/wiki/Downloads>`_. All the necessary background libraries will be installed.
 
 After the basic installation, you can install all additional Brightway2 packages and dependencies in one command in the command shell:
@@ -75,6 +68,15 @@ After the basic installation, you can install all additional Brightway2 packages
 .. code-block:: bash
 
     pip install brightway2
+
+Alternate installation: Winpython
+---------------------------------
+
+.. warning:: Brightway2 is only compatible with Python version 2.7, not yet with Python 3
+
+`Winpython <http://winpython.sourceforge.net/>`_ is another set of Windows Python packages, similar to Python(x,y).
+
+I haven't tried this, but have heard good things. I think you will have to use either ``easy_install`` or `Christoph Gohlke's Windows binaries <http://www.lfd.uci.edu/~gohlke/pythonlibs/>`_ to install lxml.
 
 .. _os-x-install:
 
@@ -181,7 +183,7 @@ If you want to install packages manually, or not install everything, Brightway2 
 Developers
 ==========
 
-.. warning:: If you are developing, it is *strongly* recommended to use `virtualenv <http://www.virtualenv.org/>`_ and `virtualenvwrapper <http://www.doughellmann.com/projects/virtualenvwrapper/>`_.
+.. warning:: If you are developing, it is *strongly* recommended to use `virtualenv <http://www.virtualenv.org/>`_ and `virtualenvwrapper <http://www.doughellmann.com/projects/virtualenvwrapper/>`_ (or `virtualenv-win <https://github.com/davidmarble/virtualenvwrapper-win>`_ for Windows users).
 
 If you want to develop with Brightway, then you should install the following:
 
