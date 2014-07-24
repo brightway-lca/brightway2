@@ -7,6 +7,7 @@ Additional contributers:
 
 * `Bernhard Steubing <http://www.ifu.ethz.ch/ESD/people/bsteubin>`_
 * `Niko Heeren <http://www.ifu.ethz.ch/staff/nheeren/index_EN>`_
+* `Aurelian Jaggi <http://eaternity.ch/team/Aurelian-Jaggi/>`_
 * `lowks <https://bitbucket.org/lowks>`_
 
 .. _contact-developers:

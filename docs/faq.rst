@@ -1,6 +1,3 @@
-Frequently Asked Questions
-**************************
-
 What text editor or IDE should I use?
 =====================================
 
@@ -111,7 +108,7 @@ Second, you can try to install a C compiler. You can find `decent instructions o
 The global warming potential values are different in SimaPro!
 -------------------------------------------------------------
 
-The default LCIA characterization factors in Brightway2 come from version 2 of the ecoinvent database. For most LCIA methods, these are identical to those found in SimaPro. However, there are important differences for global warming potential:
+The default LCIA characterization factors in Brightway2 come from version 3.1 of the ecoinvent database. For most LCIA methods, these are identical to those found in SimaPro. However, there are important differences for global warming potential:
 
 1. SimaPro does not include a characterization factors for carbon monoxide, but ecoinvent does. Here is the ecoinvent language:
 

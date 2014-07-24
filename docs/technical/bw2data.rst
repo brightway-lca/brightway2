@@ -283,8 +283,14 @@ Utilities
 Setup
 -----
 
-.. autofunction:: bw2data.utils.set_data_dir
 .. autofunction:: bw2data.utils.setup
+
+.. _set-data-dir:
+
+Setting the data directory
+--------------------------
+
+.. autofunction:: bw2data.utils.set_data_dir
 
 Sorting
 -------

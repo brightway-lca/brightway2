@@ -7,17 +7,6 @@ Surprisingly enough, Brightway2-data (abbreviated to ``bw2data`` in code) is the
 
 This page of the documentation covers the basic concepts in Brightway2-data. There is also detailed technical documentation, as well as separate sectiosn on querying and import and export of data in different formats.
 
-Configuration
-=============
-
-The first thing Brightway2 needs is to know where it can save data and log files. This directory location, in addition to a number of other configuration variables, is managed by the :ref:`configuration` object.
-
-The ``config`` object stores the Brightway2 directory, and can also change it, and create new directories. It also stores information about whether or not it is being run on Windows, or used in an iPython shell.
-
-The ``config`` object also stores user preferences. User preferences include things like the default number of Monte Carlo iterations to run, but it is just a dictionary, and can be added to as desired.
-
-.. warning:: Preferences are not saved automatically - you must call ``config.save_preferences()``.
-
 .. _data-and-metadata:
 
 Data and metadata

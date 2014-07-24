@@ -1,14 +1,11 @@
 .. _data-directory:
 
-Data directory
-**************
+Data directory structure
+========================
 
 All Brightway2 data is stored in a single directory, the location of which is chosen by the user. The data directory has some metadata files, and a bunch of subdirectories for storing different kinds of data. Because it is a single directory, it is safe for backup programs or sync services like Dropbox.
 
-A separate data directory can be created for each project. However, each data directory is self-contained, so each must contain a copy of e.g. ecoinvent.
-
-Data directory structure
-========================
+A separate data directory can be created for each project. However, each data directory is self-contained, so each must contain a copy of all background databases and LCIA methods.
 
 ::
 
@@ -30,20 +27,34 @@ Data directory structure
         processed --------- Compressed numerical arrays made from LCI and LCIA documents
         reports ----------- Data from LCA calculations
 
-New subdirectories can be created using `bw2data.config.request_dir <http://bw2data.readthedocs.org/en/latest/configuration.html#bw2data._config.Config.request_dir>`_.
+New subdirectories can be created using ``config.request_dir`` (see :ref:`configuration-technical`).
 
-Data directory is controlled by the ``config`` object
-=====================================================
+The ``config`` object in detail
+===============================
 
-The data directory location, as well as all other configuration options and user preferences, is controlled by a singleton object call ``config``, which is created when Brightway2 is first imported. The `config <http://bw2data.readthedocs.org/en/latest/configuration.html>`_ object has its own technical reference.
+Configuration is managed by the ``config`` object: a `singleton <http://en.wikipedia.org/wiki/Singleton_pattern>`_ object instantiated the first time you import brightway2. It stores the Brightway2 data directory, and has utility functions to change the data directory. It also stores information about whether or not it is being run on Windows, or used in an iPython shell. The ``config`` object can be imported from ``brightway2`` or ``bw2data``:
 
-Data directory location
------------------------
+.. code-block:: python
 
-.. note::
-    You can ignore all these technical details if you create a file called ``brightway2`` in your home directory, and don't want to do anything fancy.
+    from brightway2 import config
+    config.dir
+    >> '/Users/cmutel/brightway2'
 
-The user can specify the ``data directory`` location in three different ways. In all cases, the directory should already exist, and should be empty. The first thing that Brightway will look for is the `environment variable <http://foo.bar>`_ ``BRIGHTWAY2_DIR``. If this is found, then it is the location of the ``data directory``. An environment variable is especially convenient if you have multiple copies of Brightway2 installed on one machine, or if you want to keep separate workspaces for different projects.
+See also: the technical documentation for the :ref:`configuration-technical` object.
+
+User preferences
+----------------
+
+The ``config`` object also stores user preferences. User preferences include things like the default number of Monte Carlo iterations to run, but it is just a dictionary, and can be added to as desired.
+
+.. warning:: Preferences are not saved automatically - you must call ``config.save_preferences()``.
+
+How Brightway2 chooses the data directory
+=========================================
+
+.. note:: The data directory can be changed after Brightway2 is loaded with ``set_data_dir`` (see :ref:`set-data-dir`)
+
+The first thing that Brightway2 will look for is the `environment variable <http://foo.bar>`_ ``BRIGHTWAY2_DIR``. If this is found, then it is the location of the ``data directory``. An environment variable is especially convenient if you have multiple copies of Brightway2 installed on one machine, or if you want to keep separate workspaces for different projects.
 
 To set an environment variable:
 
@@ -52,7 +63,7 @@ To set an environment variable:
 
 The second thing that Brightway2 will try is a file called ``.brightway2path`` in your home directory. If this file is present, it should have one line, which is the directory location. No quoting or special characters are needed.
 
-Because it can be difficult to work with so-called "dot-files", whose name starts with a ``.``, Brightway2 will also try to read a file call ``brightway2path.txt`` in your home directory. This works the same as the ``.brightway2path`` file.
+Because it can be difficult to work with so-called "dot-files" whose name starts with a ``.``, especially on Windows, Brightway2 will also try to read a file call ``brightway2path.txt`` in your home directory. This works the same as the ``.brightway2path`` file. If you set the data directory through the web interface or with ``bw2-controller``, it writes a ``.brightway2path`` or ``brightway2path.txt`` file.
 
 Finally, Brightway2 will try to see if there is a writeable directory in your home directory called ``brightway2``.
 

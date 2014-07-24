@@ -110,31 +110,6 @@ Find holes in tests
 
 Tests always have edge cases that weren't anticipated by the developers, and coverage doesn't test for exceptions. Finding these edge cases or exceptions is a thankless but extremely important part of making robust software.
 
-Rewrite main LCA class in a more functional style
--------------------------------------------------
-
-The current LCA class uses ``self`` attributes extensively to store data during the calculation. A move to a more functional style, where inputs are explicitly passed, and outputs returned, would make the tests more robust and independent. It would also make it easier to write LCA subclasses. So, for example, move from this code:
-
-.. code-block:: python
-
-    def solve_linear_system(self):
-        if hasattr(self, "solver"):
-            return self.solver(self.demand_array.data)
-        else:
-            return spsolve(
-                self.technosphere_matrix.data,
-                self.demand_array.data)
-
-To this:
-
-.. code-block:: python
-
-    def solve_linear_system(self, demand, technosphere, solver=None):
-        if solver is not None:
-            return solver(demand.data)
-        else:
-            return spsolve(technosphere.data, demand.data)
-
 Ecospold exporter
 -----------------
 
@@ -142,6 +117,8 @@ The base Brightway2 data format doesn't include fields for all of the Ecospold d
 
 Dataset process adder & editor
 ------------------------------
+
+.. note:: This is being worked on by `University of Zürich Informatics and Sustainability Research group <http://www.ifi.uzh.ch/isr.html>`_ and `eaternity <http://eaternity.ch/>`_.
 
 Because the actual data stored in a Brightway2 inventory dataset is relatively simple, it should be possible to create a couple of simple forms for adding and editing new datasets. The only difficulty is in making a usable user interface; so, for example, it should be easy to link new technosphere or biosphere inputs, with some autcompletion or other easy searching.
 

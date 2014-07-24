@@ -39,12 +39,74 @@ Brightway2 can be installed pretty much everywhere, on Windows, OS X, Linux, and
 Configuration
 =============
 
-The first thing Brightway2 needs is to know where it can save data and log files. This directory location, in addition to a number of other configuration variables, is managed by the ``config`` object.
+Configuring Brightway2 is pretty easy - the only thing to do is to tell it where it can store data, logs, and exported files. We call this directory the "data directory", and its structure is explained in detail below. The first thing Brightway2 needs is to know where it can save data and log files. This directory location, in addition to a number of other configuration variables, is managed by the ``config`` object.
 
-.. toctree::
-   :maxdepth: 2
+Configuration through the web interface
+---------------------------------------
 
-   configuration
+In a terminal shell or command prompt, type:
+
+.. code-block:: bash
+
+    bw2-web
+
+.. image:: images/configuration-1.png
+    :align: center
+
+Brightway2 will determine that you are starting it for the first time. You will need to create a :ref:`data-directory` - a writable directory where all data will be stored.
+
+    1. Click to open directories, and navigate to where you want the data directory to be created.
+    2. Check to make sure the directory path is correct.
+    3. Keep the default name for the data directory - ``brightway2`` - or choose your own.
+    4. Click to create and populate the data directory.
+
+.. image:: images/configuration-2.png
+    :align: center
+
+.. image:: images/configuration-3.png
+    :align: center
+
+Brightway2 comes with some basic metadata - LCIA methods and a biosphere database. They will be automatically downloaded.
+
+.. image:: images/configuration-4.png
+    :align: center
+
+Configuration through the command line
+--------------------------------------
+
+Configuration can also be done with the command line utility ``bw2-controller``. Simply run the following command, and confirm that you want to create the data directory.
+
+.. code-block:: bash
+
+    bw2-controller setup --data-dir=/my/blank/directory
+
+Configuration in a python shell
+-------------------------------
+
+The data directory can be set in the python shell, either permanently:
+
+.. code-block:: python
+
+    from brightway2 import set_data_dir
+    set_data_dir("/path/to/directory")
+
+or just for the current python session (useful if you have different data directories for each project):
+
+.. code-block:: python
+
+    from brightway2 import set_data_dir
+    set_data_dir("/path/to/directory", permanent=False)
+
+Getting started
+===============
+
+The best way to get started is by going through the five tutorials. These are designed not to be read, but are iPython notebooks that can be executed on your computer.
+
+* `Tutorial 1 - Getting Started <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/Tutorial%201%20-%20Getting%20Started.ipynb>`_
+* `Tutorial 2 - Working with data <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/Tutorial%202%20-%20Working%20with%20data.ipynb>`_
+* `Tutorial 3 - Basic LCA Calculations <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/Tutorial%203%20-%20Basic%20LCA%20Calculations.ipynb>`_
+* `Tutorial 4 - Meta-analysis <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/Tutorial%204%20-%20Meta-analysis.ipynb>`_
+* `Tutorial 5 - Defining A New Matrix <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/Tutorial%205%20-%20Defining%20A%20New%20Matrix.ipynb>`_
 
 Working with data
 =================
@@ -191,14 +253,6 @@ Frequently Asked Questions
    :maxdepth: 2
 
    faq
-
-Tutorials
-=========
-
-.. toctree::
-   :maxdepth: 2
-
-   tutorials
 
 Contributing
 ============
