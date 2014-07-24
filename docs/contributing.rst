@@ -1,11 +1,3 @@
-Contributing to Brightway2
-**************************
-
-.. note::
-    See also :ref:`contact-developers` for information on the mailing list.
-
-Brightway2 is designed to be easy to use and develop for. The modular structure of Brightway2 means that you don't have to learn everything at once - pick the subject that best suits your interests and skills, download the code, and start hacking!
-
 Getting started with Python
 ===========================
 

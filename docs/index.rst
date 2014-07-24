@@ -21,6 +21,8 @@ Who is Brightway2 for?
 Understanding the manual
 ------------------------
 
+.. note:: This manual is `also available as a PDF <http://brightwaylca.org/Brightway2%20manual.pdf>`_.
+
 As this manual covers a lot of material, it can be a bit overwhelming, especially at first. In addition to the main index page and table of contents, in the HTML version you can search the documentation in the box on the left, and look for specific terms in the :ref:`genindex`. There an index at the end of the LaTeX version, but it doesn't get linked correctly for some reason.
 
 Installation
@@ -28,8 +30,7 @@ Installation
 
 Brightway2 can be installed pretty much everywhere, on Windows, OS X, Linux, and anywhere else Python can be compiled.
 
-.. note::
-    Brightway2 is currently only compatible with python 2.7, not python 3. Work on Python 3 support is ongoing, but don't hold your breath.
+.. note:: Brightway2 is currently only compatible with python 2.7, not python 3. Work on Python 3 support is ongoing, but don't hold your breath.
 
 .. toctree::
    :maxdepth: 2
@@ -256,6 +257,11 @@ Frequently Asked Questions
 
 Contributing
 ============
+
+.. note::
+    See also :ref:`contact-developers` for information on the mailing list.
+
+Brightway2 is designed to be easy to use and develop for. The modular structure of Brightway2 means that you don't have to learn everything at once - pick the subject that best suits your interests and skills, download the code, and start hacking!
 
 .. toctree::
    :maxdepth: 2
