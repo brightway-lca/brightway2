@@ -111,17 +111,6 @@ The best way to get started is by going through the five tutorials. These are de
 
 After doing the tutorials, you should have an idea of what is possible with Brightway2. The rest of the manual will help explain its components in more detail, but is not designed to be read through in one sitting. It is more of a reference work than a novel. You are ready to start exploring, and the manual will try to help you when you get lost.
 
-Working with data
-=================
-
-.. toctree::
-   :maxdepth: 2
-
-   working-with-data/saving-data
-   working-with-data/databases
-   working-with-data/data-formats
-   working-with-data/processed
-
 .. _data-directory:
 
 The data directory
@@ -196,16 +185,481 @@ Finally, Brightway2 will try to see if there is a writeable directory in your ho
 
 If none of these attempts succeed, Brightway2 will create and user a temporary directory, but will complain about it, as these directories can be deleted by the operating system.
 
+Intermediate and processed data
+===============================
+
+Both inventory datasets and impact assessment methods are stored as structured text files, but these files are not efficient when constructing the technosphere, biosphere, and characterization matrices. These text documents are stored in the ``intermediate`` folder. Brightway2 also has a ``processed`` folder, which stores only the data needed to construct the various computational matrices. These data are stored as `numpy structured arrays <http://docs.scipy.org/doc/numpy/user/basics.rec.html>`_.
+
+For both databases and LCIA methods, the method ``.write(some_data)`` will write an *intermediate* data file, while the subsequent method ``.process()`` will transform the intermediate data file to an array. These two functions are intentionally separate, as it is sometimes desirable to do one and not the other.
+
+See also :ref:`building-matrices`.
+
+.. warning::
+    Every time you save a new version of an inventory database or an impact assessment method, e.g. with ``my_database.write(my_data)``, be sure to also call ``my_database.process()``, or your changes will not be used in LCA calculations.
+
+Pickle is the default data storage format
+-----------------------------------------
+
+The Python standard library module `pickle <http://docs.python.org/2/library/pickle.html>`_ is the default data storage format?
+
+The ``pickle`` module is fast, portable, and built-in. While using compression (such as gzip and bzip2) would reduce the size of the saved files, it also dramatically increases loading and saving times, by a factor of 3 - 30, depending on the test. Overall, the speed of ``pickle`` `seems to be fine <http://kbyanc.blogspot.ch/2007/07/python-serializer-benchmarks.html>`_.
+
+Alternatives to pickle
+~~~~~~~~~~~~~~~~~~~~~~
+
+The ``marshal`` module is faster - 40% faster writing, 25% faster reading - but produces files twice as big, and can change from computer to computer or even when Python is upgraded. The costs and potential risks of ``marshal`` overwhelm its speed gains.
+
+JSON
+~~~~
+
+Javascript object notation (`JSON <http://json.org/>`_) is a data for native to `javascript <http://en.wikipedia.org/wiki/JavaScript>`_ which is now widely used for data exchange over the web and between different programming languages. ``JSON`` does not match perfectly to python data structures, but the differences are relatively small. ``JSON`` is used to store some metadata in Brightway2, such as the user preferences, LCI databases, and LCIA methods installed, as it is human readable and editable.
+
+While a ``JSON`` module is in the standard library, there is no fast ``JSON`` library available for all operating systems and python version; see e.g. `anyjson <http://pypi.python.org/pypi/anyjson/>`_, `yajl <http://pypi.python.org/pypi/yajl>`_, and `ujson <http://pypi.python.org/pypi/ujson/>`_, in addition to the builtin.
+
 LCI Databases
 =============
 
-.. toctree::
-   :maxdepth: 2
+Part one:
 
-   databases/index
+A database is an organizing unit
+================================
+
+In Brightway2, a ``database`` is the term used to organize a set of activity datasets. Databases can be big, like ecoinvent, or as small as one dataset. You can have as many databases as you like, and databases can link into other databases. You can also have two databases that each depend on each other.
+
+Databases can be stored in different ways
+=========================================
+
+The default storage backend for databases stores each database in a separate file. This is the easiest and most convenient approach for most cases. However, Brightway2 also supports pluggable database backends, which can change how databases are stored and queried.
+
+Brightway2-data also provides `JSONDatabase <http://bw2data.readthedocs.org/en/latest/inventory.html#version-control-friendly-each-database-is-a-json-file>`_, which stores each dataset as a separate file serialized to JSON. This approach works well with version-control systems, as each change can be saved individually.
+
+.. warning:: Before using ``JSONDatabase``, please read `its documentation <http://bw2data.readthedocs.org/en/latest/inventory.html#version-control-friendly-each-database-is-a-json-file>`_ carefully.
+
+`Custom backends <http://bw2data.readthedocs.org/en/latest/inventory.html#custom-database-backends>`_, such as using an actual database, can also be defined.
+
+LCI datasets are documents
+==========================
+
+An activity dataset is a document - just some text, with a minial amount of formatting. For example, here is a Brightway2 activity dataset from the US LCI:
+
+.. code-block:: python
+
+  {
+  'name': 'Energy, output',
+  'unit': 'megajoule'
+  'categories': ['biomass', 'fuels'],
+  'location': 'RNA',
+  'exchanges': [{
+    'amount': 11968.25,
+    'input': ('biosphere', '6d336c64e3a0ff08dee166a1dfdf0946'),
+    'type': 'biosphere',
+  }],
+  }
+
+The technical details of the data format are described later in :ref:`database-documents`. For now, here are the important points about activity datasets being documents:
+
+    * They are a section of human-readable data that you can manipulate manually in a text editor, or change en masse programmatically.
+    * Because they can be exported as text, and in a format that is accessible to almost every computer language (`JSON <http://www.json.org/>`_), activity datasets can be easily exported and used by other programs.
+    * Activity datasets have a small number of required fields, but allow any additional information you would like to add, so that it is easy to add whatever additional data you need for your application.
+
+.. _dataset-codes:
+
+Dataset codes
+=============
+
+Linking activity datasets within and between databases requires a way to uniquely identify each dataset - Brightway2 calls this unique identifier a code. A code can be a number, like ``1``, or a string of numbers and letters, like ``swiss ch33se``. When you create datasets manually, you will need to assign each dataset a code. When you import a database, the codes will be automatically generated for you.
+
+Activity hashes
+---------------
+
+When you import an *ecospold* or *SimaPro* dataset, the codes that are generated automatically look like a bunch of nonsense, like this: ``6d336c64e3a0ff08dee166a1dfdf0946``. The way Brightway2 identifies an activity or flow is with the `MD5 <http://en.wikipedia.org/wiki/MD5>`_ hash of a few attributes: the ``name``, ``location``, ``unit``, and ``categories``. The function that computes the activity hash is `bw2data.utils.activity_hash <http://bw2data.readthedocs.org/en/latest/utils.html#bw2data.utils.activity_hash>`_.
+
+.. _exchanges:
+
+Exchanges
+=========
+
+Exchanges are a list of the inputs and outputs of an activity. For example an activity might consume some resources, emit some emissions, and have other technoligcal goods as emissions. Each activity also has at least one technological output.
+
+Each exchange has a ``type``. There are three standard exchange types in Brightway2, but you can define your own if you need to define different kinds of systems.
+
+Production exchanges
+--------------------
+
+A production exchange defines how much of the output is produced by an activity. For example, the process "make a fizzbang" would produce one kilogram of fizzbang (the amount is normally one, but doesn't have to be).
+
+Production exchanges have the type ``production``.
+
+.. note:: A production exchange is **not** required. A default value of one will be applied if no production exchange is defined. This default value is usually the most logical amount, so should only be changed in special circumstances.
+
+.. warning:: Using a production value other than one can be confusing. See the blog post `What happens with a non-unitary production amount in LCA? <http://chris.mutel.org/non-unitary.html>`_.
+
+.. warning:: Multioutput processes (i.e. more than one production process) can be used in Brightway2, but only under special circumstances. See the blog post `Multi-output processes in matrix-based LCA <http://example.com>`_.
+
+Technosphere exchanges
+----------------------
+
+A technosphere exchange is an process input from the technosphere, i.e. the industrial economy. For example, the process "make a fizzbang" could have an input of seven kilograms of lollies.
+
+Technosphere exchanges have the type ``technosphere``.
+
+Biosphere exchanges
+-------------------
+
+A biosphere exchange is a consumption of a resource or and emission to the environment associated with a process; its value will be placed in the biosphere matrix.
+
+Biosphere exchanges have the type ``biosphere``.
+
+.. _biosphere-database:
+
+Biosphere database
+==================
+
+When Brightway2 is set up, it downloads and installs a special ``biosphere`` database. This database has all the resource and emission flows from the ecoinvent database, and is the database that imported life cycle impact assessment methods will link to.
+
+You can define biosphere flows - resources and emissions - in any database you like, but it is probably best to use the pre-defined flows in the ``biosphere`` database whenever you can. If you need to add some custom flows, feel free to create a separate new database.
+
+You can also change the name for the default biosphere database in the `user preferences <http://bw2data.readthedocs.org/en/latest/configuration.html#bw2data._config.Config.biosphere>`_.
+
+Part two:
+
+Database metadata
+-----------------
+
+There is a very basic set of metadata stored about each inventory database, stored in the file ``databases.json``. To get the metadata about a database, do something like the following:
+
+.. code-block:: python
+
+    from brightway2 import *
+    databases["ecoinvent 2.2"]
+
+.. note::
+    See also the `databases manager documentation <http://bw2data.readthedocs.org/en/latest/technical.html#bw2data.meta.Databases>`_
+
+The returned metadata is:
+
+.. code-block:: python
+
+    {'depends': ['biosphere'],
+     'version': 1}
+
+**No metadata** is required for ``Database``s; Brightway2 will automatically set ``depends`` to a list of each linked database. The default single-file database backend will also add a ``version`` number, which is used in versioning the database. The JSON backend adds no additional metadata. To set the JSON backend for a ``Database``, add the following metadata: ``"backend": "json"``, either while registering the database (``my_database.register(backend="json")``), or by modifying the metadata directly:
+
+.. code-block:: python
+
+    databases["my sweet database"]["backend"] = "json"
+    databases.flush()
+
+.. _database-documents:
+
+Database documents
+------------------
+
+A database consists of inventory datasets, and inventory datasets have a very flexible and free form. Indeed, even an empty dictionary (e.g. ``{}``) is a valid LCI dataset in Brightway2. However, some fields are suggested for common use. Note that you can always add extra fields as needed by your application. Here is a selection from an example dataset from the US LCI:
+
+.. code-block:: python
+
+    {
+     'categories': ['Wood Product Manufacturing', 'Softwood Veneer and Plywood Mnf.'],
+     'location': 'RNA',
+     'name': 'Green veneer, at plywood plant, US PNW',
+     'type': 'process',
+     'unit': 'kilogram'}
+     'exchanges': [{
+       'amount': 1.0,
+       'code': 6,
+       'group': 2,
+       'input': ('US LCI', '6ddb4cc00f9e42aa48515248256c31dc'),
+       'type': 'production',
+       'uncertainty type': 0},
+      {'amount': 7.349999999999999e-06,
+       'code': 5,
+       'group': 4,
+       'input': ('biosphere', '51447e58e03a40a2bbd9abf45214b7d3'),
+       'type': 'biosphere',
+       'uncertainty type': 0}],
+    }
+
+The document structure is:
+
+* *name* (string): Name of this activity.
+* *type* (string): If this is ``"process"``, or omitted completely, Brightway2 will treat this as a inventory process with inputs and output(s). If you want to store additional information in a Database outside of the list of processes, specify a custom type here. For example, the list of biosphere flows is also an inventory database, but as these are flows, not processes, they have the type ``"emission"``. Similarly, if you wanted to separate processes and products, you could create database entries for the products, with the type ``"product"``.
+* *categories* (list of strings, optional): A list of categories and subcategories. Can have any length.
+* *location* (string, optional): A location identifier. Default is *GLO* (but this can be changed in the user preferences; see `bw2data.config <http://bw2data.readthedocs.org/en/latest/configuration.html#bw2data._config.Config.global_location>`_).
+* *unit* (string): Unit of this activity. Units are normalized when written to disk.
+* *exchanges* (list): A list of activity inputs and outputs, with its own schema.
+    * *input* (database name, database code): The technological activity that is linked to, e.g. ``("my new database", "production of ice cream")`` or ``('biosphere', '51447e58e03a40a2bbd9abf45214b7d3')``. See also :ref:`dataset-codes`.
+    * *type* (string): One of ``production``, ``technosphere``, and ``biosphere``.
+        * ``production`` is an exchange that describes how much this activity produces. A ``production`` exchange is not required - the default value is 1.
+        * ``technosphere`` is an input of a technosphere flow from another activity dataset.
+        * ``biosphere`` is a resource consumption or emission to the environment.
+    * *amount* (float): Amount of this exchange.
+    * *uncertainty type* (integer): Integer code for uncertainty distribution of this exchange, see :ref:`uncertainty-type` for more information. There can be other uncertainty fields as well.
+    * *comment* (string, optional): A comment on this exchange. Used to store pedigree matrix data in ecoinvent v2.
+
+The schema for an ``LCI dataset`` in `voluptuous <https://pypi.python.org/pypi/voluptuous/>`_ is:
+
+.. code-block:: python
+
+    {
+        Optional("categories"): Any(list, tuple),
+        Optional("location"): object,
+        Optional("unit"): basestring,
+        Optional("name"): basestring,
+        Optional("type"): basestring,
+        Optional("exchanges"): [exchange]
+    }
+
+Where an ``exchange`` is:
+
+.. code-block:: python
+
+    {
+        Required("input"): valid_tuple,
+        Required("type"): basestring,
+        Required("amount"): Any(float, int),
+        Optional("uncertainty type"): int,
+        Optional("loc"): Any(float, int),
+        Optional("scale"): Any(float, int),
+        Optional("shape"): Any(float, int),
+        Optional("minimum"): Any(float, int),
+        Optional("maximum"): Any(float, int)
+    }
+
+.. note:: See also :ref:`exchanges` for the details on different types of exchanges.
+
+.. note::
+    Database documents can be validated with ``bw2data.validate.db_validator(my_data)``, or ``Database("my database name").validate(my_data)``.
+
+.. _uncertainty-type:
+
+Uncertainty types and uncertainty dictionaries
+----------------------------------------------
+
+An ``uncertainty dictionary`` has one required key: ``amount``, which specifies the most representative value (expected value/median/mode/other) of the distribution. The uncertainty distribution is defined by the key ``uncertainty type``.  Depending on the distribution, some or all of the following fields can also be specified: *loc*, *scale*, *shape*, *minimum*, and *maximum*.
+
+The schema for an ``uncertainty dictionary`` in `voluptuous <https://pypi.python.org/pypi/voluptuous/>`_ is:
+
+.. code-block:: python
+
+    uncertainty_dict = {
+        Required("amount"): Any(float, int),
+        Optional("uncertainty type"): int,
+        Optional("loc"): Any(float, int),
+        Optional("scale"): Any(float, int),
+        Optional("shape"): Any(float, int),
+        Optional("minimum"): Any(float, int),
+        Optional("maximum"): Any(float, int)
+    }
+
+The integer ``uncertainty type`` fields are defined in a separate software package called `stats_arrays <https://stats-arrays.readthedocs.org/en/latest/>`_. The uncertainty types are given below, and their parameters are explained in detail in the `stats_arrays table <https://stats-arrays.readthedocs.org/en/latest/#mapping-parameter-array-columns-to-uncertainty-distributions>`_:
+
+    * ``0``: Undefined or unknown uncertainty.
+    * ``1``: No uncertainty.
+    * ``2``: Lognormal distribution. This is **purposely** handled in an inconsistent fashion, unfortunately. The ``amount`` field is the median of the data, and the ``sigma`` field is the standard deviation of the data **when it is log-transformed**, i.e. the σ from the formula for the log-normal PDF.
+    * ``3``: Normal distribution.
+    * ``4``: Uniform distribution.
+    * ``5``: Triangular distribution.
+    * ``6``: Bernoulli distribution.
+    * ``7``: Discrete uniform.
+    * ``8``: Weibull.
+    * ``9``: Gamma.
+    * ``10``: Beta distribution.
+    * ``11``: Generalized Extreme Value.
+    * ``12``: Student's T.
+
+.. note:: The default value for ``uncertainty type`` is ``0``, i.e. no uncertainty.
+
+.. note::
+    All distributions (where it is applicable) can be bounded, i.e. you can specify a minimum and maximum value in addition to other parameters. This can be helpful in ensuring, for example, that distributions are always positive.
+
+Part three:
+
+Brightway2-data
+===============
+
+This is the documentation for Brightway2-data, part of the `Brightway2 <http://brightwaylca.org>`_ life cycle assessment framework.
+
+Surprisingly enough, Brightway2-data (abbreviated to ``bw2data`` in code) is the package the manages different types of data in Brightway2. In general, Brightway2-data can save, load, process, validate, import and export different kinds of data. It also includes code to setup the data directory, query datasets, and normalize units.
+
+This page of the documentation covers the basic concepts in Brightway2-data. There is also detailed technical documentation, as well as separate sectiosn on querying and import and export of data in different formats.
+
+.. _data-and-metadata:
+
+Data and metadata
+=================
+
+.. note:: For more detailed information, see `tutorial 5: defining a new matrix <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/Tutorial%205%20-%20Defining%20A%20New%20Matrix.ipynb>`_.
+
+The building blocks in Brightway2 data are the **data store** and the **metadata store**. The difference between the two can be easily explained in the example of LCI databases:
+
+    * The data store object, :ref:`database`, has the actual activity data for each database.
+    * The metadata store, :ref:`databases`, has information about the database, like the format it is in, its version number, and what other databases it links to.
+
+Both the data and metadata objects *store* data, and provide easy ways to save and load data.
+
+.. _metadata-store:
+
+Metadata stores
+---------------
+
+The base class for metadata is :ref:`serialized-dict`, which is basically a normal dictionary that can be easily saved or loaded (i.e. serialized) to or from a `JSON <http://en.wikipedia.org/wiki/JSON>`_ file. These files can be easily edited in a normal text editor.
+
+Brightway2-data defines the following metadata stores:
+
+    * :ref:`databases`: LCI databases
+    * :ref:`methods`: LCIA methods (characterization factors)
+    * :ref:`normalizations`: LCIA normalization factors
+    * :ref:`weightings`: LCIA weighting factors
+
+There are no required fields of metadata for any metadata stores, though some fields may be added automatically by subclasses.
+
+Metadata stores are just dictionaries that can be easily serialized - they are not associated with a specific data store, and it is possible to use metadata stores without a data store, or with multiple data stores.
+
+Metadata should be singletons
+-----------------------------
+
+Metadata stores follow the `singleton pattern <http://en.wikipedia.org/wiki/Singleton_pattern>`_, though this is not enforced. Each metadata dictionary should only exist once, to avoid having multiple conflicting versions. The normal pattern is to instantiate each class in the same file as the class pattern:
+
+.. code-block:: python
+
+    class MyObjects(bw2data.serialization.SerializedDict):
+        file = "sweet-peppers.json"
+
+    myobjects = MyObjects()
+
+Data stores
+-----------
+
+.. note:: See also `tutorial 2: working with data <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/Tutorial%202%20-%20Working%20with%20data.ipynb>`_ and `tutorial 5: defining a new matrix <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/Tutorial%205%20-%20Defining%20A%20New%20Matrix.ipynb>`_.
+
+The base class for data stores is :ref:`datastore`. Each data store subclass defines a schema for its data. The normal methods provided by a data store are:
+
+    * **write(data)**: Write data to disk
+    * **load**: Load data from disk
+    * **register**: Register object with metadata store
+    * **deregister**: Remove object from metadata store
+    * **copy(name)**: Create a new object with name ``name``
+    * **backup**: Write backup of data
+    * **validate(data)**: Validate data using this object's validator
+
+Data store objects are instantiated with the object name, e.g. ``DataStore("name goes here")``.
+
+Brightway2-data defines the following data stores:
+
+    * :ref:`database`
+    * :ref:`method`
+    * :ref:`weighting`
+    * :ref:`normalization`
+
+Validation
+----------
+
+Data validation is done using the great `voluptuous library <https://pypi.python.org/pypi/voluptuous/>`_. Each data store can define its own validation schema. See the individual data stores documentation for details on its data format.
+
+Document and processed data
+===========================
+
+The basic form of Brightway2 data is *semi-structured* - there are some requirements, and some conventions, but a lot of flexibility. This type of database, is often called a `document database`. However, to construct matrices efficiently from these data documents, a *processing* step is required.
+
+Processing data
+---------------
+
+*Processing data* converts document data to a binary form tailored for creating matrices (a NumPy array). All extraneous information is removed, and only the numeric values needed are retained. Put another way, *processing* transforms unstructured data documents to a highly-structured binary form for calculations.
+
+Uncertainty distributions
+-------------------------
+
+Uncertainty distributions are modeled using *parameter arrays* from `stats_arrays <https://bitbucket.org/cmutel/stats_arrays>`_, which has its own `extensive documentation <http://stats-arrays.readthedocs.org/en/latest/>`_.
+
+The idea of parameter arrays is to have a common format for defining different uncertainty distributions. Parameter arrays are stored as NumPy `structured or record arrays <http://docs.scipy.org/doc/numpy/reference/generated/numpy.recarray.html#numpy.recarray>`_. The fields that define an uncertainty distribution are:
+
+    * uncertainty type
+    * loc (short for location)
+    * scale
+    * shape
+    * minimum
+    * maximum
+    * negative
+
+In document data, these fields are stored in an *uncertainty dictionary*, e.g.:
+
+.. code-block:: python
+
+    {
+        'uncertainty type': NormalUncertainty.id,
+        'loc': 0.5,
+        'scale': 0.2,
+        'minimum': 0  # Acts as bounds; prevent negative values
+    }
+
+Default values will be provided if not directly specified.
+
+.. note:: If there is no uncertainty, then a simple number can also be provided. It will be converted automatically to an uncertainty dictionary.
+
+During processing, the uncertainty dictionaries are converted to rows in a NumPy array.
+
+Mappings
+========
+
+Sometimes, important data can't be stored as a numeric value. For example, the location of an inventory activity is important for regionalization, but is given by a text string, not an integer. In this case, we use :ref:`serialized-dict` to store mappings between objects are integer indices. Brightway2-data uses two such mappings:
+
+    * :ref:`mapping`: Maps inventory objects (activities, biosphere flows, and anything else that would appear in a supply chain graph) to indices
+    * :ref:`geomapping`: Map locations (both inventory and regionalized impact assessment) to indices
+
+Mappings are also singletons. Items are added using ``.add(keys)``, and removed using ``.delete(keys)``.
+
+Searching databases
+===================
+
+Brightway2 includes some simple functions for searching within databases. Because a database is a simple Python dictionary, it is relatively simple to filter and process. The strategy is to apply one (or more) ``Filter`` in a ``Query``. The return value of a ``Query`` is a ``Result``, which can printed or sorted. Queries can also be called directly from the ``Database`` object. Here is a simple example:
+
+.. code-block:: python
+
+    In [1]: from bw2data.query import *
+    In [2]: from bw2data import *
+    In [3]: ei = Database("ecoinvent 2.2")
+    In [4]: r = ei.query(Filter("name", "in", "at long-distance pipeline"))
+    In [5]: len(r)
+    Out[5]: 8
+
+    In [6]: print r
+    Query result with 8 entries
+
+    In [7]: r
+    Out[7]:
+    Query result: (total 8)
+    ('ecoinvent 2.2', 1427): natural gas, production DZ, at long-distance pipeline
+    ('ecoinvent 2.2', 1425): natural gas, production DE, at long-distance pipeline
+    ('ecoinvent 2.2', 1413): natural gas, at long-distance pipeline
+    ('ecoinvent 2.2', 1412): natural gas, at long-distance pipeline
+    ('ecoinvent 2.2', 1432): natural gas, production RU, at long-distance pipeline
+    ('ecoinvent 2.2', 1431): natural gas, production NO, at long-distance pipeline
+    ('ecoinvent 2.2', 1430): natural gas, production NL, at long-distance pipeline
+    ('ecoinvent 2.2', 1429): natural gas, production GB, at long-distance pipeline
+
+    In [8]: r.sort("name")
+    In [9]: r
+    Out[9]:
+    Query result: (total 8)
+    ('ecoinvent 2.2', 1413): natural gas, at long-distance pipeline
+    ('ecoinvent 2.2', 1412): natural gas, at long-distance pipeline
+    ('ecoinvent 2.2', 1425): natural gas, production DE, at long-distance pipeline
+    ('ecoinvent 2.2', 1427): natural gas, production DZ, at long-distance pipeline
+    ('ecoinvent 2.2', 1429): natural gas, production GB, at long-distance pipeline
+    ('ecoinvent 2.2', 1430): natural gas, production NL, at long-distance pipeline
+    ('ecoinvent 2.2', 1431): natural gas, production NO, at long-distance pipeline
+    ('ecoinvent 2.2', 1432): natural gas, production RU, at long-distance pipeline
+
+    In [10]: q = Query(Filter("unit", "iis", "tkm"), Filter("name", "in", "lorry"))
+    In [11]: r = q(ei.load())
+    In [12]: len(r)
+    Out[12]: 19
 
 Import and Export
-=================
+-----------------
+
+Import and export of LCI databases is covered in the technical documentation: :ref:`import-and-export`.
 
 Impact Assessment
 =================
@@ -229,8 +683,65 @@ Impact assessment method names can have any length and number of qualifiers, but
 .. warning::
     For technical reasons, impact assessment names must be stored as a `tuple <http://docs.python.org/2/tutorial/datastructures.html#tuples-and-sequences>`_, not a `list <http://docs.python.org/2/tutorial/introduction.html#lists>`_, i.e. they must have ``()`` at the beginning and end, and not ``[]``.
 
-Static LCA
-==========
+Method metadata
+---------------
+
+There is a very basic set of metadata stored about each model, stored in the file ``methods.json``. To get the metadata about a method, do something like the following:
+
+.. code-block:: python
+
+    from brightway2 import *
+    methods[(u'ecological scarcity 1997', u'total', u'total')]
+
+.. note::
+    See also the `methods manager documentation <http://bw2data.readthedocs.org/en/latest/technical.html#bw2data.meta.Methods>`_
+
+The returned metadata is:
+
+.. code-block:: python
+
+    {u'abbreviation': u'ecologicals1997tt-UHk4Z8Pr',
+     u'description': u'Swiss method',
+     u'unit': u'UBP'}
+
+Methods should have the following metadata:
+
+    * *description*: A description of this method or submethod.
+    * *unit*: The unit of this method or submethod.
+
+In addition, the metadata ``abbreviation`` is generated automatically.
+
+LCIA method documents
+---------------------
+
+The impact assessment method documents are quite simple - indeed, it is a bit of a stretch to call them documents at all. Instead, they are a list of biosphere flow references, characterization factors, and locations. All LCIA methods in Brightway2 are regionalized, though the default installed methods only provide global characterization factors. Here is a simple example:
+
+.. code-block:: python
+
+    from brightway2 import *
+    Method(('ecological scarcity 1997', 'total', 'total')).load()[:5]
+
+This returns the following:
+
+.. code-block:: python
+
+    [[(u'biosphere', u'21c70338ff2e1cdc8e468f4c90f113a1'), 32000, u'GLO'],
+     [(u'biosphere', u'86a37cf9e44593f1c41fdce53de27715'), 32000, u'GLO'],
+     [(u'biosphere', u'a8cc9c61aa343fa01532bb16cec7f90d'), 32000, u'GLO'],
+     [(u'biosphere', u'b0a29177e77471a49b5a7d6a88212bf8'), 32000, u'GLO'],
+     [(u'biosphere', u'72c1cf2fee31a2cb6cdc39abda29a0df'), 32000, u'GLO']]
+
+Each list elements has two required components and a third optional component.
+
+    #. A reference to a biosphere flow, e.g. ``(u'biosphere', u'21c70338ff2e1cdc8e468f4c90f113a1')``.
+    #. The numeric characterization factor. This can either be a number, or a uncertainty dictionary (see :ref:`uncertainty-type`).
+    #. An *optional* location, used for regionalized impact assessment. The global location ``GLO`` is inserted as a default if not location is specified.
+
+.. note::
+    LCIA method documents can be validated with ``bw2data.validate.ia_validator(my_data)``, or ``Method(("my", "method", "name")).validate(my_data)``.
+
+LCA calculations
+================
 
 The actual LCA class then is more of a coordinator then an accountant, as the matrix builder is doing much of the data manipulation. The :ref:`lca` class only has to do the following:
 
@@ -242,6 +753,8 @@ The actual LCA class then is more of a coordinator then an accountant, as the ma
 .. note:: Due to licensing conflicts, recent versions of SciPy do not include UMFpack. Python wrappers for UMFpack must be installed separately using `scikits.umfpack <https://github.com/stefanv/umfpack>`_.
 
 The LCA class also has some convenience functions for redoing some calculations with slight changes, e.g. for uncertainty and sensitivity analysis. See the "redo_*" and "rebuild_*" methods in the LCA class.
+
+.. _building-matrices:
 
 Turning processed data arrays in matrices
 -----------------------------------------
@@ -347,7 +860,7 @@ Types
 The ``type`` column indicates whether a value should be in the technosphere or biosphere matrix: ``0`` is a transforming activity production amount, ``1`` is a technosphere exchange, and ``2`` is a biosphere exchange.
 
 Stochastic LCA
-==============
+--------------
 
 The various stochastic Monte Carlo LCA classes function almost the same as the static LCA, and reuse most of the code. The only change is that instead of building matrices once, `random number generators from stats_arrays <http://stats-arrays.readthedocs.org/en/latest/mcrng.html#monte-carlo-random-number-generator>`_ are instantiated directly from each parameter array. For each Monte Carlo iteration, the ``amount`` column is then overwritten with the output from the random number generator, and the system solved as normal. The code to do a new Monte Iteration is quite succinct:
 
@@ -371,13 +884,78 @@ This design is one of the most elegant parts of Brightway2.
 
 Because there is a common procedure to build static and stochastic matrices, any matrix can easily support uncertainty, e.g. not just LCIA characterization factors, but also weighting, normalization, and anything else you can think of; see `tutorial 5: defining a new matrix <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/Tutorial%205%20-%20Defining%20A%20New%20Matrix.ipynb>`_.
 
+Brightway2 LCA Reports
+----------------------
+
+.. note:: The Brightway2 report data format is evolving, and this section should not be understood as definitive.
+
+LCA reports calculated with ``bw2analyzer.report.SerializedLCAReport`` are written as a JSON file to disk. It has the following data format:
+
+.. code-block:: python
+
+    {
+        "monte carlo": {
+            "statistics": {
+                "interval": [lower, upper values],
+                "median": median,
+                "mean": mean
+            },
+            "smoothed": [  # This is smoothed values for drawing empirical PDF
+                [x, y],
+            ],
+            "histogram": [  # This are point coordinates for each point when drawing histogram bins
+                [x, y],
+            ]
+        },
+        "score": LCA score,
+        "activity": [
+            [name, amount, unit],
+        ],
+        "contribution": {
+            "hinton": {
+                "xlabels": [
+                    label,
+                ],
+                "ylabels": [
+                    label,
+                ],
+                "total": LCA score,
+                "results": [
+                    [x index, y index, score], # See hinton JS implementation in bw2ui source code
+                ],
+            },
+            "treemap": {
+                "size:" LCA score,
+                "name": "LCA result",
+                "children": [
+                    {
+                    "name": activity name,
+                    "size": activity LCA score
+                    },
+                ]
+            }
+            "herfindahl": herfindahl score,
+            "concentration": concentration score
+        },
+        "method": {
+            "name": method name,
+            "unit": method unit
+        },
+        "metadata": {
+            "version": report data format version number (this is 1),
+            "type": "Brightway2 serialized LCA report",
+            "uuid": the UUID of this report,
+            "online": URL where this report can be accessed. Optional.
+        }
+    }
+
 Graph traversal
-===============
+---------------
 
 To generate graphs of impact like supply chain or Sankey diagrams, we need to traverse the graph of the supply chain. The ``GraphTraversal`` class does this in a relatively intelligent way, assessing each inventory activity only once regardless of how many times it is used, and prioritizing activities based on their LCA score. It is usually possible to create a reduced graph of the supply chain, with only the most relevant pathways and flows included, in a few seconds.
 
 Illustration of graph traversal
--------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 It's easiest to understand how graph traversal is implemented with a simple example. Take this system:
 
