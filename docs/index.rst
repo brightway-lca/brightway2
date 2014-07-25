@@ -197,6 +197,23 @@ See also :ref:`building-matrices`.
 .. warning::
     Every time you save a new version of an inventory database or an impact assessment method, e.g. with ``my_database.write(my_data)``, be sure to also call ``my_database.process()``, or your changes will not be used in LCA calculations.
 
+Processing data
+---------------
+
+*Processing data* converts document data to a binary form tailored for creating matrices (a NumPy array). All extraneous information is removed, and only the numeric values needed are retained. Put another way, *processing* transforms unstructured data documents to a highly-structured binary form for calculations.
+
+.. _mapping:
+
+Mappings
+--------
+
+Sometimes, important data can't be stored as a numeric value. For example, the location of an inventory activity is important for regionalization, but is given by a text string, not an integer. In this case, we use :ref:`serialized-dict` to store mappings between objects are integer indices. Brightway2-data uses two such mappings:
+
+    * :ref:`mapping`: Maps inventory objects (activities, biosphere flows, and anything else that would appear in a supply chain graph) to indices
+    * :ref:`geomapping`: Map locations (both inventory and regionalized impact assessment) to indices
+
+Items are added to mappings using ``.add(keys)``, and removed using ``.delete(keys)``.
+
 Pickle is the default data storage format
 -----------------------------------------
 
@@ -216,146 +233,139 @@ Javascript object notation (`JSON <http://json.org/>`_) is a data for native to 
 
 While a ``JSON`` module is in the standard library, there is no fast ``JSON`` library available for all operating systems and python version; see e.g. `anyjson <http://pypi.python.org/pypi/anyjson/>`_, `yajl <http://pypi.python.org/pypi/yajl>`_, and `ujson <http://pypi.python.org/pypi/ujson/>`_, in addition to the builtin.
 
+.. _metadata-store:
+
+Cataloging what we have - Metadata stores
+=========================================
+
+The building blocks in Brightway2 data are the **data store** and the **metadata store**. The difference between the two can be easily explained in the example of LCI databases:
+
+    * The data store object, :ref:`database`, has the actual activity data for each database.
+    * The metadata store, :ref:`databases`, has information about the database, like the format it is in, its version number, and what other databases it links to.
+
+Both the data and metadata objects *store* data, and provide easy ways to save and load data.
+
+Metadata stores
+---------------
+
+The base class for metadata is :ref:`serialized-dict`, which is basically a normal dictionary that can be easily saved or loaded (i.e. serialized) to or from a `JSON <http://en.wikipedia.org/wiki/JSON>`_ file. These files can be easily edited in a normal text editor.
+
+Brightway2-data defines the following metadata stores:
+
+    * :ref:`databases`: LCI databases
+    * :ref:`methods`: LCIA methods (characterization factors)
+    * :ref:`normalizations`: LCIA normalization factors
+    * :ref:`weightings`: LCIA weighting factors
+
+There are no required fields of metadata for any metadata stores, though some fields may be added automatically by subclasses.
+
+Metadata stores are just dictionaries that can be easily serialized - they are not associated with a specific data store, and it is possible to use metadata stores without a data store, or with multiple data stores.
+
+Metadata should be singletons
+-----------------------------
+
+Metadata stores follow the `singleton pattern <http://en.wikipedia.org/wiki/Singleton_pattern>`_, though this is not enforced. Each metadata dictionary should only exist once, to avoid having multiple conflicting versions. The normal pattern is to instantiate each class in the same file as the class pattern:
+
+.. code-block:: python
+
+    class MyObjects(bw2data.serialization.SerializedDict):
+        file = "sweet-peppers.json"
+
+    myobjects = MyObjects()
+
+Data stores
+-----------
+
+The base class for data stores is :ref:`datastore`. Each data store subclass defines a schema for its data. The normal methods provided by a data store are:
+
+    * **write(data)**: Write data to disk
+    * **load**: Load data from disk
+    * **register**: Register object with metadata store
+    * **deregister**: Remove object from metadata store
+    * **copy(name)**: Create a new object with name ``name``
+    * **backup**: Write backup of data
+    * **validate(data)**: Validate data using this object's validator
+
+Data store objects are instantiated with the object name, e.g. ``DataStore("name goes here")``.
+
+Brightway2-data defines the following data stores:
+
+    * :ref:`database`
+    * :ref:`method`
+    * :ref:`weighting`
+    * :ref:`normalization`
+
+.. _uncertainty-type:
+
+Storing uncertain values
+========================
+
+While some numeric data is certain, like unit conversions, real-world data is often uncertain. In Brightway2, uncertain data is stored in a ``uncertainty dictionary``.
+
+An ``uncertainty dictionary`` is a python dictionary of keys and values, like:
+
+.. code-bock:: python
+
+   {
+      "Swiss chesse": "is awesome",
+      "this is a key": "this is a value"
+   }
+
+It has one required key: ``amount``, which specifies the most representative value of the distribution. The most representative value can be the mean, median (like in the lognormal in the ecoinvent database), mode (like in the triangular in the ecoinvent database), or something else - the decision is up to you. The uncertainty distribution is defined by the key ``uncertainty type``.  Depending on the distribution, some or all of the following fields can also be specified: *loc*, *scale*, *shape*, *minimum*, and *maximum*.
+
+The schema for an ``uncertainty dictionary`` in `voluptuous <https://pypi.python.org/pypi/voluptuous/>`_ is:
+
+.. code-block:: python
+
+    uncertainty_dict = {
+        Required("amount"): Any(float, int),
+        Optional("uncertainty type"): int,
+        Optional("loc"): Any(float, int),
+        Optional("scale"): Any(float, int),
+        Optional("shape"): Any(float, int),
+        Optional("minimum"): Any(float, int),
+        Optional("maximum"): Any(float, int)
+    }
+
+The integer ``uncertainty type`` fields are defined in a separate software package called `stats_arrays <https://stats-arrays.readthedocs.org/en/latest/>`_. The uncertainty types are given below, and their parameters are explained in detail in the `stats_arrays table <https://stats-arrays.readthedocs.org/en/latest/#mapping-parameter-array-columns-to-uncertainty-distributions>`_:
+
+    * ``0``: Undefined or unknown uncertainty.
+    * ``1``: No uncertainty.
+    * ``2``: Lognormal distribution. This is **purposely** handled in an inconsistent fashion, unfortunately. The ``amount`` field is the median of the data, and the ``sigma`` field is the standard deviation of the data **when it is log-transformed**, i.e. the σ from the formula for the log-normal PDF.
+    * ``3``: Normal distribution.
+    * ``4``: Uniform distribution.
+    * ``5``: Triangular distribution.
+    * ``6``: Bernoulli distribution.
+    * ``7``: Discrete uniform.
+    * ``8``: Weibull.
+    * ``9``: Gamma.
+    * ``10``: Beta distribution.
+    * ``11``: Generalized Extreme Value.
+    * ``12``: Student's T.
+
+The default value for ``uncertainty type`` is ``0``, i.e. no uncertainty.
+
+.. note::
+    All distributions (where bounds make sense) can be bounded, i.e. you can specify a minimum and maximum value in addition to other parameters. This can be helpful in ensuring, for example, that distributions are always positive.
+
+In most cases, if you don't have uncertainty, or don't know enough to be able to characterize that uncertainty, you can enter a number instead of an uncertainty dictionary, and it will be automatically converted to an uncertainty dictionary with no uncertainty.
+
 LCI Databases
 =============
 
-Part one:
-
 A database is an organizing unit
-================================
+--------------------------------
 
-In Brightway2, a ``database`` is the term used to organize a set of activity datasets. Databases can be big, like ecoinvent, or as small as one dataset. You can have as many databases as you like, and databases can link into other databases. You can also have two databases that each depend on each other.
-
-Databases can be stored in different ways
-=========================================
-
-The default storage backend for databases stores each database in a separate file. This is the easiest and most convenient approach for most cases. However, Brightway2 also supports pluggable database backends, which can change how databases are stored and queried.
-
-Brightway2-data also provides `JSONDatabase <http://bw2data.readthedocs.org/en/latest/inventory.html#version-control-friendly-each-database-is-a-json-file>`_, which stores each dataset as a separate file serialized to JSON. This approach works well with version-control systems, as each change can be saved individually.
-
-.. warning:: Before using ``JSONDatabase``, please read `its documentation <http://bw2data.readthedocs.org/en/latest/inventory.html#version-control-friendly-each-database-is-a-json-file>`_ carefully.
-
-`Custom backends <http://bw2data.readthedocs.org/en/latest/inventory.html#custom-database-backends>`_, such as using an actual database, can also be defined.
-
-LCI datasets are documents
-==========================
-
-An activity dataset is a document - just some text, with a minial amount of formatting. For example, here is a Brightway2 activity dataset from the US LCI:
-
-.. code-block:: python
-
-  {
-  'name': 'Energy, output',
-  'unit': 'megajoule'
-  'categories': ['biomass', 'fuels'],
-  'location': 'RNA',
-  'exchanges': [{
-    'amount': 11968.25,
-    'input': ('biosphere', '6d336c64e3a0ff08dee166a1dfdf0946'),
-    'type': 'biosphere',
-  }],
-  }
-
-The technical details of the data format are described later in :ref:`database-documents`. For now, here are the important points about activity datasets being documents:
-
-    * They are a section of human-readable data that you can manipulate manually in a text editor, or change en masse programmatically.
-    * Because they can be exported as text, and in a format that is accessible to almost every computer language (`JSON <http://www.json.org/>`_), activity datasets can be easily exported and used by other programs.
-    * Activity datasets have a small number of required fields, but allow any additional information you would like to add, so that it is easy to add whatever additional data you need for your application.
-
-.. _dataset-codes:
-
-Dataset codes
-=============
-
-Linking activity datasets within and between databases requires a way to uniquely identify each dataset - Brightway2 calls this unique identifier a code. A code can be a number, like ``1``, or a string of numbers and letters, like ``swiss ch33se``. When you create datasets manually, you will need to assign each dataset a code. When you import a database, the codes will be automatically generated for you.
-
-Activity hashes
----------------
-
-When you import an *ecospold* or *SimaPro* dataset, the codes that are generated automatically look like a bunch of nonsense, like this: ``6d336c64e3a0ff08dee166a1dfdf0946``. The way Brightway2 identifies an activity or flow is with the `MD5 <http://en.wikipedia.org/wiki/MD5>`_ hash of a few attributes: the ``name``, ``location``, ``unit``, and ``categories``. The function that computes the activity hash is `bw2data.utils.activity_hash <http://bw2data.readthedocs.org/en/latest/utils.html#bw2data.utils.activity_hash>`_.
-
-.. _exchanges:
-
-Exchanges
-=========
-
-Exchanges are a list of the inputs and outputs of an activity. For example an activity might consume some resources, emit some emissions, and have other technoligcal goods as emissions. Each activity also has at least one technological output.
-
-Each exchange has a ``type``. There are three standard exchange types in Brightway2, but you can define your own if you need to define different kinds of systems.
-
-Production exchanges
---------------------
-
-A production exchange defines how much of the output is produced by an activity. For example, the process "make a fizzbang" would produce one kilogram of fizzbang (the amount is normally one, but doesn't have to be).
-
-Production exchanges have the type ``production``.
-
-.. note:: A production exchange is **not** required. A default value of one will be applied if no production exchange is defined. This default value is usually the most logical amount, so should only be changed in special circumstances.
-
-.. warning:: Using a production value other than one can be confusing. See the blog post `What happens with a non-unitary production amount in LCA? <http://chris.mutel.org/non-unitary.html>`_.
-
-.. warning:: Multioutput processes (i.e. more than one production process) can be used in Brightway2, but only under special circumstances. See the blog post `Multi-output processes in matrix-based LCA <http://example.com>`_.
-
-Technosphere exchanges
-----------------------
-
-A technosphere exchange is an process input from the technosphere, i.e. the industrial economy. For example, the process "make a fizzbang" could have an input of seven kilograms of lollies.
-
-Technosphere exchanges have the type ``technosphere``.
-
-Biosphere exchanges
--------------------
-
-A biosphere exchange is a consumption of a resource or and emission to the environment associated with a process; its value will be placed in the biosphere matrix.
-
-Biosphere exchanges have the type ``biosphere``.
-
-.. _biosphere-database:
-
-Biosphere database
-==================
-
-When Brightway2 is set up, it downloads and installs a special ``biosphere`` database. This database has all the resource and emission flows from the ecoinvent database, and is the database that imported life cycle impact assessment methods will link to.
-
-You can define biosphere flows - resources and emissions - in any database you like, but it is probably best to use the pre-defined flows in the ``biosphere`` database whenever you can. If you need to add some custom flows, feel free to create a separate new database.
-
-You can also change the name for the default biosphere database in the `user preferences <http://bw2data.readthedocs.org/en/latest/configuration.html#bw2data._config.Config.biosphere>`_.
-
-Part two:
-
-Database metadata
------------------
-
-There is a very basic set of metadata stored about each inventory database, stored in the file ``databases.json``. To get the metadata about a database, do something like the following:
-
-.. code-block:: python
-
-    from brightway2 import *
-    databases["ecoinvent 2.2"]
-
-.. note::
-    See also the `databases manager documentation <http://bw2data.readthedocs.org/en/latest/technical.html#bw2data.meta.Databases>`_
-
-The returned metadata is:
-
-.. code-block:: python
-
-    {'depends': ['biosphere'],
-     'version': 1}
-
-**No metadata** is required for ``Database``s; Brightway2 will automatically set ``depends`` to a list of each linked database. The default single-file database backend will also add a ``version`` number, which is used in versioning the database. The JSON backend adds no additional metadata. To set the JSON backend for a ``Database``, add the following metadata: ``"backend": "json"``, either while registering the database (``my_database.register(backend="json")``), or by modifying the metadata directly:
-
-.. code-block:: python
-
-    databases["my sweet database"]["backend"] = "json"
-    databases.flush()
+In Brightway2, a ``database`` is the term used to organize a set of activity datasets. Databases can be big, like ecoinvent, or as small as one dataset. You can have as many databases as you like, and databases can have links into other databases. You can also have two databases that each depend on each other.
 
 .. _database-documents:
 
-Database documents
-------------------
+LCI datasets are documents
+--------------------------
 
-A database consists of inventory datasets, and inventory datasets have a very flexible and free form. Indeed, even an empty dictionary (e.g. ``{}``) is a valid LCI dataset in Brightway2. However, some fields are suggested for common use. Note that you can always add extra fields as needed by your application. Here is a selection from an example dataset from the US LCI:
+A database consists of inventory datasets, and inventory datasets are text documents, human-readable data that you can manipulate manually in a text editor, or change en masse programmatically. Because they can be exported as text, and in a format that is accessible to almost every computer language (`JSON <http://www.json.org/>`_), activity datasets can be easily exported and used by other programs.
+
+Inventory datasets have a very flexible and free text form; even an empty dictionary (e.g. ``{}``) is a valid LCI dataset in Brightway2. However, some fields are suggested for common use. Note that you can always add extra fields as needed by your application. Here is a selection from an example dataset from the US LCI:
 
 .. code-block:: python
 
@@ -426,191 +436,93 @@ Where an ``exchange`` is:
         Optional("maximum"): Any(float, int)
     }
 
-.. note:: See also :ref:`exchanges` for the details on different types of exchanges.
-
 .. note::
     Database documents can be validated with ``bw2data.validate.db_validator(my_data)``, or ``Database("my database name").validate(my_data)``.
 
-.. _uncertainty-type:
+Databases can be stored in different ways
+-----------------------------------------
 
-Uncertainty types and uncertainty dictionaries
-----------------------------------------------
+The default storage backend for databases stores each database in a separate file. This is the easiest and most convenient approach for most cases. However, Brightway2 also supports pluggable database backends, which can change how databases are stored and queried.
 
-An ``uncertainty dictionary`` has one required key: ``amount``, which specifies the most representative value (expected value/median/mode/other) of the distribution. The uncertainty distribution is defined by the key ``uncertainty type``.  Depending on the distribution, some or all of the following fields can also be specified: *loc*, *scale*, *shape*, *minimum*, and *maximum*.
+Brightway2-data also provides `JSONDatabase <http://bw2data.readthedocs.org/en/latest/inventory.html#version-control-friendly-each-database-is-a-json-file>`_, which stores each dataset as a separate file serialized to JSON. This approach works well with version-control systems, as each change can be saved individually.
 
-The schema for an ``uncertainty dictionary`` in `voluptuous <https://pypi.python.org/pypi/voluptuous/>`_ is:
+Before using ``JSONDatabase``, please read its technical documentation carefully: :ref:`json-database`.
+
+:ref:`custom-backends`, such as using an actual relational database, can also be defined.
+
+Database metadata
+-----------------
+
+No metadata is required for ``Database``s; Brightway2 will automatically set ``depends`` to a list of each linked database. The default single-file database backend will also add a ``version`` number, which is used in versioning the database.
+
+The JSON backend adds no additional metadata. To set the JSON backend for a ``Database``, add the following metadata: ``"backend": "json"``, either while registering the database (``my_database.register(backend="json")``), or by modifying the metadata directly:
 
 .. code-block:: python
 
-    uncertainty_dict = {
-        Required("amount"): Any(float, int),
-        Optional("uncertainty type"): int,
-        Optional("loc"): Any(float, int),
-        Optional("scale"): Any(float, int),
-        Optional("shape"): Any(float, int),
-        Optional("minimum"): Any(float, int),
-        Optional("maximum"): Any(float, int)
-    }
+    databases["my sweet database"]["backend"] = "json"
+    databases.flush()
 
-The integer ``uncertainty type`` fields are defined in a separate software package called `stats_arrays <https://stats-arrays.readthedocs.org/en/latest/>`_. The uncertainty types are given below, and their parameters are explained in detail in the `stats_arrays table <https://stats-arrays.readthedocs.org/en/latest/#mapping-parameter-array-columns-to-uncertainty-distributions>`_:
+.. _dataset-codes:
 
-    * ``0``: Undefined or unknown uncertainty.
-    * ``1``: No uncertainty.
-    * ``2``: Lognormal distribution. This is **purposely** handled in an inconsistent fashion, unfortunately. The ``amount`` field is the median of the data, and the ``sigma`` field is the standard deviation of the data **when it is log-transformed**, i.e. the σ from the formula for the log-normal PDF.
-    * ``3``: Normal distribution.
-    * ``4``: Uniform distribution.
-    * ``5``: Triangular distribution.
-    * ``6``: Bernoulli distribution.
-    * ``7``: Discrete uniform.
-    * ``8``: Weibull.
-    * ``9``: Gamma.
-    * ``10``: Beta distribution.
-    * ``11``: Generalized Extreme Value.
-    * ``12``: Student's T.
-
-.. note:: The default value for ``uncertainty type`` is ``0``, i.e. no uncertainty.
-
-.. note::
-    All distributions (where it is applicable) can be bounded, i.e. you can specify a minimum and maximum value in addition to other parameters. This can be helpful in ensuring, for example, that distributions are always positive.
-
-Part three:
-
-Brightway2-data
-===============
-
-This is the documentation for Brightway2-data, part of the `Brightway2 <http://brightwaylca.org>`_ life cycle assessment framework.
-
-Surprisingly enough, Brightway2-data (abbreviated to ``bw2data`` in code) is the package the manages different types of data in Brightway2. In general, Brightway2-data can save, load, process, validate, import and export different kinds of data. It also includes code to setup the data directory, query datasets, and normalize units.
-
-This page of the documentation covers the basic concepts in Brightway2-data. There is also detailed technical documentation, as well as separate sectiosn on querying and import and export of data in different formats.
-
-.. _data-and-metadata:
-
-Data and metadata
-=================
-
-.. note:: For more detailed information, see `tutorial 5: defining a new matrix <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/Tutorial%205%20-%20Defining%20A%20New%20Matrix.ipynb>`_.
-
-The building blocks in Brightway2 data are the **data store** and the **metadata store**. The difference between the two can be easily explained in the example of LCI databases:
-
-    * The data store object, :ref:`database`, has the actual activity data for each database.
-    * The metadata store, :ref:`databases`, has information about the database, like the format it is in, its version number, and what other databases it links to.
-
-Both the data and metadata objects *store* data, and provide easy ways to save and load data.
-
-.. _metadata-store:
-
-Metadata stores
----------------
-
-The base class for metadata is :ref:`serialized-dict`, which is basically a normal dictionary that can be easily saved or loaded (i.e. serialized) to or from a `JSON <http://en.wikipedia.org/wiki/JSON>`_ file. These files can be easily edited in a normal text editor.
-
-Brightway2-data defines the following metadata stores:
-
-    * :ref:`databases`: LCI databases
-    * :ref:`methods`: LCIA methods (characterization factors)
-    * :ref:`normalizations`: LCIA normalization factors
-    * :ref:`weightings`: LCIA weighting factors
-
-There are no required fields of metadata for any metadata stores, though some fields may be added automatically by subclasses.
-
-Metadata stores are just dictionaries that can be easily serialized - they are not associated with a specific data store, and it is possible to use metadata stores without a data store, or with multiple data stores.
-
-Metadata should be singletons
+Uniquely identifying datasets
 -----------------------------
 
-Metadata stores follow the `singleton pattern <http://en.wikipedia.org/wiki/Singleton_pattern>`_, though this is not enforced. Each metadata dictionary should only exist once, to avoid having multiple conflicting versions. The normal pattern is to instantiate each class in the same file as the class pattern:
+Linking activity datasets within and between databases requires a way to uniquely identify each dataset - Brightway2 calls this unique identifier a code. A code can be a number, like ``1``, or a string of numbers and letters, like ``swiss ch33se``. When you create datasets manually, you will need to assign each dataset a code. When you import a database, the codes will be automatically generated for you.
 
-.. code-block:: python
+Activity hashes
+~~~~~~~~~~~~~~~
 
-    class MyObjects(bw2data.serialization.SerializedDict):
-        file = "sweet-peppers.json"
+When you import an *ecospold* or *SimaPro* dataset, the data format does not provide a . Brightway2 will generate codes that look like a bunch of nonsense, e.g.: ``6d336c64e3a0ff08dee166a1dfdf0946``. In this case, Brightway2 identifies an activity or flow with the `MD5 <http://en.wikipedia.org/wiki/MD5>`_ hash of a few attributes: For ecoinvent 2, the ``name``, ``location``, ``unit``, and ``categories``. For ecoinvent 3, the ``activity`` and ``reference product`` names. The function that computes the activity hash is `bw2data.utils.activity_hash <http://bw2data.readthedocs.org/en/latest/utils.html#bw2data.utils.activity_hash>`_.
 
-    myobjects = MyObjects()
+.. _exchanges:
 
-Data stores
------------
+Exchanges
+---------
 
-.. note:: See also `tutorial 2: working with data <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/Tutorial%202%20-%20Working%20with%20data.ipynb>`_ and `tutorial 5: defining a new matrix <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/Tutorial%205%20-%20Defining%20A%20New%20Matrix.ipynb>`_.
+Exchanges are a list of the inputs and outputs of an activity. For example an activity might consume some resources, emit some emissions, and have other technoligcal goods as emissions. Each activity also has at least one technological output.
 
-The base class for data stores is :ref:`datastore`. Each data store subclass defines a schema for its data. The normal methods provided by a data store are:
+Each exchange has a ``type``. There are three standard exchange types in Brightway2, but you can define your own if you need to define different kinds of systems.
 
-    * **write(data)**: Write data to disk
-    * **load**: Load data from disk
-    * **register**: Register object with metadata store
-    * **deregister**: Remove object from metadata store
-    * **copy(name)**: Create a new object with name ``name``
-    * **backup**: Write backup of data
-    * **validate(data)**: Validate data using this object's validator
+Production exchanges
+~~~~~~~~~~~~~~~~~~~~
 
-Data store objects are instantiated with the object name, e.g. ``DataStore("name goes here")``.
+A production exchange defines how much of the output is produced by an activity. For example, the process "make a fizzbang" would produce one kilogram of fizzbang (the amount is normally one, but doesn't have to be).
 
-Brightway2-data defines the following data stores:
+Production exchanges have the type ``production``.
 
-    * :ref:`database`
-    * :ref:`method`
-    * :ref:`weighting`
-    * :ref:`normalization`
+.. note:: A production exchange is **not** required. A default value of one will be applied if no production exchange is defined. This default value is usually the most logical amount, so should only be changed in special circumstances.
 
-Validation
-----------
+.. warning:: Using a production value other than one can be confusing. See the blog post `What happens with a non-unitary production amount in LCA? <http://chris.mutel.org/non-unitary.html>`_.
 
-Data validation is done using the great `voluptuous library <https://pypi.python.org/pypi/voluptuous/>`_. Each data store can define its own validation schema. See the individual data stores documentation for details on its data format.
+.. warning:: Multioutput processes (i.e. more than one production process) can be used in Brightway2, but only under special circumstances. See the blog post `Multi-output processes in matrix-based LCA <http://example.com>`_.
 
-Document and processed data
-===========================
+Technosphere exchanges
+~~~~~~~~~~~~~~~~~~~~~~
 
-The basic form of Brightway2 data is *semi-structured* - there are some requirements, and some conventions, but a lot of flexibility. This type of database, is often called a `document database`. However, to construct matrices efficiently from these data documents, a *processing* step is required.
+A technosphere exchange is an process input from the technosphere, i.e. the industrial economy. For example, the process "make a fizzbang" could have an input of seven kilograms of lollies.
 
-Processing data
----------------
+Technosphere exchanges have the type ``technosphere``.
 
-*Processing data* converts document data to a binary form tailored for creating matrices (a NumPy array). All extraneous information is removed, and only the numeric values needed are retained. Put another way, *processing* transforms unstructured data documents to a highly-structured binary form for calculations.
+Biosphere exchanges
+~~~~~~~~~~~~~~~~~~~
 
-Uncertainty distributions
--------------------------
+A biosphere exchange is a consumption of a resource or and emission to the environment associated with a process; its value will be placed in the biosphere matrix.
 
-Uncertainty distributions are modeled using *parameter arrays* from `stats_arrays <https://bitbucket.org/cmutel/stats_arrays>`_, which has its own `extensive documentation <http://stats-arrays.readthedocs.org/en/latest/>`_.
+Biosphere exchanges have the type ``biosphere``.
 
-The idea of parameter arrays is to have a common format for defining different uncertainty distributions. Parameter arrays are stored as NumPy `structured or record arrays <http://docs.scipy.org/doc/numpy/reference/generated/numpy.recarray.html#numpy.recarray>`_. The fields that define an uncertainty distribution are:
+.. _biosphere-database:
 
-    * uncertainty type
-    * loc (short for location)
-    * scale
-    * shape
-    * minimum
-    * maximum
-    * negative
+Biosphere database
+------------------
 
-In document data, these fields are stored in an *uncertainty dictionary*, e.g.:
+Starting Brightway2 through the web interface, or when you run ``bw2setup()`` in a python shell, Brightway2 downloads and installs a special ``biosphere`` database. This database has all the resource and emission flows from the ecoinvent database, version 2.
 
-.. code-block:: python
+You can define biosphere flows - resources and emissions - in any database you like, but it is probably best to use the pre-defined flows in the ``biosphere`` database whenever you can. If you need to add some custom flows, feel free to create a separate new database.
 
-    {
-        'uncertainty type': NormalUncertainty.id,
-        'loc': 0.5,
-        'scale': 0.2,
-        'minimum': 0  # Acts as bounds; prevent negative values
-    }
-
-Default values will be provided if not directly specified.
-
-.. note:: If there is no uncertainty, then a simple number can also be provided. It will be converted automatically to an uncertainty dictionary.
-
-During processing, the uncertainty dictionaries are converted to rows in a NumPy array.
-
-Mappings
-========
-
-Sometimes, important data can't be stored as a numeric value. For example, the location of an inventory activity is important for regionalization, but is given by a text string, not an integer. In this case, we use :ref:`serialized-dict` to store mappings between objects are integer indices. Brightway2-data uses two such mappings:
-
-    * :ref:`mapping`: Maps inventory objects (activities, biosphere flows, and anything else that would appear in a supply chain graph) to indices
-    * :ref:`geomapping`: Map locations (both inventory and regionalized impact assessment) to indices
-
-Mappings are also singletons. Items are added using ``.add(keys)``, and removed using ``.delete(keys)``.
+You can also change the name for the default biosphere database in the `user preferences <http://bw2data.readthedocs.org/en/latest/configuration.html#bw2data._config.Config.biosphere>`_.
 
 Searching databases
-===================
+-------------------
 
 Brightway2 includes some simple functions for searching within databases. Because a database is a simple Python dictionary, it is relatively simple to filter and process. The strategy is to apply one (or more) ``Filter`` in a ``Query``. The return value of a ``Query`` is a ``Result``, which can printed or sorted. Queries can also be called directly from the ``Database`` object. Here is a simple example:
 
@@ -740,10 +652,18 @@ Each list elements has two required components and a third optional component.
 .. note::
     LCIA method documents can be validated with ``bw2data.validate.ia_validator(my_data)``, or ``Method(("my", "method", "name")).validate(my_data)``.
 
+Default LCIA methods
+--------------------
+
+Starting Brightway2 through the web interface, or when you run ``bw2setup()`` in a python shell, Brightway2 will install around 650 default LCIA methods, as provided by the ecoinvent center. These LCIA methods will work for both ecoinvent 2 and 3.
+
 LCA calculations
 ================
 
-The actual LCA class then is more of a coordinator then an accountant, as the matrix builder is doing much of the data manipulation. The :ref:`lca` class only has to do the following:
+Normal static LCA
+-----------------
+
+The actual LCA class (``bw2calc.LCA``) is more of a coordinator then an accountant, as the matrix builder is doing much of the data manipulation. The :ref:`lca` class only has to do the following:
 
     * Translate the functional unit into a demand array
     * Find the right parameter arrays, and ask matrix builder for matrices
@@ -790,7 +710,7 @@ We notice several things:
 Input and Output
 ~~~~~~~~~~~~~~~~
 
-The ``input`` and ``output`` columns gives values for biosphere flows or transforming activity data sets. Brightway2-data uses a `mapping dictionary <http://bw2data.readthedocs.org/en/latest/metadata.html#bw2data.meta.Mapping>`_ to translate keys like ``("Douglas Adams", 42)`` into integer values. So, each number uniquely identifies an activity dataset.
+The ``input`` and ``output`` columns gives values for biosphere flows or transforming activity data sets. :ref:`mapping` are used to translate keys like ``("Douglas Adams", 42)`` into integer values. So, each mapping number uniquely identifies an activity dataset.
 
 If the ``input`` and ``output`` values are the same, then this is a production exchange - it describes how much product is produced by the transforming activity dataset.
 

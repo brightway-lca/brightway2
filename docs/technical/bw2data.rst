@@ -136,6 +136,8 @@ The function ``bw2data.database.Database`` is an alias for ``bw2data.database.Da
 .. autoclass:: bw2data.database.DatabaseChooser
     :members:
 
+.. _custom-backends:
+
 Custom database backends
 ------------------------
 
@@ -149,6 +151,8 @@ Default backend - each database is a single file
 
 .. autoclass:: bw2data.backends.default.database.SingleFileDatabase
     :members:
+
+.. _json-database:
 
 Version-control friendly - each database is a JSON file
 -------------------------------------------------------
