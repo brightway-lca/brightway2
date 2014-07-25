@@ -307,6 +307,8 @@ Sorting
 Identifying and labeling
 ------------------------
 
+.. _activity-hash:
+
 .. autofunction:: bw2data.utils.activity_hash
 .. autofunction:: bw2data.utils.database_hash
 .. autofunction:: bw2data.utils.random_string
@@ -317,6 +319,9 @@ Working with data
 
 .. autofunction:: bw2data.utils.clean_exchanges
 .. autofunction:: bw2data.utils.combine_methods
+
+.. _recursive-str-to-unicode:
+
 .. autofunction:: bw2data.utils.recursive_str_to_unicode
 .. autofunction:: bw2data.utils.uncertainify
 

@@ -3,27 +3,30 @@ Brightway2 life cycle assessment framework
 
 Brightway2 is a open source framework for life cycle assessment (LCA). It is designed to be easy to use, while still being powerful. Brightway2 doesn't try to replace software like SimaPro or OpenLCA, but instead offers possibilities to those who need to go break the limits of conventional LCA. Brightway2 is especially attractive for researchers, especially when used with `iPython notebooks <http://ipython.org/notebook.html>`_. The core principles of Brightway2 are simplicity, innovation, and power.
 
-Simplicity
-----------
-
-Large and complex software is hard to test for correctness, hard to work with, and hard to improve. Brightway2 is designed to be simple in every aspect: each major element is split into a separate software package, making it easier to understand and test; lean data structures make it easier to focus only on what is truly important; a user interface with fewer functions makes it easy to find the right button, and hard to make mistakes.
-
-Innovation
-----------
-
-Power
------
-
-
 Who is Brightway2 for?
 ----------------------
+
+Brightway2 is for people who want more than is possible with current LCA or sustainability software. Researchers and academics are particularly suitable, because the power that Brightway2 brings is worth the cost of learning a new software and possibly a new language.
+
+A particular weakness of Brightway2 is routine data entry, although there is an active project trying to make this better.
+
+Basically, Brightway2 is for you if your project lies at the intersection of LCA and your imagination.
 
 Understanding the manual
 ------------------------
 
 .. note:: This manual is `also available as a PDF <http://brightwaylca.org/Brightway2%20manual.pdf>`_.
 
-As this manual covers a lot of material, it can be a bit overwhelming, especially at first. In addition to the main index page and table of contents, in the HTML version you can search the documentation in the box on the left, and look for specific terms in the :ref:`genindex`. There an index at the end of the LaTeX version, but it doesn't get linked correctly for some reason.
+As this manual covers a lot of material, it can be a bit overwhelming, especially at first. The manual is designed to help you get started in the following order:
+
+* First, :ref:`install Brightway2 <installation>` and its dependencies.
+* Second, :ref:`configure Brightway2 <configuration>` by setting a data directory.
+* Third, do the :ref:`five tutorials <five-tutorials>`.
+* Finally, use the rest of the manual as a reference while creating next-generation LCA studies.
+
+In addition to the main index page and table of contents, in the HTML version you can search the documentation in the box on the left, and look for specific terms in the :ref:`genindex`. There an index at the end of the LaTeX version, but it doesn't get linked correctly for some reason.
+
+.. _installation:
 
 Installation
 ============
@@ -36,6 +39,8 @@ Brightway2 can be installed pretty much everywhere, on Windows, OS X, Linux, and
    :maxdepth: 2
 
    installation
+
+.. _configuration:
 
 Configuration
 =============
@@ -98,6 +103,8 @@ or just for the current python session (useful if you have different data direct
     from brightway2 import set_data_dir
     set_data_dir("/path/to/directory", permanent=False)
 
+.. _five-tutorials:
+
 Getting started
 ===============
 
@@ -116,10 +123,12 @@ After doing the tutorials, you should have an idea of what is possible with Brig
 The data directory
 ==================
 
+The data directory is a single directory where Brightway2 stores data, logs, exported files, and everything else it needs on disk.
+
 Data directory structure
 ------------------------
 
-All Brightway2 data is stored in a single directory, the location of which is chosen by the user. The data directory has some metadata files, and a bunch of subdirectories for storing different kinds of data. Because it is a single directory, it is safe for backup programs or sync services like Dropbox.
+The data directory has some metadata files, and a bunch of subdirectories for storing different kinds of data. Because it is a single directory, it is safe for backup programs or sync services like Dropbox.
 
 A separate data directory can be created for each project. However, each data directory is self-contained, so each must contain a copy of all background databases and LCIA methods.
 
@@ -143,12 +152,12 @@ A separate data directory can be created for each project. However, each data di
         processed --------- Compressed numerical arrays made from LCI and LCIA documents
         reports ----------- Data from LCA calculations
 
-New subdirectories can be created using ``config.request_dir`` (see :ref:`configuration-technical`).
+New subdirectories can be created using ``config.request_dir(new_dir_name)`` (see :ref:`configuration-technical`).
 
 The ``config`` object in detail
 -------------------------------
 
-Configuration is managed by the ``config`` object: a `singleton <http://en.wikipedia.org/wiki/Singleton_pattern>`_ object instantiated the first time you import brightway2. It stores the Brightway2 data directory, and has utility functions to change the data directory. It also stores information about whether or not it is being run on Windows, or used in an iPython shell. The ``config`` object can be imported from ``brightway2`` or ``bw2data``:
+Configuration is managed by the :ref:`config <configuration-technical>` object: a `singleton <http://en.wikipedia.org/wiki/Singleton_pattern>`_ object instantiated the first time you import Brightway2. It stores the Brightway2 data directory, and has utility functions to change the data directory. It also stores information about whether or not it is being run on Windows, or used in an iPython shell. The ``config`` object can be imported from ``brightway2`` or ``bw2data``:
 
 .. code-block:: python
 
@@ -158,10 +167,27 @@ Configuration is managed by the ``config`` object: a `singleton <http://en.wikip
 
 See also: the technical documentation for the :ref:`configuration-technical` object.
 
+.. _user-preferences:
+
 User preferences
 ----------------
 
-The ``config`` object also stores user preferences. User preferences include things like the default number of Monte Carlo iterations to run, but it is just a dictionary, and can be added to as desired.
+The ``config`` object also stores user preferences. User preferences include things like the default number of Monte Carlo iterations to run, but it is just a dictionary, and can be added to as desired. Here are some common keys in the user preferences directory:
+
+* "use_cache": Boolean. Store datasets in memory for faster access. Default is true.
+* "global_location": String. Name of global location to use when no location was provided. Default is "GLO".
+* "biosphere_database": String. Name of biosphere database. Default is "biosphere".
+* "temp_dir_ok": Boolean. Allow work in the web UI while using a temporary directory. Default is false.
+* "upload_reports": Boolean. If true, upload LCA reports generated by bw2analyzer to a reports web server. Default is false.
+* "report_server_url": URL of the server to upload LCA reports. Default is 'http://reports.brightwaylca.org'
+* "iterations": Integer. Default number of Monte Carlo iterations when calculating an LCA in the web UI. Default is 1000.
+* "cpu_cores": Integer. Default number of CPU cores to use when calculating an LCA in the web UI. Default is the number of cores on the computer.
+
+In addition, there are some values in the user preferences which are set automatically, and should not be changed manually:
+
+* "ab_*": A set of values used by the activity browser UI
+* "browser_*": A set of values used by the activity browser UI
+* "updates": A list of which updates have been applied
 
 .. warning:: Preferences are not saved automatically - you must call ``config.save_preferences()``.
 
@@ -192,7 +218,7 @@ Both inventory datasets and impact assessment methods are stored as structured t
 
 For both databases and LCIA methods, the method ``.write(some_data)`` will write an *intermediate* data file, while the subsequent method ``.process()`` will transform the intermediate data file to an array. These two functions are intentionally separate, as it is sometimes desirable to do one and not the other.
 
-See also :ref:`building-matrices`.
+A following section (:ref:`building-matrices`) describes how processed data are turned into matrices for LCA calculations.
 
 .. warning::
     Every time you save a new version of an inventory database or an impact assessment method, e.g. with ``my_database.write(my_data)``, be sure to also call ``my_database.process()``, or your changes will not be used in LCA calculations.
@@ -207,64 +233,33 @@ Processing data
 Mappings
 --------
 
-Sometimes, important data can't be stored as a numeric value. For example, the location of an inventory activity is important for regionalization, but is given by a text string, not an integer. In this case, we use :ref:`serialized-dict` to store mappings between objects are integer indices. Brightway2-data uses two such mappings:
+Sometimes, important data can't be stored as a numeric value, even when numeric values are required in the processed data arrays. For example, the location of an inventory activity is important for regionalization, but is given by a text string, not an integer. In this case, we create a special dictionary that maps each unique data value to an integer index. Brightway2 uses two such mappings:
 
-    * :ref:`mapping`: Maps inventory objects (activities, biosphere flows, and anything else that would appear in a supply chain graph) to indices
-    * :ref:`geomapping`: Map locations (both inventory and regionalized impact assessment) to indices
+    * :ref:`mapping <mapping>`: Maps inventory objects (activities, biosphere flows, and anything else that would appear in a supply chain graph) to indices.
+    * :ref:`geomapping`: Map locations (both inventory and regionalized impact assessment) to indices.
 
-Items are added to mappings using ``.add(keys)``, and removed using ``.delete(keys)``.
-
-Pickle is the default data storage format
------------------------------------------
-
-The Python standard library module `pickle <http://docs.python.org/2/library/pickle.html>`_ is the default data storage format?
-
-The ``pickle`` module is fast, portable, and built-in. While using compression (such as gzip and bzip2) would reduce the size of the saved files, it also dramatically increases loading and saving times, by a factor of 3 - 30, depending on the test. Overall, the speed of ``pickle`` `seems to be fine <http://kbyanc.blogspot.ch/2007/07/python-serializer-benchmarks.html>`_.
-
-Alternatives to pickle
-~~~~~~~~~~~~~~~~~~~~~~
-
-The ``marshal`` module is faster - 40% faster writing, 25% faster reading - but produces files twice as big, and can change from computer to computer or even when Python is upgraded. The costs and potential risks of ``marshal`` overwhelm its speed gains.
-
-JSON
-~~~~
-
-Javascript object notation (`JSON <http://json.org/>`_) is a data for native to `javascript <http://en.wikipedia.org/wiki/JavaScript>`_ which is now widely used for data exchange over the web and between different programming languages. ``JSON`` does not match perfectly to python data structures, but the differences are relatively small. ``JSON`` is used to store some metadata in Brightway2, such as the user preferences, LCI databases, and LCIA methods installed, as it is human readable and editable.
-
-While a ``JSON`` module is in the standard library, there is no fast ``JSON`` library available for all operating systems and python version; see e.g. `anyjson <http://pypi.python.org/pypi/anyjson/>`_, `yajl <http://pypi.python.org/pypi/yajl>`_, and `ujson <http://pypi.python.org/pypi/ujson/>`_, in addition to the builtin.
+Items are added to mappings using ``.add(keys)``, and removed using ``.delete(keys)``. However, managing the different mappings is done for you automatically.
 
 .. _metadata-store:
 
 Cataloging what we have - Metadata stores
 =========================================
 
-The building blocks in Brightway2 data are the **data store** and the **metadata store**. The difference between the two can be easily explained in the example of LCI databases:
-
-    * The data store object, :ref:`database`, has the actual activity data for each database.
-    * The metadata store, :ref:`databases`, has information about the database, like the format it is in, its version number, and what other databases it links to.
-
-Both the data and metadata objects *store* data, and provide easy ways to save and load data.
-
-Metadata stores
----------------
+The building blocks in Brightway2 are LCI databases, LCIA methods, etc. However, we also need to keep track of which LCI databases and LCIA methods we have, and some additional information about them as a whole. For example, LCIA methods have units, and databases can have version numbers. A *metadata store* stores information about data objects like databases and methods.
 
 The base class for metadata is :ref:`serialized-dict`, which is basically a normal dictionary that can be easily saved or loaded (i.e. serialized) to or from a `JSON <http://en.wikipedia.org/wiki/JSON>`_ file. These files can be easily edited in a normal text editor.
 
-Brightway2-data defines the following metadata stores:
+Brightway2 defines the following metadata stores:
 
-    * :ref:`databases`: LCI databases
-    * :ref:`methods`: LCIA methods (characterization factors)
-    * :ref:`normalizations`: LCIA normalization factors
-    * :ref:`weightings`: LCIA weighting factors
-
-There are no required fields of metadata for any metadata stores, though some fields may be added automatically by subclasses.
-
-Metadata stores are just dictionaries that can be easily serialized - they are not associated with a specific data store, and it is possible to use metadata stores without a data store, or with multiple data stores.
+* :ref:`databases`: LCI databases
+* :ref:`methods`: LCIA methods (characterization factors)
+* :ref:`normalizations`: LCIA normalization factors
+* :ref:`weightings`: LCIA weighting factors
 
 Metadata should be singletons
 -----------------------------
 
-Metadata stores follow the `singleton pattern <http://en.wikipedia.org/wiki/Singleton_pattern>`_, though this is not enforced. Each metadata dictionary should only exist once, to avoid having multiple conflicting versions. The normal pattern is to instantiate each class in the same file as the class pattern:
+There should be only one instance of each metadata store, to avoid having conflicting data (the `singleton pattern <http://en.wikipedia.org/wiki/Singleton_pattern>`_), though this is not enforced. The normal pattern is to instantiate each class in the same file as the class pattern:
 
 .. code-block:: python
 
@@ -273,27 +268,30 @@ Metadata stores follow the `singleton pattern <http://en.wikipedia.org/wiki/Sing
 
     myobjects = MyObjects()
 
-Data stores
------------
+Using metadata stores
+---------------------
 
-The base class for data stores is :ref:`datastore`. Each data store subclass defines a schema for its data. The normal methods provided by a data store are:
+Most of the time, you will deal with the actual data objects. Metadata stores are mostly useful when examining which objects are available:
 
-    * **write(data)**: Write data to disk
-    * **load**: Load data from disk
-    * **register**: Register object with metadata store
-    * **deregister**: Remove object from metadata store
-    * **copy(name)**: Create a new object with name ``name``
-    * **backup**: Write backup of data
-    * **validate(data)**: Validate data using this object's validator
+.. code-block:: python
 
-Data store objects are instantiated with the object name, e.g. ``DataStore("name goes here")``.
+   for name in databases:
+      print name
+   "a database name" in databases
 
-Brightway2-data defines the following data stores:
+Metadata stores are also used when deleting data objects:
 
-    * :ref:`database`
-    * :ref:`method`
-    * :ref:`weighting`
-    * :ref:`normalization`
+.. code-block:: python
+
+   del databases["some database to delete"]
+
+Finally, metadata stores can be used to get metadata about data objects:
+
+.. code-block:: python
+
+   methods[methods.random()]
+   >> {u'abbreviation': u'recipe-endpoint-ha-wo-lthc.0ba25d5fd76e35b3125224ce78d37151',
+       u'unit': u'points'}
 
 .. _uncertainty-type:
 
@@ -358,6 +356,28 @@ A database is an organizing unit
 
 In Brightway2, a ``database`` is the term used to organize a set of activity datasets. Databases can be big, like ecoinvent, or as small as one dataset. You can have as many databases as you like, and databases can have links into other databases. You can also have two databases that each depend on each other.
 
+Database is a subclass of DataStore
+-----------------------------------
+
+Much of the functionality of Database objects is provided by its parent class, :ref:`datastore`. The normal methods provided by a data store are:
+
+    * **write(data)**: Write data to disk
+    * **load**: Load data from disk
+    * **register**: Register object with metadata store
+    * **deregister**: Remove object from metadata store
+    * **copy(name)**: Create a new object with name ``name``
+    * **backup**: Write backup of data
+    * **validate(data)**: Validate data using this object's validator
+
+Data store objects are instantiated with the object name, e.g. ``DataStore("name goes here")``.
+
+Brightway2-data defines the following data stores:
+
+    * :ref:`database`
+    * :ref:`method`
+    * :ref:`weighting`
+    * :ref:`normalization`
+
 .. _database-documents:
 
 LCI datasets are documents
@@ -395,7 +415,7 @@ The document structure is:
 * *name* (string): Name of this activity.
 * *type* (string): If this is ``"process"``, or omitted completely, Brightway2 will treat this as a inventory process with inputs and output(s). If you want to store additional information in a Database outside of the list of processes, specify a custom type here. For example, the list of biosphere flows is also an inventory database, but as these are flows, not processes, they have the type ``"emission"``. Similarly, if you wanted to separate processes and products, you could create database entries for the products, with the type ``"product"``.
 * *categories* (list of strings, optional): A list of categories and subcategories. Can have any length.
-* *location* (string, optional): A location identifier. Default is *GLO* (but this can be changed in the user preferences; see `bw2data.config <http://bw2data.readthedocs.org/en/latest/configuration.html#bw2data._config.Config.global_location>`_).
+* *location* (string, optional): A location identifier. Default is *GLO*, but this can be changed in the :ref:`user-preferences`.
 * *unit* (string): Unit of this activity. Units are normalized when written to disk.
 * *exchanges* (list): A list of activity inputs and outputs, with its own schema.
     * *input* (database name, database code): The technological activity that is linked to, e.g. ``("my new database", "production of ice cream")`` or ``('biosphere', '51447e58e03a40a2bbd9abf45214b7d3')``. See also :ref:`dataset-codes`.
@@ -444,9 +464,9 @@ Databases can be stored in different ways
 
 The default storage backend for databases stores each database in a separate file. This is the easiest and most convenient approach for most cases. However, Brightway2 also supports pluggable database backends, which can change how databases are stored and queried.
 
-Brightway2-data also provides `JSONDatabase <http://bw2data.readthedocs.org/en/latest/inventory.html#version-control-friendly-each-database-is-a-json-file>`_, which stores each dataset as a separate file serialized to JSON. This approach works well with version-control systems, as each change can be saved individually.
+Brightway2-data also provides ``bw2data.backends.JSONDatabase``, which stores each dataset as a separate file serialized to JSON. This approach works well with version-control systems, as each change can be saved individually. Use of ``JSONDatabase`` is shown in a simple `ipython notebook <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/JSON%20database.ipynb>`_.
 
-Before using ``JSONDatabase``, please read its technical documentation carefully: :ref:`json-database`.
+Before using ``JSONDatabase``, please read its technical documentation carefully: :ref:`json-database`. To create a ``JSONDatabase``, use ``Database("my db name", backend="json")``.
 
 :ref:`custom-backends`, such as using an actual relational database, can also be defined.
 
@@ -455,24 +475,7 @@ Database metadata
 
 No metadata is required for ``Database``s; Brightway2 will automatically set ``depends`` to a list of each linked database. The default single-file database backend will also add a ``version`` number, which is used in versioning the database.
 
-The JSON backend adds no additional metadata. To set the JSON backend for a ``Database``, add the following metadata: ``"backend": "json"``, either while registering the database (``my_database.register(backend="json")``), or by modifying the metadata directly:
-
-.. code-block:: python
-
-    databases["my sweet database"]["backend"] = "json"
-    databases.flush()
-
-.. _dataset-codes:
-
-Uniquely identifying datasets
------------------------------
-
-Linking activity datasets within and between databases requires a way to uniquely identify each dataset - Brightway2 calls this unique identifier a code. A code can be a number, like ``1``, or a string of numbers and letters, like ``swiss ch33se``. When you create datasets manually, you will need to assign each dataset a code. When you import a database, the codes will be automatically generated for you.
-
-Activity hashes
-~~~~~~~~~~~~~~~
-
-When you import an *ecospold* or *SimaPro* dataset, the data format does not provide a . Brightway2 will generate codes that look like a bunch of nonsense, e.g.: ``6d336c64e3a0ff08dee166a1dfdf0946``. In this case, Brightway2 identifies an activity or flow with the `MD5 <http://en.wikipedia.org/wiki/MD5>`_ hash of a few attributes: For ecoinvent 2, the ``name``, ``location``, ``unit``, and ``categories``. For ecoinvent 3, the ``activity`` and ``reference product`` names. The function that computes the activity hash is `bw2data.utils.activity_hash <http://bw2data.readthedocs.org/en/latest/utils.html#bw2data.utils.activity_hash>`_.
+Therefore, for ``Database`` you can simply do: ``my_database.register()``.
 
 .. _exchanges:
 
@@ -519,7 +522,19 @@ Starting Brightway2 through the web interface, or when you run ``bw2setup()`` in
 
 You can define biosphere flows - resources and emissions - in any database you like, but it is probably best to use the pre-defined flows in the ``biosphere`` database whenever you can. If you need to add some custom flows, feel free to create a separate new database.
 
-You can also change the name for the default biosphere database in the `user preferences <http://bw2data.readthedocs.org/en/latest/configuration.html#bw2data._config.Config.biosphere>`_.
+You can also change the name for the default biosphere database in the :ref:`user preferences <user-preferences>`.
+
+.. _dataset-codes:
+
+Uniquely identifying datasets
+-----------------------------
+
+Linking activity datasets within and between databases requires a way to uniquely identify each dataset - Brightway2 calls this unique identifier a code. A code can be a number, like ``1``, or a string of numbers and letters, like ``swiss ch33se``. When you create datasets manually, you will need to assign each dataset a code. When you import a database, the codes will be automatically generated for you.
+
+Activity hashes
+~~~~~~~~~~~~~~~
+
+When you import an *ecospold* or *SimaPro* dataset, the data format does not provide a . Brightway2 will generate codes that look like a bunch of nonsense, e.g.: ``6d336c64e3a0ff08dee166a1dfdf0946``. In this case, Brightway2 identifies an activity or flow with the `MD5 <http://en.wikipedia.org/wiki/MD5>`_ hash of a few attributes: For ecoinvent 2, the ``name``, ``location``, ``unit``, and ``categories``. For ecoinvent 3, the ``activity`` and ``reference product`` names. The function that computes the activity hash is :ref:`bw2data.utils.activity_hash <activity-hash>`.
 
 Searching databases
 -------------------
@@ -597,24 +612,6 @@ Impact assessment method names can have any length and number of qualifiers, but
 
 Method metadata
 ---------------
-
-There is a very basic set of metadata stored about each model, stored in the file ``methods.json``. To get the metadata about a method, do something like the following:
-
-.. code-block:: python
-
-    from brightway2 import *
-    methods[(u'ecological scarcity 1997', u'total', u'total')]
-
-.. note::
-    See also the `methods manager documentation <http://bw2data.readthedocs.org/en/latest/technical.html#bw2data.meta.Methods>`_
-
-The returned metadata is:
-
-.. code-block:: python
-
-    {u'abbreviation': u'ecologicals1997tt-UHk4Z8Pr',
-     u'description': u'Swiss method',
-     u'unit': u'UBP'}
 
 Methods should have the following metadata:
 
