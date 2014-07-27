@@ -1,3 +1,12 @@
+.. _installation:
+
+Installation
+************
+
+Brightway2 can be installed pretty much everywhere, on Windows, OS X, Linux, and anywhere else Python can be compiled.
+
+.. note:: Brightway2 is currently only compatible with python 2.7, not python 3. Work on Python 3 support is ongoing, but don't hold your breath.
+
 .. _windows-install:
 
 Windows

@@ -1,3 +1,6 @@
+Frequently Asked Questions
+**************************
+
 What text editor or IDE should I use?
 =====================================
 
