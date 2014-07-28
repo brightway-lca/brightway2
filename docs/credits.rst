@@ -13,6 +13,11 @@ Additional contributers:
 * `Aurelian Jaggi <http://eaternity.ch/team/Aurelian-Jaggi/>`_
 * `lowks <https://bitbucket.org/lowks>`_
 
+Acknowledgements
+----------------
+
+Brightway2 would not be possible without the incredibly generous support of `Professor Stefanie Hellweg <http://www.ifu.ethz.ch/staff/hellwegs>`_ of ETH Zürich. Brightway2 was (indirectly) funded by the people of Switzerland.
+
 .. _contact-developers:
 
 Contact the developers

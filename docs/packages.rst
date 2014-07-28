@@ -8,6 +8,14 @@ Brightway2 is split into several packages, where each package fulfills a certain
 Core packages
 -------------
 
+brightway2
+~~~~~~~~~~
+
+This manual, plus a generic container that imports from brightway2-data and brightway2-calc.
+
+* `source code <https://bitbucket.org/cmutel/brightway2>`_
+* `documentation <https://brightway2.readthedocs.org/en/latest/>`_
+
 brightway2-data
 ~~~~~~~~~~~~~~~
 
