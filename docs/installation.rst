@@ -49,21 +49,46 @@ Alternate installation: Continuum Anaconda
 
 .. warning:: Brightway2 is only compatible with Python version 2.7, not yet with Python 3
 
-`Continuum Anaconda <http://continuum.io/downloads.html>`_ provides another Python environment and package manager, and is free.
+`Continuum Anaconda <http://continuum.io/downloads.html>`_ provides another Python environment and package manager, and is free. It is actually pretty easy to install:
 
-Some requirements are installed by the ``conda`` package manager, but many others aren't. For each of the :ref:`requirements`, try to install with ``conda``, as it is the preferred package manager; use ``pip`` only if ``conda`` fails:
+Install the 64-bit Python 2.7 miniconda from ``pydata.org <http://conda.pydata.org/miniconda.html>`_.
 
-.. code-block:: bash
-
-    conda install some_package
-    # If that doesn't work
-    pip install some_package
-
-Install Brightway2 using ``pip``:
+On Mac OS X, you might have to make the bash shell executable:
 
 .. code-block:: bash
 
-    pip install brightway2
+    chmod +x Downloads/Miniconda-3.5.5-MacOSX-x86_64.sh (or whatever version you have)
+
+Make sure ``conda`` is up to date:
+
+.. code-block:: bash
+
+    conda install conda
+    conda update conda
+
+Create brightway2 environment:
+
+.. code-block:: bash
+
+    conda create -n brightway2 python
+
+Activate environment:
+
+.. code-block:: bash
+
+    source activate brightway2
+
+Install dependencies:
+
+.. code-block:: bash
+
+    conda install numpy ipython-notebook scipy flask lxml requests colorama unicodecsv pip nose
+
+Install brightway2:
+
+.. code-block:: bash
+
+    pip install --pre brightway2
 
 See also `pip packages in anaconda <http://stackoverflow.com/questions/18640305/how-to-keep-track-of-pip-installed-packages-in-an-anaconda-conda-env>`_.
 
