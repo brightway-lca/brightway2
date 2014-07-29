@@ -166,8 +166,12 @@ Version-control friendly - each database is a JSON file
 .. autoclass:: bw2data.backends.json.sync_json_dict.frozendict
     :members:
 
+.. _searching:
+
 Searching Databases
 ===================
+
+.. _search-filter:
 
 Filter
 ------
@@ -175,16 +179,26 @@ Filter
 .. autoclass:: bw2data.Filter
     :members:
 
+.. _search-query:
+
 Query
 -----
 
 .. autoclass:: bw2data.Query
     :members:
 
+.. _search-result:
+
 Result
 ------
 
 .. autoclass:: bw2data.Result
+    :members:
+
+Dictionaries
+------------
+
+.. autoclass:: bw2data.query.Dictionaries
     :members:
 
 Impact Assessment data stores

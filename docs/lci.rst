@@ -189,7 +189,29 @@ When you import an *ecospold* or *SimaPro* dataset, the data format does not pro
 Searching databases
 -------------------
 
-Brightway2 includes some simple functions for searching within databases. Because a database is a simple Python dictionary, it is relatively simple to filter and process. The strategy is to apply one (or more) ``Filter`` in a ``Query``. The return value of a ``Query`` is a ``Result``, which can printed or sorted. Queries can also be called directly from the ``Database`` object. Here is a simple example:
+Brightway2 includes some simple functions for searching within databases. Because a database is a simple Python dictionary, it is relatively simple to filter and process. In other words, searching in Brightway2 is at a very low level - you can do a lot, but it might be a bit harder than it should be.
+
+The basic strategy is to start with an entire database, i.e. a set of datasets, and progressively apply filters until a smaller set of datasets is left over. In python code, it would be something like this:
+
+.. code-block:: python
+
+    database = [{'name': 'foo'}, {'name': 'bar'}]
+    def search_filter(datasets, string):
+        return [
+                obj for obj in datasets
+                if string in obj.get('name')
+        ]
+    results = search_filter(database)
+
+Filters can be inclusive or exclusive. Brightway2 provides a generic :ref:`search-filter` class that can filter based on a specific data attribute, but you can also create filters that consider any aspect of a dataset that you like.
+
+One or more ``Filter`` s get applied with the help of a :ref:`search-query` object, which just prepares the filter to be applied to a database.
+
+The output from a applying a ``Query`` to a set of datasets is a search :ref:`search-result`. A ``Result`` is like a database object, in that it is a dictionary with dataset documents, but is read-only and only has a ``.sort()`` method, which sorts that dictionary by a field value in ascending or descending order.
+
+See the linked technical documentation, and a `notebook on database searching <http://example.com>`_.
+
+
 
 .. code-block:: python
 
