@@ -209,51 +209,9 @@ One or more ``Filter`` s get applied with the help of a :ref:`search-query` obje
 
 The output from a applying a ``Query`` to a set of datasets is a search :ref:`search-result`. A ``Result`` is like a database object, in that it is a dictionary with dataset documents, but is read-only and only has a ``.sort()`` method, which sorts that dictionary by a field value in ascending or descending order.
 
-See the linked technical documentation, and a `notebook on database searching <http://example.com>`_.
+See the linked :ref:`technical documentation <searching>`, and a `notebook on database searching <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/Searching-databases.ipynb>`_.
 
-
-
-.. code-block:: python
-
-    In [1]: from bw2data.query import *
-    In [2]: from bw2data import *
-    In [3]: ei = Database("ecoinvent 2.2")
-    In [4]: r = ei.query(Filter("name", "in", "at long-distance pipeline"))
-    In [5]: len(r)
-    Out[5]: 8
-
-    In [6]: print r
-    Query result with 8 entries
-
-    In [7]: r
-    Out[7]:
-    Query result: (total 8)
-    ('ecoinvent 2.2', 1427): natural gas, production DZ, at long-distance pipeline
-    ('ecoinvent 2.2', 1425): natural gas, production DE, at long-distance pipeline
-    ('ecoinvent 2.2', 1413): natural gas, at long-distance pipeline
-    ('ecoinvent 2.2', 1412): natural gas, at long-distance pipeline
-    ('ecoinvent 2.2', 1432): natural gas, production RU, at long-distance pipeline
-    ('ecoinvent 2.2', 1431): natural gas, production NO, at long-distance pipeline
-    ('ecoinvent 2.2', 1430): natural gas, production NL, at long-distance pipeline
-    ('ecoinvent 2.2', 1429): natural gas, production GB, at long-distance pipeline
-
-    In [8]: r.sort("name")
-    In [9]: r
-    Out[9]:
-    Query result: (total 8)
-    ('ecoinvent 2.2', 1413): natural gas, at long-distance pipeline
-    ('ecoinvent 2.2', 1412): natural gas, at long-distance pipeline
-    ('ecoinvent 2.2', 1425): natural gas, production DE, at long-distance pipeline
-    ('ecoinvent 2.2', 1427): natural gas, production DZ, at long-distance pipeline
-    ('ecoinvent 2.2', 1429): natural gas, production GB, at long-distance pipeline
-    ('ecoinvent 2.2', 1430): natural gas, production NL, at long-distance pipeline
-    ('ecoinvent 2.2', 1431): natural gas, production NO, at long-distance pipeline
-    ('ecoinvent 2.2', 1432): natural gas, production RU, at long-distance pipeline
-
-    In [10]: q = Query(Filter("unit", "iis", "tkm"), Filter("name", "in", "lorry"))
-    In [11]: r = q(ei.load())
-    In [12]: len(r)
-    Out[12]: 19
+To expand upon the current searching options, consider `fuzzywuzzy <https://github.com/seatgeek/fuzzywuzzy>`_ and `Whoosh <https://pypi.python.org/pypi/Whoosh/>`_.
 
 Import and Export
 -----------------
