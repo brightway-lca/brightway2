@@ -40,7 +40,7 @@ Mercurial is a distributed version control system, which records changes made in
 Contributing changes to Brightway2
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The preferred way to submit changes is with a pull request on Bitbucket. See the `pull request docs <http://blog.bitbucket.org/2011/06/17/pull-request-revamp/>`_ for an illustrated examples. Pull requests which add code would ideally also include documentation and tests.
+The preferred way to submit changes is with a pull request on Bitbucket. A pull request is a fancy way of saying "Hey! I made some changes to what you already had in my own playground over here - how about you merge my changes back into the main source code repository." The instructions on pull requests are slightly different for `Windows users <https://confluence.atlassian.com/display/BITBUCKET/Fork+a+Repo,+Compare+Code,+and+Create+a+Pull+Request>`_ and `OS X/Linux users <>`_. For small changes, and especially things like typos, you can even use the online text editor without having to download anything.
 
 No Python needed - making graphics better
 -----------------------------------------
