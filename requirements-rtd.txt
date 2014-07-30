@@ -1,0 +1,16 @@
+-e hg+https://bitbucket.org/cmutel/brightway2-analyzer#egg=bw2analyzer
+-e hg+https://bitbucket.org/cmutel/brightway2-calc#egg=bw2calc
+-e hg+https://bitbucket.org/cmutel/brightway2-data#egg=bw2data
+bw2ui>=0.14
+colorama
+docopt
+flask
+lxml
+nose
+numpy
+progressbar-ipython
+requests
+scipy
+stats_arrays>=0.2.4
+unicodecsv
+voluptuous

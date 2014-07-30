@@ -1,7 +1,8 @@
--e hg+https://bitbucket.org/cmutel/brightway2-analyzer#egg=bw2analyzer
--e hg+https://bitbucket.org/cmutel/brightway2-calc#egg=bw2calc
--e hg+https://bitbucket.org/cmutel/brightway2-data#egg=bw2data
-bw2ui>=0.14
+bw2analyzer>=0.5.2
+bw2calc>=0.15.1
+bw2data>=1.0
+bw2ui>=0.15
+colorama
 docopt
 flask
 lxml
@@ -11,4 +12,5 @@ progressbar-ipython
 requests
 scipy
 stats_arrays>=0.2.4
+unicodecsv
 voluptuous
