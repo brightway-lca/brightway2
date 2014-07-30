@@ -68,9 +68,11 @@ Problems
 It is too slow!
 ---------------
 
-* On Linux and OS X, the `brightway2-speedups library <https://pypi.python.org/pypi/bw2speedups>`_ will produce significant time savings in LCA calculations.
+* Install the `brightway2-speedups library <https://pypi.python.org/pypi/bw2speedups>`_. It will produce significant time savings in LCA calculations.
 * Install `scikits-umfpack <https://github.com/stefanv/umfpack>`_ for faster LCA calculations.
 * Install `anyjson <https://pypi.python.org/pypi/anyjson>`_ and `python-cjson <https://pypi.python.org/pypi/python-cjson>`_.
+
+If your numerical work after LCA calculations is slow, consider the `numexpr <https://github.com/pydata/numexpr>`_ and `Bottleneck <https://pypi.python.org/pypi/Bottleneck>`_ libraries.
 
 I get unicode errors!
 ---------------------

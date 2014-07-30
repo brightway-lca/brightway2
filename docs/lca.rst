@@ -37,7 +37,7 @@ input   output  row         col         type    amount
 8838    9349    4294967295  4294967295  1       1.5490
 ======= ======= =========== =========== ======= ======
 
-As this is a parameter array for a LCI database, it gives values that will be inserted into the technosphere and biosphere matrices, i.e. values from the dataset exchanges.
+As this is a parameter array for a LCI database, the ``input`` and ``output`` columns give values that will be inserted into the technosphere and biosphere matrices, i.e. values from the dataset exchanges.
 
 There are also some columns for uncertainty information, but these would only be a distraction for now. The complete spec for the uncertainty fields is given in the `stats_arrays documentation <http://stats-arrays.readthedocs.org/en/latest/>`_.
 
@@ -230,7 +230,7 @@ It's easiest to understand how graph traversal is implemented with a simple exam
 As we traverse this supply chain, we will keep different data for the nodes and the edges. For nodes, we are interested in the following:
 
 * ``amount``: The total amount of this node needed to produce the functional unit.
-* ``cum``: The cumulative LCA impact score attributable to the needed amount of this node, *including it's specific supply chain*.
+* ``cum``: The cumulative LCA impact score attributable to the needed amount of this node, *including its specific supply chain*.
 * ``ind``: The individual  LCA impact score directly attributable to one unit of this node, i.e. the score from the direct emissions and resource consumption of this node.
 
 For edges, we want to know:
@@ -304,7 +304,7 @@ After this first iteration, we have the following nodes and edges in our graph t
     }]
     heap = [(some number, 0)]
 
-After this is it rather simple: pull off the next node from the *heap*, add it to the list of nodes, construct its edges, and add its inputs to the heap. Iterate until no new nodes are found.
+After this, it is rather simple: pull off the next node from the *heap*, add it to the list of nodes, construct its edges, and add its inputs to the heap. Iterate until no new nodes are found.
 
 .. image:: images/gt-step-2.png
     :align: center
