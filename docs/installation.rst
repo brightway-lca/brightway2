@@ -7,6 +7,8 @@ Brightway2 can be installed pretty much everywhere, on Windows, OS X, Linux, and
 
 .. note:: Brightway2 is currently only compatible with python 2.7, not python 3. Work on Python 3 support is ongoing, but don't hold your breath.
 
+.. note:: Please subscribe to the `brightway2 updates mailing list <https://tinyletter.com/brightway2-updates>`_ to be informed of new releases.
+
 .. _windows-install:
 
 Windows
@@ -16,14 +18,19 @@ Although Brightway2 is relatively simple, installation of the numerical and scie
 
 .. _canopy:
 
-Recommended installation: Enthought Canopy
-------------------------------------------
+Recommended installation 1: Enthought Canopy
+--------------------------------------------
 
 .. warning:: `Canopy Express <https://www.enthought.com/canopy-express/>`_ will not work with Brightway2, as it does `not include the lxml package <https://enthought.com/products/canopy/package-index/>`_.
 
 `Enthought Canopy <https://www.enthought.com/products/canopy/>`_ provides a nice Python environment and free academic licenses.
 
-After installing Canopy and all Canopy packages, install the free package ``pip``. You can then install Brightway2 in the command line:
+After installing Canopy, install all Canopy packages, both "Free packages" and "Canopy packages". You don't technically need all of them right away, but it is easier to get them all instead of manually selecting one by one.
+
+.. image:: images/canopy-all-packages.png
+    :align: center
+
+You can then install Brightway2 in the command line:
 
 .. code-block:: bash
 
@@ -42,8 +49,8 @@ Or in the ipython shell in the editor:
 
 .. _anaconda:
 
-Alternate installation: Continuum Anaconda
-------------------------------------------
+Alternate installation 2: Continuum Anaconda
+--------------------------------------------
 
 .. note:: Anaconda is probably the best package for power users, because of its high-level support for virtualenvs, but it isn't as easy as EPD.
 
