@@ -276,3 +276,37 @@ Because this is using a virtualenv, you will need to activate the virtualenv eac
 .. code-block:: bash
 
     workon bw2
+
+Upgrading Brightway2
+====================
+
+Brightway2 is being actively developed, and new releases com frequently. To upgrade Brightway2, do the following:
+
+First, make sure your background packages are up to date.
+
+* In Enthought Canopy, this is done through the graphical package manager.
+* In anaconda/miniconda, use the following commands (once you hve activated your Brightway2 environment)::
+
+.. code-block:: bash
+
+    conda update conda
+    conda update anaconda
+
+* In macports, use the following commands:
+
+.. code-block:: bash
+
+    sudo port selfupdate
+    sudo port upgrade outdated
+
+Next, run the following command. Make sure you in the correct environment/virtualenv, if you use environments:
+
+.. code-block:: bash
+
+    pip install -U --no-deps brightway2 bw2data bw2calc bw2analyzer bw2ui
+
+Finally, see if your data needs to be updated, and follow the instructions if it does:
+
+.. code-block:: bash
+
+    bw2-uptodate
