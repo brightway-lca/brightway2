@@ -133,8 +133,7 @@ DatabaseChooser
 
 The function ``bw2data.database.Database`` is an alias for ``bw2data.database.DatabaseChooser``, which will create an instance of database backend given in the database metadata.
 
-.. autoclass:: bw2data.database.DatabaseChooser
-    :members:
+.. autofunction:: bw2data.database.DatabaseChooser
 
 .. _custom-backends:
 
@@ -145,6 +144,8 @@ New database backends should inherit from ``bw2data.backends.base.LCIBackend``:
 
 .. autoclass:: bw2data.backends.base.LCIBackend
     :members:
+
+.. _single-file-database:
 
 Default backend - each database is a single file
 ------------------------------------------------

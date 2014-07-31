@@ -26,7 +26,7 @@ In addition to the Brightway2 modules you want to work on, you should also insta
     * `sphinx <http://sphinx-doc.org/>`_: A library for writing and formatting documentation.
     * `mercurial <http://mercurial.selenic.com/>`_: A distributed version control system.
 
-This can be done easily:
+This can be done easily. Try to install these packages through Canopy or anaconda, if you are using them. Otherwise, use pip:
 
 .. code-block:: bash
 
@@ -40,7 +40,7 @@ Mercurial is a distributed version control system, which records changes made in
 Contributing changes to Brightway2
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The preferred way to submit changes is with a pull request on Bitbucket. A pull request is a fancy way of saying "Hey! I made some changes to what you already had in my own playground over here - how about you merge my changes back into the main source code repository." The instructions on pull requests are slightly different for `Windows users <https://confluence.atlassian.com/display/BITBUCKET/Fork+a+Repo,+Compare+Code,+and+Create+a+Pull+Request>`_ and `OS X/Linux users <>`_. For small changes, and especially things like typos, you can even use the online text editor without having to download anything.
+The preferred way to submit changes is with a pull request on Bitbucket. A pull request is a fancy way of saying "Hey! I made some changes to what you already had in my own playground over here - how about you merge my changes back into the main source code repository." The instructions on pull requests are slightly different for `Windows users <https://confluence.atlassian.com/display/BITBUCKET/Fork+a+Repo,+Compare+Code,+and+Create+a+Pull+Request>`_ and `OS X/Linux users <https://confluence.atlassian.com/pages/viewpage.action?pageId=271942986>`_. For small changes, and especially things like typos, you can even use the online text editor without having to download anything.
 
 No Python needed - making graphics better
 -----------------------------------------
@@ -52,7 +52,7 @@ One easy way of helping out that doesn't require any knowledge of Python, matric
 * `Force-directed graph`_
 * `Monte Carlo results <http://tributary.io/inlet/4951873>`_
 
-The code here is editable, and the changes you make will be immediately reflected in the display. Feel free to make some tweaks, or even major changes, to make the visualizations nicer, easier to understand, and simpler. If you have for other graphics that would be useful in interpreting LCA results, or in exploring inventory datasets or impact assessment methods, feel free to :ref:`contact-developers` to get a smaple dataset.
+The code here is editable, and the changes you make will be immediately reflected in the display. Feel free to make some tweaks, or even major changes, to make the visualizations nicer, easier to understand, and simpler. If you have for other graphics that would be useful in interpreting LCA results, or in exploring inventory datasets or impact assessment methods, feel free to :ref:`contact-developers` to get a sample dataset.
 
 Making the backend better
 -------------------------
@@ -100,7 +100,7 @@ Those who know a bit about design, or at least think that they do, are welcome t
 Improve test coverage
 ~~~~~~~~~~~~~~~~~~~~~
 
-Each of the three calculational packages has an `online report available <http://coverage.brightwaylca.org/>`_. Many of the test coverage failures can be easily resolved with simple tests, and writing simple tests is a great way to get started with Python and Brightway2.
+Each of the three calculation packages has an `online report available <http://coverage.brightwaylca.org/>`_. Many of the test coverage failures can be easily resolved with simple tests, and writing simple tests is a great way to get started with Python and Brightway2.
 
 Medium problems
 ---------------
@@ -113,7 +113,7 @@ Tests always have edge cases that weren't anticipated by the developers, and cov
 Ecospold exporter
 ~~~~~~~~~~~~~~~~~
 
-The base Brightway2 data format doesn't include fields for all of the Ecospold data format, but we can still export that data that is available in the Ecospold format. This would help in making Brightway2 data more tranportable. It is not necessarily a dificult task, but writing a lot of XML processing code is never very much fun.
+The base Brightway2 data format doesn't include fields for all of the Ecospold data format, but we can still export that data that is available in the Ecospold format. This would help in making Brightway2 data more transportable. It is not necessarily a difficult task, but writing a lot of XML processing code is never very much fun.
 
 Dataset process adder & editor
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -138,7 +138,7 @@ Similarly, we would also like to be able to browse and edit impact assessment me
 Sankey flow diagram
 ~~~~~~~~~~~~~~~~~~~
 
-Sankey diagrams are helpful for showing the flows of raw material inputs or environmental impact through the supply chain. There are some `initial ideas <http://blog.bitjuice.com.au/2013/02/using-d3-js-to-visualise-hierarchical-classification/>`_ , see also `a simpler example <http://bost.ocks.org/mike/sankey/>`_ on how to do this in D3, but the problem here is actually twofold:
+Sankey diagrams are helpful for showing the flows of raw material inputs or environmental impact through the supply chain. There are some `initial ideas <http://blog.bitjuice.com.au/2013/02/using-d3-js-to-visualise-hierarchical-classification/>`_, see also `a simpler example <http://bost.ocks.org/mike/sankey/>`_ on how to do this in D3, but the problem here is actually twofold:
 
     #. Disaggregating the supply chain graph in a reasonable fashion without having it either collapse or retain too many deep links
     #. Graph layout and display of additional information in D3

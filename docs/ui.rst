@@ -4,12 +4,12 @@ User interfaces
 (I)Python shell
 ---------------
 
-Brightway2 can be used from the interactive python shell. `IPython <http://ipython.org/>`_ is a nicer shell that adds shortcuts, shell commands, and a lot else.
+Brightway2 can be used from the interactive python shell. `IPython <http://ipython.org/>`_ is a nicer python shell that adds shortcuts, shell commands, and a lot else.
 
 IPython notebook
 ----------------
 
-`IPython notebooks <http://ipython.org/notebook.html>`_ are the probably the best way to interact with Brightway2 (see the :ref:`five tutorials <five-tutorials>`). These lab notebooks open incredible possibilities for interactive, reproducible, collaborative, and understandable science. Read more about the `praise IPython has been getting <http://ipython.org/#announcements>`_, and see `some awesome demos <https://github.com/ipython/ipython/wiki/A-gallery-of-interesting-IPython-Notebooks>`_. IPython notebooks are `not just for python <http://jupyter.org/>`_, either.
+`IPython notebooks <http://ipython.org/notebook.html>`_ are the probably the best way to interact with Brightway2 (the :ref:`five tutorials <five-tutorials>` are all ipython notebooks). These lab notebooks open incredible possibilities for interactive, reproducible, collaborative, and understandable science. Read more about the `praise IPython has been getting <http://ipython.org/#announcements>`_, and see `some awesome demos <https://github.com/ipython/ipython/wiki/A-gallery-of-interesting-IPython-Notebooks>`_. IPython notebooks are `not just for python <http://jupyter.org/>`_, either.
 
 bw2-controller
 --------------
@@ -72,4 +72,4 @@ bw2-web
 
 ``bw2-web`` is a web user interface launched from the command line. To be honest, it is not great - it is OK for exploring methods and databases, and has what could be, with some work, a good LCA calculation report. However, it is convenient for some things, and will remain so until someone decides to make it better.
 
-There isn't any specific documentation for ``bw2-web`` - just click on stuff and hope it doens't break.
+There isn't any specific documentation for ``bw2-web`` - just click on stuff and hope it doesn't break.

@@ -11,7 +11,7 @@ The actual LCA class (``bw2calc.LCA``) is more of a coordinator then an accounta
     * Solve the linear system :math:`Ax=B` using `SuperLU <http://crd-legacy.lbl.gov/~xiaoye/SuperLU/>`_ or `UMFpack <http://www.cise.ufl.edu/research/sparse/umfpack/>`_.
     * Multiply the result by the LCIA CFs, if a LCIA method is present
 
-.. note:: Due to licensing conflicts, recent versions of SciPy do not include UMFpack. Python wrappers for UMFpack must be installed separately using `scikits.umfpack <https://github.com/stefanv/umfpack>`_.
+.. note:: Due to licensing conflicts, recent versions of SciPy do not include UMFpack. UMFpack is faster than SuperLU, especially for repeated calculations. Python wrappers for UMFpack must be installed separately using `scikits.umfpack <https://github.com/stefanv/umfpack>`_.
 
 The LCA class also has some convenience functions for redoing some calculations with slight changes, e.g. for uncertainty and sensitivity analysis. See the "redo_*" and "rebuild_*" methods in the LCA class.
 
@@ -37,25 +37,23 @@ input   output  row         col         type    amount
 8838    9349    4294967295  4294967295  1       1.5490
 ======= ======= =========== =========== ======= ======
 
-As this is a parameter array for a LCI database, the ``input`` and ``output`` columns give values that will be inserted into the technosphere and biosphere matrices, i.e. values from the dataset exchanges.
-
 There are also some columns for uncertainty information, but these would only be a distraction for now. The complete spec for the uncertainty fields is given in the `stats_arrays documentation <http://stats-arrays.readthedocs.org/en/latest/>`_.
 
 We notice several things:
 
     * Both the ``input`` and ``output`` columns have numbers, but we don't know what they mean yet
     * Both the ``row`` and ``col`` columns are filled with a large number
-    * The `type`` column has only a few values, but they are also mysterious
-    * The `amount` column is the only one that seems reasonable, and gives the values that should be inserted into the matrix
+    * The ``type`` column has only a few values, but they are also mysterious
+    * The ``amount`` column is the only one that seems reasonable, and gives the values that should be inserted into the matrix
 
 Input and Output
 ~~~~~~~~~~~~~~~~
 
-The ``input`` and ``output`` columns gives values for biosphere flows or transforming activity data sets. :ref:`mapping` are used to translate keys like ``("Douglas Adams", 42)`` into integer values. So, each mapping number uniquely identifies an activity dataset.
+The ``input`` and ``output`` columns gives values for biosphere flows or transforming activity data sets. The :ref:`mapping` is used to translate keys like ``("Douglas Adams", 42)`` into integer values. So, each mapping number uniquely identifies an activity dataset.
 
 If the ``input`` and ``output`` values are the same, then this is a production exchange - it describes how much product is produced by the transforming activity dataset.
 
-.. warning:: Integer mapping ids are not transferable from machine to machine or installation to installation, as the order of insertion (and hence the integer id) is more or less at random. Always process new datasets.
+.. warning:: Integer mapping ids are not transferable from machine to machine or installation to installation, as the order of insertion (and hence the integer id) is more or less at random. Always ``.process()`` datasets on a new machine.
 
 Rows and columns
 ~~~~~~~~~~~~~~~~
@@ -123,7 +121,7 @@ The ``type`` column indicates whether a value should be in the technosphere or b
 Stochastic LCA
 --------------
 
-The various stochastic Monte Carlo LCA classes function almost the same as the static LCA, and reuse most of the code. The only change is that instead of building matrices once, `random number generators from stats_arrays <http://stats-arrays.readthedocs.org/en/latest/mcrng.html#monte-carlo-random-number-generator>`_ are instantiated directly from each parameter array. For each Monte Carlo iteration, the ``amount`` column is then overwritten with the output from the random number generator, and the system solved as normal. The code to do a new Monte Iteration is quite succinct:
+The various stochastic Monte Carlo LCA classes function almost the same as the static LCA, and reuse most of the code. The only change is that instead of building matrices once, `random number generators from stats_arrays <http://stats-arrays.readthedocs.org/en/latest/mcrng.html#monte-carlo-random-number-generator>`_ are instantiated directly from each parameter array. For each Monte Carlo iteration, the ``amount`` column is then overwritten with the output from the random number generator, and the system solved as normal. The code to do a new Monte Carlo iteration is quite succinct:
 
 .. code-block:: python
 
@@ -235,13 +233,13 @@ As we traverse this supply chain, we will keep different data for the nodes and 
 
 For edges, we want to know:
 
-* ``to``: The **id** of the node consuming the product.
-* ``from``: The **id** of the node producing the product.
+* ``to``: The row index of the node consuming the product.
+* ``from``: The row index of the node producing the product.
 * ``amount``: The total amount of product ``from`` needed for the amount of ``to`` needed.
 * ``exc_amount``: The amount of ``from`` needed for *one unit* of ``to``, i.e. the value given in the technosphere matrix.
 * ``impact``: The total LCA impact score embodied in this edge, i.e. the individual score of ``from`` times ``amount``.
 
-Our functional unit is one unit of ``A``. Before starting any calculations, we need to set up our data structures. First, we have an empty list of **edges**. We also have a **heap**, a list which is automatically sorted (see documentation on priority queue below), and keeps track of the **nodes** we need to examine. **nodes** are identified by their row index in the *technosphere matrix*. Finally, we have a dictionary of **nodes**, which looks up nodes by their id numbers.
+Our functional unit is one unit of ``A``. Before starting any calculations, we need to set up our data structures. First, we have an empty list of **edges**. We also have a **heap**, a list which is `automatically sorted <https://docs.python.org/2/library/heapq.html>`__, and keeps track of the **nodes** we need to examine. **nodes** are identified by their row index in the *technosphere matrix*. Finally, we have a dictionary of **nodes**, which looks up nodes by their row indices.
 
 .. code-block:: python
 
@@ -267,9 +265,9 @@ We next start building our list of edges. We start with all the inputs to the *f
         edges.append({
             "to": -1,  # Special id of functional unit
             "from": node_id,
-            "amount": amount,  # By definition
-            "exc_amount": amount,  # By definition
-            "impact": LCA(node_id, amount).score,  # Evaluate LCA impact score for this node_id and amount
+            "amount": amount,
+            "exc_amount": amount,
+            "impact": LCA(node_id, amount).score,  # Evaluate LCA impact score for node_id/amount
         })
 
 Finally, we push each node to the **heap**:
@@ -281,11 +279,11 @@ Finally, we push each node to the **heap**:
 
 This is not so easy to understand at first glance. What is ``1 / LCA(node_id, amount).score``? Why the absolute value? What is this ``heappush`` thing?
 
-We want one *divided by* the LCA impact score for node ``A`` because our **heap** is sorted in ascending order, and we want the highest score to be first.
+We want one *divided by* the LCA impact score for node ``A`` because our heap is sorted in ascending order, and we want the highest score to be first.
 
 We take the absolute value because we are interested in the magnitude of node scores in deciding which node to process next, not the sign of the score - leaving out the absolute value would put all negative scores at the top of the heap (which is sorted in ascending order).
 
-``heappush`` is just a call to push something on to the **heap**, which is our automatically sorted list of nodes to examine.
+``heappush`` is just a call to push something on to the heap, which is our automatically sorted list of nodes to examine.
 
 After this first iteration, we have the following nodes and edges in our graph traversal:
 
@@ -306,10 +304,12 @@ After this first iteration, we have the following nodes and edges in our graph t
 
 After this, it is rather simple: pull off the next node from the *heap*, add it to the list of nodes, construct its edges, and add its inputs to the heap. Iterate until no new nodes are found.
 
+Because the heap is automatically sorted, at each iteration we will take the node with the highest impact that hasn't yet been assessed.
+
 .. image:: images/gt-step-2.png
     :align: center
 
 There are two more things to keep in mind:
 
 * We use a cutoff criteria to stop traversing the supply chain - any node whose cumulative LCA impact score is too small is not added to the heap.
-* We only visit each node once. The is functionality in ``bw2analyzer`` to "unroll" the supply chain so that each process can occur more than once.
+* We only visit each node once. The is functionality in ``bw2analyzer`` to "unroll" the supply chain so that afterwards each process can occur more than once.

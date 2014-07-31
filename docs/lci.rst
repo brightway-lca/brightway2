@@ -4,7 +4,7 @@ LCI Databases
 A database is an organizing unit
 --------------------------------
 
-In Brightway2, a ``database`` is the term used to organize a set of activity datasets. Databases can be big, like ecoinvent, or as small as one dataset. You can have as many databases as you like, and databases can have links into other databases. You can also have two databases that each depend on each other.
+In Brightway2, a ``database`` is the term used to organize a set of activity datasets. Databases can be big, like ecoinvent, or as small as a single dataset. You can have as many databases as you like, and databases can have links into other databases. You can also have two databases that each depend on each other.
 
 Database is a subclass of DataStore
 -----------------------------------
@@ -23,7 +23,8 @@ Data store objects are instantiated with the object name, e.g. ``DataStore("name
 
 Brightway2-data defines the following data stores:
 
-    * :ref:`database`
+    * :ref:`SingleFileDatabase <single-file-database>`
+    * :ref:`JSONDatabase <json-database>`
     * :ref:`method`
     * :ref:`weighting`
     * :ref:`normalization`
@@ -64,15 +65,12 @@ The document structure is:
 
 * *name* (string): Name of this activity.
 * *type* (string): If this is ``"process"``, or omitted completely, Brightway2 will treat this as a inventory process with inputs and output(s). If you want to store additional information in a Database outside of the list of processes, specify a custom type here. For example, the list of biosphere flows is also an inventory database, but as these are flows, not processes, they have the type ``"emission"``. Similarly, if you wanted to separate processes and products, you could create database entries for the products, with the type ``"product"``.
-* *categories* (list of strings, optional): A list of categories and subcategories. Can have any length.
+* *categories* (list of strings, optional): A list of categories and subcategories. No length limits.
 * *location* (string, optional): A location identifier. Default is *GLO*, but this can be changed in the :ref:`user-preferences`.
-* *unit* (string): Unit of this activity. Units are normalized when written to disk.
+* *unit* (string): Unit of this activity. `Units are normalized <https://bitbucket.org/cmutel/brightway2-data/src/default/bw2data/units.py?at=default>`__ when written to disk.
 * *exchanges* (list): A list of activity inputs and outputs, with its own schema.
     * *input* (database name, database code): The technological activity that is linked to, e.g. ``("my new database", "production of ice cream")`` or ``('biosphere', '51447e58e03a40a2bbd9abf45214b7d3')``. See also :ref:`dataset-codes`.
-    * *type* (string): One of ``production``, ``technosphere``, and ``biosphere``.
-        * ``production`` is an exchange that describes how much this activity produces. A ``production`` exchange is not required - the default value is 1.
-        * ``technosphere`` is an input of a technosphere flow from another activity dataset.
-        * ``biosphere`` is a resource consumption or emission to the environment.
+    * *type* (string): One of ``production``, ``technosphere``, and ``biosphere``.  See :ref:`exchanges`.
     * *amount* (float): Amount of this exchange.
     * *uncertainty type* (integer): Integer code for uncertainty distribution of this exchange, see :ref:`uncertainty-type` for more information. There can be other uncertainty fields as well.
     * *comment* (string, optional): A comment on this exchange. Used to store pedigree matrix data in ecoinvent v2.
@@ -114,7 +112,7 @@ Databases can be stored in different ways
 
 The default storage backend for databases stores each database in a separate file. This is the easiest and most convenient approach for most cases. However, Brightway2 also supports pluggable database backends, which can change how databases are stored and queried.
 
-Brightway2-data also provides ``bw2data.backends.JSONDatabase``, which stores each dataset as a separate file serialized to JSON. This approach works well with version-control systems, as each change can be saved individually. Use of ``JSONDatabase`` is shown in a simple `ipython notebook <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/JSON%20database.ipynb>`_.
+Brightway2-data also provides ``bw2data.backends.JSONDatabase``, which stores each dataset as a separate file serialized to `JSON <http://en.wikipedia.org/wiki/JSON>`__. This approach works well with version-control systems, as each dataset change can be saved individually. Use of ``JSONDatabase`` is shown in a simple `ipython notebook <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/JSON%20database.ipynb>`_.
 
 Before using ``JSONDatabase``, please read its technical documentation carefully: :ref:`json-database`. To create a ``JSONDatabase``, use ``Database("my db name", backend="json")``.
 
@@ -123,7 +121,7 @@ Before using ``JSONDatabase``, please read its technical documentation carefully
 Database metadata
 -----------------
 
-No metadata is required for ``Database``s; Brightway2 will automatically set ``depends`` to a list of each linked database. The default single-file database backend will also add a ``version`` number, which is used in versioning the database.
+No metadata is required for a ``Database``; Brightway2 will automatically set ``depends`` to a list of each linked database. The default single-file database backend will also add a ``version`` number, which is used in versioning the database.
 
 Therefore, for ``Database`` you can simply do: ``my_database.register()``.
 
@@ -132,7 +130,7 @@ Therefore, for ``Database`` you can simply do: ``my_database.register()``.
 Exchanges
 ---------
 
-Exchanges are a list of the inputs and outputs of an activity. For example an activity might consume some resources, emit some emissions, and have other technoligcal goods as emissions. Each activity also has at least one technological output.
+Exchanges are a list of the inputs and outputs of an activity. For example an activity might consume some resources, emit some emissions, and have other technological goods as emissions. Each activity also has at least one technological output.
 
 Each exchange has a ``type``. There are three standard exchange types in Brightway2, but you can define your own if you need to define different kinds of systems.
 
@@ -152,7 +150,7 @@ Production exchanges have the type ``production``.
 Technosphere exchanges
 ~~~~~~~~~~~~~~~~~~~~~~
 
-A technosphere exchange is an process input from the technosphere, i.e. the industrial economy. For example, the process "make a fizzbang" could have an input of seven kilograms of lollies.
+A technosphere exchange is a process input from the technosphere, i.e. the industrial economy. For example, the process "make a fizzbang" could have an input of seven kilograms of lollies.
 
 Technosphere exchanges have the type ``technosphere``.
 
@@ -168,9 +166,9 @@ Biosphere exchanges have the type ``biosphere``.
 Biosphere database
 ------------------
 
-Starting Brightway2 through the web interface, or when you run ``bw2setup()`` in a python shell, Brightway2 downloads and installs a special ``biosphere`` database. This database has all the resource and emission flows from the ecoinvent database, version 2.
+Starting Brightway2 through the web interface, or when you run ``bw2setup()`` in a python shell, will have Brightway2 download and install a special ``biosphere`` database. This database has all the resource and emission flows from the ecoinvent database, version 2.
 
-You can define biosphere flows - resources and emissions - in any database you like, but it is probably best to use the pre-defined flows in the ``biosphere`` database whenever you can. If you need to add some custom flows, feel free to create a separate new database.
+You can define biosphere flows - resources and emissions - in any database you like, but it is probably best to use the pre-defined flows in the ``biosphere`` database whenever you can. If you need to add some custom flows, feel free to create a separate database.
 
 You can also change the name for the default biosphere database in the :ref:`user preferences <user-preferences>`.
 
@@ -184,7 +182,7 @@ Linking activity datasets within and between databases requires a way to uniquel
 Activity hashes
 ~~~~~~~~~~~~~~~
 
-When you import an *ecospold* or *SimaPro* dataset, the data format does not provide a . Brightway2 will generate codes that look like a bunch of nonsense, e.g.: ``6d336c64e3a0ff08dee166a1dfdf0946``. In this case, Brightway2 identifies an activity or flow with the `MD5 <http://en.wikipedia.org/wiki/MD5>`_ hash of a few attributes: For ecoinvent 2, the ``name``, ``location``, ``unit``, and ``categories``. For ecoinvent 3, the ``activity`` and ``reference product`` names. The function that computes the activity hash is :ref:`bw2data.utils.activity_hash <activity-hash>`.
+When you import an *ecospold* or *SimaPro* dataset, the data format does not provide a way to uniquely identify each dataset. Brightway2 will generate codes that look like a bunch of nonsense, e.g.: ``6d336c64e3a0ff08dee166a1dfdf0946``. In this case, Brightway2 identifies an activity or flow with the `MD5 <http://en.wikipedia.org/wiki/MD5>`_ hash of a few attributes: For ecoinvent 2, the ``name``, ``location``, ``unit``, and ``categories``. For ecoinvent 3, the ``activity`` and ``reference product`` names. The function that computes the activity hash is :ref:`bw2data.utils.activity_hash <activity-hash>`.
 
 Searching databases
 -------------------

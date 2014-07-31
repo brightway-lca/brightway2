@@ -3,7 +3,7 @@
 Configuration
 =============
 
-Configuring Brightway2 is pretty easy - the only thing to do is to tell it where it can store data, logs, and exported files. We call this directory the "data directory", and its structure is explained in detail below. The first thing Brightway2 needs is to know where it can save data and log files. This directory location, in addition to a number of other configuration variables, is managed by the ``config`` object.
+Configuring Brightway2 is pretty easy - the only thing to do is to tell Brightway2 the location of a directory where it can store data, logs, and exported files. We call this directory the "data directory", and its structure is explained in detail below. The first thing Brightway2 needs is to know where it can save data and log files.
 
 Configuration through the web interface
 ---------------------------------------
@@ -17,12 +17,12 @@ In a terminal shell or command prompt, type:
 .. image:: images/configuration-1.png
     :align: center
 
-Brightway2 will determine that you are starting it for the first time. You will need to create a :ref:`data-directory` - a writable directory where all data will be stored.
+Brightway2 will determine that you are starting it for the first time. You will create a :ref:`data directory <data-directory>` - a writable directory where all data will be stored.
 
     1. Click to open directories, and navigate to where you want the data directory to be created.
     2. Check to make sure the directory path is correct.
-    3. Keep the default name for the data directory - ``brightway2`` - or choose your own.
-    4. Click to create and populate the data directory.
+    3. Keep the default name for the new data directory - ``brightway2`` - or choose your own. This directory will be created, it can't already exist.
+    4. Click "Set Brightway2 data path" to create and populate the data directory.
 
 .. image:: images/configuration-2.png
     :align: center
@@ -38,11 +38,11 @@ Brightway2 comes with some basic metadata - LCIA methods and a biosphere databas
 Configuration through the command line
 --------------------------------------
 
-Configuration can also be done with the command line utility ``bw2-controller``. Simply run the following command, and confirm that you want to create the data directory.
+Configuration can also be done with the command line utility ``bw2-controller``. Simply run the following command, and confirm that you want to create the data directory. The data directory will be created - it shouldn't exist yet.
 
 .. code-block:: bash
 
-    bw2-controller setup --data-dir=/my/blank/directory
+    bw2-controller setup --data-dir=/my/new/directory/path
 
 Configuration in a python shell
 -------------------------------

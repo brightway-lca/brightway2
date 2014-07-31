@@ -7,7 +7,7 @@ Brightway2 can be installed pretty much everywhere, on Windows, OS X, Linux, and
 
 .. note:: Brightway2 is currently only compatible with python 2.7, not python 3. Work on Python 3 support is ongoing, but don't hold your breath.
 
-.. note:: Please subscribe to the `brightway2 updates mailing list <https://tinyletter.com/brightway2-updates>`_ to be informed of new releases.
+.. note:: Please subscribe to the `brightway2 updates mailing list <https://tinyletter.com/brightway2-updates>`__ to be informed of new releases.
 
 .. _windows-install:
 
@@ -49,8 +49,8 @@ Or in the ipython shell in the editor:
 
 .. _anaconda:
 
-Alternate installation 2: Continuum Anaconda
---------------------------------------------
+Recommended installation 2: Continuum Miniconda
+-----------------------------------------------
 
 .. note:: Anaconda is probably the best package for power users, because of its high-level support for virtualenvs, but it isn't as easy as EPD.
 
@@ -124,13 +124,9 @@ I haven't tried this, but have heard good things. I think you will have to use e
 Max OS X
 ========
 
-.. note:: If you are using ``Canopy``, see :ref:`canopy`.
+On OS X, there are almost too many choices that work well. The simplest way is to use :ref:`canopy` or :ref:`anaconda` - the instructions are the same as on Windows. Alternatively, there are two main OS X-specific alternatives for installing Python packages: `Macports <http://www.macports.org/>`_ and `Homebrew <http://mxcl.github.com/homebrew/>`_. Brightway2 is developed primarily on OS X using Macports, but as it depends on a few standard libraries, either alternative should work well. Homebrew users will have to adapt the following instructions, but reports are that this is relatively simple.
 
-.. note:: If you are using ``Anaconda``, see :ref:`anaconda`.
-
-.. note:: See also the :ref:`developer-os-x` notes.
-
-There are two main OS X-specific alternatives for installing Python packages: `Macports <http://www.macports.org/>`_ and `Homebrew <http://mxcl.github.com/homebrew/>`_. Brightway2 is developed primarily on OS X using Macports, but as it depends on a few standard libraries, either alternative should work well. Homebrew users will have to adapt the following instructions, but reports are that this is relatively simple.
+.. note:: See also the :ref:`developer-os-x` notes for an even more powerful & complicated approach, good for software developers.
 
 Follow the `instructions <http://www.macports.org/install.php>`_ and install Macports. Note that both Macports and Homebrew require Xcode to be installed first. Xcode can be installed from the OS X installation disk (for 10.6 or lower), the app store (10.7 or higher), or `other unofficial sources <https://github.com/kennethreitz/osx-gcc-installer>`_.
 
@@ -224,9 +220,9 @@ If you want to install packages manually, or not install everything, Brightway2 
 Developers
 ==========
 
-.. warning:: If you are developing, it is *strongly* recommended to use `virtualenv <http://www.virtualenv.org/>`_ and `virtualenvwrapper <http://www.doughellmann.com/projects/virtualenvwrapper/>`_ (or `virtualenv-win <https://github.com/davidmarble/virtualenvwrapper-win>`_ for Windows users).
+.. warning:: If you are developing, it is *strongly* recommended to use `virtualenv <http://www.virtualenv.org/>`__ and `virtualenvwrapper <http://www.doughellmann.com/projects/virtualenvwrapper/>`_ (or `virtualenv-win <https://github.com/davidmarble/virtualenvwrapper-win>`_ for Windows users).
 
-If you want to develop with Brightway, then you should install the following:
+If you want to develop with Brightway, then you should also install the following:
 
 * nose
 * sphinx
@@ -240,7 +236,7 @@ You can install editable Brightway2 packages using `mercurial <http://mercurial.
     pip install -e hg+https://bitbucket.org/cmutel/brightway2-ui#egg=bw2ui
     pip install -e hg+https://bitbucket.org/cmutel/brightway2-analyzer#egg=bw2analyzer
 
-You can also simply clone the bitbucket repositories.
+You can also simply clone the bitbucket source code repositories instead of installing them.
 
 .. _developer-os-x:
 
@@ -251,6 +247,7 @@ Set up python:
 
 .. code-block:: bash
 
+    sudo port selfupdate
     sudo port install py27-scipy py27-numpy py27-pip py27-libxml2 py27-nose py27-sphinx py27-requests py27-flask py27-virtualenvwrapper mercurial +bash_completion
     sudo port select --set python python27
     sudo port select --set pip pip27
@@ -271,7 +268,7 @@ Then set your default shell
 
     chsh -s /opt/local/bin/bash
 
-Add the following lines to the file ``.profile`` in your home directory, if not already present:
+Add the following lines to the file ``.profile`` in your home directory using your favorite text editor:
 
 .. code-block:: bash
 
@@ -283,7 +280,7 @@ Add the following lines to the file ``.profile`` in your home directory, if not 
 
 You must then start a *new* terminal window, so the updated ``.profile`` is applied.
 
-Create ``virtualenv`` and install Brightway2:
+Create a `virtualenv <https://pypi.python.org/pypi/virtualenv>`__ and install Brightway2:
 
 .. code-block:: bash
 
@@ -297,6 +294,8 @@ Because this is using a virtualenv, you will need to activate the virtualenv eac
 
     workon bw2
 
+.. _upgrading:
+
 Upgrading Brightway2
 ====================
 
@@ -309,7 +308,7 @@ To upgrade Brightway2, do the following:
 First, make sure your background packages are up to date.
 
 * In Enthought Canopy, this is done through the graphical package manager.
-* In anaconda/miniconda, use the following commands (once you have activated your Brightway2 environment)::
+* In anaconda/miniconda, use the following commands (once you have activated your Brightway2 environment):
 
 .. code-block:: bash
 

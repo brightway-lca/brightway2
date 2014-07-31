@@ -46,7 +46,7 @@ The integer ``uncertainty type`` fields are defined in a separate software packa
     * ``11``: Generalized Extreme Value.
     * ``12``: Student's T.
 
-The default value for ``uncertainty type`` is ``0``, i.e. no uncertainty.
+The default value for ``uncertainty type`` is ``0``, i.e. unknown uncertainty.
 
 .. note::
     All distributions (where bounds make sense) can be bounded, i.e. you can specify a minimum and maximum value in addition to other parameters. This can be helpful in ensuring, for example, that distributions are always positive.

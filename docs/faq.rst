@@ -48,9 +48,9 @@ The ``pickle`` module is fast, portable, and built-in. While using compression (
 
 The ``marshal`` module is faster - 40% faster writing, 25% faster reading - but produces files twice as big, and can change from computer to computer or even when Python is upgraded. The costs and potential risks of ``marshal`` overwhelm its speed gains.
 
-Javascript object notation (`JSON <http://json.org/>`_) is a data for native to `javascript <http://en.wikipedia.org/wiki/JavaScript>`_ which is now widely used for data exchange over the web and between different programming languages. ``JSON`` does not match perfectly to python data structures, but the differences are relatively small. ``JSON`` is used to store some metadata in Brightway2, such as the user preferences, LCI databases, and LCIA methods installed, as it is human readable and editable.
+Javascript object notation (`JSON <http://json.org/>`_) is a data for native to `javascript <http://en.wikipedia.org/wiki/JavaScript>`_ which is now widely used for data exchange over the web and between different programming languages. ``JSON`` does not match perfectly to python data structures, but the differences are relatively small. ``JSON`` is used to store some metadata in Brightway2, such as the user preferences, and the installed LCI databases and LCIA methods. JSON is human readable and editable.
 
-While a ``JSON`` module is in the standard library, there is no fast ``JSON`` library available for all operating systems and python version; see e.g. `anyjson <http://pypi.python.org/pypi/anyjson/>`_, `yajl <http://pypi.python.org/pypi/yajl>`_, and `ujson <http://pypi.python.org/pypi/ujson/>`_, in addition to the builtin. Each of these libraries is also not 100% compliant with the JSON spec.
+While a ``JSON`` module is in the standard library, there is no fast ``JSON`` library available for all operating systems and python version; see e.g. `anyjson <http://pypi.python.org/pypi/anyjson/>`__, `yajl <http://pypi.python.org/pypi/yajl>`__, and `ujson <http://pypi.python.org/pypi/ujson/>`__, in addition to the builtin `json <https://docs.python.org/2/library/json.html>`__. Each of these libraries is also not 100% compliant with the JSON spec.
 
 Things like message pack and JSON can't handle all Python datatypes, and in particular Python allows tuples as dictionary keys, which we use heavily, while others don't. So, pickle is the default format, even though it is not the hawtness... However, JSON is used as a backup format, as pickle has real drawbacks for archiving.
 
@@ -79,7 +79,7 @@ I get unicode errors!
 
 .. note:: Since Brightway2 version 0.14, all strings should be unicode (i.e. they have a 'u' in front of the string, like ``u"foo"``), and not normal bytestrings. If you are careful to make sure your data is unicode, you shouldn't have this problem. See also the :ref:`recursive_str_to_unicode <recursive-str-to-unicode>` utility function.
 
-.. note:: You can specify the encoding of text in your python files as UTF-8 by putting the following as the *first line* in each file: ``# -*- coding: utf-8 -*``
+.. note:: You can specify the encoding of text in your python files as UTF-8 by putting the following as the *first line* in each file: ``# -*- coding: utf-8 -*-``
 
 A typical error message is:
 
@@ -111,17 +111,19 @@ For help in fixing strings:
 When upgrading on Windows, I get errors about something called ``vcvarsall.bat``
 --------------------------------------------------------------------------------
 
+.. note:: The :ref:`upgrading` docs avoid this problem by always using ``pip`` with ``--no-deps``.
+
 The problem here is that ``pip -U install foo`` will try to upgrade all dependencies of ``foo``. If, for example, scipy is a dependency, and a newer version is available, then pip will try to compile it. Compilation of scipy requires a C compiler, which is why python looks for ``vcvarsall.bat``, which you don't have.
 
 If you are using something like EPD or Anaconda, you should first make sure that all of your libraries are up to date already. Usually they will build the difficult packages so that you don't have to. In many cases, this should solve the problem, as you will then have the latest version of your dependencies.
 
 If this doesn't solve the problem, then you have two options:
 
-First, you can tell pip not to update all the dependencies. For example, to get the latest version of the Brightway core modules, you would run:
+First, you can tell pip not to update all the dependencies. For example, to get the latest version of ``foo``, you would run:
 
 .. code-block:: bash
 
-    pip install -U --no-deps brightway2 bw2ui bw2data bw2calc bw2analyzer stats_arrays
+    pip install -U --no-deps foo
 
 Second, you can try to install a C compiler. You can find `decent instructions online <http://shop.wickeddevice.com/2013/12/11/windows-7-python-virtualenv-and-the-unable-to-find-vcvarsall-bat-error/>`_, as well as discussion on `Stack <http://stackoverflow.com/questions/3047542/building-lxml-for-python-2-7-on-windows/5122521#5122521>`_ `Overflow <http://stackoverflow.com/questions/6551724/how-do-i-point-easy-install-to-vcvarsall-bat>`_.
 
