@@ -51,7 +51,7 @@ Alternate installation: Continuum Anaconda
 
 `Continuum Anaconda <http://continuum.io/downloads.html>`_ provides another Python environment and package manager, and is free. It is actually pretty easy to install:
 
-Install the 64-bit Python 2.7 miniconda from ``pydata.org <http://conda.pydata.org/miniconda.html>`_.
+Install the 64-bit Python 2.7 miniconda from `pydata.org <http://conda.pydata.org/miniconda.html>`_.
 
 On Mac OS X, you might have to make the bash shell executable:
 
@@ -246,8 +246,19 @@ Set up python:
 
     sudo port install py27-scipy py27-numpy py27-pip py27-libxml2 py27-nose py27-sphinx py27-requests py27-flask py27-virtualenvwrapper mercurial +bash_completion
     sudo port select --set python python27
+    sudo port select --set pip pip27
+    sudo port select --set virtualenv virtualenv27
 
-Change the shell to macports ``bash``:
+Change the shell to macports ``bash``. First, add the macports bash shell as a possibility:
+
+.. code-block:: bash
+
+    sudo -s
+    # Type in your password here
+    echo /opt/local/bin/bash >> /etc/shells
+    exit
+
+Then set your default shell
 
 .. code-block:: bash
 
@@ -262,6 +273,8 @@ Add the following lines to the file ``.profile`` in your home directory, if not 
     if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
       . /opt/local/etc/profile.d/bash_completion.sh
     fi
+
+You must then start a *new* terminal window, so the updated ``.profile`` is applied.
 
 Create ``virtualenv`` and install Brightway2:
 
