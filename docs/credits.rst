@@ -23,6 +23,8 @@ Brightway2 would not be possible without the incredibly generous support of `Pro
 Contact the developers
 ----------------------
 
+.. note:: Please subscribe to the `brightway2 updates mailing list <https://tinyletter.com/brightway2-updates>`_ to be informed of new releases.
+
 Brightway2 has a mailing list: brightway2@googlegroups.com. You can register at the `Google groups site <https://groups.google.com/forum/?fromgroups#!forum/brightway2>`_.
 
 You can also email Chris directly at ``cmutel@gmail.com``.

@@ -280,12 +280,16 @@ Because this is using a virtualenv, you will need to activate the virtualenv eac
 Upgrading Brightway2
 ====================
 
-Brightway2 is being actively developed, and new releases com frequently. To upgrade Brightway2, do the following:
+Brightway2 is being actively developed, and new releases come frequently.
+
+.. note:: Please subscribe to the `brightway2 updates mailing list <https://tinyletter.com/brightway2-updates>`_ to be informed of new releases.
+
+To upgrade Brightway2, do the following:
 
 First, make sure your background packages are up to date.
 
 * In Enthought Canopy, this is done through the graphical package manager.
-* In anaconda/miniconda, use the following commands (once you hve activated your Brightway2 environment)::
+* In anaconda/miniconda, use the following commands (once you have activated your Brightway2 environment)::
 
 .. code-block:: bash
 
@@ -299,7 +303,7 @@ First, make sure your background packages are up to date.
     sudo port selfupdate
     sudo port upgrade outdated
 
-Next, run the following command. Make sure you in the correct environment/virtualenv, if you use environments:
+Next, run the following command. Make sure you are in the correct environment/virtualenv, if you use environments:
 
 .. code-block:: bash
 
