@@ -14,6 +14,8 @@ Additional contributers:
 * `Andreas Froemelt <http://www.ifu.ethz.ch/ESD/people/andrefro>`_
 * `lowks <https://bitbucket.org/lowks>`_
 
+Logo by `eightz <http://www.fiverr.com/ei8htz>`__.
+
 Acknowledgements
 ----------------
 
