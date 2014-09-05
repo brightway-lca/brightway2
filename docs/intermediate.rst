@@ -10,6 +10,8 @@ For both databases and LCIA methods, the method ``.write(some_data)`` will write
 .. warning::
     Every time you save a new version of an inventory database or an impact assessment method, e.g. with ``my_database.write(my_data)``, be sure to also call ``my_database.process()``, or your changes will not be used in LCA calculations.
 
+.. _processing-data:
+
 Processing data
 ---------------
 
