@@ -119,6 +119,8 @@ DataStore
 ImpactAssessmentDataStore
 -------------------------
 
+.. autofunction:: bw2data.ia_data_store.abbreviate
+
 .. autoclass:: bw2data.ia_data_store.ImpactAssessmentDataStore
     :members:
     :inherited-members:
@@ -131,9 +133,18 @@ Inventory data backends
 DatabaseChooser
 ---------------
 
-The function ``bw2data.database.Database`` is an alias for ``bw2data.database.DatabaseChooser``, which will create an instance of database backend given in the database metadata.
+The function :func:`bw2data.database.DatabaseChooser` will choose the correct ``Database`` class depending on the database backend registered for the database in its metadata. ``bw2data`` comes with two backends (see :ref:`database-backends`).
+
+The function ``bw2data.database.Database`` is an alias for :func:`bw2data.database.DatabaseChooser`, provided for backwards compatibility.
 
 .. autofunction:: bw2data.database.DatabaseChooser
+
+.. _switching-backends:
+
+Switching backends
+------------------
+
+.. autofunction:: bw2data.backends.utils.convert_backend
 
 .. _custom-backends:
 

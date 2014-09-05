@@ -107,6 +107,8 @@ Where an ``exchange`` is:
 .. note::
     Database documents can be validated with ``bw2data.validate.db_validator(my_data)``, or ``Database("my database name").validate(my_data)``.
 
+.. _database-backends:
+
 Databases can be stored in different ways
 -----------------------------------------
 
@@ -114,7 +116,7 @@ The default storage backend for databases stores each database in a separate fil
 
 Brightway2-data also provides ``bw2data.backends.JSONDatabase``, which stores each dataset as a separate file serialized to `JSON <http://en.wikipedia.org/wiki/JSON>`__. This approach works well with version-control systems, as each dataset change can be saved individually. Use of ``JSONDatabase`` is shown in a simple `ipython notebook <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/JSON%20database.ipynb>`_.
 
-Before using ``JSONDatabase``, please read its technical documentation carefully: :ref:`json-database`. To create a ``JSONDatabase``, use ``Database("my db name", backend="json")``.
+Before using ``JSONDatabase``, please read its technical documentation carefully: :ref:`json-database`. To create a ``JSONDatabase``, use ``Database("my db name", backend="json")``. To switch backends for a database, use :ref:`convert_backend <switching-backends>`.
 
 :ref:`custom-backends`, such as using an actual relational database, can also be defined.
 
@@ -183,6 +185,8 @@ Activity hashes
 ~~~~~~~~~~~~~~~
 
 When you import an *ecospold* or *SimaPro* dataset, the data format does not provide a way to uniquely identify each dataset. Brightway2 will generate codes that look like a bunch of nonsense, e.g.: ``6d336c64e3a0ff08dee166a1dfdf0946``. In this case, Brightway2 identifies an activity or flow with the `MD5 <http://en.wikipedia.org/wiki/MD5>`_ hash of a few attributes: For ecoinvent 2, the ``name``, ``location``, ``unit``, and ``categories``. For ecoinvent 3, the ``activity`` and ``reference product`` names. The function that computes the activity hash is :ref:`bw2data.utils.activity_hash <activity-hash>`.
+
+.. _searching-databases:
 
 Searching databases
 -------------------
