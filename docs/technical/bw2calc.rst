@@ -56,3 +56,8 @@ Graph Traversal
 
 .. autoclass:: bw2calc.GraphTraversal
     :members:
+
+Utilities
+=========
+
+.. autofunction:: bw2calc.utils.load_arrays
