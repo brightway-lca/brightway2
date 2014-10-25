@@ -328,6 +328,7 @@ Identifying and labeling
 .. autofunction:: bw2data.utils.database_hash
 .. autofunction:: bw2data.utils.random_string
 .. autofunction:: bw2data.utils.safe_filename
+.. autofunction:: bw2data.utils.safe_save
 
 Working with data
 -----------------
