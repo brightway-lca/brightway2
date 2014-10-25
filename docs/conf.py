@@ -34,6 +34,12 @@ needs_sphinx = '1.0'
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = ['sphinx.ext.autodoc', 'sphinx.ext.mathjax']
 
+# Load mathjax through https so it works on RTD/Chrome. See:
+# http://sphinx-doc.org/ext/math.html
+# http://docs.mathjax.org/en/latest/start.html#secure-access-to-the-cdn
+# https://github.com/rtfd/readthedocs.org/issues/283
+mathjax_path = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 

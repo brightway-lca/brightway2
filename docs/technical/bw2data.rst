@@ -31,7 +31,6 @@ JSON hash tables don't support keys like ``("biosphere", "an emission")``, so th
 
 .. autoclass:: bw2data.serialization.CompoundJSONDict
     :members:
-    :inherited-members:
 
 .. _pickled-dict:
 
@@ -40,7 +39,6 @@ Pickled Dictionary
 
 .. autoclass:: bw2data.serialization.PickledDict
     :members:
-    :inherited-members:
 
 Metadata stores
 ===============
@@ -70,7 +68,6 @@ normalizations
 
 .. autoclass:: bw2data.meta.NormalizationMeta
     :members:
-    :inherited-members:
 
 .. _weightings:
 
@@ -79,7 +76,6 @@ weightings
 
 .. autoclass:: bw2data.meta.WeightingMeta
     :members:
-    :inherited-members:
 
 Mappings
 ========
@@ -91,7 +87,6 @@ mapping
 
 .. autoclass:: bw2data.meta.Mapping
     :members:
-    :inherited-members:
 
 .. _geomapping:
 
@@ -100,7 +95,6 @@ geomapping
 
 .. autoclass:: bw2data.meta.GeoMapping
     :members:
-    :inherited-members:
 
 Data stores
 ===========
@@ -112,16 +106,6 @@ DataStore
 
 .. autoclass:: bw2data.DataStore
     :members:
-    :inherited-members:
-
-.. _ia-datastore:
-
-ImpactAssessmentDataStore
--------------------------
-
-.. autoclass:: bw2data.ia_data_store.ImpactAssessmentDataStore
-    :members:
-    :inherited-members:
 
 Inventory data backends
 =======================
@@ -131,9 +115,18 @@ Inventory data backends
 DatabaseChooser
 ---------------
 
-The function ``bw2data.database.Database`` is an alias for ``bw2data.database.DatabaseChooser``, which will create an instance of database backend given in the database metadata.
+The function :func:`bw2data.database.DatabaseChooser` will choose the correct ``Database`` class depending on the database backend registered for the database in its metadata. ``bw2data`` comes with two backends (see :ref:`database-backends`).
+
+The function ``bw2data.database.Database`` is an alias for :func:`bw2data.database.DatabaseChooser`, provided for backwards compatibility.
 
 .. autofunction:: bw2data.database.DatabaseChooser
+
+.. _switching-backends:
+
+Switching backends
+------------------
+
+.. autofunction:: bw2data.backends.utils.convert_backend
 
 .. _custom-backends:
 
@@ -205,6 +198,16 @@ Dictionaries
 Impact Assessment data stores
 =============================
 
+.. _ia-datastore:
+
+ImpactAssessmentDataStore
+-------------------------
+
+.. autofunction:: bw2data.ia_data_store.abbreviate
+
+.. autoclass:: bw2data.ia_data_store.ImpactAssessmentDataStore
+    :members:
+
 .. _method:
 
 Method
@@ -212,7 +215,6 @@ Method
 
 .. autoclass:: bw2data.Method
     :members:
-    :inherited-members:
 
 .. _normalization:
 
@@ -221,7 +223,6 @@ Normalization
 
 .. autoclass:: bw2data.Normalization
     :members:
-    :inherited-members:
 
 .. _weighting:
 
@@ -230,7 +231,6 @@ Weighting
 
 .. autoclass:: bw2data.Weighting
     :members:
-    :inherited-members:
 
 .. _import-and-export:
 
@@ -269,7 +269,6 @@ Ecospold version 2 is the data format of ecoinvent version 3.
 
 .. autoclass:: bw2data.io.Ecospold2Importer
     :members:
-    :special-members: __init__
 
 SimaPro
 -------
@@ -304,7 +303,7 @@ Utilities
 Setup
 -----
 
-.. autofunction:: bw2data.utils.setup
+.. autofunction:: bw2data.utils.bw2setup
 
 .. _set-data-dir:
 
