@@ -6,3 +6,4 @@ docs/_build
 MANIFEST
 *.sublime*
 brightway2.egg-info
+docs/notebooks/.ipynb_checkpoints
