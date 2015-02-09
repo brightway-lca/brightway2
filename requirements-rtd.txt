@@ -2,6 +2,7 @@
 -e hg+https://bitbucket.org/cmutel/brightway2-calc#egg=bw2calc
 -e hg+https://bitbucket.org/cmutel/brightway2-data#egg=bw2data
 -e hg+https://bitbucket.org/cmutel/brightway2-ui#egg=bw2ui
+-e hg+https://bitbucket.org/cmutel/brightway2-io#egg=bw2io
 colorama
 docopt
 flask

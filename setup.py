@@ -5,6 +5,7 @@ packages = [
     "bw2calc>=0.14",
     "bw2data>=0.16",
     "bw2ui>=0.12.1",
+    "bw2io",
     "docopt",
     "flask",
     "lxml",
