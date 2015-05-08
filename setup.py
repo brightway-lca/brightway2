@@ -11,6 +11,7 @@ packages = [
     "lxml",
     "nose",
     "numpy",
+    "pyprind",
     "requests>=1.1.0",
     "scipy",
     "stats_arrays>=0.2.4",
