@@ -11,7 +11,6 @@ packages = [
     "lxml",
     "nose",
     "numpy",
-    "progressbar-ipython",
     "requests>=1.1.0",
     "scipy",
     "stats_arrays>=0.2.4",
