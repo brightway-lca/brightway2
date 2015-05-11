@@ -1,21 +1,33 @@
 from setuptools import setup
 
 packages = [
-    "bw2analyzer>=0.5",
-    "bw2calc>=0.14",
-    "bw2data>=0.16",
-    "bw2ui>=0.12.1",
+    "appdirs",
+    "asteval",
+    "bw2analyzer",
+    "bw2calc",
+    "bw2data",
     "bw2io",
+    "bw2parameters",
+    "bw2speedups",
+    "bw2ui",
     "docopt",
+    "eight",
     "flask",
+    "future",
     "lxml",
     "nose",
     "numpy",
+    "peewee",
+    "psutil",
     "pyprind",
     "requests>=1.1.0",
     "scipy",
-    "stats_arrays>=0.2.4",
+    "stats_arrays>=0.3.1",
+    "unicodecsv",
     "voluptuous",
+    "whoosh",
+    "xlrd",
+    "xlsxwriter",
 ]
 
 setup(
