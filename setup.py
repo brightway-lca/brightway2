@@ -3,13 +3,13 @@ from setuptools import setup
 packages = [
     "appdirs",
     "asteval",
-    "bw2analyzer",
-    "bw2calc",
-    "bw2data",
-    "bw2io",
-    "bw2parameters",
+    "bw2analyzer>=0.9.dev0",
+    "bw2calc>=1.1.dev0",
+    "bw2data>=2.0.dev0",
+    "bw2io>=0.2.dev0",
+    "bw2parameters>=0.3",
     "bw2speedups",
-    "bw2ui",
+    # "bw2ui",
     "docopt",
     "eight",
     "flask",
@@ -32,7 +32,7 @@ packages = [
 
 setup(
     name='brightway2',
-    version="1.0RC1",
+    version="2.0.dev0",
     packages=["brightway2"],
     author="Chris Mutel",
     author_email="cmutel@gmail.com",
