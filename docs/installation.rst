@@ -43,7 +43,7 @@ On Mac OS X, you might have to make the bash shell executable:
 
 .. code-block:: bash
 
-    activate brightway2
+    activate bw2
 
 You will have to activate your brightway2 environment in each new terminal window or command prompt.
 
@@ -53,11 +53,15 @@ You will have to activate your brightway2 environment in each new terminal windo
 
    conda install numpy ipython-notebook scipy flask lxml requests pip nose future docopt whoosh
 
-7. Install some more dependencies and brightway2:
+7. Install some more dependencies:
 
 .. code-block:: bash
 
-    pip install pyprind unicodecsv voluptuous bw2speedups brightway2
+    pip install pyprind unicodecsv voluptuous bw2speedups
+
+8. Finally, install the development version of brightway2:
+
+   pip install --pre --extra-index-url http://129.132.92.166:8787/simple/ --trusted-host 129.132.92.166 brightway2
 
 You can now use brightway2 from the python shell or in an ipython notebook.
 
