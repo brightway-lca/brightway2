@@ -5,9 +5,61 @@ Installation
 
 Brightway2 can be installed pretty much everywhere, on Windows, OS X, Linux, and anywhere else Python can be compiled.
 
-.. note:: Brightway2 is currently only compatible with python 2.7, not python 3. Work on Python 3 support is ongoing, but don't hold your breath.
+.. note:: Brightway2 supports python 2 and 3, but the recommended version is python 3.4.
 
 .. note:: Please subscribe to the `brightway2 updates mailing list <https://tinyletter.com/brightway2-updates>`__ to be informed of new releases.
+
+.. _anaconda:
+
+Recommended installation: Continuum Miniconda
+=============================================
+
+1. Save `Miniconda 3.4 (64-bit version) <http://conda.pydata.org/miniconda.html>`__ for your OS
+
+On Mac OS X, you might have to make the bash shell executable:
+
+.. code-block:: bash
+
+    chmod +x Downloads/Miniconda3-latest-MacOSX-x86_64.sh
+
+(or whatever version you have; should adjust path as well)
+
+2. Run the Miniconda installer. Make it your default python.
+
+3. In a terminal window or command prompt, make sure ``conda`` is up to date:
+
+.. code-block:: bash
+
+    conda install conda
+    conda update conda
+
+4. Create a python environ for brightway2:
+
+.. code-block:: bash
+
+    conda create -n bw2 anaconda python=3.4
+
+5. Activate your environment:
+
+.. code-block:: bash
+
+    activate brightway2
+
+You will have to activate your brightway2 environment in each new terminal window or command prompt.
+
+6. Install some dependencies:
+
+.. code-block:: bash
+
+   conda install numpy ipython-notebook scipy flask lxml requests pip nose future docopt whoosh
+
+7. Install some more dependencies and brightway2:
+
+.. code-block:: bash
+
+    pip install pyprind unicodecsv voluptuous bw2speedups brightway2
+
+You can now use brightway2 from the python shell or in an ipython notebook.
 
 .. _windows-install:
 
@@ -16,108 +68,30 @@ Windows
 
 Although Brightway2 is relatively simple, installation of the numerical and scientific libraries can be difficult as there is no default compilers installed on most Windows machines. This issue is well-known in the Python community (see `Pycon keynote <https://www.youtube.com/watch?v=d1a4Jbjc-vU>`_, recent `reddit discussion <http://www.reddit.com/r/Python/comments/2bbd5t/stop_struggling_with_python_on_windows/>`_). The only sensible way is to use a precompiled set of packages.
 
+Alternatives
+------------
+
+In addition to ``conda``, the following also work well, but no specific instructions are provided:
+
 .. _canopy:
 
-Recommended installation 1: Enthought Canopy
---------------------------------------------
+Enthought Canopy
+````````````````
 
 .. warning:: `Canopy Express <https://www.enthought.com/canopy-express/>`_ will not work with Brightway2, as it does `not include the lxml package <https://enthought.com/products/canopy/package-index/>`_.
 
 `Enthought Canopy <https://www.enthought.com/products/canopy/>`_ provides a nice Python environment and free academic licenses.
 
-After installing Canopy, install all Canopy packages, both "Free packages" and "Canopy packages". You don't technically need all of them right away, but it is easier to get them all instead of manually selecting one by one.
 
-.. image:: images/canopy-all-packages.png
-    :align: center
-
-You can then install Brightway2 in the command line:
-
-.. code-block:: bash
-
-    pip install brightway2
-
-Or in the ipython shell in the editor:
-
-.. code-block:: bash
-
-    !pip install brightway2
-
-.. image:: images/canopy-console-ipython.png
-    :align: center
-
-.. note:: see also `Installing packages into Canopy User Python from the OS command line <https://support.enthought.com/entries/23389761>`_ `uninstalling Canopy <https://support.enthought.com/entries/23580651-Uninstalling-Canopy>`_.
-
-.. _anaconda:
-
-Recommended installation 2: Continuum Miniconda
------------------------------------------------
-
-.. note:: Anaconda is probably the best package for power users, because of its high-level support for virtualenvs, but it isn't as easy as EPD.
-
-.. warning:: Brightway2 is only compatible with Python version 2.7, not yet with Python 3
-
-`Continuum Anaconda <http://continuum.io/downloads.html>`_ provides another Python environment and package manager, and is free. It is actually pretty easy to install:
-
-Install the 64-bit Python 2.7 miniconda from `pydata.org <http://conda.pydata.org/miniconda.html>`_.
-
-On Mac OS X, you might have to make the bash shell executable:
-
-.. code-block:: bash
-
-    chmod +x Downloads/Miniconda-3.5.5-MacOSX-x86_64.sh (or whatever version you have)
-
-Make sure ``conda`` is up to date:
-
-.. code-block:: bash
-
-    conda install conda
-    conda update conda
-
-Create brightway2 environment:
-
-.. code-block:: bash
-
-    conda create -n brightway2 python
-
-Activate environment:
-
-.. code-block:: bash
-
-    source activate brightway2
-
-Install dependencies:
-
-.. code-block:: bash
-
-    conda install numpy ipython-notebook scipy flask lxml requests colorama unicodecsv pip nose
-
-Install brightway2:
-
-.. code-block:: bash
-
-    pip install --pre brightway2
-
-See also `pip packages in anaconda <http://stackoverflow.com/questions/18640305/how-to-keep-track-of-pip-installed-packages-in-an-anaconda-conda-env>`_.
-
-Alternate installation: Python(x,y)
------------------------------------
+Python(x,y)
+```````````
 
 Download and install the `Python(x,y) executable <https://code.google.com/p/pythonxy/wiki/Downloads>`_. All the necessary background libraries will be installed.
 
-After the basic installation, you can install all additional Brightway2 packages and dependencies in one command in the command shell:
+Winpython
+`````````
 
-.. code-block:: bash
-
-    pip install brightway2
-
-Alternate installation: Winpython
----------------------------------
-
-.. warning:: Brightway2 is only compatible with Python version 2.7, not yet with Python 3
-
-`Winpython <http://winpython.sourceforge.net/>`_ is another set of Windows Python packages, similar to Python(x,y).
-
-I haven't tried this, but have heard good things. I think you will have to use either ``easy_install`` or `Christoph Gohlke's Windows binaries <http://www.lfd.uci.edu/~gohlke/pythonlibs/>`_ to install lxml.
+`Winpython <http://winpython.sourceforge.net/>`_ is another set of Windows Python packages, similar to Python(x,y). I haven't tried this, but have heard good things. I think you will have to use either ``easy_install`` or `Christoph Gohlke's Windows binaries <http://www.lfd.uci.edu/~gohlke/pythonlibs/>`_ to install lxml.
 
 .. _os-x-install:
 
@@ -134,34 +108,30 @@ Next, install the needed Python libraries using this command in the Terminal:
 
 .. code-block:: bash
 
-	sudo port install python_select py27-scipy py27-numpy py27-pip py27-libxml2 py27-nose py27-sphinx py27-requests py27-flask
+	sudo port install python_select py34-scipy py34-numpy py34-pip py34-libxml2 py34-nose py34-sphinx py34-requests py34-flask
 
 Point to the correct Python executable:
 
 .. code-block:: bash
 
-    sudo port select --set python python27
+    sudo port select --set python python34
 
 Next, install the Brightway2 source code using another Terminal command:
 
 .. code-block:: bash
 
-	sudo pip-2.7 install brightway2
+	pip-3.4 install --user brightway2
 
 Unfortunately, the Brightway2 scripts aren't in our ``PATH`` environment variable yet. Fix this by adding the following line to the end of the ``.profile`` file in your home directory, and then start a new terminal window:
 
 .. code-block:: bash
 
-    export PATH=$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin
+    export PATH=$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/3.4/bin
 
 .. _linux-install:
 
 Linux
 =====
-
-.. note:: If you are using ``Canopy``, see :ref:`canopy`.
-
-.. note:: If you are using ``Anaconda``, see :ref:`anaconda`.
 
 General instructions are provided for Ubuntu; people using other distributions are assumed smart to be enough to adapt as necessary. See also :ref:`platform-agnostic` instructions above.
 
@@ -175,7 +145,7 @@ Next, install Brightway2 using another terminal command:
 
 .. code-block:: bash
 
-	sudo pip install brightway2
+	pip install --user brightway2
 
 .. _platform-agnostic:
 
@@ -189,13 +159,13 @@ Installation of Brightway2 has two steps. First, install the following scientifi
 * lxml
 * pip
 
-.. warning:: Make sure that ``SciPy`` builds with support for `UMFPACK <http://www.cise.ufl.edu/research/sparse/umfpack/>`_; you may need to also install `scikits-umpack <http://scikits.appspot.com/umfpack>`_.
+.. warning:: Make sure that ``SciPy`` builds with support for `UMFPACK <http://www.cise.ufl.edu/research/sparse/umfpack/>`_; you may need to also install `scikits-umpack <https://github.com/rc/scikit-umfpack>`_.
 
 Second, install the Brightway2 package:
 
 .. code-block:: bash
 
-    pip install brightay2
+    pip install --user brightay2
 
 .. _requirements:
 
@@ -204,18 +174,25 @@ Requirements
 
 If you want to install packages manually, or not install everything, Brightway2 uses the following Python packages:
 
-* colorama
+* appdirs
+* asteval
 * docopt
+* eight
 * flask
-* flask
+* future
 * lxml
 * numpy
-* progressbar-ipython
+* peewee
+* psutil
+* pyprind
 * requests
 * scipy
 * stats_arrays
 * unicodecsv
 * voluptuous
+* whoosh
+* xlrd
+* xlsxwriter
 
 Developers
 ==========
