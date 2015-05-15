@@ -1,6 +1,6 @@
 .. _five-tutorials:
 
-Tutorials
+Notebooks
 =========
 
 The best way to get started is by going through the five tutorials. These are not designed to be read, but are IPython notebooks that can be executed on your computer.

@@ -18,15 +18,13 @@ Basically, Brightway2 is for you if your project lies at the intersection of LCA
 Understanding the manual
 ------------------------
 
-.. note:: This manual is `available as a PDF <http://brightwaylca.org/Brightway2%20manual.pdf>`_ or `on the web <https://brightway2.readthedocs.org/en/latest/>`_.
-
-.. note:: In addition to this manual, there is a `discussion mailing list <https://groups.google.com/forum/?fromgroups#!forum/brightway2>`_, and a `Brightway2 development blog <http://chris.mutel.org/>`_.
+.. note:: This manual is `available as a PDF <http://brightwaylca.org/Brightway2%20manual.pdf>`_ or `on the web <https://brightway2.readthedocs.org/en/latest/>`_. In addition to this manual, there is a `discussion mailing list <https://groups.google.com/forum/?fromgroups#!forum/brightway2>`_, and a `Brightway2 development blog <http://chris.mutel.org/>`_.
 
 As this manual covers a lot of material, it can be a bit overwhelming, especially at first. The manual is designed to help you get started in the following order:
 
 * First, :ref:`install Brightway2 <installation>` and its dependencies.
-* Second, :ref:`configure Brightway2 <configuration>` by setting a data directory.
-* Third, do the :ref:`five tutorials <five-tutorials>`.
+* Second, read the :ref:`introduction to brightway2 concepts <intro>`.
+* Finally, Third, do the :ref:`five tutorials <five-tutorials>`.
 * Finally, use the rest of the manual as a reference while creating next-generation LCA studies.
 
 In addition to the main index page and table of contents, in the HTML version you can search the documentation in the box on the left, and look for specific terms in the :ref:`genindex`. If you are reading this as a PDF, ``genindex`` isn't a link, but there is an index at the end of this document.
@@ -38,10 +36,9 @@ Brightway2 Manual
    :maxdepth: 3
 
    installation
-   configuration
-   tutorials
+   intro
+   notebooks
    ui
-   data-directory
    intermediate
    metadata
    uncertainty
@@ -53,12 +50,12 @@ Brightway2 Manual
    packages
    credits
 
-Technical Reference
-===================
+.. Technical Reference
+.. ===================
 
-.. toctree::
-   :maxdepth: 3
+.. .. toctree::
+..    :maxdepth: 3
 
-   technical/bw2data
-   technical/bw2calc
-   technical/bw2analyzer
+..    technical/bw2data
+..    technical/bw2calc
+..    technical/bw2analyzer

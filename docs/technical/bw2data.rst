@@ -8,7 +8,13 @@ Configuration
 
 The configuration for brightway2 is implemented as a singleton class that is created when ``brightway2`` is imported.
 
-.. autoclass:: bw2data._config.Config
+.. autoclass:: bw2data.configuration.Config
+    :members:
+
+Projects
+========
+
+.. autoclass:: bw2data.project.ProjectManager
     :members:
 
 Base classes for metadata
@@ -140,10 +146,16 @@ New database backends should inherit from ``bw2data.backends.base.LCIBackend``:
 
 .. _single-file-database:
 
-Default backend - each database is a single file
-------------------------------------------------
+Default backend - databases stored in a SQLite database
+-------------------------------------------------------
 
-.. autoclass:: bw2data.backends.default.database.SingleFileDatabase
+.. autoclass:: bw2data.backends.peewee.database.SQLiteBackend
+    :members:
+
+Single file - each database in a single file
+--------------------------------------------
+
+.. autoclass:: bw2data.backends.single_file.database.SingleFileDatabase
     :members:
 
 .. _json-database:
@@ -244,7 +256,7 @@ Brightway2 has its own data format for archiving data which is both efficient an
 
 .. note:: **imports** and **exports** are supported.
 
-.. autoclass:: bw2data.io.BW2Package
+.. autoclass:: bw2io.package.BW2Package
     :members:
 
 Ecospold1
@@ -254,11 +266,11 @@ Ecospold version 1 is the data format of ecoinvent versions 1 and 2, and the US 
 
 .. note:: only **imports** are supported.
 
-.. autoclass:: bw2data.io.Ecospold1Importer
-    :members:
+.. .. autoclass:: bw2io.importers.Ecospold1Importer
+..     :members:
 
-.. autoclass:: bw2data.io.EcospoldImpactAssessmentImporter
-    :members:
+.. .. autoclass:: bw2io.importers.EcospoldImpactAssessmentImporter
+..     :members:
 
 Ecospold2
 ---------
@@ -267,8 +279,8 @@ Ecospold version 2 is the data format of ecoinvent version 3.
 
 .. note:: only **imports** are supported.
 
-.. autoclass:: bw2data.io.Ecospold2Importer
-    :members:
+.. .. autoclass:: bw2io..Ecospold2Importer
+..     :members:
 
 SimaPro
 -------
@@ -279,8 +291,8 @@ Import a `SimaPro <http://www.pre-sustainability.com/simapro-lca-software>`_ tex
 
 .. warning:: Import of projects linked to Ecoinvent version 3 are not yet supported.
 
-.. autoclass:: bw2data.io.SimaProImporter
-    :members:
+.. .. autoclass:: bw2data.io.SimaProImporter
+..     :members:
 
 Gephi
 -----
@@ -289,13 +301,13 @@ Gephi
 
 .. note:: only **exports** are supported.
 
-.. autoclass:: bw2data.io.DatabaseToGEXF
-    :members:
+.. .. autoclass:: bw2data.io.DatabaseToGEXF
+..     :members:
 
-.. autoclass:: bw2data.io.DatabaseSelectionToGEXF
-    :members:
+.. .. autoclass:: bw2data.io.DatabaseSelectionToGEXF
+..     :members:
 
-.. autofunction:: bw2data.io.keyword_to_gephi_graph
+.. .. autofunction:: bw2data.io.keyword_to_gephi_graph
 
 Utilities
 =========
@@ -303,28 +315,25 @@ Utilities
 Setup
 -----
 
-.. autofunction:: bw2data.utils.bw2setup
+.. .. autofunction:: bw2data.utils.bw2setup
 
 .. _set-data-dir:
 
 Setting the data directory
 --------------------------
 
-.. autofunction:: bw2data.utils.set_data_dir
+.. .. autofunction:: bw2data.utils.set_data_dir
 
 Sorting
 -------
 
 .. autofunction:: bw2data.utils.natural_sort
-.. autofunction:: bw2data.utils.recursively_sort
 
 Identifying and labeling
 ------------------------
 
 .. _activity-hash:
 
-.. autofunction:: bw2data.utils.activity_hash
-.. autofunction:: bw2data.utils.database_hash
 .. autofunction:: bw2data.utils.random_string
 .. autofunction:: bw2data.utils.safe_filename
 

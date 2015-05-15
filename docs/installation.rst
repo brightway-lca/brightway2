@@ -9,6 +9,8 @@ Brightway2 can be installed pretty much everywhere, on Windows, OS X, Linux, and
 
 .. note:: Please subscribe to the `brightway2 updates mailing list <https://tinyletter.com/brightway2-updates>`__ to be informed of new releases.
 
+.. warning:: These instructions are for the development version of Brightway2 - some things might not work as intended! Please email cmutel@gmail.com with bug reports or frustrated desires.
+
 .. _anaconda:
 
 Recommended installation: Continuum Miniconda
@@ -20,9 +22,9 @@ On Mac OS X, you might have to make the bash shell executable:
 
 .. code-block:: bash
 
-    chmod +x Downloads/Miniconda3-latest-MacOSX-x86_64.sh
+    chmod +x ~/Downloads/Miniconda3-latest-MacOSX-x86_64.sh
 
-(or whatever version you have; should adjust path as well)
+(or whatever version you have; you should probably adjust the path as well)
 
 2. Run the Miniconda installer. Make it your default python.
 
@@ -67,19 +69,21 @@ You will have to activate your brightway2 environment in each new terminal windo
 
 8. Finally, install the development version of brightway2:
 
+.. code-block:: bash
+
    pip install --pre --extra-index-url http://129.132.92.166:8787/simple/ --trusted-host 129.132.92.166 brightway2
 
 You can now use brightway2 from the python shell or in an ipython notebook.
 
 .. _windows-install:
 
+Alternatives
+============
+
 Windows
-=======
+-------
 
 Although Brightway2 is relatively simple, installation of the numerical and scientific libraries can be difficult as there is no default compilers installed on most Windows machines. This issue is well-known in the Python community (see `Pycon keynote <https://www.youtube.com/watch?v=d1a4Jbjc-vU>`_, recent `reddit discussion <http://www.reddit.com/r/Python/comments/2bbd5t/stop_struggling_with_python_on_windows/>`_). The only sensible way is to use a precompiled set of packages.
-
-Alternatives
-------------
 
 In addition to ``conda``, the following also work well, but no specific instructions are provided:
 
@@ -106,7 +110,7 @@ Winpython
 .. _os-x-install:
 
 Max OS X
-========
+--------
 
 On OS X, there are almost too many choices that work well. The simplest way is to use :ref:`canopy` or :ref:`anaconda` - the instructions are the same as on Windows. Alternatively, there are two main OS X-specific alternatives for installing Python packages: `Macports <http://www.macports.org/>`_ and `Homebrew <http://mxcl.github.com/homebrew/>`_. Brightway2 is developed primarily on OS X using Macports, but as it depends on a few standard libraries, either alternative should work well. Homebrew users will have to adapt the following instructions, but reports are that this is relatively simple.
 
@@ -141,7 +145,7 @@ Unfortunately, the Brightway2 scripts aren't in our ``PATH`` environment variabl
 .. _linux-install:
 
 Linux
-=====
+-----
 
 General instructions are provided for Ubuntu; people using other distributions are assumed smart to be enough to adapt as necessary. See also :ref:`platform-agnostic` instructions above.
 
@@ -160,7 +164,7 @@ Next, install Brightway2 using another terminal command:
 .. _platform-agnostic:
 
 Platform-agnostic
-=================
+-----------------
 
 Installation of Brightway2 has two steps. First, install the following scientific and numeric libraries:
 
@@ -180,7 +184,7 @@ Second, install the Brightway2 package:
 .. _requirements:
 
 Requirements
-------------
+````````````
 
 If you want to install packages manually, or not install everything, Brightway2 uses the following Python packages:
 
@@ -313,7 +317,7 @@ Next, run the following command. Make sure you are in the correct environment/vi
 
 .. code-block:: bash
 
-    pip install -U --no-deps brightway2 bw2data bw2calc bw2analyzer bw2ui
+    pip install -U --no-deps brightway2 bw2data bw2calc bw2analyzer bw2ui bw2io bw2parameters
 
 Finally, see if your data needs to be updated, and follow the instructions if it does:
 
