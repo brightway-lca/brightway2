@@ -51,7 +51,7 @@ You will have to activate your brightway2 environment in each new terminal windo
 
 .. code-block:: bash
 
-   conda install numpy ipython-notebook scipy flask lxml requests pip nose future docopt whoosh
+   conda install numpy ipython ipython-notebook scipy flask lxml requests pip nose future docopt whoosh
 
 6a. If you are on Windows, you also need to do:
 
