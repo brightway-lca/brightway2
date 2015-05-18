@@ -9,8 +9,6 @@ Brightway2 can be installed pretty much everywhere, on Windows, OS X, Linux, and
 
 .. note:: Please subscribe to the `brightway2 updates mailing list <https://tinyletter.com/brightway2-updates>`__ to be informed of new releases.
 
-.. warning:: These instructions are for the development version of Brightway2 - some things might not work as intended! Please email cmutel@gmail.com with bug reports or frustrated desires.
-
 .. _anaconda:
 
 Recommended installation: Continuum Miniconda
