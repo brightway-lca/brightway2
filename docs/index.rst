@@ -15,6 +15,8 @@ Brightway2 is not for people that want to do the same old LCA studies, just with
 
 Basically, Brightway2 is for you if your project lies at the intersection of LCA and your imagination.
 
+.. warning:: These instructions are for the development version of Brightway2 - some things might not work as intended! Please email cmutel@gmail.com with bug reports or frustrated desires. See also the list of :ref:`knownissues`
+
 Understanding the manual
 ------------------------
 
@@ -24,10 +26,20 @@ As this manual covers a lot of material, it can be a bit overwhelming, especiall
 
 * First, :ref:`install Brightway2 <installation>` and its dependencies.
 * Second, read the :ref:`introduction to brightway2 concepts <intro>`.
-* Finally, Third, do the :ref:`five tutorials <five-tutorials>`.
+* Third, look at some of the :ref:`example notebooks <example-notebooks>`.
 * Finally, use the rest of the manual as a reference while creating next-generation LCA studies.
 
 In addition to the main index page and table of contents, in the HTML version you can search the documentation in the box on the left, and look for specific terms in the :ref:`genindex`. If you are reading this as a PDF, ``genindex`` isn't a link, but there is an index at the end of this document.
+
+.. _knownissues:
+
+Known issues
+------------
+
+* Improve test coverage
+* Need methods to change ``database`` and ``code`` for activities (currently just raises an error)
+* Manual has many outdated sections, and structure should be revamped
+* ``projects.project = 'foo'`` should be ``projects.current = 'foo'`` (maybe?)
 
 Brightway2 Manual
 =================
