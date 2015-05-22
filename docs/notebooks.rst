@@ -9,9 +9,11 @@ There are a number of notebooks, most of which haven't yet been updated to the l
 
 * `Activities and Exchanges <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Activities%20and%20exchanges.ipynb>`__
 * `Projects <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Projects.ipynb>`__
+* `Databases <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Databases.ipynb>`__
+* `Parameterized inventories <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Parameterized%20inventories.ipynb>`__
 * `Importing Ecoinvent <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/IO%20-%20importing%20Ecoinvent.ipynb>`__
 * `Importing a student project from SimaPro <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/IO%20-%20student%20project%20SimaPro%20export.ipynb>`__
-
+* `IO - SimaPro export with ecoinvent <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/IO%20-%20SimaPro%20export%20with%20ecoinvent.ipynb>`__
 
 Notebooks to be updated:
 
