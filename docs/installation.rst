@@ -65,6 +65,8 @@ You will have to activate your brightway2 environment in each new terminal windo
 
     pip install eight
 
+7a. If you are on Linux (or really anything other than OS X or Windows), you will need a C compiler to build the backage `bw2speedups <https://pypi.python.org/pypi/bw2speedups/2.0>`__. This should be provided by your distribution in something like ``build-essentials`` or ``build-essential``.
+
 8. Finally, install the development version of brightway2:
 
 .. code-block:: bash
