@@ -20,7 +20,10 @@ Basically, Brightway2 is for you if your project lies at the intersection of LCA
 Understanding the manual
 ------------------------
 
-.. note:: This manual is `available as a PDF <http://brightwaylca.org/Brightway2%20manual.pdf>`_ or `on the web <https://brightway2.readthedocs.org/en/latest/>`_. In addition to this manual, there is a `discussion mailing list <https://groups.google.com/forum/?fromgroups#!forum/brightway2>`_, and a `Brightway2 development blog <http://chris.mutel.org/>`_.
+..
+   .. note:: This manual is `available as a PDF <http://brightwaylca.org/Brightway2%20manual.pdf>`_ or `on the web <https://brightway2.readthedocs.org/en/latest/>`_.
+
+.. note:: In addition to this manual, there is a `discussion mailing list <https://groups.google.com/forum/?fromgroups#!forum/brightway2>`_, and a `Brightway2 development blog <http://chris.mutel.org/>`_.
 
 As this manual covers a lot of material, it can be a bit overwhelming, especially at first. The manual is designed to help you get started in the following order:
 

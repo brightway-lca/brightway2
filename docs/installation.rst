@@ -51,7 +51,7 @@ You will have to activate your brightway2 environment in each new terminal windo
 
 .. code-block:: bash
 
-   conda install numpy ipython ipython-notebook scipy flask lxml requests pip nose future docopt whoosh
+   conda install numpy ipython ipython-notebook scipy flask lxml requests pip nose docopt whoosh
 
 6a. If you are on Windows, you also need to do:
 
@@ -59,11 +59,11 @@ You will have to activate your brightway2 environment in each new terminal windo
 
     conda install pywin32
 
-7. Install some more dependencies:
+7. The package ``eight`` needs to be separately installed, to make sure it gets the exact right dependency packages installed:
 
 .. code-block:: bash
 
-    pip install pyprind unicodecsv voluptuous bw2speedups
+    pip install eight
 
 8. Finally, install the development version of brightway2:
 
@@ -72,6 +72,27 @@ You will have to activate your brightway2 environment in each new terminal windo
    pip install --pre --extra-index-url http://129.132.92.166:8787/simple/ --trusted-host 129.132.92.166 brightway2
 
 You can now use brightway2 from the python shell or in an ipython notebook.
+
+Activity-browser
+================
+
+.. image:: images/activity-browser.png
+    :align: center
+
+The activity browser is an **experimental** graphical user interface for Brightway2.
+
+To install:
+
+.. code-block:: bash
+
+    conda install networkx seaborn matplotlib
+    pip install https://bitbucket.org/cmutel/activity-browser/get/2.0.zip
+
+You can now run the activity browser with the command:
+
+.. code-block:: bash
+
+    activity-browser
 
 .. _windows-install:
 
