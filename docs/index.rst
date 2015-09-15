@@ -32,7 +32,7 @@ As this manual covers a lot of material, it can be a bit overwhelming, especiall
 * Third, look at some of the :ref:`example notebooks <example-notebooks>`.
 * Finally, use the rest of the manual as a reference while creating next-generation LCA studies.
 
-In addition to the main index page and table of contents, in the HTML version you can search the documentation in the box on the left, and look for specific terms in the :ref:`genindex`. If you are reading this as a PDF, ``genindex`` isn't a link, but there is an index at the end of this document.
+In addition to the main index page and table of contents, in the HTML version you can search the documentation in the box on the left, and look for specific terms in the :ref:`genindex` (if you are reading this as a PDF there is an index at the end of this document).
 
 .. _knownissues:
 
@@ -42,7 +42,6 @@ Known issues
 * Improve test coverage
 * Need methods to change ``database`` and ``code`` for activities (currently just raises an error)
 * Manual has many outdated sections, and structure should be revamped
-* ``projects.project = 'foo'`` should be ``projects.current = 'foo'`` (maybe?)
 
 Brightway2 Manual
 =================
