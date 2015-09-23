@@ -377,7 +377,7 @@ Add the following lines to the file ``.profile`` in your home directory using yo
 
 .. code-block:: bash
 
-    source /opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenvwrapper.sh
+    source /opt/local/Library/Frameworks/Python.framework/Versions/3.4/bin/virtualenvwrapper.sh
 
     if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
       . /opt/local/etc/profile.d/bash_completion.sh
@@ -433,7 +433,7 @@ Next, run the following command. Make sure you are in the correct environment/vi
 
     pip install -U --no-deps brightway2 bw2data bw2calc bw2analyzer bw2ui bw2io bw2parameters
 
-Finally, see if your data needs to be updated, and follow the instructions if it does:
+On rare occasion, the underlying data formats will change. To see if your data needs to be updated, run the following, and follow the instructions if a change is needed:
 
 .. code-block:: bash
 

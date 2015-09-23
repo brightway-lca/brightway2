@@ -8,14 +8,12 @@ Data structure
 
 Brightway2 is a framework for life cycle assessment (LCA). The word framework was chosen carefully, and the most powerful way to use Brightway2 is as a component of something bigger you want to build.
 
-The basic organization is hierarchical:
-
 .. image:: images/org-scheme.png
     :align: center
 
-At the top, we have projects. A project is a workspace with its own databases, LCI methods, and any other data you need. Each project is completely independent of other projects. Each project is a subdirectory in the file system.
+The basic organization is hierarchical. At the top level, we have projects. A project is a workspace with its own databases, LCI methods, and any other data you need. Each project is completely independent of other projects, and has its own copy of all of its data. Projects are saved as directories in the file system.
 
-Inside a project we have a number of objects that store data. Some of this data can be specific to a project, and not about LCA at all. For example, a database of vehicle registrations and lifetimes could be used to generate a fleet-based functional units for mobility assessments. However, the most common data objects as inventory *databases* and impact assessment *methods*.
+Inside a project we have a number of objects that store data. The most common data objects as inventory *databases* and impact assessment *methods*. However, this data can also not be about LCA at all. For example, a database of vehicle registrations and lifetimes could be used to generate fleet-based functional units for mobility sustainability assessments.
 
 The default way to store inventory databases is in a `SQLite <https://www.sqlite.org/>`__ database with two tables: *activities* and *exchanges*. Brightway2 shortens "inventory database" to just database, and a database is data that describes a supply chain graph. Nodes in this graph are called "activities", and include transforming and market activities, but also products and biosphere flows. Edges are called "exchanges", and describe a link between two nodes. An exchange could describe the input of a product to a transforming activity, or an emission of a biosphere flow by an activity, or the name and amount of a product produced by an activity.
 
