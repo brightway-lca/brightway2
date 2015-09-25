@@ -1,6 +1,34 @@
 Frequently Asked Questions
 **************************
 
+* How do I backup my data(bases)?
+* Where is my database?
+* How do I restore my data from a backup?
+* How can I send my buddy my data?
+* How do I search for a dataset.
+* How can I browse my LCI database?
+* How do I do an LCIA?
+* How can I create my own dataset (database)?
+* LCIA is so slow. How can I speed shit up? (Hint: multiprocessing, factorizing)
+* I have discovered a terrible bug. How do I report it?
+* Why do I get negative results in ecoinvent 3?
+
+Sorry, I don't have such a nice list as Niko right now, but I would say some of the stuff that we put in the activity browser would be very useful for other people as well, such as the "used-by" method or simply to get "human readable" activity data.
+
+A related topic: I know you have once started something with bw2-basic (but don't know much more about it). Standard tasks, like navigation in a database could be put in such a bw2 package so that other, more specific programs could build on that (like the activity browser). For my GUI-browser that I am currently writing I started such a standardTasks class.
+
+Cheers
+
+* How can I get the functional unit of a process? (Hint: bw2-browser, dictionary)
+* How can I get the location / ... of a process?
+* What are the upstream / downstream processes of my process?
+
+Ecoinvent 3 related things:
+
+* What is the difference between activity and product?
+* What are multi-output processes?
+* How can I identify those?
+
 What text editor or IDE should I use?
 =====================================
 
@@ -77,7 +105,7 @@ If your numerical work after LCA calculations is slow, consider the `numexpr <ht
 I get unicode errors!
 ---------------------
 
-.. note:: Since Brightway2 version 0.14, all strings should be unicode (i.e. they have a 'u' in front of the string, like ``u"foo"``), and not normal bytestrings. If you are careful to make sure your data is unicode, you shouldn't have this problem. See also the :ref:`recursive_str_to_unicode <recursive-str-to-unicode>` utility function.
+.. note:: Since Brightway2 version 0.14, all strings should be unicode (i.e. they have a 'u' in front of the string, like ``u"foo"``), and not normal bytestrings. If you are careful to make sure your data is unicode, you shouldn't have this problem.
 
 .. note:: You can specify the encoding of text in your python files as UTF-8 by putting the following as the *first line* in each file: ``# -*- coding: utf-8 -*-``
 

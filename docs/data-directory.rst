@@ -74,8 +74,6 @@ In addition, there are some values in the user preferences which are set automat
 How Brightway2 chooses the data directory
 -----------------------------------------
 
-.. note:: The data directory can be changed after Brightway2 is loaded with ``set_data_dir`` (see :ref:`set-data-dir`)
-
 The first thing that Brightway2 will look for is the `environment variable <http://foo.bar>`_ ``BRIGHTWAY2_DIR``. If this is found, then it is the location of the ``data directory``. An environment variable is especially convenient if you have multiple copies of Brightway2 installed on one machine, or if you want to keep separate workspaces for different projects.
 
 To set an environment variable:

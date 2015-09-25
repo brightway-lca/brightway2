@@ -1,3 +1,21 @@
+Tutorials and example notebooks
+*******************************
+
+.. _five-tutorials:
+
+Tutorials
+=========
+
+* `Tutorial 1 - Getting Started <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Tutorial%201%20-%20Getting%20Started.ipynb>`_
+* `Tutorial 2 - Working with data <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Tutorial%202%20-%20Working%20with%20data.ipynb>`_
+* `Tutorial 3 - Basic LCA Calculations <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Tutorial%203%20-%20Basic%20LCA%20Calculations.ipynb>`_
+* `Tutorial 4 - Meta-analysis <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Tutorial%204%20-%20Meta-analysis.ipynb>`_
+* `Tutorial 5 - Defining A New Matrix <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Tutorial%205%20-%20Defining%20A%20New%20Matrix.ipynb>`_
+
+After doing the tutorials, you should have an idea of what is possible with Brightway2. The rest of the manual will help explain its components in more detail, but is not really fun to read through in one sitting. It is more of a reference work than a page turner.
+
+You are ready to start exploring, and the manual will try to help you when you get lost.
+
 .. _example-notebooks:
 
 Notebooks
@@ -14,15 +32,3 @@ There are a number of notebooks, most of which haven't yet been updated to the l
 * `Importing Ecoinvent <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/IO%20-%20importing%20Ecoinvent.ipynb>`__
 * `Importing a student project from SimaPro <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/IO%20-%20student%20project%20SimaPro%20export.ipynb>`__
 * `Importing a SimaPro export with ecoinvent included <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/IO%20-%20SimaPro%20export%20with%20ecoinvent.ipynb>`__
-
-Notebooks to be updated:
-
-* `Tutorial 1 - Getting Started <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Tutorial%201%20-%20Getting%20Started.ipynb>`_
-* `Tutorial 2 - Working with data <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Tutorial%202%20-%20Working%20with%20data.ipynb>`_
-* `Tutorial 3 - Basic LCA Calculations <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Tutorial%203%20-%20Basic%20LCA%20Calculations.ipynb>`_
-* `Tutorial 4 - Meta-analysis <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Tutorial%204%20-%20Meta-analysis.ipynb>`_
-* `Tutorial 5 - Defining A New Matrix <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Tutorial%205%20-%20Defining%20A%20New%20Matrix.ipynb>`_
-
-After doing the tutorials, you should have an idea of what is possible with Brightway2. The rest of the manual will help explain its components in more detail, but is not really fun to read through in one sitting. It is more of a reference work than a page turner.
-
-You are ready to start exploring, and the manual will try to help you when you get lost.

@@ -43,15 +43,16 @@ Known issues
 * Need methods to change ``database`` and ``code`` for activities (currently just raises an error)
 * Manual has many outdated sections, and structure should be revamped
 
-Brightway2 Manual
-=================
+Users Manual
+============
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
 
    installation
    intro
    notebooks
+   io
    ui
    intermediate
    metadata
@@ -60,16 +61,26 @@ Brightway2 Manual
    ia
    lca
    faq
-   contributing
-   packages
    credits
 
-.. Technical Reference
-.. ===================
+Developers Manual
+=================
 
-.. .. toctree::
-..    :maxdepth: 3
+.. toctree::
+   :maxdepth: 2
 
-..    technical/bw2data
-..    technical/bw2calc
-..    technical/bw2analyzer
+   advanced-installation
+   porting
+   contributing
+   packages
+
+Technical Reference
+===================
+
+.. toctree::
+   :maxdepth: 2
+
+   technical/bw2data
+   technical/bw2calc
+   technical/bw2io
+   technical/bw2analyzer

@@ -6,10 +6,10 @@ User interfaces
 
 Brightway2 can be used from the interactive python shell. `IPython <http://ipython.org/>`_ is a nicer python shell that adds shortcuts, shell commands, and a lot else.
 
-IPython notebook
-----------------
+Jupyter notebooks
+-----------------
 
-`IPython notebooks <http://ipython.org/notebook.html>`_ are the probably the best way to interact with Brightway2 (the :ref:`five tutorials <five-tutorials>` are all ipython notebooks). These lab notebooks open incredible possibilities for interactive, reproducible, collaborative, and understandable science. Read more about the `praise IPython has been getting <http://ipython.org/#announcements>`_, and see `some awesome demos <https://github.com/ipython/ipython/wiki/A-gallery-of-interesting-IPython-Notebooks>`_. IPython notebooks are `not just for python <http://jupyter.org/>`_, either.
+`Jpyter notebooks <https://jupyter.org/>`_ are the probably the best way to interact with Brightway2 (the :ref:`five tutorials <five-tutorials>` are all Jupyter notebooks). These lab notebooks open incredible possibilities for interactive, reproducible, collaborative, and understandable science. Read more about the `praise IPython has been getting <http://ipython.org/#announcements>`_, and see `some awesome demos <https://github.com/ipython/ipython/wiki/A-gallery-of-interesting-IPython-Notebooks>`_.
 
 bw2-controller
 --------------
@@ -30,8 +30,6 @@ bw2-controller
 * *bw2-controller setup*: Download default biosphere database and LCIA methods.
 * *bw2-controller setup --data-dir=<datadir>*: Set the data directory permanently to <datadir>, and then download default biosphere database and LCIA methods.
 * *bw2-controller upload_logs [COMMENT]*: Upload error logs to the Brightway2 server. Useful for helpign debug platform-specific errors.
-* *bw2-controller color on*: Turn color output on.
-* *bw2-controller color off*: Turn color output off. Sometimes the color library doesn't work perfectly.
 
 bw2-browser
 -----------

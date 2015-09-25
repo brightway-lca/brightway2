@@ -184,7 +184,7 @@ Linking activity datasets within and between databases requires a way to uniquel
 Activity hashes
 ~~~~~~~~~~~~~~~
 
-When you import an *ecospold* or *SimaPro* dataset, the data format does not provide a way to uniquely identify each dataset. Brightway2 will generate codes that look like a bunch of nonsense, e.g.: ``6d336c64e3a0ff08dee166a1dfdf0946``. In this case, Brightway2 identifies an activity or flow with the `MD5 <http://en.wikipedia.org/wiki/MD5>`_ hash of a few attributes: For ecoinvent 2, the ``name``, ``location``, ``unit``, and ``categories``. For ecoinvent 3, the ``activity`` and ``reference product`` names. The function that computes the activity hash is :ref:`bw2data.utils.activity_hash <activity-hash>`.
+When you import an *ecospold* or *SimaPro* dataset, the data format does not provide a way to uniquely identify each dataset. Brightway2 will generate codes that look like a bunch of nonsense, e.g.: ``6d336c64e3a0ff08dee166a1dfdf0946``. In this case, Brightway2 identifies an activity or flow with the `MD5 <http://en.wikipedia.org/wiki/MD5>`_ hash of a few attributes: For ecoinvent 2, the ``name``, ``location``, ``unit``, and ``categories``. For ecoinvent 3, the ``activity`` and ``reference product`` names.
 
 .. _searching-databases:
 
@@ -214,8 +214,3 @@ The output from a applying a ``Query`` to a set of datasets is a search :ref:`se
 See the linked :ref:`technical documentation <searching>`, and a `notebook on database searching <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/Searching-databases.ipynb>`_.
 
 To expand upon the current searching options, consider `fuzzywuzzy <https://github.com/seatgeek/fuzzywuzzy>`_ and `Whoosh <https://pypi.python.org/pypi/Whoosh/>`_.
-
-Import and Export
------------------
-
-Import and export of LCI databases is covered in the technical documentation: :ref:`import-and-export`.
