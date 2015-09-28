@@ -12,28 +12,27 @@ Brightway2 can be installed pretty much everywhere, on Windows, OS X, Linux, and
 Windows
 =======
 
-1. Download the `Brightway2 Windows installation package <brightwaylca.org/data/bw2-python-windows.7z>`__.
-2. Next, use something like `7-zip <http://www.7-zip.org/>`__ to decompress this file to the ``C:`` drive, creating the directory ``C:\bw2-python``.
-3. In a command shell, run the following program: ``C:\bw2-python\bw2-env.bat``.
+1. Download the `Brightway2 Windows installation package <brightwaylca.org/data/bw2-python-windows.7z>`__, and extract to the ``C:\`` drive, using something like `7-zip <http://www.7-zip.org/>`__. This will create the directory ``C:\bw2-python\``.
+2. Launch (double-click) the application ``C:\bw2-python\bw2-notebook.bat`` to start a notebook server, or ``C:\bw2-python\bw2-ipython.bat`` to get an IPython shell.
 
-.. warning:: You will need to run this small program every time you open a new command shell window.
-
-4. In the same command shell, you can enter the ipython interpreter with ``ipython``, or run notebooks with ``jupyter notebook``. Note that you can't launch the notebook server from the ``C:\``, you must be in a directory.
+You can safely move this batch applications to your desktop or other folders.
 
 Launching and using a command shell
 -----------------------------------
 
-Launch a command shell using the application launcher. This varies depending on the version of Windows you are running, but is usually next to the main Windows home button. Typing ``cmd`` should be enough to find the program you are looking for:
+You can also manually launch Python in a command shell using the application launcher. The launch procedure varies depending on the version of Windows you are running, but is usually next to the main Windows home button. Typing ``cmd`` should be enough to find the program you are looking for:
 
 .. image:: images/cmd-shell-1.png
     :align: center
 
 .. note:: You can usually use the right mouse button to paste into command shell or PowerShell windows.
 
-It should be as simple as copying and pasting the commands from #3 and #4:
+You can copy and paste, or simply type commands, into the command shell. You will need to run the batch file ``C:\bw2-python\bw2-env.bat`` in each new command shell, to activate the brightway2 environment.
 
 .. image:: images/cmd-shell-2.png
     :align: center
+
+In the command shell, you can enter the ipython interpreter with ``ipython``, or run notebooks with ``jupyter notebook``. Note that you can't launch the notebook server from the ``C:\``, you must be in a directory.
 
 Using PowerShell
 ----------------
