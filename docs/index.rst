@@ -17,6 +17,8 @@ Basically, Brightway2 is for you if your project lies at the intersection of LCA
 
 .. warning:: These instructions are for the development version of Brightway2 - some things might not work as intended! Please email cmutel@gmail.com with bug reports or frustrated desires. See also the list of :ref:`knownissues`
 
+.. note:: Please subscribe to the `brightway2 updates mailing list <https://tinyletter.com/brightway2-updates>`__ to be informed of new releases.
+
 Understanding the manual
 ------------------------
 
@@ -49,7 +51,8 @@ Users Manual
 .. toctree::
    :maxdepth: 2
 
-   installation
+   windows
+   osx
    intro
    notebooks
    io
