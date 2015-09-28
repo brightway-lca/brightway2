@@ -51,8 +51,7 @@ Users Manual
 .. toctree::
    :maxdepth: 2
 
-   windows
-   osx
+   installation
    intro
    notebooks
    io
