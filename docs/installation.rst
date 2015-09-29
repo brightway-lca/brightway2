@@ -155,3 +155,12 @@ This will take a while, but there is a lot to do.
 4. In the same terminal window, you can enter the IPython interpreter with the command ``ipython``, or run Jupyter notebooks with ``jupyter notebook``.
 
 .. note:: In each new terminal window, you will need to activate the bw2 environment with the command ``source ~/bw2-python/bin/activate bw2`` before running IPython or the Jupyter notebook server.
+
+You can also `download scripts <http://brightwaylca.org/data/bw2-osx-scripts.zip>`__ to start both IPython and the Jupyter notebook server. These scripts can be run in the Terminal, or from the Finder, if you `associate them with the Terminal app <https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=os%20x%20associate%20extension%20with%20application>`__.
+
+.. _notebook-directory:
+
+Notebook directory
+==================
+
+It is best practice to store your notebooks in a different directory outside of the ``bw2-python`` directory, and you can copy the notebooks script to this directory. Indeed, you could create subdirectories for each project you will work on.

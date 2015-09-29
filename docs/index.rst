@@ -29,7 +29,7 @@ Understanding the manual
 
 As this manual covers a lot of material, it can be a bit overwhelming, especially at first. The manual is designed to help you get started in the following order:
 
-* First, :ref:`install Brightway2 <installation>` and its dependencies.
+* First, :ref:`install Brightway2 <installation>` and set up a :ref:`notebook directory <notebook-directory>`.
 * Second, read the :ref:`introduction to brightway2 concepts <intro>`.
 * Third, look at some of the :ref:`example notebooks <example-notebooks>`.
 * Finally, use the rest of the manual as a reference while creating next-generation LCA studies.
