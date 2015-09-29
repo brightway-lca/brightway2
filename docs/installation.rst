@@ -19,7 +19,7 @@ Installation package
 
 .. note:: It is important that the final directory is exactly ``C:\bw2-python\``, as this is what the batch files expect. If you want something more customized, please see the :ref:`advanced-installation` instructions.
 
-2. As Brightway2 is in active development, make sure you have the latest sources by running )double-click) ``C:\bw2-python\bw2-update.bat``.
+2. As Brightway2 is in active development, make sure you have the latest sources by running (double-click) ``C:\bw2-python\bw2-update.bat``.
 3. Launch (double-click) the application ``C:\bw2-python\bw2-notebook.bat`` to start a notebook server, or ``C:\bw2-python\bw2-ipython.bat`` to get an IPython shell.
 
 You can safely move these batch files to your desktop for easy access.
