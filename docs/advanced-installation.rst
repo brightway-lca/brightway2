@@ -6,15 +6,7 @@ Advanced Installation
 Creating the Brightway2 installation package
 ============================================
 
-1. Download peewee source, edit setup.py (Windows only)
-
-    ext_modules = None
-
-2. If using OS X, delete from .bash_profile (or delete .bash_profile completely):
-
-   export PATH="/Users/cmutel/miniconda3/bin:$PATH"
-
-3. After installing all packages, clean conda:
+After installing all packages, clean conda:
 
     conda clean -p -t -i -y
 
