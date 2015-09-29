@@ -137,6 +137,8 @@ Press the space bar to go through the license.
 
 Type ``yes`` to agree to the license terms. Next, change the default installation location to ``/Users/<your user name>/bw2-python``.
 
+.. warning:: You can't easily move this directory later, as its path is hard-coded in many files. If you make a mistake, it is better to start the installation from the beginning.
+
 Finally, I recommend **against** (i.e. type ``no``) adding the install location to your path:
 
 .. image:: images/osx-4.png
