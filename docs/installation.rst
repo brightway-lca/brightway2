@@ -111,18 +111,45 @@ bw2-notebook.bat
 Mac OS X
 ========
 
-Currently, there is no magic installation package for OS X. Please follow the :ref:`advanced-instructions`.
+1. Download the `Python 3 Miniconda installer <https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh>`__ to your ``Downloads`` folder.
+2. Open a new Terminal window. The Terminal is ``Appplications`` > ``Utilities`` > ``Terminal.app``., and enter (copy and paste) the following commands (each line is a separate command):
 
-.. 1. Download the `Brightway2 OS X installation package <brightwaylca.org/data/bw2-python-osx.tar.bz2>`__.
-.. 2. Open a terminal window in ``Appplications/Utilities/Terminal.app``, and enter the following command:
+.. code-block:: bash
 
-.. .. code-block:: bash
+    cd ~/Downloads
+    chmod +x Miniconda3-latest-MacOSX-x86_64.sh
+    ./Miniconda3-latest-MacOSX-x86_64.sh
 
-..     tar -jxf bw2-python-osx.tar.bz2 ~/
+This will start the Miniconda installer:
 
-.. .. code-block:: bash
+.. image:: images/osx-1.png
+    :align: center
 
-..     export PATH="/Users/<your user name>/bw2-python/bin:$PATH"
-..     activate bw2
+Press enter to start reading the Miniconda license.
 
-.. 4. In the same terminal window, you can enter the ipython interpreter with the command ``ipython``, or run Jupyter notebooks with ``jupyter notebook``.
+.. image:: images/osx-2.png
+    :align: center
+
+Press the space bar to go through the license.
+
+.. image:: images/osx-3.png
+    :align: center
+
+Type ``yes`` to agree to the license terms. Next, change the default installation location to ``/Users/<your user name>/bw2-python``.
+
+Finally, I recommend **against** (i.e. type ``no``) adding the install location to your path:
+
+.. image:: images/osx-4.png
+    :align: center
+
+You can always add this line to add the Conda directory to your path later if you want.
+
+3. Next, run the following long command (in the same terminal window):
+
+    cd ~/bw2-python && bin/conda install -q -y conda && bin/conda update -q conda && bin/conda create -y -n bw2 python=3.4 && source bin/activate bw2 && conda install -q -y wheel && conda update -q wheel pip setuptools && conda install -y numpy ipython ipython-notebook jupyter scipy flask lxml requests nose docopt whoosh && pip install --no-cache-dir eight && pip install --no-cache-dir --pre --extra-index-url http://129.132.92.166:8787/simple/ --trusted-host 129.132.92.166 brightway2
+
+This will take a while, but it will do a lot, so, you know...
+
+4. In the same terminal window, you can enter the IPython interpreter with the command ``ipython``, or run Jupyter notebooks with ``jupyter notebook``.
+
+.. note:: In each new terminal window, you will need to activate the bw2 environment with the command ``source ~/bw2-python/bin/activate bw2`` before running IPython or the Jupyter notebook server.

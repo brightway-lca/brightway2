@@ -41,14 +41,13 @@ On Mac OS X, you might have to make the bash shell executable:
 
 .. code-block:: bash
 
-    conda install conda
-    conda update conda
+    conda install conda && conda update conda
 
 4. Create a python environ for brightway2:
 
 .. code-block:: bash
 
-    conda create -n bw2 anaconda python=3.4
+    conda create -n bw2 python=3.4
 
 5. Activate your environment:
 
@@ -58,11 +57,11 @@ On Mac OS X, you might have to make the bash shell executable:
 
 You will have to activate your brightway2 environment in each new terminal window or command prompt.
 
-6. Install some dependencies:
+6. Install or update some dependencies:
 
 .. code-block:: bash
 
-   conda install numpy ipython ipython-notebook scipy flask lxml requests pip nose docopt whoosh
+   conda install wheel && conda update pip wheel setuptools && conda install numpy ipython ipython-notebook jupyter scipy flask lxml requests pip nose docopt whoosh
 
 6a. If you are on Windows, you also need to do:
 
@@ -74,7 +73,7 @@ You will have to activate your brightway2 environment in each new terminal windo
 
 .. code-block:: bash
 
-    pip install eight
+    pip install --no-cache-dir eight
 
 7a. If you are on Linux (or really anything other than OS X or Windows), you will need a C compiler to build the backage `bw2speedups <https://pypi.python.org/pypi/bw2speedups/2.0>`__. This should be provided by your distribution in something like ``build-essentials`` or ``build-essential``.
 
@@ -82,7 +81,7 @@ You will have to activate your brightway2 environment in each new terminal windo
 
 .. code-block:: bash
 
-   pip install --pre --extra-index-url http://129.132.92.166:8787/simple/ --trusted-host 129.132.92.166 brightway2
+   pip install --no-cache-dir --pre --extra-index-url http://129.132.92.166:8787/simple/ --trusted-host 129.132.92.166 brightway2
 
 You can now use brightway2 from the python shell or in an ipython notebook.
 
