@@ -148,7 +148,7 @@ You can always add this line to add the Conda directory to your path later if yo
 
 3. Next, run the following long command (in the same terminal window). This is one single long command:
 
-``cd ~/bw2-python && bin/conda install -q -y conda && bin/conda update -q conda && bin/conda create -y -n bw2 python=3.4 && source bin/activate bw2 && conda install -q -y wheel && conda update -q wheel pip setuptools && conda install -y numpy ipython ipython-notebook jupyter scipy flask lxml requests nose docopt whoosh psutil xlsxwriter xlrd unidecode && pip install --no-cache-dir eight && pip install --no-cache-dir --pre --extra-index-url http://129.132.92.166:8787/simple/ --trusted-host 129.132.92.166 brightway2``
+``cd ~/bw2-python && bin/conda install -q -y conda && bin/conda update -q conda && bin/conda create -y -n bw2 python=3.4 && source bin/activate bw2 && conda install -q -y wheel && conda update -q wheel pip setuptools && conda install -y numpy ipython ipython-notebook jupyter matplotlib scipy flask lxml requests nose docopt whoosh psutil xlsxwriter xlrd unidecode && pip install --no-cache-dir eight && pip install --no-cache-dir --pre --extra-index-url http://129.132.92.166:8787/simple/ --trusted-host 129.132.92.166 brightway2``
 
 This will take a while, but there is a lot to do.
 

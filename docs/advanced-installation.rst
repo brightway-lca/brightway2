@@ -53,7 +53,7 @@ You will have to activate your brightway2 environment in each new terminal windo
 
 .. code-block:: bash
 
-   conda install wheel && conda update pip wheel setuptools && conda install numpy ipython ipython-notebook jupyter scipy flask lxml requests nose docopt whoosh psutil xlsxwriter xlrd unidecode
+   conda install wheel && conda update pip wheel setuptools && conda install numpy ipython ipython-notebook jupyter matplotlib scipy flask lxml requests nose docopt whoosh psutil xlsxwriter xlrd unidecode
 
 6a. If you are on Windows, you also need to do:
 
