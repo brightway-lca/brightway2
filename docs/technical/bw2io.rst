@@ -210,7 +210,7 @@ Simapro
 Special
 ```````
 
-.. autofunction:: bw2io.strategies.special.add_dummy_processes
+.. autofunction:: bw2io.strategies.special.add_dummy_processes_and_rename_exchanges
 
 Export
 ======
