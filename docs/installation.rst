@@ -83,7 +83,7 @@ bw2-update.bat
     set PATH=C:\bw2-python\envs\bw2\Scripts\;C:\bw2-python\Scripts\;C:\bw2-python\;%PATH%
     CALL C:\bw2-python\Scripts\activate.bat bw2
     @ECHO ON
-    pip install -U --no-deps --pre --extra-index-url http://129.132.92.166:8787/simple/ --trusted-host 129.132.92.166 brightway2
+    pip install -U --no-deps --pre --extra-index-url http://129.132.92.166:8787/simple/ --trusted-host 129.132.92.166 brightway2 bw2io bw2data bw2calc bw2analyzer
     PAUSE
 
 bw2-ipython.bat
