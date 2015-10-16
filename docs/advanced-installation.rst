@@ -170,19 +170,36 @@ Unfortunately, the Brightway2 scripts aren't in our ``PATH`` environment variabl
 Linux
 -----
 
-General instructions are provided for Ubuntu; people using other distributions are assumed smart to be enough to adapt as necessary. See also :ref:`platform-agnostic` instructions above.
+General instructions are provided for Ubuntu 14.04; people using other distributions are assumed smart to be enough to adapt as necessary. See also :ref:`platform-agnostic` instructions above.
 
 First, install the required ``apt`` packages. You can select them in the graphical interface, or through one command in the terminal:
 
 .. code-block:: bash
 
-    sudo apt-get install python-scipy python-numpy python-nose python-pip python-libxml2 python-sphinx python-virtualenv python-virtualenvwrapper
+    sudo apt-get update
+    sudo apt-get install python-scipy python-numpy python-nose python-pip python-lxml cython python-virtualenv virtualenvwrapper build-essential libsuitesparse-dev swig
+
+Next, logout and login again, and create a new virtualenv:
+
+.. code-block:: bash
+
+    mkvirtualenv bw2
+    toggleglobalsitepackages
+
 
 Next, install Brightway2 using another terminal command:
 
 .. code-block:: bash
 
+    pip install -U pip wheel setuptools
+    pip install eight bw2speedups scikit-umfpack
     pip install --user brightway2
+
+You may get an error with scikit-umfpack, due to an incompatible UMFPACK. In this case, you will need to download the `source package <https://pypi.python.org/pypi/scikit-umfpack>`__, and then edit the file ``scikits/umfpack/setup.py`` and comment out or delete line 17:
+
+.. code-block:: python
+
+    umf_info['libraries'].insert(0, 'rt')
 
 .. _platform-agnostic:
 
