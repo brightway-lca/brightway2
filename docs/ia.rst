@@ -15,13 +15,35 @@ which is probably most applicable for those who are particularly concerned with 
 
     ('ecological scarcity 1997', 'total', 'total')
 
-Impact assessment method names can have any length and number of qualifiers, but must always be a list of strings.
+Impact assessment method names can have any length and number of qualifiers - there is nothing special or sacred about three levels - but must always be a list of strings.
 
 .. warning::
     For technical reasons, impact assessment names must be stored as a `tuple <http://docs.python.org/2/tutorial/datastructures.html#tuples-and-sequences>`_, not a `list <http://docs.python.org/2/tutorial/introduction.html#lists>`_, i.e. they must have ``()`` at the beginning and end, and not ``[]``.
 
 Method metadata
 ---------------
+
+Method metadata is a normal dictionary, and is indexed in the ``methods`` object. The object ``methods`` is a special dictionary that saves itself
+whenever values change, but is otherwise still a normal dictionary.
+``new_method.metadata`` is an alias for ``methods``. So, to change the metadata, do:
+
+.. code-block:: python
+
+    methods[('foo',)] = {'bar': True, ...}
+
+Or to chance a single value:
+
+.. code-block:: python
+
+    methods[('IPCC 2007', 'climate change', 'GWP 100a')]['timeframe'] = 100
+
+Note that after changing a single value, you will need to flush the
+changes to disk:
+
+
+.. code-block:: python
+
+    methods.flush()
 
 Methods should have the following metadata:
 
