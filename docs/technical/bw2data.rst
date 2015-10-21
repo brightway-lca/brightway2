@@ -182,7 +182,7 @@ Searching Databases
 Filter
 ------
 
-.. autoclass:: bw2data.Filter
+.. autoclass:: bw2data.query.Filter
     :members:
 
 .. _search-query:
@@ -190,7 +190,7 @@ Filter
 Query
 -----
 
-.. autoclass:: bw2data.Query
+.. autoclass:: bw2data.query.Query
     :members:
 
 .. _search-result:
@@ -198,7 +198,7 @@ Query
 Result
 ------
 
-.. autoclass:: bw2data.Result
+.. autoclass:: bw2data.query.Result
     :members:
 
 Dictionaries
