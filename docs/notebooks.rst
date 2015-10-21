@@ -7,7 +7,6 @@ Tutorials
 =========
 
 * `Tutorial 1 - Getting Started <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Tutorial%201%20-%20Getting%20Started.ipynb>`_
-* `Tutorial 2 - Working with data <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Tutorial%202%20-%20Working%20with%20data.ipynb>`_
 * `Tutorial 3 - Basic LCA Calculations <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Tutorial%203%20-%20Basic%20LCA%20Calculations.ipynb>`_
 * `Tutorial 4 - Meta-analysis <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Tutorial%204%20-%20Meta-analysis.ipynb>`_
 * `Tutorial 5 - Defining A New Matrix <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Tutorial%205%20-%20Defining%20A%20New%20Matrix.ipynb>`_
