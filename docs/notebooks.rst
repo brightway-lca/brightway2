@@ -33,4 +33,4 @@ There are a number of notebooks, most of which haven't yet been updated to the l
 * `Importing a student project from SimaPro <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/IO%20-%20student%20project%20SimaPro%20export.ipynb>`__
 * `Importing a SimaPro export with ecoinvent included <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/IO%20-%20SimaPro%20export%20with%20ecoinvent.ipynb>`__
 * `Importing FORWAST <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/IO%20-%20importing%20FORWAST.ipynb>`__
-* `Importing the World Food database (2.0, version 3) <<http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/IO%20-%20importing%20the%20World%20Food%20database%20(2.0%20v3).ipynb>>`__
+* `Importing the World Food database (2.0, version 3) <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/IO%20-%20importing%20the%20World%20Food%20database%20(2.0%20v3).ipynb>`__
