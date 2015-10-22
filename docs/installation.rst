@@ -152,6 +152,8 @@ You can always add this line to add the Conda directory to your path later if yo
 
 This will take a while, but there is a lot to do.
 
+.. note:: If you get an error message like ``No packages found in current osx-64 channels matching: conda``, then you need to edit the file ``.condarc`` in your home directory (``/Users/<your user name>/``), and add ``default`` to the channel list. See also `this conda issue <https://github.com/conda/conda/issues/742>`__.
+
 4. In the same terminal window, you can enter the IPython interpreter with the command ``ipython``, or run Jupyter notebooks with ``jupyter notebook``.
 
 .. note:: In each new terminal window, you will need to activate the bw2 environment with the command ``source ~/bw2-python/bin/activate bw2`` before running IPython or the Jupyter notebook server.
