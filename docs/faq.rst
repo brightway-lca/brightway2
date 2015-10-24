@@ -105,7 +105,7 @@ If your numerical work after LCA calculations is slow, consider the `numexpr <ht
 I get unicode errors!
 ---------------------
 
-.. note:: Since Brightway2 version 0.14, all strings should be unicode (i.e. they have a 'u' in front of the string, like ``u"foo"``), and not normal bytestrings. If you are careful to make sure your data is unicode, you shouldn't have this problem.
+.. note:: All strings should be unicode. In Python 2.7, they have a 'u' in front of the string, like ``u"foo"``; in Python 3, all strings are unicode. If you are careful to make sure your data is unicode, you shouldn't have this problem.
 
 .. note:: You can specify the encoding of text in your python files as UTF-8 by putting the following as the *first line* in each file: ``# -*- coding: utf-8 -*-``
 
@@ -132,7 +132,7 @@ For understanding the difference between bytestrings and unicode:
 
 For help in fixing strings:
 
-    * `Fixing Unicode mistakes and more: the ftfy package <http://blog.luminoso.com/2012/08/24/fixing-unicode-mistakes-and-more-the-ftfy-package/>`_
+    * `FTFY - library to fix common encoding problems <https://github.com/LuminosoInsight/python-ftfy>`__ with accompanying blog post: `Fixing Unicode mistakes and more: the ftfy package <http://blog.luminoso.com/2012/08/24/fixing-unicode-mistakes-and-more-the-ftfy-package/>`_
     * `Is there a way to determine the encoding of text file? <http://stackoverflow.com/questions/436220/python-is-there-a-way-to-determine-the-encoding-of-text-file>`_
     * `Chardet: The Universal Character Encoding Detector <https://pypi.python.org/pypi/chardet>`_
 

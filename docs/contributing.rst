@@ -6,17 +6,6 @@ Contributing
 
 Brightway2 is designed to be easy to use and develop for. The modular structure of Brightway2 means that you don't have to learn everything at once - pick the subject that best suits your interests and skills, download the code, and start hacking!
 
-Getting started with Python
----------------------------
-
-Learning to program is hard - luckily, Python is a great language for beginners. Here are some good beginning resources:
-
-* `How to think like a computer scientist - Think Python <http://www.greenteapress.com/thinkpython/>`_
-* `Software carpentry <http://software-carpentry.org/4_0/python/index.html>`_
-* `Python the hard way <http://learnpythonthehardway.org/>`_
-* `Python scientific lectures <http://scipy-lectures.github.com/index.html>`_
-* `Google's Python class <https://developers.google.com/edu/python/>`_
-
 Required packages
 -----------------
 

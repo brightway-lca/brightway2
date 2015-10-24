@@ -3,6 +3,18 @@
 Advanced Installation
 *********************
 
+Python 2 or 3
+=============
+
+Brightway2 is written for python >= 3.4, but runs on python 2.7 as well. Tests are run against both 2.7 and 3.4. Python 3 versions less than 3.4 are not supported.
+
+The library `eight <https://github.com/kislyuk/eight>`__ is used to forward-port python 2.7 code to 3.4. This means that ``super``, ``str``, and ``bytes`` have 3.4 semantics. The print function and true division are imported from ``__future__``, as are ``unicode_literals``.
+
+See also:
+
+* `Common migration problems <http://python3porting.com/problems.html>`__
+* `FTFY - library to fix common encoding problems <https://github.com/LuminosoInsight/python-ftfy>`__
+
 Creating the Brightway2 installation package
 ============================================
 
@@ -364,3 +376,85 @@ On rare occasion, the underlying data formats will change. To see if your data n
 .. code-block:: bash
 
     bw2-uptodate
+
+.. _packages:
+
+Brightway2 Packages
+===================
+
+Brightway2 is split into several packages, where each package fulfills a certain role in the framework. The idea is that you can be an expert on a certain package, but not have to learn anything about other packages.
+
+Core packages
+-------------
+
+brightway2
+``````````
+
+This manual, plus a generic container that imports from brightway2-data and brightway2-calc.
+
+* `source code <https://bitbucket.org/cmutel/brightway2>`__
+* `documentation <https://brightway2.readthedocs.org/en/latest/>`__
+
+brightway2-data
+```````````````
+
+This package provides facilities for managing LCI databases and LCIA methods, as well as input and output scripts.
+
+* `source code <https://bitbucket.org/cmutel/brightway2-data>`__
+* `documentation <https://bw2data.readthedocs.org/en/latest/>`__
+* `report on how well the tests cover the code base <http://coverage.brightwaylca.org/data/index.html>`__
+
+brightway2-calc
+```````````````
+
+This package provides classes for LCA calculations, both static and uncertain, and basic regionalized LCA.
+
+* `source code <https://bitbucket.org/cmutel/brightway2-calc>`__
+* `documentation <https://brightway2-calc.readthedocs.org/en/latest/>`__
+* `report on how well the tests cover the code base <http://coverage.brightwaylca.org/calc/index.html>`__
+
+brightway2-analyzer
+```````````````````
+
+This package provides functions for interpreting and analyzing LCI databases, LCIA methods, and LCA results.
+
+* `source code <https://bitbucket.org/cmutel/brightway2-analyzer>`__
+* `documentation <https://bw2analyzer.readthedocs.org/en/latest/>`__
+* `report on how well the tests cover the code base <http://coverage.brightwaylca.org/analyzer/index.html>`__
+
+.. brightway2-ui
+.. `````````````
+
+.. This package provides both command line and web user interfaces.
+
+.. * `source code <https://bitbucket.org/cmutel/brightway2-ui>`__
+
+Secondary packages
+------------------
+
+These packages are extensions to Brightway2, and have lower standards for documentation and test coverage. They show how Brightway2 can be extended into new areas of LCA.
+
+brightway2-regional
+```````````````````
+
+Full-fledged regionalization in Brightway2.
+
+* `source code <https://bitbucket.org/cmutel/brightway2-regional>`__
+* `documentation <https://brightway2-regional.readthedocs.org/en/latest/>`__
+
+brightway2-temporalis
+`````````````````````
+
+Dynamic LCA in Brightway2.
+
+* `source code <https://bitbucket.org/cmutel/brightway2-temporalis>`__
+* `documentation <https://brightway2-temporalis.readthedocs.org/en/latest/>`__
+
+.. brightway2-restapi
+.. ``````````````````
+
+.. A simple `REST <http://en.wikipedia.org/wiki/Representational_state_transfer>`_ `API <http://en.wikipedia.org/wiki/Application_programming_interface>`_ for Brightway2 LCI data.
+
+.. * `source code <https://bitbucket.org/cmutel/brightway2-restapi>`__
+.. * `documentation <http://brightway2-restapi.readthedocs.org/en/latest/>`__
+.. * `100% test coverage <http://coverage.brightwaylca.org/restapi/index.html>`__

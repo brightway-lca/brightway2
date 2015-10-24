@@ -52,29 +52,15 @@ Users Manual
    :maxdepth: 2
 
    installation
+   advanced-installation
+   upgrading
    intro
    notebooks
-   io
    ui
-   intermediate
-   metadata
-   uncertainty
-   lci
-   ia
    lca
    faq
-   credits
-
-Developers Manual
-=================
-
-.. toctree::
-   :maxdepth: 2
-
-   advanced-installation
-   porting
    contributing
-   packages
+   credits
 
 Technical Reference
 ===================
