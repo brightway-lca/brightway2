@@ -4,7 +4,7 @@
 Brightway2 life cycle assessment framework
 ==========================================
 
-Brightway2 is a open source framework for life cycle assessment (LCA). It is designed to be easy to use, while still being powerful. Brightway2 doesn't try to replace software like SimaPro or OpenLCA, but instead offers possibilities to those who need to go break the limits of conventional LCA. Brightway2 is especially attractive for researchers, especially when used with `IPython notebooks <http://ipython.org/notebook.html>`_. The core principles of Brightway2 are simplicity, innovation, and power.
+Brightway2 is a open source framework for life cycle assessment (LCA). It is designed to be easy to use, while still being powerful. Brightway2 doesn't try to replace software like SimaPro or OpenLCA, but instead offers possibilities to those who need to go break the limits of conventional LCA. Brightway2 is especially attractive for researchers, especially when used with `Jupyter notebooks <http://jupyter.org/>`__. The core principles of Brightway2 are simplicity, innovation, and power.
 
 Who is Brightway2 for?
 ----------------------
@@ -44,6 +44,7 @@ Known issues
 * Improve test coverage
 * Need methods to change ``database`` and ``code`` for activities (currently just raises an error)
 * Manual has many outdated sections, and structure should be revamped
+* Issue trackers for `brightway2 <https://bitbucket.org/cmutel/brightway2/issues?status=new&status=open>`__, `bw2data <https://bitbucket.org/cmutel/brightway2-data/issues?status=new&status=open>`__,  `bw2io <https://bitbucket.org/cmutel/brightway2-io/issues?status=new&status=open>`__, `bw2calc <https://bitbucket.org/cmutel/brightway2-calc/issues?status=new&status=open>`__, and `bw2analyzer <https://bitbucket.org/cmutel/brightway2-analyzer/issues?status=new&status=open>`__.
 
 Users Manual
 ============

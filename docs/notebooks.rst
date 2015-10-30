@@ -17,8 +17,8 @@ You are ready to start exploring, and the manual will try to help you when you g
 
 .. _example-notebooks:
 
-Notebooks
-=========
+Example notebooks
+=================
 
 In general, this manual tells you *what* to do; the notebooks tell you *how* to do it.
 
@@ -28,6 +28,12 @@ There are a number of notebooks, most of which haven't yet been updated to the l
 * `Projects <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Projects.ipynb>`__
 * `Databases <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Databases.ipynb>`__
 * `Parameterized inventories <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Parameterized%20inventories.ipynb>`__
+
+Importing data: example notebooks
+---------------------------------
+
+Importing data can be difficult, due to data incompatibilities between different software implementations. Here are some notebooks that show the steps needed to import various databases.
+
 * `Importing Ecoinvent <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/IO%20-%20importing%20Ecoinvent.ipynb>`__
 * `Importing the US LCI database (note: work in progress) <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/IO%20-%20Importing%20the%20US%20LCI%20database.ipynb>`__
 * `Importing a student project from SimaPro <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/IO%20-%20student%20project%20SimaPro%20export.ipynb>`__
