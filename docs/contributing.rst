@@ -48,6 +48,8 @@ Making the backend better
 
 There are plenty of big and small things that can be done to improve all aspects of the Brightway2 calculation routines and and data management.
 
+* Write and test the performance of a backend using `ZODB <http://www.zodb.org/en/latest/index.html>`__.
+
 Principles for good code
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
