@@ -207,7 +207,6 @@ If you want to install packages manually, or not install everything, Brightway2 
 * colorama
 * docopt
 * flask
-* flask
 * lxml
 * numpy
 * progressbar-ipython
