@@ -27,6 +27,8 @@ Recommended installation 1: Enthought Canopy
 
 After installing Canopy, install all Canopy packages, both "Free packages" and "Canopy packages". You don't technically need all of them right away, but it is easier to get them all instead of manually selecting one by one.
 
+.. note:: Canopy Version: 1.5.5 (32 bit) under Windows 7 does not have an "install all packages" button. The good thing is that by installing Brightway2 package from the command line also installs all necessary packages also. 
+
 .. image:: images/canopy-all-packages.png
     :align: center
 
@@ -206,7 +208,6 @@ If you want to install packages manually, or not install everything, Brightway2 
 
 * colorama
 * docopt
-* flask
 * flask
 * lxml
 * numpy
