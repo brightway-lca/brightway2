@@ -10,9 +10,16 @@ Brightway2 is written primarily in Python, and some basic knowledge of the langu
 
 * `How to think like a computer scientist - Think Python <http://www.greenteapress.com/thinkpython/>`_
 * `Software carpentry <http://software-carpentry.org/4_0/python/index.html>`_
+* `The official tutorial <https://docs.python.org/3/tutorial/introduction.html>`__
 * `Python the hard way <http://learnpythonthehardway.org/>`_
 * `Python scientific lectures <http://scipy-lectures.github.com/index.html>`_
+* `Python for you and me <http://pymbook.readthedocs.org/en/latest/index.html>`__
 * `Google's Python class <https://developers.google.com/edu/python/>`_
+
+Actual books:
+
+* `Automate the Boring Stuff with Python <https://www.nostarch.com/automatestuff>`__
+* `Fluent Python <http://shop.oreilly.com/product/0636920032519.do>`__
 
 Projects
 --------
