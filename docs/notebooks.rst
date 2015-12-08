@@ -35,8 +35,12 @@ Importing data: example notebooks
 Importing data can be difficult, due to data incompatibilities between different software implementations. Here are some notebooks that show the steps needed to import various databases.
 
 * `Importing Ecoinvent <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/IO%20-%20importing%20Ecoinvent.ipynb>`__
+* `Importing data from an Excel file <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/IO%20-%20importing%20an%20Excel%20file.ipynb>`__
 * `Importing the US LCI database (note: work in progress) <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/IO%20-%20Importing%20the%20US%20LCI%20database.ipynb>`__
 * `Importing a student project from SimaPro <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/IO%20-%20student%20project%20SimaPro%20export.ipynb>`__
 * `Importing a SimaPro export with ecoinvent included <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/IO%20-%20SimaPro%20export%20with%20ecoinvent.ipynb>`__
 * `Importing FORWAST <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/IO%20-%20importing%20FORWAST.ipynb>`__
 * `Importing the World Food database (2.0, version 3) <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/IO%20-%20importing%20the%20World%20Food%20database%20(2.0%20v3).ipynb>`__
+
+
+
