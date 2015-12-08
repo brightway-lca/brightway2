@@ -60,6 +60,7 @@ Users Manual
    ui
    lca
    faq
+   issues
    contributing
    credits
 
