@@ -85,7 +85,7 @@ You will have to activate your brightway2 environment in each new terminal windo
 
 .. code-block:: bash
 
-   pip install --no-cache-dir --pre --extra-index-url http://129.132.92.166:8787/simple/ --trusted-host 129.132.92.166 brightway2
+   pip install --no-cache-dir --pre brightway2
 
 You can now use brightway2 from the python shell or in an ipython notebook.
 

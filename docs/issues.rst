@@ -17,8 +17,6 @@ brightway2-data
 `cmutel/brightway2-data <http://bitbucket.org/cmutel/brightway2-data/issues/>`__
 
 * #14 `Some LCIA methods don't have ecoinvent3 links <https://bitbucket.org/cmutel/brightway2-data/issue/14>`__
-* #22 `Creating in activity browser doesn't add process to \`mapping\` <https://bitbucket.org/cmutel/brightway2-data/issue/22>`__
-* #20 `__repr__ of e.g. databases should list databases <https://bitbucket.org/cmutel/brightway2-data/issue/20>`__
 
 
 brightway2-io

@@ -83,7 +83,7 @@ bw2-update.bat
     set PATH=C:\bw2-python\envs\bw2\Scripts\;C:\bw2-python\Scripts\;C:\bw2-python\;%PATH%
     CALL C:\bw2-python\Scripts\activate.bat bw2
     @ECHO ON
-    pip install -U --no-deps --pre --extra-index-url http://129.132.92.166:8787/simple/ --trusted-host 129.132.92.166 brightway2 bw2io bw2data bw2calc bw2analyzer
+    pip install -U --no-deps --pre brightway2 bw2io bw2data bw2calc bw2analyzer
     PAUSE
 
 bw2-ipython.bat
@@ -148,7 +148,7 @@ You can always add this line to add the Conda directory to your path later if yo
 
 3. Next, run the following long command (in the same terminal window). This is one single long command:
 
-``cd ~/bw2-python && bin/conda install -q -y conda && bin/conda update -q conda && bin/conda create -y -n bw2 python=3.4 && source bin/activate bw2 && conda install -q -y wheel && conda update -q wheel pip setuptools && conda install -y numpy ipython ipython-notebook jupyter matplotlib scipy flask lxml requests nose docopt whoosh psutil xlsxwriter xlrd unidecode && pip install --no-cache-dir eight && pip install --no-cache-dir --pre --extra-index-url http://129.132.92.166:8787/simple/ --trusted-host 129.132.92.166 brightway2``
+``cd ~/bw2-python && bin/conda install -q -y conda && bin/conda update -q conda && bin/conda create -y -n bw2 python=3.4 && source bin/activate bw2 && conda install -q -y wheel && conda update -q wheel pip setuptools && conda install -y numpy ipython ipython-notebook jupyter matplotlib scipy flask lxml requests nose docopt whoosh psutil xlsxwriter xlrd unidecode && pip install --no-cache-dir eight && pip install --no-cache-dir --pre brightway2``
 
 This will take a while, but there is a lot to do.
 
