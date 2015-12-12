@@ -585,7 +585,7 @@ The options to examine or resolve the unlinked exchanges are:
 .. note:: You can't write an LCI database with unlinked exchanges.
 
 Migrations
-----------
+``````````
 
 Sometimes the only way to correctly link activities or biosphere flows is by applying a list of name (or other field) transforms. For example, SimaPro will export a process named "[sulfonyl]urea-compound {RoW}| production | Alloc Rec, S", which corresponds to the ecoinvent process "[sulfonyl]urea-compound production", with reference product "[sulfonyl]urea-compound" and location "RoW". In another example, in ecoinvent 2, emissions of water to air were measured in kilograms, and in ecoinvent 3, emissions of water to air are measured in cubic meters. In this case, our migration would look like this:
 
@@ -620,7 +620,7 @@ A few additional notes:
 * Subcategories are not expanded automatically, so a separate row in the migrations file would be needed for e.g. ``water (air, non-urban air or from high stacks)``.
 
 Importing an LCIA method
-------------------------
+````````````````````````
 
 LCIA methods can be imported from ecospold 1 XML files (``EcoinventLCIAImporter``) and SimaPro CSV files (``SimaProLCIACSVImporter``).
 
@@ -646,34 +646,3 @@ If there are unlinked characterization factors, you have several options. If you
     * TODO: You can write all biosphere flows to a new biosphere database with ``.create_new_biosphere("some name")``.
     * If you are satisfied that you don't care about the unlinked characterization factors, you can drop them with ``.drop_unlinked()``.
     * Alternatively, you can add the missing biosphere flows to the biosphere database using ``.add_missing_cfs()``.
-
-TODO
-----
-
-    * Tests for each strategy
-    * New migrations module
-
-        - ecoinvent 2.2 > 3.01 (each system model)
-        - ecoinvent 3.01 > 3.1 (each system model)
-        - SimaPro > ecoinvent biosphere
-
-    * US LCI importer
-
-        - Add DUMMY processes (strategy to add unlinked activities)
-        - Fix names
-
-            + Easy way to get missing and matching values in new version?
-
-    * SimaPro CSV: Can uncertainty values be specific if amount is a formula? What would that mean?
-    * SimaPro CSV: Extract and apply unit conversions
-
-    * Comparison chart of all freely available databases
-
-        - USDA
-        - US LCI
-        - GreenDelta nexus website
-
-    * Specific issues
-
-        - SimaPro LCIA importer - waste types seem incorrect
-        - Ned to find a clever way to replace formula names that conflict with Python keywords
