@@ -5,12 +5,14 @@ Authors
 -------
 
 * `Chris Mutel <http://chris.mutel.org/>`__
-* `Bernhard Steubing <http://www.ifu.ethz.ch/ESD/people/bsteubin>`__
-* `Marie de Saxcé <http://lca-net.com/about/who-we-are/>`__
+* `Giuseppe Cardellini <http://www.kuleuven.be/wieiswie/en/person/90387>`__
+* `Andreas Froemelt <http://www.ifu.ethz.ch/ESD/people/andrefro>`__
 * `Niko Heeren <http://www.ifu.ethz.ch/staff/nheeren/index_EN>`__
 * `Aurelian Jaggi <http://eaternity.ch/team/Aurelian-Jaggi/>`__
-* `Andreas Froemelt <http://www.ifu.ethz.ch/ESD/people/andrefro>`__
-* `lowks <https://bitbucket.org/lowks>`__
+* `Maghimai Marcus <https://www.researchgate.net/profile/Maghimai_Marcus2>`__
+* `Marie de Saxcé <http://lca-net.com/about/who-we-are/>`__
+* `Low Kian Seong <https://bitbucket.org/lowks>`__
+* `Bernhard Steubing <http://www.ifu.ethz.ch/ESD/people/bsteubin>`__
 
 Logo by `eightz <http://www.fiverr.com/ei8htz>`__.
 

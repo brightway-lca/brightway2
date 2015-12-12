@@ -20,6 +20,7 @@ Actual books:
 
 * `Automate the Boring Stuff with Python <https://www.nostarch.com/automatestuff>`__
 * `Fluent Python <http://shop.oreilly.com/product/0636920032519.do>`__
+* `Coding the Matrix: Linear Algebra through Applications to Computer Science (Matrix math using Python) <http://codingthematrix.com/>`__
 
 Projects
 --------
