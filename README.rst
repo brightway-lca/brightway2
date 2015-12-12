@@ -11,7 +11,7 @@ Official site:
 
 Online documentation:
 
-* https://brightway2.readthedocs.org/
+* http://docs.brightwaylca.org/
 
 Development blog:
 
