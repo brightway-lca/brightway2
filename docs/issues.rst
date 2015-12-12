@@ -9,8 +9,6 @@ brightway2
 `cmutel/brightway2 <http://bitbucket.org/cmutel/brightway2/issues/>`__
 
 * #4 `Review tutorials and notebooks <https://bitbucket.org/cmutel/brightway2/issue/4>`__
-* #3 `Add Brightway2-io section to manual introduction <https://bitbucket.org/cmutel/brightway2/issue/3>`__
-* #2 `Revise FAQ section of manual <https://bitbucket.org/cmutel/brightway2/issue/2>`__
 
 
 brightway2-calc
@@ -38,6 +36,7 @@ brightway2-io
 
 `cmutel/brightway2-io <http://bitbucket.org/cmutel/brightway2-io/issues/>`__
 
+* #15 `Importer for OLCA JSON LD schema <https://bitbucket.org/cmutel/brightway2-io/issue/15>`__
 * #14 `Need clever approach to replace formula parameters names that conflict with Python reserved words <https://bitbucket.org/cmutel/brightway2-io/issue/14>`__
 * #13 `SimaPro LCIA importer: Waste types seem to be handled incorrectly <https://bitbucket.org/cmutel/brightway2-io/issue/13>`__
 * #12 `Comparison chart for each major/freely available database <https://bitbucket.org/cmutel/brightway2-io/issue/12>`__
