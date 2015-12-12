@@ -11,7 +11,9 @@ import sys
 USERNAME = "cmutel"
 PASSWORD = os.environ['BITBUCKET_PASSWORD']
 
-HEADER = """Known Issues
+HEADER = """.. _knownissues:
+
+Known Issues
 ============
 
 """
