@@ -1,4 +1,4 @@
-Brightway2-IO
+Brightway2-io
 *************
 
 BW2Package
