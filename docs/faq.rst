@@ -125,6 +125,10 @@ The problem here is that python tries to convert a character from unicode to an 
 
 For understanding the difference between bytestrings and unicode:
 
+First, read `What actually changed in the text model between Python 2 and Python 3? <http://python-notes.curiousefficiency.org/en/latest/python3/questions_and_answers.html#what-actually-changed-in-the-text-model-between-python-2-and-python-3>`__ - a very understandable and detailed description of what the title says.
+
+Then, see the following resources:
+
     * `PrintFails <https://wiki.python.org/moin/PrintFails>`_
     * `Why does Python print unicode characters when the default encoding is ASCII? <http://stackoverflow.com/questions/2596714/why-does-python-print-unicode-characters-when-the-default-encoding-is-ascii>`_
     * `IPython Notebook: What is the default encoding? <http://stackoverflow.com/questions/15420672/ipython-notebook-what-is-the-default-encoding>`_
