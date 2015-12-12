@@ -22,28 +22,40 @@ Actual books:
 * `Fluent Python <http://shop.oreilly.com/product/0636920032519.do>`__
 * `Coding the Matrix: Linear Algebra through Applications to Computer Science (Matrix math using Python) <http://codingthematrix.com/>`__
 
+.. note:: Brightway2 is compatible with both Python 2.7, 3.4, and 3.5, but is primarily written and tested using Python 3.5.
+
+Main Brightway2 components
+--------------------------
+
+Brightway2 is split into several main packages:
+
+* `Brightway2` is the umbrella package, as well as documentation.
+* `Brightway2-data` handles storing and searching all data sources (databases, LCIA methods, etc.).
+* `Brightway2-calc` does LCA calculations.
+* `Brightway2-analyzer` analyzes input data like databases and methods, as well as the result of LCA calculations.
+
 Projects
 --------
 
-The basic organization is hierarchical. At the top level, we have projects. A project is self-contained, with its own copy of data, LCIA methods, calculations, assumptions, and any other data you need. Each project is completely independent of other projects, and has its own copy of all data. Projects are saved as directories in the file system.
+Data in Brightway2 is structured in a hierarchy. At the top level, we have projects. A project is self-contained, with its own copy of data, LCIA methods, calculations, assumptions, and any other data you need. Each project is completely independent of other projects.Projects are saved as subdirectories in the file system.
 
 .. image:: images/org-scheme.png
     :align: center
 
 Inside a project we have a number of objects that store data. The most common data objects are inventory *databases* and impact assessment *methods*. However, non-LCA data can also be included. For example, a set of vehicle registrations and lifetimes could also be stored in a project, and used to generate fleet-based scenarios for sustainability assessment of mobility services.
 
-Project are created in an OS-suitable location with the help of the `appdirs <https://github.com/ActiveState/appdirs>`__ library.
+Project are created in a suitable location for your operating system with the help of the `appdirs <https://github.com/ActiveState/appdirs>`__ library.
 
-Projects can be easily created, copied, manipulated, or delete. See the `projects example notebook <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Projects.ipynb>`__.
+Projects can be easily created, copied, manipulated, or deleted. See the `projects example notebook <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Projects.ipynb>`__.
 
 Inventory Databases
 -------------------
 
-In Brightway2, a *database* is the object used to organize a set of nodes and edges in a supply chain graph. For example, a version of ecoinvent would be a database, but so would a set of biosphere flows. Databases can be big, like ecoinvent, or as small as a single dataset. You can have as many databases as you like, and databases can have links into other databases. You can also have databases that each depend on each other.
+In Brightway2, a *database* is the object used to organize a set of nodes and edges in a life cycle inventory graph of the industrial supply chain and natural world. For example, a specific version of ecoinvent could be a database, but so would a set of biosphere flows, as biosphere flows are also nodes in our inventory graph. Databases can be big, like ecoinvent, or as small as a single dataset. You can have as many databases as you like, and databases can have links into other databases. You can also have databases that each depend on each other.
 
 SimaPro differentiates between what it calls *projects* and *libraries*, but both would be a *database* in Brightway2.
 
-Databases can easily created, copied, modified, iterated over, searched, and delted. See the `databases example notebook <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Databases.ipynb>`__.
+Databases can be easily created, copied, modified, iterated over, searched, and delted. See the `databases example notebook <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Databases.ipynb>`__.
 
 Activities and Exchanges
 ------------------------
@@ -96,8 +108,8 @@ The document structure is:
 
 .. _dataset-codes:
 
-Uniquely identifying datasets
------------------------------
+Uniquely identifying activities
+-------------------------------
 
 Linking activity datasets within and between databases requires a way to uniquely identify each dataset - Brightway2 calls this unique identifier a code. A code can be a number, like ``1``, or a string of numbers and letters, like ``swiss ch33se``. When you create datasets manually, you will need to assign each dataset a code. When you import a database, the codes will be automatically generated for you.
 
@@ -492,11 +504,176 @@ Importing data - not as easy as you would prefer
 
 There are some standards for life cycle inventory data, but the sad truth is that there are no really good standards, and each implementation of the standards has its own quirks. The basic strategy for importing data from other programs is the following:
 
-First, data is extracted from the export format (ecospold 1, ecospold 2, SimaPro CSV) into a common Python format. Next a series or strategies is applied to the data to link exchanges. This is the difficult and delicate step, as it can sometimes be quite difficult to find the correct links. Finally, the cleaned and linked data is written to a new database.
+* First, data is extracted from the export format (ecospold 1, ecospold 2, SimaPro CSV) into the same format as the activity and exchanges discussed above. Extraction is done using a format-specific extractor. Currently, there are extractors for `ecospold1`, `ecospold1-lcia`, `ecospold2`, `excel`, `exiobase`, `simapro CSV`, and `simapro CSV-lcia`.
+* Next, each dataset is normalized or transformed to make it better conform to what Brightway2 expects. This could mean, for example, copying the only production exchange to the list of `products`, or normalizing the units or biosphere category names. This step could also include applying migrations, which are additional dataset that can be used to transform data to new forms. For example, SimaPro changes ecoinvent activity and product names, and the `simapro-ecoinvent-3` changes these names back to what ecoinvent provided. Migrations are explained in more detail below.
+* The third step is to link exchanges to activities within the imported data. Brightway2 has a powerful generic linking function called `link_iterable_by_fields` that does the heavy lifting. This function will link an exchange if the fields match, i.e. it has the same name, location, unit, etc. `link_iterable_by_fields` can also be told to only link certain types of exchanges, such as biosphere exchanges.
+* Many imported datasets will link to other databases already installed on your computer. You can link these exchanges using the `.match_database()` function. You can customize this function by specifying the fields to use, as well as other options.
+* You should then check on the quality of linking using the `statistics()` function, which will tell you how many exchanges are in the data, and how many unlinked exchanges are present, as well as the types of unlinked exchanges.
+* You are finally ready to choose what to do with the imported data. If all exchanges are linked, you can write a new database with `.write_database()`. You can also save your work with `.write_unlinked(name)`, which will save a new unlinked database for further processing at a later time. You can also write details on linking with `.write_excel()`, which can write the entire data or just the unlinked exchanges. Of course, you can always continue with steps 2, 3, and 4, refining your linking until you are satisfied.
 
-The current strategies for cleaning and linking data include:
+If this seems a bit overwhelming, that's because it is - and a huge pain. The current data formats and lack of well-defined strategies for interchange between databases and even updating databases makes life much more difficult than it should be. There are concrete examples of importing databases in :ref:`example-io-notebooks`.
 
-* Foo
-* Bar
+Importing from ecospold 1
+`````````````````````````
 
-Ecospold1:
+Importing from ecospold 1 is relatively simple. Multioutput products are allocated to single output products using the given allocation factors using the strategy ``es1_allocate_multioutput``. The reference product is then assigned using the strategy ``assign_only_product_as_production``.
+
+Next, some basic data cleanup is performed. Integer codes are removed, as these are not used consistently by different LCA software (``clean_integer_codes``). Unspecified subcategories are removed (i.e. ``('air', 'unspecified')`` is changed to ``('air',)``) using ``drop_unspecified_subcategories``. Biosphere exchange names and categories are normalized using ``normalize_biosphere_categories`` and ``normalize_biosphere_names``. Biosphere exchanges are removed, as biosphere flows do not have locations (``strip_biosphere_exc_locations``).
+
+Next, a unique activity code is generated for each dataset, using a combination of the name, categories, location, and unit (``set_code_by_activity_hash``).
+
+Finally, biosphere flows are linked to the default biosphere database, and internal technosphere flows are linked using ``link_technosphere_by_activity_hash``.
+
+Importing from ecospold 2
+`````````````````````````
+
+Importing from ecospold 2 is a bit complex, because although ecospold 2 gives unique IDs for many fields, which helps in linking, the current implementation has some `known issues <http://www.ecoinvent.org/database/ecoinvent-version-3/ecoinvent-v30/known-data-issues/>`__ which have to be resolved or ignored by the importer.
+
+.. warning:: Brightway2 cannot precisely reproduce the LCI and LCIA results given by the ecoinvent centre. The technosphere matrix used by ecoinvent cannot be reproduced from the provided unit process datasets. However, the differences for most products are quite small.
+
+We start by removing some exchanges from most datasets. Specifically, we remove exchanges with amounts of zero, both coproducts and technosphere or biosphere inputs (``remove_zero_amount_coproducts`` and ``remove_zero_amount_inputs_with_no_activity``).
+
+We then assign reference products. Although each unit process should have a single output, coproducts which have been allcoated away are often still included, with amounts of zero. We use two strategies to choose the reference product: ``es2_assign_only_product_with_amount_as_reference_product`` and ``assign_only_product_as_production``.
+
+Next, a composite code is generated, using the UUID of the activity and the product (``create_composite_code``).
+
+Biosphere flow exchanges are now normalized (``drop_unspecified_subcategories``) and linked (``link_biosphere_by_flow_uuid``). Internal technosphere exchanges are also linked, using the composite codes (``link_internal_technosphere_by_composite_code``).
+
+Not all technosphere exchanges are linked, however. We need to drop two different types of exchanges, as we have no way of linking them. First, there are some exchanges with listed products but no listed activities - and no activity in the database produces these products. Removal is done with the strategy ``delete_exchanges_missing_activity``.
+
+Additionally, there are some exchanges with listed products and activities - but the given activity doesn't produce the listed product. These exchanges also have to be deleted, using the strategy ``delete_ghost_exchanges``.
+
+.. note:: As of March 2015, only the cutoff version completely avoids the two problems listed above.
+
+Importing from SimaPro
+``````````````````````
+
+Importing SimaPro CSV files is also a bit of a headache. Pré, the makers of SimaPro, have done a lot of work to make LCA software accessible and understandable. This work includes making changes to process names and other metadata, which makes linking these processes back to original ecoinvent data difficult. Fortunately, Pré has been very helpful is supplying correspondence files, which we can use to move (to the best of our ability) from the "SimaPro world" to "ecoinvent world".
+
+.. note:: Importing SimaPro XML export files is not recommended, as there are bugs with exporting ecoinvent 3 processes.
+
+What to do with unmatched exchanges?
+````````````````````````````````````
+
+If there are unlinked exchanges, you have several options. If you aren't sure what to do yet, you can save a temporary copy (that can be loaded later) using ``.write_unlinked("some name")``.
+
+Calling ``.statistics()`` will show what kind of exchanges aren't linked, e.g.:
+
+.. code-block:: python
+
+    In [4]: sp.statistics()
+    366 datasets
+    3991 exchanges
+    2639 unlinked exchanges
+      Type biosphere: 170 unique unlinked exchanges
+      Type technosphere: 330 unique unlinked exchanges
+
+The options to examine or resolve the unlinked exchanges are:
+
+    * You can write a spreadsheet of the characterization factors, including their linking status, with ``.write_excel("some name")``.
+    * You can apply new linking strategies with ``.apply_strategies([some_new_strategy])``. Note that this method requires a *list* of strategies.
+    * You can match technosphere or biosphere exchanges to other background databases using ``.match_database("another database")``.
+    * TODO: Add unlinked tech processes to current database
+    * To resolve unlinked biosphere exchanges which simply don't exist in your current biosphere database, you can:
+
+        * Add them to the biosphere database with ``add_unlinked_flows_to_biosphere_database()``
+        * Create a new biosphere database with ``create_new_biosphere("new biosphere name")``
+        * Add the biosphere flows to the database you are currently working on (LCI databases can include both process and biosphere flows) with TODO: ``add_unlinked_biosphere_flows_to_current_database()``
+
+.. note:: These methods have several options, and you should understand what they do and read their documentation before choosing between them.
+
+.. note:: You can't write an LCI database with unlinked exchanges.
+
+Migrations
+----------
+
+Sometimes the only way to correctly link activities or biosphere flows is by applying a list of name (or other field) transforms. For example, SimaPro will export a process named "[sulfonyl]urea-compound {RoW}| production | Alloc Rec, S", which corresponds to the ecoinvent process "[sulfonyl]urea-compound production", with reference product "[sulfonyl]urea-compound" and location "RoW". In another example, in ecoinvent 2, emissions of water to air were measured in kilograms, and in ecoinvent 3, emissions of water to air are measured in cubic meters. In this case, our migration would look like this:
+
+.. code-block:: python
+
+    {
+        'fields': ['name', 'categories', 'type', 'unit'],
+        'data': [
+            (
+                # First element is input data in the order of `fields` above
+                ('Water', ('air',), 'biosphere', 'kilogram'),
+                # Second element is new values to substitute
+                {
+                    'unit': 'cubic meter',
+                    'multiplier': 0.001
+                }
+            )
+        }
+    }
+
+We call the application of transform lists "migrations", and they are applied with the ``.migrate(migrations_name)`` method.
+
+TODO: Because migrations can be tricky, a log file is kept for each migration, and should be examined.
+
+If the numeric values in an exchange need to changed, the special key 'multiplier' is used, where new_amount = multiplier * old_amount. Uncertainty information and formulas are adjusted automatically, if possible (see ``utils.rescale_exchange``).
+
+A few additional notes:
+
+* Migrations change the underlying data, but do not do any linking - you will also have to apply linking strategies after a migration.
+* Migrations can specify any number of fields, but of course the fields must be present in the importing database.
+* TODO: Migrations can be specified in an excel template. Template files must be processed using ``convert_migration_file``.
+* Subcategories are not expanded automatically, so a separate row in the migrations file would be needed for e.g. ``water (air, non-urban air or from high stacks)``.
+
+Importing an LCIA method
+------------------------
+
+LCIA methods can be imported from ecospold 1 XML files (``EcoinventLCIAImporter``) and SimaPro CSV files (``SimaProLCIACSVImporter``).
+
+When importing an LCIA method or set of LCIA methods, you should specify the biosphere database to link against e.g. ``EcoinventLCIAImporter("some file path", "some biosphere database name")``. If no biosphere database name is provided, the default ``biosphere3`` database is used.
+
+Both importers will attempt to normalize biosphere flow names and categories to the ecospold2 standard, using the strategies:
+
+    * ``normalize_simapro_lcia_biosphere_categories``
+    * ``normalize_simapro_biosphere_names``
+    * ``normalize_biosphere_names``
+    * ``normalize_biosphere_categories``
+
+Next, the characterization factors are examined to see if they are only given for root categories, e.g. ``('air',)`` and not ``('air', 'urban air close to ground')``. If only root categories are characterized, then we assume that the characterization factors also apply to all subcategories, using the strategy  ``match_subcategories``.
+
+Finally, linking to the given or default biosphere database is attempted, using the strategy ``link_iterable_by_fields`` and the standard fields: name, categories, unit, location. Note that biosphere flows do not actually have a location.
+
+You can now check the linking statistics. If all biosphere flows are linked, write the LCIA methods with ``.write_methods()``. Note that attempting to write an existing method will raise a ``ValueError`` unless you use ``.write_methods(overwrite=True)``, and trying to write methods which aren't completely linked will also raise a ``ValueError``.
+
+If there are unlinked characterization factors, you have several options. If you aren't sure what to do yet, you can save a temporary copy (that can be loaded later) using ``.write_unlinked("some name")``. The options to examine or resolve the unlinked characterization factors are:
+
+    * You can write a spreadsheet of the characterization factors, including their linking status, with ``.write_excel("some name")``.
+    * You can apply new linking strategies with ``.apply_strategies([some_new_strategy])``. Note that this method requires a *list* of strategies.
+    * TODO: You can write all biosphere flows to a new biosphere database with ``.create_new_biosphere("some name")``.
+    * If you are satisfied that you don't care about the unlinked characterization factors, you can drop them with ``.drop_unlinked()``.
+    * Alternatively, you can add the missing biosphere flows to the biosphere database using ``.add_missing_cfs()``.
+
+TODO
+----
+
+    * Tests for each strategy
+    * New migrations module
+
+        - ecoinvent 2.2 > 3.01 (each system model)
+        - ecoinvent 3.01 > 3.1 (each system model)
+        - SimaPro > ecoinvent biosphere
+
+    * US LCI importer
+
+        - Add DUMMY processes (strategy to add unlinked activities)
+        - Fix names
+
+            + Easy way to get missing and matching values in new version?
+
+    * SimaPro CSV: Can uncertainty values be specific if amount is a formula? What would that mean?
+    * SimaPro CSV: Extract and apply unit conversions
+
+    * Comparison chart of all freely available databases
+
+        - USDA
+        - US LCI
+        - GreenDelta nexus website
+
+    * Specific issues
+
+        - SimaPro LCIA importer - waste types seem incorrect
+        - Ned to find a clever way to replace formula names that conflict with Python keywords

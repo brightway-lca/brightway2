@@ -29,6 +29,8 @@ There are a number of notebooks, most of which haven't yet been updated to the l
 * `Databases <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Databases.ipynb>`__
 * `Parameterized inventories <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Parameterized%20inventories.ipynb>`__
 
+.. _example-io-notebooks:
+
 Importing data: example notebooks
 ---------------------------------
 
