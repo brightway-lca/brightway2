@@ -37,8 +37,16 @@ brightway2-io
 
 `cmutel/brightway2-io <http://bitbucket.org/cmutel/brightway2-io/issues/>`__
 
+* #6 `Error in \`loc\` field for Ecoinvent 3.1 import <https://bitbucket.org/cmutel/brightway2-io/issue/6>`__
 * #1 `BW2Package _create_obj fails sometimes <https://bitbucket.org/cmutel/brightway2-io/issue/1>`__
 
+brightway2-parameters
+---------------------
+
+`cmutel/brightway2-parameters <http://bitbucket.org/cmutel/brightway2-parameters/issues/>`__
+
+* #2 `Integrate with Monte Carlo random sampling <https://bitbucket.org/cmutel/brightway2-parameters/issue/2>`__
+* #1 `Better handle circular references <https://bitbucket.org/cmutel/brightway2-parameters/issue/1>`__
 
 
 brightway2-restapi
