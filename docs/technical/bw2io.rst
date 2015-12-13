@@ -193,8 +193,6 @@ Ecospold 2
 Simapro
 ```````
 
-.. autofunction:: bw2io.strategies.simapro.normalize_simapro_product_units
-
 .. autofunction:: bw2io.strategies.simapro.sp_allocate_products
 
 .. autofunction:: bw2io.strategies.simapro.link_technosphere_based_on_name_unit_location
@@ -231,6 +229,13 @@ Export
     :members:
 
 .. autofunction:: bw2io.export.matlab.lci_matrices_to_matlab
+
+.. _backup-data-directory:
+
+Backup the project data directory
+=================================
+
+.. autofunction:: bw2io.backup.backup_data_directory
 
 Data
 ====

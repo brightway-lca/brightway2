@@ -48,6 +48,8 @@ Project are created in a suitable location for your operating system with the he
 
 Projects can be easily created, copied, manipulated, or deleted. See the `projects example notebook <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Projects.ipynb>`__.
 
+.. warning:: Brightway2 uses `atomic file writes <https://github.com/abarnert/fatomic>`__ to prevent data corruption, but `files are hard <http://danluu.com/file-consistency/>`__; you should make regular backups using the :ref:`backup-data-directory` function.
+
 Inventory Databases
 -------------------
 
