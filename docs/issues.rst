@@ -11,20 +11,13 @@ brightway2
 * #4 `Review tutorials and notebooks <https://bitbucket.org/cmutel/brightway2/issue/4>`__
 
 
-brightway2-calc
----------------
-
-`cmutel/brightway2-calc <http://bitbucket.org/cmutel/brightway2-calc/issues/>`__
-
-* #3 `Better test new activity and product dictionaries <https://bitbucket.org/cmutel/brightway2-calc/issue/3>`__
-* #1 `Monte Carlo Bug <https://bitbucket.org/cmutel/brightway2-calc/issue/1>`__
-* #2 `New translate method breaks redo_lcia <https://bitbucket.org/cmutel/brightway2-calc/issue/2>`__
 
 brightway2-data
 ---------------
 
 `cmutel/brightway2-data <http://bitbucket.org/cmutel/brightway2-data/issues/>`__
 
+* #26 `Switch whoosh to index each database separately <https://bitbucket.org/cmutel/brightway2-data/issue/26>`__
 * #25 `Add utility function to sync database changes across projects <https://bitbucket.org/cmutel/brightway2-data/issue/25>`__
 * #24 `Need methods to change \`database\` and \`code\` for activities <https://bitbucket.org/cmutel/brightway2-data/issue/24>`__
 * #23 `Better test Activity proxies <https://bitbucket.org/cmutel/brightway2-data/issue/23>`__
