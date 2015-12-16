@@ -15,7 +15,7 @@ Brightway2 is not for people that want to do the same old LCA studies, just with
 
 Basically, Brightway2 is for you if your project lies at the intersection of LCA and your imagination.
 
-.. note:: Please subscribe to the `brightway2 updates mailing list <https://tinyletter.com/brightway2-updates>`__ to be informed of new releases.
+.. note:: Please subscribe to the `brightway2 updates mailing list <https://tinyletter.com/brightway2-updates>`__ to be informed of new releases. You can also read the `archive of previous messages <http://tinyletter.com/brightway2-updates/archive>`__.
 
 Understanding the manual
 ------------------------
