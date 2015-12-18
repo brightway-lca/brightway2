@@ -149,6 +149,48 @@ New database backends should inherit from ``bw2data.backends.base.LCIBackend``:
 Default backend - databases stored in a SQLite database
 -------------------------------------------------------
 
+This backend is a hybrid between SQLite and a document database. This approach may seem strange at first, but is the result of coding, evaluating, and ultimately rejecting backends based on pickle files, JSON files, `MongoDB <https://www.mongodb.com>`__, `CodernityDB <http://labs.codernity.com/codernitydb/>`__, and `BlitzDB <http://blitzdb.readthedocs.org/en/latest/>`__. SQLite has the following advantages:
+
+* Included with Python, no new dependencies or background processes
+* Well-tested and supported
+* Good speed
+
+The LCI data is stored in two tables, `ActivityDataset` and `ExchangeDataset`. Interactions with the database are mostly done using the `Peewee ORM <http://docs.peewee-orm.com/en/latest/>`__, although some raw SQL queries are used for performance reasons. The table have the following schemas:
+
+.. code:: sql
+
+    CREATE TABLE "activitydataset" (
+        "id" INTEGER NOT NULL PRIMARY KEY,
+        "data" BLOB NOT NULL,
+        "code" TEXT NOT NULL,
+        "database" TEXT NOT NULL,
+        "location" TEXT,
+        "name" TEXT,
+        "product" TEXT,
+        "type" TEXT
+    )
+
+    CREATE TABLE "exchangedataset" (
+        "id" INTEGER NOT NULL PRIMARY KEY,
+        "data" BLOB NOT NULL,
+        "input_code" TEXT NOT NULL,
+        "input_database" TEXT NOT NULL,
+        "output_code" TEXT NOT NULL,
+        "output_database" TEXT NOT NULL,
+        "type" TEXT NOT NULL
+    )
+
+As one of the fundamental principles of Brightway2 is to have a document-based backend, we incude most data in the column `data`, which is stored as a binary pickle. Serializing and deserializing is handled automatically by the Peewee interface. However, some attributes can be changed in the database. The following columns are canonical, i.e. they are included when constructing the `Activity` and `Exchange` objects:
+
+* ActivityDataset.database
+* ActivityDataset.code
+* ExchangeDataset.input_database
+* ExchangeDataset.input_code
+* ExchangeDataset.output_database
+* ExchangeDataset.output_code
+
+All other columns are only used to querying and filtering datasets.
+
 .. autoclass:: bw2data.backends.peewee.database.SQLiteBackend
     :members:
 
