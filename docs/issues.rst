@@ -8,20 +8,29 @@ brightway2
 
 `cmutel/brightway2 <http://bitbucket.org/cmutel/brightway2/issues/>`__
 
+* #6 `Replace \`hasattr\` <https://bitbucket.org/cmutel/brightway2/issue/6>`__
+* #5 `Continuous integration testing for Windows <https://bitbucket.org/cmutel/brightway2/issue/5>`__
 * #4 `Review tutorials and notebooks <https://bitbucket.org/cmutel/brightway2/issue/4>`__
 
 
+brightway2-calc
+---------------
+
+`cmutel/brightway2-calc <http://bitbucket.org/cmutel/brightway2-calc/issues/>`__
+
+* #4 `Create bw2remote and package functionality for offline calculations <https://bitbucket.org/cmutel/brightway2-calc/issue/4>`__
 
 brightway2-data
 ---------------
 
 `cmutel/brightway2-data <http://bitbucket.org/cmutel/brightway2-data/issues/>`__
 
-* #26 `Switch whoosh to index each database separately <https://bitbucket.org/cmutel/brightway2-data/issue/26>`__
+* #31 `LCA dictionaries don't work with Activity Proxies after repeated calculations <https://bitbucket.org/cmutel/brightway2-data/issue/31>`__
+* #30 `Incomprehensible error with \`make_searchable\` on new database <https://bitbucket.org/cmutel/brightway2-data/issue/30>`__
+* #29 `Switch from JSON serialized dictionaries to SQLite for metadata wherever possible <https://bitbucket.org/cmutel/brightway2-data/issue/29>`__
+* #28 `installation on multiple virtual env point to same data directory <https://bitbucket.org/cmutel/brightway2-data/issue/28>`__
+* #27 `Need update to delete \`ds['products']\` <https://bitbucket.org/cmutel/brightway2-data/issue/27>`__
 * #25 `Add utility function to sync database changes across projects <https://bitbucket.org/cmutel/brightway2-data/issue/25>`__
-* #24 `Need methods to change \`database\` and \`code\` for activities <https://bitbucket.org/cmutel/brightway2-data/issue/24>`__
-* #23 `Better test Activity proxies <https://bitbucket.org/cmutel/brightway2-data/issue/23>`__
-* #14 `Some LCIA methods don't have ecoinvent3 links <https://bitbucket.org/cmutel/brightway2-data/issue/14>`__
 
 
 brightway2-io
@@ -29,6 +38,7 @@ brightway2-io
 
 `cmutel/brightway2-io <http://bitbucket.org/cmutel/brightway2-io/issues/>`__
 
+* #18 `Implement ecoinvent 3.2 changes to LCIA methods <https://bitbucket.org/cmutel/brightway2-io/issue/18>`__
 * #15 `Importer for OLCA JSON LD schema <https://bitbucket.org/cmutel/brightway2-io/issue/15>`__
 * #14 `Need clever approach to replace formula parameters names that conflict with Python reserved words <https://bitbucket.org/cmutel/brightway2-io/issue/14>`__
 * #13 `SimaPro LCIA importer: Waste types seem to be handled incorrectly <https://bitbucket.org/cmutel/brightway2-io/issue/13>`__
