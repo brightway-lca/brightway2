@@ -17,16 +17,28 @@ Known Issues
 ============
 
 """
+
+ENHANCEMENTS = """Enhancements
+````````````
+
+"""
+
 REPO = """{slug}
 {dashes}
 
 `{owner}/{slug} <http://bitbucket.org/{owner}/{slug}/issues/>`__
 
 """
+
+ISSUES = """Issues
+``````
+
+"""
+
 ISSUE = """* #{id} `{title} <{url}>`__\n"""
 
 
-Issue = namedtuple('Issue', ['id', 'title', 'priority', 'url'])
+Issue = namedtuple('Issue', ['id', 'title', 'priority', 'url', 'kind', 'resource'])
 
 
 def _(x):
@@ -48,24 +60,52 @@ URLS = {
                        '{owner}/{slug}/issues/?status=new&status=open'),
 }
 
+ISSUES_KIND = {'task', 'bug'}
+ENHANCEMENT_KIND = {'enhancement', 'proposal'}
+
 
 def main():
+    data = [
+        (
+            repo['owner'],
+            repo['slug'],
+            sorted(
+                get_issues_for_repo(repo['owner'], repo['slug']),
+                key=lambda x: x.resource
+            )
+        )
+        for repo in run_query(Query.REPOSITORY)
+        if "brightway2" in repo['slug']
+    ]
+
     with open("issues.rst", "w") as f:
         f.write(HEADER)
-        for repo in run_query(Query.REPOSITORY):
-            owner, slug = repo['owner'], repo['slug']
 
-            if not "brightway2" in slug or slug in ("pandarus",):
+        for owner, slug, issues in sorted(data):
+            if not issues:
                 continue
 
-            issues = list(get_issues_for_repo(owner, slug))
-            sys.stdout.write('{}/{}: {} issues\n'.format(owner, slug, len(issues)))
-            if issues:
-                f.write(REPO.format(owner=_(owner), slug=_(slug), dashes="-" * len(slug)))
-                for issue in get_issues_for_repo(owner, slug):
-                    f.write(ISSUE.format(title=_(issue.title), id=issue.id,
-                            url=_(issue.url)))
-            f.write("\n")
+            print('{}/{}: {} issues'.format(owner, slug, len(issues)))
+
+            iss = [x for x in issues if x.kind in ISSUES_KIND]
+            enh = [x for x in issues if x.kind in ENHANCEMENT_KIND]
+
+
+            f.write(REPO.format(owner=_(owner), slug=_(slug), dashes="-" * len(slug)))
+
+            if iss:
+                f.write(ISSUES)
+                for obj in iss:
+                    f.write(ISSUE.format(title=_(obj.title), id=obj.id,
+                                url=_(obj.url)))
+                f.write("\n")
+
+            if enh:
+                f.write(ENHANCEMENTS)
+                for obj in enh:
+                    f.write(ISSUE.format(title=_(obj.title), id=obj.id,
+                                url=_(obj.url)))
+                f.write("\n")
 
 def run_query(query, **args):
     url = URLS[query]
@@ -94,7 +134,10 @@ def get_issues_for_repo(owner, slug):
             id=issue['local_id'],
             title=issue['title'],
             priority=issue['priority'],
-            url=make_issue_url(owner, slug, issue['local_id']))
+            url=make_issue_url(owner, slug, issue['local_id']),
+            kind=issue['metadata']['kind'],
+            resource=issue['resource_uri'],
+        )
 
 
 def make_issue_url(owner, slug, issue_id):
