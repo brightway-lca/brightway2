@@ -21,7 +21,7 @@ Understanding the manual
 ------------------------
 
 ..
-   .. note:: This manual is `available as a PDF <http://brightwaylca.org/Brightway2%20manual.pdf>`_ or `on the web <https://brightway2.readthedocs.org/en/latest/>`_.
+   .. note:: This manual is `available as a PDF <https://brightwaylca.org/Brightway2%20manual.pdf>`_ or `on the web <https://docs.brightwaylca.org/>`_.
 
 .. note:: In addition to this manual, there is a `discussion mailing list <https://groups.google.com/forum/?fromgroups#!forum/brightway2>`_, and a `Brightway2 development blog <http://chris.mutel.org/>`_.
 
