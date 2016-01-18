@@ -44,7 +44,7 @@ You can copy and paste, or simply type commands, into the command shell. You wil
 .. image:: images/cmd-shell-2.png
     :align: center
 
-In the command shell, you can enter the ipython interpreter with ``ipython``, or run notebooks with ``jupyter notebook``. Note that you can't launch the notebook server from the ``C:\``, you must be in a directory.
+In the command shell, you can enter the ipython interpreter with ``ipython``, or run notebooks with ``jupyter notebook``. Note that you can't launch the notebook server from the root ``C:\`` drive, you must be in a directory, e.g. ``C:\bw2-python\``.
 
 Using PowerShell
 ----------------

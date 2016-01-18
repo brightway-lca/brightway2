@@ -232,10 +232,12 @@ Export
 
 .. _backup-data-directory:
 
-Backup the project data directory
-=================================
+Backups
+=======
 
 .. autofunction:: bw2io.backup.backup_data_directory
+
+.. autofunction:: bw2io.backup.backup_project_directory
 
 Data
 ====

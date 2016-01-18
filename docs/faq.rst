@@ -43,7 +43,15 @@ How do I backup my data?
 How do I find where my data is saved?
 -------------------------------------
 
-You can find the current project directory with `projects.dir`; everything will be stored in this folder or a subdirectory.
+You can find the current project data directory with the command ``projects.dir``; everything will be stored in this folder or a subdirectory. Similarly, you can find the logs directory with the command ``projects.logs_dir``.
+
+Brightway2 uses the `appdirs <https://pypi.python.org/pypi/appdirs/1.4.0>`__ library to select an appropriate, platform-specific path, namely:
+
+    * On Windows: ``C:\Documents and Settings\<User>\Application Data\Local Settings\pylca\Brightway2``
+    * On OS X: ``/Users/<User>/Library/Application Support/Brightway2``
+    * On Linux: ``/home/<User>/.local/share/Brightway2``
+
+You can specify a custom data directory path by setting the environment variable ``BRIGHTWAY2_DIR``, but this is not recommended for normal use.
 
 Data formats
 ============
