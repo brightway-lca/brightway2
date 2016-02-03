@@ -7,11 +7,11 @@ Brightway2 is inspired by the Brightway software, which was developed during Chr
 
 Official site:
 
-* http://brightwaylca.org
+* https://brightwaylca.org
 
 Online documentation:
 
-* https://brightway2.readthedocs.org/
+* https://docs.brightwaylca.org/
 
 Development blog:
 

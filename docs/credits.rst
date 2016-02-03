@@ -4,15 +4,15 @@ Credits & License
 Authors
 -------
 
-Brightway2 was developed by `Chris Mutel <http://chris.mutel.org/>`_.
-
-Additional contributers:
-
-* `Bernhard Steubing <http://www.ifu.ethz.ch/ESD/people/bsteubin>`_
-* `Niko Heeren <http://www.ifu.ethz.ch/staff/nheeren/index_EN>`_
-* `Aurelian Jaggi <http://eaternity.ch/team/Aurelian-Jaggi/>`_
-* `Andreas Froemelt <http://www.ifu.ethz.ch/ESD/people/andrefro>`_
-* `lowks <https://bitbucket.org/lowks>`_
+* `Chris Mutel <http://chris.mutel.org/>`__
+* `Giuseppe Cardellini <http://www.kuleuven.be/wieiswie/en/person/90387>`__
+* `Andreas Froemelt <http://www.ifu.ethz.ch/ESD/people/andrefro>`__
+* `Niko Heeren <http://www.ifu.ethz.ch/staff/nheeren/index_EN>`__
+* `Aurelian Jaggi <http://eaternity.ch/team/Aurelian-Jaggi/>`__
+* `Maghimai Marcus <https://www.researchgate.net/profile/Maghimai_Marcus2>`__
+* `Marie de Saxcé <http://lca-net.com/about/who-we-are/>`__
+* `Low Kian Seong <https://bitbucket.org/lowks>`__
+* `Bernhard Steubing <http://www.ifu.ethz.ch/ESD/people/bsteubin>`__
 
 Logo by `eightz <http://www.fiverr.com/ei8htz>`__.
 

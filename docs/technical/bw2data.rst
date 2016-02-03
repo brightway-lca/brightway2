@@ -8,7 +8,13 @@ Configuration
 
 The configuration for brightway2 is implemented as a singleton class that is created when ``brightway2`` is imported.
 
-.. autoclass:: bw2data._config.Config
+.. autoclass:: bw2data.configuration.Config
+    :members:
+
+Projects
+========
+
+.. autoclass:: bw2data.project.ProjectManager
     :members:
 
 Base classes for metadata
@@ -140,10 +146,58 @@ New database backends should inherit from ``bw2data.backends.base.LCIBackend``:
 
 .. _single-file-database:
 
-Default backend - each database is a single file
-------------------------------------------------
+Default backend - databases stored in a SQLite database
+-------------------------------------------------------
 
-.. autoclass:: bw2data.backends.default.database.SingleFileDatabase
+This backend is a hybrid between SQLite and a document database. This approach may seem strange at first, but is the result of coding, evaluating, and ultimately rejecting backends based on pickle files, JSON files, `MongoDB <https://www.mongodb.com>`__, `CodernityDB <http://labs.codernity.com/codernitydb/>`__, and `BlitzDB <http://blitzdb.readthedocs.org/en/latest/>`__. SQLite has the following advantages:
+
+* Included with Python, no new dependencies or background processes
+* Well-tested and supported
+* Good speed
+
+The LCI data is stored in two tables, `ActivityDataset` and `ExchangeDataset`. Interactions with the database are mostly done using the `Peewee ORM <http://docs.peewee-orm.com/en/latest/>`__, although some raw SQL queries are used for performance reasons. The table have the following schemas:
+
+.. code:: sql
+
+    CREATE TABLE "activitydataset" (
+        "id" INTEGER NOT NULL PRIMARY KEY,
+        "data" BLOB NOT NULL,
+        "code" TEXT NOT NULL,
+        "database" TEXT NOT NULL,
+        "location" TEXT,
+        "name" TEXT,
+        "product" TEXT,
+        "type" TEXT
+    )
+
+    CREATE TABLE "exchangedataset" (
+        "id" INTEGER NOT NULL PRIMARY KEY,
+        "data" BLOB NOT NULL,
+        "input_code" TEXT NOT NULL,
+        "input_database" TEXT NOT NULL,
+        "output_code" TEXT NOT NULL,
+        "output_database" TEXT NOT NULL,
+        "type" TEXT NOT NULL
+    )
+
+As one of the fundamental principles of Brightway2 is to have a document-based backend, we incude most data in the column `data`, which is stored as a binary pickle. Serializing and deserializing is handled automatically by the Peewee interface. However, some attributes can be changed in the database. The following columns are canonical, i.e. they are included when constructing the `Activity` and `Exchange` objects:
+
+* ActivityDataset.database
+* ActivityDataset.code
+* ExchangeDataset.input_database
+* ExchangeDataset.input_code
+* ExchangeDataset.output_database
+* ExchangeDataset.output_code
+
+All other columns are only used to querying and filtering datasets.
+
+.. autoclass:: bw2data.backends.peewee.database.SQLiteBackend
+    :members:
+
+Single file - each database in a single file
+--------------------------------------------
+
+.. autoclass:: bw2data.backends.single_file.database.SingleFileDatabase
     :members:
 
 .. _json-database:
@@ -170,7 +224,7 @@ Searching Databases
 Filter
 ------
 
-.. autoclass:: bw2data.Filter
+.. autoclass:: bw2data.query.Filter
     :members:
 
 .. _search-query:
@@ -178,7 +232,7 @@ Filter
 Query
 -----
 
-.. autoclass:: bw2data.Query
+.. autoclass:: bw2data.query.Query
     :members:
 
 .. _search-result:
@@ -186,7 +240,7 @@ Query
 Result
 ------
 
-.. autoclass:: bw2data.Result
+.. autoclass:: bw2data.query.Result
     :members:
 
 Dictionaries
@@ -231,118 +285,3 @@ Weighting
 
 .. autoclass:: bw2data.Weighting
     :members:
-
-.. _import-and-export:
-
-Import and Export
-=================
-
-BW2Package
-----------
-
-Brightway2 has its own data format for archiving data which is both efficient and compatible across operating systems and programming languages. This is the default backup format for Brightway2 :ref:`datastore` objects.
-
-.. note:: **imports** and **exports** are supported.
-
-.. autoclass:: bw2data.io.BW2Package
-    :members:
-
-Ecospold1
----------
-
-Ecospold version 1 is the data format of ecoinvent versions 1 and 2, and the US LCI. It is an XML data format with reasonable defaults.
-
-.. note:: only **imports** are supported.
-
-.. autoclass:: bw2data.io.Ecospold1Importer
-    :members:
-
-.. autoclass:: bw2data.io.EcospoldImpactAssessmentImporter
-    :members:
-
-Ecospold2
----------
-
-Ecospold version 2 is the data format of ecoinvent version 3.
-
-.. note:: only **imports** are supported.
-
-.. autoclass:: bw2data.io.Ecospold2Importer
-    :members:
-
-SimaPro
--------
-
-Import a `SimaPro <http://www.pre-sustainability.com/simapro-lca-software>`_ text file.
-
-.. note:: only **imports** are supported.
-
-.. warning:: Import of projects linked to Ecoinvent version 3 are not yet supported.
-
-.. autoclass:: bw2data.io.SimaProImporter
-    :members:
-
-Gephi
------
-
-`Gephi <http://gephi.org/>`_ is an open-source graph visualization and analysis program.
-
-.. note:: only **exports** are supported.
-
-.. autoclass:: bw2data.io.DatabaseToGEXF
-    :members:
-
-.. autoclass:: bw2data.io.DatabaseSelectionToGEXF
-    :members:
-
-.. autofunction:: bw2data.io.keyword_to_gephi_graph
-
-Utilities
-=========
-
-Setup
------
-
-.. autofunction:: bw2data.utils.bw2setup
-
-.. _set-data-dir:
-
-Setting the data directory
---------------------------
-
-.. autofunction:: bw2data.utils.set_data_dir
-
-Sorting
--------
-
-.. autofunction:: bw2data.utils.natural_sort
-.. autofunction:: bw2data.utils.recursively_sort
-
-Identifying and labeling
-------------------------
-
-.. _activity-hash:
-
-.. autofunction:: bw2data.utils.activity_hash
-.. autofunction:: bw2data.utils.database_hash
-.. autofunction:: bw2data.utils.random_string
-.. autofunction:: bw2data.utils.safe_filename
-.. autofunction:: bw2data.utils.safe_save
-
-Working with data
------------------
-
-.. autofunction:: bw2data.utils.clean_exchanges
-.. autofunction:: bw2data.utils.combine_methods
-
-.. _recursive-str-to-unicode:
-
-.. autofunction:: bw2data.utils.recursive_str_to_unicode
-.. autofunction:: bw2data.utils.uncertainify
-
-Web utilities
--------------
-
-.. autofunction:: bw2data.utils.download_file
-.. autofunction:: bw2data.utils.open_activity_in_webbrowser
-.. autofunction:: bw2data.utils.web_ui_accessible

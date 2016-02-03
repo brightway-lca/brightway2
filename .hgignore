@@ -1,9 +1,11 @@
 syntax:glob
 dist
+build
 docs/_build
 *.pyc
 *~
 MANIFEST
 *.sublime*
 brightway2.egg-info
-docs/notebooks/.ipynb_checkpoints
+notebooks/.ipynb_checkpoints
+*.sh

@@ -6,17 +6,6 @@ Contributing
 
 Brightway2 is designed to be easy to use and develop for. The modular structure of Brightway2 means that you don't have to learn everything at once - pick the subject that best suits your interests and skills, download the code, and start hacking!
 
-Getting started with Python
----------------------------
-
-Learning to program is hard - luckily, Python is a great language for beginners. Here are some good beginning resources:
-
-* `How to think like a computer scientist - Think Python <http://www.greenteapress.com/thinkpython/>`_
-* `Software carpentry <http://software-carpentry.org/4_0/python/index.html>`_
-* `Python the hard way <http://learnpythonthehardway.org/>`_
-* `Python scientific lectures <http://scipy-lectures.github.com/index.html>`_
-* `Google's Python class <https://developers.google.com/edu/python/>`_
-
 Required packages
 -----------------
 
@@ -53,11 +42,6 @@ One easy way of helping out that doesn't require any knowledge of Python, matric
 * `Monte Carlo results <http://tributary.io/inlet/4951873>`_
 
 The code here is editable, and the changes you make will be immediately reflected in the display. Feel free to make some tweaks, or even major changes, to make the visualizations nicer, easier to understand, and simpler. If you have for other graphics that would be useful in interpreting LCA results, or in exploring inventory datasets or impact assessment methods, feel free to :ref:`contact-developers` to get a sample dataset.
-
-Making the backend better
--------------------------
-
-There are plenty of big and small things that can be done to improve all aspects of the Brightway2 calculation routines and and data management.
 
 Principles for good code
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -115,25 +99,13 @@ Ecospold exporter
 
 The base Brightway2 data format doesn't include fields for all of the Ecospold data format, but we can still export that data that is available in the Ecospold format. This would help in making Brightway2 data more transportable. It is not necessarily a difficult task, but writing a lot of XML processing code is never very much fun.
 
-Dataset process adder & editor
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Improve the activity-browser
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. note:: This is being worked on by `University of Zürich Informatics and Sustainability Research group <http://www.ifi.uzh.ch/isr.html>`_ and `eaternity <http://eaternity.ch/>`_.
-
-Because the actual data stored in a Brightway2 inventory dataset is relatively simple, it should be possible to create a couple of simple forms for adding and editing new datasets. The only difficulty is in making a usable user interface; so, for example, it should be easy to link new technosphere or biosphere inputs, with some autcompletion or other easy searching.
+The existing `activity-browser <https://bitbucket.org/cmutel/activity-browser>`__ has a lot of potential, but still needs a lot of work.
 
 Hard problems
 -------------
-
-Database browser
-~~~~~~~~~~~~~~~~
-
-The standard way to explore inventory databases is with a category tree, and it would be helpful to have somethng like that, but one can also think of exploring a database by mass type, name, location, or other types of faceting. It would probably be advisable to include some nice visualizations with D3, as this is relatively simply done, and can add a great deal of usability for end users.
-
-LCIA method browser
-~~~~~~~~~~~~~~~~~~~
-
-Similarly, we would also like to be able to browse and edit impact assessment methods, looking at names, types of emissions and resource consumptions, and categories.
 
 Sankey flow diagram
 ~~~~~~~~~~~~~~~~~~~

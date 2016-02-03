@@ -1,0 +1,17 @@
+- Fix tutorial 1
+- Write tutorial 2
+- Fix tutorial 3
+- Fix tutorial 4
+- Fix tutorial 5
+* Move sections to developers manual
+* Fix all errors in make html
+- Fill out introduction
+	- Beginning
+	- Processed data and structured arrays (include intermediate.rst)
+	- LCA calculations
+- Redo projects/activities/etc notebooks
+	- Technical stuff should be in technical reference
+	- Rest should be in tutorial 1
+data-directory.rst is out of data - no projects
+lci.rst - Move unique identifiers section to intro
+lci.rst - needs complete redo

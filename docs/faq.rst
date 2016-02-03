@@ -1,8 +1,16 @@
 Frequently Asked Questions
 **************************
 
+Why the 2 in Brightway2?
+========================
+
+Brightway version 1 was a set of programs written during the PhD of Chris Mutel. In the end, there wasn't that much that could be re-used from this research code, other than the name. Brightway2 is a completely new software framework designed to avoid the fate of Brightway version 1. See also the `blog post on technical motivation <http://chris.mutel.org/brightway2-technical-motivation.html>`_.
+
+General Python questions
+========================
+
 What text editor or IDE should I use?
-=====================================
+-------------------------------------
 
 When you are doing more complex work, it is often nice to work with an intelligent text editor or an integrated development environment (IDE).
 
@@ -22,10 +30,28 @@ Here are some IDEs which are often recommended:
 
 See also the `discussion on the Python wiki <https://wiki.python.org/moin/IntegratedDevelopmentEnvironments>`_ and a `long StackOverflow discussion <http://stackoverflow.com/questions/81584/what-ide-to-use-for-python/>`_.
 
-Why the 2 in Brightway2?
-========================
+Data management
+===============
 
-Brightway version 1 was a set of programs written during the PhD of Chris Mutel. In the end, there wasn't that much that could be re-used from this research code, other than the name. Brightway2 is a completely new software framework designed to avoid the fate of Brightway version 1. See also the `blog post on technical motivation <http://chris.mutel.org/brightway2-technical-motivation.html>`_.
+How do I backup my data?
+------------------------
+
+* You can save a snapshot of entire project directory with `backup_data_directory`.
+* You can save any data object (like a `Database` or `Method`) to a `BW2Package` using `BW2Package.export_objs`.
+* You can export a database to Excel using `bw2io.export.excel.write_lci_activities`.
+
+How do I find where my data is saved?
+-------------------------------------
+
+You can find the current project data directory with the command ``projects.dir``; everything will be stored in this folder or a subdirectory. Similarly, you can find the logs directory with the command ``projects.logs_dir``.
+
+Brightway2 uses the `appdirs <https://pypi.python.org/pypi/appdirs/1.4.0>`__ library to select an appropriate, platform-specific path, namely:
+
+    * On Windows: ``C:\Documents and Settings\<User>\Application Data\Local Settings\pylca\Brightway2``
+    * On OS X: ``/Users/<User>/Library/Application Support/Brightway2``
+    * On Linux: ``/home/<User>/.local/share/Brightway2``
+
+You can specify a custom data directory path by setting the environment variable ``BRIGHTWAY2_DIR``, but this is not recommended for normal use.
 
 Data formats
 ============
@@ -65,6 +91,11 @@ See also:
 Problems
 ========
 
+I found a bug! What now?
+------------------------
+
+First, please check the list of :ref:`knownissues`. However, if your issue isn't listed, by all means please `create a bug report <https://bitbucket.org/cmutel/brightway2/issues/new>`__. Here is some good advice on creating a `short, self contained, correct example <http://sscce.org/>`__ for a bug report.
+
 It is too slow!
 ---------------
 
@@ -77,7 +108,7 @@ If your numerical work after LCA calculations is slow, consider the `numexpr <ht
 I get unicode errors!
 ---------------------
 
-.. note:: Since Brightway2 version 0.14, all strings should be unicode (i.e. they have a 'u' in front of the string, like ``u"foo"``), and not normal bytestrings. If you are careful to make sure your data is unicode, you shouldn't have this problem. See also the :ref:`recursive_str_to_unicode <recursive-str-to-unicode>` utility function.
+.. note:: All strings should be unicode. In Python 2.7, they have a 'u' in front of the string, like ``u"foo"``; in Python 3, all strings are unicode. If you are careful to make sure your data is unicode, you shouldn't have this problem.
 
 .. note:: You can specify the encoding of text in your python files as UTF-8 by putting the following as the *first line* in each file: ``# -*- coding: utf-8 -*-``
 
@@ -97,6 +128,10 @@ The problem here is that python tries to convert a character from unicode to an 
 
 For understanding the difference between bytestrings and unicode:
 
+First, read `What actually changed in the text model between Python 2 and Python 3? <http://python-notes.curiousefficiency.org/en/latest/python3/questions_and_answers.html#what-actually-changed-in-the-text-model-between-python-2-and-python-3>`__ - a very understandable and detailed description of what the title says.
+
+Then, see the following resources:
+
     * `PrintFails <https://wiki.python.org/moin/PrintFails>`_
     * `Why does Python print unicode characters when the default encoding is ASCII? <http://stackoverflow.com/questions/2596714/why-does-python-print-unicode-characters-when-the-default-encoding-is-ascii>`_
     * `IPython Notebook: What is the default encoding? <http://stackoverflow.com/questions/15420672/ipython-notebook-what-is-the-default-encoding>`_
@@ -104,7 +139,7 @@ For understanding the difference between bytestrings and unicode:
 
 For help in fixing strings:
 
-    * `Fixing Unicode mistakes and more: the ftfy package <http://blog.luminoso.com/2012/08/24/fixing-unicode-mistakes-and-more-the-ftfy-package/>`_
+    * `FTFY - library to fix common encoding problems <https://github.com/LuminosoInsight/python-ftfy>`__ with accompanying blog post: `Fixing Unicode mistakes and more: the ftfy package <http://blog.luminoso.com/2012/08/24/fixing-unicode-mistakes-and-more-the-ftfy-package/>`_
     * `Is there a way to determine the encoding of text file? <http://stackoverflow.com/questions/436220/python-is-there-a-way-to-determine-the-encoding-of-text-file>`_
     * `Chardet: The Universal Character Encoding Detector <https://pypi.python.org/pypi/chardet>`_
 
@@ -151,3 +186,8 @@ References:
 * `IPCC fourth assessment report <http://www.ipcc.ch/publications_and_data/ar4/wg1/en/ch2s2-10-3-2.html>`_
 * `SimaPro method manual <http://www.pre-sustainability.com/download/DatabaseManualMethods-oct2013.pdf>`_ (see page 38)
 * `ecoinvent report <http://www.ecoinvent.org/fileadmin/documents/en/03_LCIA-Implementation-v2.2.pdf>`_ (see page 26)
+
+Why do I get negative results in ecoinvent 3?
+---------------------------------------------
+
+It is not an error (probably)... this is sometime the case for some activities and LCIA methods in version 3 of ecoinvent.

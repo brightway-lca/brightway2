@@ -4,7 +4,7 @@
 Brightway2 life cycle assessment framework
 ==========================================
 
-Brightway2 is a open source framework for life cycle assessment (LCA). It is designed to be easy to use, while still being powerful. Brightway2 doesn't try to replace software like SimaPro or OpenLCA, but instead offers possibilities to those who need to go break the limits of conventional LCA. Brightway2 is especially attractive for researchers, especially when used with `IPython notebooks <http://ipython.org/notebook.html>`_. The core principles of Brightway2 are simplicity, innovation, and power.
+Brightway2 is a open source framework for life cycle assessment (LCA). It is designed to be easy to use, while still being powerful. Brightway2 doesn't try to replace software like SimaPro or OpenLCA, but instead offers possibilities to those who need to go break the limits of conventional LCA. Brightway2 is especially attractive for researchers, especially when used with `Jupyter notebooks <http://jupyter.org/>`__. The core principles of Brightway2 are simplicity, innovation, and power.
 
 Who is Brightway2 for?
 ----------------------
@@ -15,50 +15,50 @@ Brightway2 is not for people that want to do the same old LCA studies, just with
 
 Basically, Brightway2 is for you if your project lies at the intersection of LCA and your imagination.
 
+.. note:: Please subscribe to the `brightway2 updates mailing list <https://tinyletter.com/brightway2-updates>`__ to be informed of new releases. You can also read the `archive of previous messages <http://tinyletter.com/brightway2-updates/archive>`__.
+
 Understanding the manual
 ------------------------
 
-.. note:: This manual is `available as a PDF <http://brightwaylca.org/Brightway2%20manual.pdf>`_ or `on the web <https://brightway2.readthedocs.org/en/latest/>`_.
+..
+   .. note:: This manual is `available as a PDF <https://brightwaylca.org/Brightway2%20manual.pdf>`_ or `on the web <https://docs.brightwaylca.org/>`_.
 
 .. note:: In addition to this manual, there is a `discussion mailing list <https://groups.google.com/forum/?fromgroups#!forum/brightway2>`_, and a `Brightway2 development blog <http://chris.mutel.org/>`_.
 
 As this manual covers a lot of material, it can be a bit overwhelming, especially at first. The manual is designed to help you get started in the following order:
 
-* First, :ref:`install Brightway2 <installation>` and its dependencies.
-* Second, :ref:`configure Brightway2 <configuration>` by setting a data directory.
-* Third, do the :ref:`five tutorials <five-tutorials>`.
+* First, :ref:`install Brightway2 <installation>` and set up a :ref:`notebook directory <notebook-directory>`.
+* Second, read the :ref:`introduction to brightway2 concepts <intro>`.
+* Third, look at some of the :ref:`example notebooks <example-notebooks>`.
 * Finally, use the rest of the manual as a reference while creating next-generation LCA studies.
 
-In addition to the main index page and table of contents, in the HTML version you can search the documentation in the box on the left, and look for specific terms in the :ref:`genindex`. If you are reading this as a PDF, ``genindex`` isn't a link, but there is an index at the end of this document.
+In addition to the main index page and table of contents, in the HTML version you can search the documentation in the box on the left, and look for specific terms in the :ref:`genindex` (if you are reading this as a PDF there is an index at the end of this document).
 
-Brightway2 Manual
-=================
+Users Manual
+============
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
 
    installation
-   configuration
-   tutorials
+   advanced-installation
+   upgrading
+   intro
+   notebooks
    ui
-   data-directory
-   intermediate
-   metadata
-   uncertainty
-   lci
-   ia
    lca
    faq
+   issues
    contributing
-   packages
    credits
 
 Technical Reference
 ===================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
 
    technical/bw2data
    technical/bw2calc
+   technical/bw2io
    technical/bw2analyzer
