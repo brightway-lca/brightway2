@@ -19,7 +19,6 @@ Enhancements
 * #4 `Review tutorials and notebooks <https://bitbucket.org/cmutel/brightway2/issue/4>`__
 * #5 `Continuous integration testing for Windows <https://bitbucket.org/cmutel/brightway2/issue/5>`__
 * #7 `Conceptual inconsistencies with activities/products and exchanges in ecoinvent <https://bitbucket.org/cmutel/brightway2/issue/7>`__
-* #8 `Split issues documentation into issues and enhancement requests <https://bitbucket.org/cmutel/brightway2/issue/8>`__
 
 brightway2-calc
 ---------------
@@ -35,13 +34,6 @@ brightway2-data
 ---------------
 
 `cmutel/brightway2-data <http://bitbucket.org/cmutel/brightway2-data/issues/>`__
-
-Issues
-``````
-
-* #27 `Need update to delete \`ds['products']\` <https://bitbucket.org/cmutel/brightway2-data/issue/27>`__
-* #30 `Incomprehensible error with \`make_searchable\` on new database <https://bitbucket.org/cmutel/brightway2-data/issue/30>`__
-* #31 `LCA dictionaries don't work with Activity Proxies after repeated calculations <https://bitbucket.org/cmutel/brightway2-data/issue/31>`__
 
 Enhancements
 ````````````
@@ -59,7 +51,6 @@ Issues
 ``````
 
 * #1 `BW2Package _create_obj fails sometimes <https://bitbucket.org/cmutel/brightway2-io/issue/1>`__
-* #6 `Error in \`loc\` field for Ecoinvent 3.1 import <https://bitbucket.org/cmutel/brightway2-io/issue/6>`__
 
 Enhancements
 ````````````
