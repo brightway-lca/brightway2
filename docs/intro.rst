@@ -45,7 +45,7 @@ Inside a project we have a number of objects that store data. The most common da
 
 Project are created in a suitable location for your operating system with the help of the `appdirs <https://github.com/ActiveState/appdirs>`__ library.
 
-Projects can be easily created, copied, manipulated, or deleted. See the `projects example notebook <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Projects.ipynb>`__.
+Projects can be easily created, copied, manipulated, or deleted. See the `projects example notebook <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Projects.ipynb>`__.
 
 .. warning:: Brightway2 uses `atomic file writes <https://github.com/abarnert/fatomic>`__ to prevent data corruption, but `files are hard <http://danluu.com/file-consistency/>`__; you should make regular backups using the :ref:`backup-data-directory` function.
 
@@ -56,7 +56,7 @@ In Brightway2, a *database* is the object used to organize a set of nodes and ed
 
 SimaPro differentiates between what it calls *projects* and *libraries*, but both would be a *database* in Brightway2.
 
-Databases can be easily created, copied, modified, iterated over, searched, and delted. See the `databases example notebook <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/2.0/notebooks/Databases.ipynb>`__.
+Databases can be easily created, copied, modified, iterated over, searched, and delted. See the `databases example notebook <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Databases.ipynb>`__.
 
 Activities and Exchanges
 ------------------------
