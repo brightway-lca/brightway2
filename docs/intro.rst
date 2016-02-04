@@ -604,7 +604,7 @@ Sometimes the only way to correctly link activities or biosphere flows is by app
                     'multiplier': 0.001
                 }
             )
-        }
+        ]
     }
 
 We call the application of transform lists "migrations", and they are applied with the ``.migrate(migrations_name)`` method.
