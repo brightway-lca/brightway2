@@ -19,7 +19,6 @@ Enhancements
 * #4 `Review tutorials and notebooks <https://bitbucket.org/cmutel/brightway2/issue/4>`__
 * #5 `Continuous integration testing for Windows <https://bitbucket.org/cmutel/brightway2/issue/5>`__
 * #7 `Conceptual inconsistencies with activities/products and exchanges in ecoinvent <https://bitbucket.org/cmutel/brightway2/issue/7>`__
-* #9 `Add documentation for how to set BRIGHTWAY2_DIR environment variable <https://bitbucket.org/cmutel/brightway2/issue/9>`__
 
 brightway2-calc
 ---------------
@@ -35,11 +34,6 @@ brightway2-data
 ---------------
 
 `cmutel/brightway2-data <http://bitbucket.org/cmutel/brightway2-data/issues/>`__
-
-Issues
-``````
-
-* #33 `Read-only project displays twice <https://bitbucket.org/cmutel/brightway2-data/issue/33>`__
 
 Enhancements
 ````````````
