@@ -24,7 +24,8 @@ There are a number of notebooks, most of which haven't yet been updated to the l
 * `Databases <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Databases.ipynb>`__
 * `Parameterized inventories <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Parameterized%20inventories.ipynb>`__
 * `Meta-analysis of LCIA methods <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Meta-analysis%20of%20LCIA%20methods.ipynb>`_
-* `Defining a new Matrix - example of Weighting and Normalization matrices <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Defining%20a%20new%20Matrix%20-%20example%20of%20Weighting%20and%20Normalization.ipynb>`_
+* `Defining a new matrix - example of Weighting and Normalization matrices <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Defining%20a%20new%20Matrix%20-%20example%20of%20Weighting%20and%20Normalization.ipynb>`_
+.. * `Defining a LCA calculation - example of power series expansion <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Power%20Series%20LCA.ipynb>`_
 
 .. _example-io-notebooks:
 
