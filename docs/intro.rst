@@ -66,7 +66,7 @@ In the database, nodes are called *activities*, and include transforming and mar
 Activity data format
 ````````````````````
 
-A database consists of inventory datasets, and inventory datasets are text documents, human-readable data that you can manipulate manually in a text editor, or change en masse programmatically. Because they can be exported as text, and in a format that is accessible to almost every computer language (`JSON <http://www.json.org/>`_), activity datasets can be easily exported and used by other programs.
+A database consists of inventory datasets, and inventory datasets are text documents, human-readable data that you can manipulate manually in a text editor, or change en masse programmatically. Because they can be exported as text, and in a format that is accessible to almost every computer language (`JSON <http://www.json.org/>`__), activity datasets can be easily exported and used by other programs.
 
 Inventory datasets have a very flexible and free text form; even an empty dictionary (e.g. ``{}``) is a valid LCI dataset in Brightway2. However, some fields are suggested for common use. Note that you can always add extra fields as needed by your application. Here is a selection from an example dataset from the US LCI:
 
@@ -115,7 +115,7 @@ Uniquely identifying activities
 Linking activity datasets within and between databases requires a way to uniquely identify each dataset - Brightway2 calls this unique identifier a code. A code can be a number, like ``1``, or a string of numbers and letters, like ``swiss ch33se``. When you create datasets manually, you will need to assign each dataset a code. When you import a database, the codes will be automatically generated for you.
 
 Activity hashes
-~~~~~~~~~~~~~~~
+```````````````
 
 When you import an *ecospold* or *SimaPro* dataset, the data format does not provide a way to uniquely identify each dataset. Brightway2 will generate codes that look like a bunch of nonsense, e.g.: ``6d336c64e3a0ff08dee166a1dfdf0946``. In this case, Brightway2 identifies an activity or flow with the `MD5 <http://en.wikipedia.org/wiki/MD5>`_ hash of a few attributes: For ecoinvent 2, the ``name``, ``location``, ``unit``, and ``categories``. For ecoinvent 3, the ``activity`` and ``reference product`` names.
 
@@ -376,7 +376,7 @@ Cataloging what we have - Metadata stores
 
 The building blocks in Brightway2 are LCI databases, LCIA methods, etc. However, we also need to keep track of which LCI databases and LCIA methods we have, as well as some additional information about them. For example, LCIA methods have units, and databases can have version numbers. A *metadata store* stores information about data objects like databases and methods.
 
-The base class for metadata is :ref:`serialized-dict`, which is basically a normal Python dictionary that can be easily saved or loaded (i.e. serialized) to or from a `JSON <http://en.wikipedia.org/wiki/JSON>`_ file. These files can be easily edited in a normal text editor.
+The base class for metadata is :ref:`serialized-dict`, which is basically a normal Python dictionary that can be easily saved or loaded (i.e. serialized) to or from a `JSON <http://en.wikipedia.org/wiki/JSON>`__ file. These files can be easily edited in a normal text editor.
 
 Brightway2 defines the following metadata stores:
 

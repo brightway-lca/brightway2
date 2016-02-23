@@ -214,41 +214,6 @@ Version-control friendly - each database is a JSON file
 .. autoclass:: bw2data.backends.json.sync_json_dict.frozendict
     :members:
 
-.. _searching:
-
-Searching Databases
-===================
-
-.. _search-filter:
-
-Filter
-------
-
-.. autoclass:: bw2data.query.Filter
-    :members:
-
-.. _search-query:
-
-Query
------
-
-.. autoclass:: bw2data.query.Query
-    :members:
-
-.. _search-result:
-
-Result
-------
-
-.. autoclass:: bw2data.query.Result
-    :members:
-
-Dictionaries
-------------
-
-.. autoclass:: bw2data.query.Dictionaries
-    :members:
-
 Impact Assessment data stores
 =============================
 
@@ -267,7 +232,7 @@ ImpactAssessmentDataStore
 Method
 ------
 
-.. autoclass:: bw2data.Method
+.. autoclass:: bw2data.method.Method
     :members:
 
 .. _normalization:
@@ -275,7 +240,7 @@ Method
 Normalization
 -------------
 
-.. autoclass:: bw2data.Normalization
+.. autoclass:: bw2data.weighting_normalization.Normalization
     :members:
 
 .. _weighting:
@@ -283,5 +248,11 @@ Normalization
 Weighting
 ---------
 
-.. autoclass:: bw2data.Weighting
+.. autoclass:: bw2data.weighting_normalization.Weighting
+    :members:
+
+User preferences
+================
+
+.. autoclass:: bw2data.meta.Preferences
     :members:
