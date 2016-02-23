@@ -258,3 +258,19 @@ User preferences
 
 .. autoclass:: bw2data.meta.Preferences
     :members:
+
+Utilities
+=========
+
+.. automethod:: bw2data.utils.combine_methods
+
+.. automethod:: bw2data.utils.download_file
+
+.. automethod:: bw2data.utils.natural_sort
+
+.. automethod:: bw2data.utils.random_string
+
+.. automethod:: bw2data.utils.recursive_str_to_unicode
+
+.. automethod:: bw2data.utils.uncertainify
+
