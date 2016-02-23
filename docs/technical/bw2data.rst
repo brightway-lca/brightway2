@@ -251,6 +251,8 @@ Weighting
 .. autoclass:: bw2data.weighting_normalization.Weighting
     :members:
 
+.. _user-preferences:
+
 User preferences
 ================
 
