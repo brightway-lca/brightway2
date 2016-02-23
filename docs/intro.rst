@@ -233,7 +233,7 @@ Databases can be stored in different ways
 
 The default storage backend for databases stores each database in a separate file. This is the easiest and most convenient approach for most cases. However, Brightway2 also supports pluggable database backends, which can change how databases are stored and queried.
 
-Brightway2-data also provides ``bw2data.backends.JSONDatabase``, which stores each dataset as a separate file serialized to `JSON <http://en.wikipedia.org/wiki/JSON>`__. This approach works well with version-control systems, as each dataset change can be saved individually. Use of ``JSONDatabase`` is shown in a simple `ipython notebook <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/JSON%20database.ipynb>`_.
+Brightway2-data also provides ``bw2data.backends.JSONDatabase``, which stores each dataset as a separate file serialized to `JSON <http://en.wikipedia.org/wiki/JSON>`__. This approach works well with version-control systems, as each dataset change can be saved individually. Use of ``JSONDatabase`` is shown in a simple `ipython notebook <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/JSON%20database.ipynb>`_.
 
 Before using ``JSONDatabase``, please read its technical documentation carefully: :ref:`json-database`. To create a ``JSONDatabase``, use ``Database("my db name", backend="json")``. To switch backends for a database, use :ref:`convert_backend <switching-backends>`.
 
@@ -249,35 +249,6 @@ When you run ``bw2setup()`` in a python shell, Brightway2 will install a special
 You can define biosphere flows - resources and emissions - in any database you like, but it is probably best to use the pre-defined flows in the ``biosphere`` database whenever you can. If you need to add some custom flows, feel free to create a separate database.
 
 You can also change the name for the default biosphere database in the :ref:`user preferences <user-preferences>`.
-
-.. _searching-databases:
-
-Searching databases
--------------------
-
-.. Brightway2 includes some simple functions for searching within databases. Because a database is a simple Python dictionary, it is relatively simple to filter and process. In other words, searching in Brightway2 is at a very low level - you can do a lot, but it might be a bit harder than it should be.
-
-.. The basic strategy is to start with an entire database, i.e. a set of datasets, and progressively apply filters until a smaller set of datasets is left over. In python code, it would be something like this:
-
-.. .. code-block:: python
-
-..     database = [{'name': 'foo'}, {'name': 'bar'}]
-..     def search_filter(datasets, string):
-..         return [
-..                 obj for obj in datasets
-..                 if string in obj.get('name')
-..         ]
-..     results = search_filter(database)
-
-.. Filters can be inclusive or exclusive. Brightway2 provides a generic :ref:`search-filter` class that can filter based on a specific data attribute, but you can also create filters that consider any aspect of a dataset that you like.
-
-.. One or more ``Filter`` s get applied with the help of a :ref:`search-query` object, which just prepares the filter to be applied to a database.
-
-.. The output from a applying a ``Query`` to a set of datasets is a search :ref:`search-result`. A ``Result`` is like a database object, in that it is a dictionary with dataset documents, but is read-only and only has a ``.sort()`` method, which sorts that dictionary by a field value in ascending or descending order.
-
-.. See the linked :ref:`technical documentation <searching>`, and a `notebook on database searching <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/Searching-databases.ipynb>`_.
-
-.. To expand upon the current searching options, consider `fuzzywuzzy <https://github.com/seatgeek/fuzzywuzzy>`_ and `Whoosh <https://pypi.python.org/pypi/Whoosh/>`_.
 
 Impact Assessment
 -----------------

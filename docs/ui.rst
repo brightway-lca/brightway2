@@ -9,7 +9,7 @@ Brightway2 can be used from the interactive python shell. `IPython <http://ipyth
 Jupyter notebooks
 -----------------
 
-`Jpyter notebooks <https://jupyter.org/>`_ are the probably the best way to interact with Brightway2 (the :ref:`five tutorials <five-tutorials>` are all Jupyter notebooks). These lab notebooks open incredible possibilities for interactive, reproducible, collaborative, and understandable science. Read more about the `praise IPython has been getting <http://ipython.org/#announcements>`_, and see `some awesome demos <https://github.com/ipython/ipython/wiki/A-gallery-of-interesting-IPython-Notebooks>`_.
+`Jupyter notebooks <https://jupyter.org/>`_ are the probably the best way to interact with Brightway2 (the :ref:`Brightway2 examples <bw2-notebooks>` are all Jupyter notebooks). These lab notebooks open incredible possibilities for interactive, reproducible, collaborative, and understandable science. Read more about the `praise IPython has been getting <http://ipython.org/#announcements>`_, and see `some awesome demos <https://github.com/ipython/ipython/wiki/A-gallery-of-interesting-IPython-Notebooks>`_.
 
 Activity browser
 ----------------
