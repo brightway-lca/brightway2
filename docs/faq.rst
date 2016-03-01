@@ -51,7 +51,40 @@ Brightway2 uses the `appdirs <https://pypi.python.org/pypi/appdirs/1.4.0>`__ lib
     * On OS X: ``/Users/<User>/Library/Application Support/Brightway2``
     * On Linux: ``/home/<User>/.local/share/Brightway2``
 
-You can specify a custom data directory path by setting the environment variable ``BRIGHTWAY2_DIR``, but this is not recommended for normal use.
+You can specify a custom data directory path by setting the environment variable ``BRIGHTWAY2_DIR`` , but this is not recommended for normal use, unless you are in particular situation like you have multiple installations of brightway2 and want to have a separate data directory for each.
+
+In this case the best is to use conda and set a persistent local environment variables within the virtual environment. By doing so you do not have to set and unset ``BRIGHTWAY2_DIR`` each time the virtual environment is activated but this will be automatically done.
+
+When you create an environment, it lives in a folder that by default is something like ``<YOUR_ANACONDA_INSTALL_DIR>/envs/<YOUR_ENV_NAME>``.  When conda activates or deactivates that environment, it looks for additional scripts in the two subfolders activate.d and deactivate.d. within this folder.
+
+In order to set the persistent environment variables in the virtual environment:
+
+1.Navigate into your virtual environment folders just doing (both Mac/Linux and Windows):
+
+.. code-block:: bash
+
+    cd <YOUR_ANACONDA_INSTALL_DIR>/envs/<YOUR_ENV_NAME>
+
+2.Create the two aforementioned folders.
+
+* For Mac/Linux, type in the terminal:
+
+.. code-block:: bash
+
+    mkdir -p etc/conda/activate.d
+    mkdir -p etc/conda/deactivate.d
+
+* For Windows the command to make folders is slightly different :
+
+.. code-block:: bash
+
+    mkdir etc\conda\activate.d
+    mkdir etc\conda\deactivate.d
+
+3.Create scripts in those folders that set and unset the environment variables (in this case ``BRIGHTWAY2_DIR``). The names of the files don't matter, but the file extensions do.
+
+* For Mac and Linux, the extension must be .sh files. Inside the folder ``./activate.d`` create the file ``whatever_name_you_like.sh`` and inside it write ``export BRIGHTWAY2_DIR="/my/custom/directory"`` while in ``../activate.d`` create ``whatever_name_you_like.sh`` and inside write ``unset BRIGHTWAY2_DIR``.
+* For Windows the procedure is exactly the same, you just need to change the file extension from ``.sh`` into ``.bat`` i.e. instead of ``whatever_name_you_like.sh`` use ``whatever_name_you_like.bat``
 
 Data formats
 ============
@@ -62,8 +95,6 @@ Why are activity dataset keys so confusing? `('ecoinvent 2.2', '5bbf...')` seems
 It is insane, in the sense that it doesn't make any sense at all to people. Rather, `5bbf2e66f2d75d60726974ac44ab4225` is a computer-generated unique ID. The basic problem is that we need one unique ID for an activity dataset, but there is no ID provided in the ecospold 1 data format. Instead, an activity is uniquely identified by its name, location, category, subcategory, unit, and whether or not it is an infrastructure process! `5bbf2e66f2d75d60726974ac44ab4225` is just an easy way of representing all this information in one string. It is a pain, but there is no good way around it.
 
 Unfortunately, ecospold 2 (the data format used in ecoinvent 3) isn't more approachable - keys will now look like `('ecoinvent 3', 'fff06f42-6c5f-4aea-b695-93bcaba55fed')`. Sorry. At least this time it is ecoinvent generating the unique ID, and not Brightway2.
-
-For an easier way to work with activities on the command line, see `Tutorial 2a - Using bw2simple to make life easier <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/Tutorial 2a - Using bw2simple to make life easier.ipynb>`_, based on the helper package `bw2simple <https://bitbucket.org/cmutel/brightway2-simple>`_.
 
 Why pickle? Serialization *X* is so much better!
 ------------------------------------------------
