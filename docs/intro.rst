@@ -66,7 +66,7 @@ In the database, nodes are called *activities*, and include transforming and mar
 Activity data format
 ````````````````````
 
-A database consists of inventory datasets, and inventory datasets are text documents, human-readable data that you can manipulate manually in a text editor, or change en masse programmatically. Because they can be exported as text, and in a format that is accessible to almost every computer language (`JSON <http://www.json.org/>`_), activity datasets can be easily exported and used by other programs.
+A database consists of inventory datasets, and inventory datasets are text documents, human-readable data that you can manipulate manually in a text editor, or change en masse programmatically. Because they can be exported as text, and in a format that is accessible to almost every computer language (`JSON <http://www.json.org/>`__), activity datasets can be easily exported and used by other programs.
 
 Inventory datasets have a very flexible and free text form; even an empty dictionary (e.g. ``{}``) is a valid LCI dataset in Brightway2. However, some fields are suggested for common use. Note that you can always add extra fields as needed by your application. Here is a selection from an example dataset from the US LCI:
 
@@ -115,7 +115,7 @@ Uniquely identifying activities
 Linking activity datasets within and between databases requires a way to uniquely identify each dataset - Brightway2 calls this unique identifier a code. A code can be a number, like ``1``, or a string of numbers and letters, like ``swiss ch33se``. When you create datasets manually, you will need to assign each dataset a code. When you import a database, the codes will be automatically generated for you.
 
 Activity hashes
-~~~~~~~~~~~~~~~
+```````````````
 
 When you import an *ecospold* or *SimaPro* dataset, the data format does not provide a way to uniquely identify each dataset. Brightway2 will generate codes that look like a bunch of nonsense, e.g.: ``6d336c64e3a0ff08dee166a1dfdf0946``. In this case, Brightway2 identifies an activity or flow with the `MD5 <http://en.wikipedia.org/wiki/MD5>`_ hash of a few attributes: For ecoinvent 2, the ``name``, ``location``, ``unit``, and ``categories``. For ecoinvent 3, the ``activity`` and ``reference product`` names.
 
@@ -233,7 +233,7 @@ Databases can be stored in different ways
 
 The default storage backend for databases stores each database in a separate file. This is the easiest and most convenient approach for most cases. However, Brightway2 also supports pluggable database backends, which can change how databases are stored and queried.
 
-Brightway2-data also provides ``bw2data.backends.JSONDatabase``, which stores each dataset as a separate file serialized to `JSON <http://en.wikipedia.org/wiki/JSON>`__. This approach works well with version-control systems, as each dataset change can be saved individually. Use of ``JSONDatabase`` is shown in a simple `ipython notebook <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/JSON%20database.ipynb>`_.
+Brightway2-data also provides ``bw2data.backends.JSONDatabase``, which stores each dataset as a separate file serialized to `JSON <http://en.wikipedia.org/wiki/JSON>`__. This approach works well with version-control systems, as each dataset change can be saved individually. Use of ``JSONDatabase`` is shown in a simple `ipython notebook <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/JSON%20database.ipynb>`_.
 
 Before using ``JSONDatabase``, please read its technical documentation carefully: :ref:`json-database`. To create a ``JSONDatabase``, use ``Database("my db name", backend="json")``. To switch backends for a database, use :ref:`convert_backend <switching-backends>`.
 
@@ -249,35 +249,6 @@ When you run ``bw2setup()`` in a python shell, Brightway2 will install a special
 You can define biosphere flows - resources and emissions - in any database you like, but it is probably best to use the pre-defined flows in the ``biosphere`` database whenever you can. If you need to add some custom flows, feel free to create a separate database.
 
 You can also change the name for the default biosphere database in the :ref:`user preferences <user-preferences>`.
-
-.. _searching-databases:
-
-Searching databases
--------------------
-
-.. Brightway2 includes some simple functions for searching within databases. Because a database is a simple Python dictionary, it is relatively simple to filter and process. In other words, searching in Brightway2 is at a very low level - you can do a lot, but it might be a bit harder than it should be.
-
-.. The basic strategy is to start with an entire database, i.e. a set of datasets, and progressively apply filters until a smaller set of datasets is left over. In python code, it would be something like this:
-
-.. .. code-block:: python
-
-..     database = [{'name': 'foo'}, {'name': 'bar'}]
-..     def search_filter(datasets, string):
-..         return [
-..                 obj for obj in datasets
-..                 if string in obj.get('name')
-..         ]
-..     results = search_filter(database)
-
-.. Filters can be inclusive or exclusive. Brightway2 provides a generic :ref:`search-filter` class that can filter based on a specific data attribute, but you can also create filters that consider any aspect of a dataset that you like.
-
-.. One or more ``Filter`` s get applied with the help of a :ref:`search-query` object, which just prepares the filter to be applied to a database.
-
-.. The output from a applying a ``Query`` to a set of datasets is a search :ref:`search-result`. A ``Result`` is like a database object, in that it is a dictionary with dataset documents, but is read-only and only has a ``.sort()`` method, which sorts that dictionary by a field value in ascending or descending order.
-
-.. See the linked :ref:`technical documentation <searching>`, and a `notebook on database searching <http://nbviewer.ipython.org/url/brightwaylca.org/tutorials/Searching-databases.ipynb>`_.
-
-.. To expand upon the current searching options, consider `fuzzywuzzy <https://github.com/seatgeek/fuzzywuzzy>`_ and `Whoosh <https://pypi.python.org/pypi/Whoosh/>`_.
 
 Impact Assessment
 -----------------
@@ -405,7 +376,7 @@ Cataloging what we have - Metadata stores
 
 The building blocks in Brightway2 are LCI databases, LCIA methods, etc. However, we also need to keep track of which LCI databases and LCIA methods we have, as well as some additional information about them. For example, LCIA methods have units, and databases can have version numbers. A *metadata store* stores information about data objects like databases and methods.
 
-The base class for metadata is :ref:`serialized-dict`, which is basically a normal Python dictionary that can be easily saved or loaded (i.e. serialized) to or from a `JSON <http://en.wikipedia.org/wiki/JSON>`_ file. These files can be easily edited in a normal text editor.
+The base class for metadata is :ref:`serialized-dict`, which is basically a normal Python dictionary that can be easily saved or loaded (i.e. serialized) to or from a `JSON <http://en.wikipedia.org/wiki/JSON>`__ file. These files can be easily edited in a normal text editor.
 
 Brightway2 defines the following metadata stores:
 

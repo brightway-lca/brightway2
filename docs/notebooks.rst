@@ -1,17 +1,12 @@
-Tutorials and example notebooks
-*******************************
+.. _bw2-notebooks:
 
-.. _five-tutorials:
+Brightway2 notebooks
+********************
 
-Tutorials
-=========
+Introduction
+============
 
-* `Tutorial 1 - Getting Started <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Tutorial%201%20-%20Getting%20Started.ipynb>`_
-* `Tutorial 3 - Basic LCA Calculations <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Tutorial%203%20-%20Basic%20LCA%20Calculations.ipynb>`_
-* `Tutorial 4 - Meta-analysis <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Tutorial%204%20-%20Meta-analysis.ipynb>`_
-* `Tutorial 5 - Defining A New Matrix <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Tutorial%205%20-%20Defining%20A%20New%20Matrix.ipynb>`_
-
-After doing the tutorials, you should have an idea of what is possible with Brightway2. The rest of the manual will help explain its components in more detail, but is not really fun to read through in one sitting. It is more of a reference work than a page turner.
+This notebook provides a basic introduction to Brightway2 functionality, including importing and using the FORWAST database: `Getting Started with Brightway2 <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Getting%20Started%20with%20Brightway2.ipynb>`_.
 
 You are ready to start exploring, and the manual will try to help you when you get lost.
 
@@ -28,6 +23,9 @@ There are a number of notebooks, most of which haven't yet been updated to the l
 * `Projects <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Projects.ipynb>`__
 * `Databases <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Databases.ipynb>`__
 * `Parameterized inventories <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Parameterized%20inventories.ipynb>`__
+* `Meta-analysis of LCIA methods <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Meta-analysis%20of%20LCIA%20methods.ipynb>`_
+* `Defining a new matrix - example of Weighting and Normalization matrices <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Defining%20a%20new%20Matrix%20-%20example%20of%20Weighting%20and%20Normalization.ipynb>`_
+.. * `Defining a LCA calculation - example of power series expansion <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Power%20Series%20LCA.ipynb>`_
 
 .. _example-io-notebooks:
 

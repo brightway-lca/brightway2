@@ -39,7 +39,6 @@ Enhancements
 ````````````
 
 * #25 `Add utility function to sync database changes across projects <https://bitbucket.org/cmutel/brightway2-data/issue/25>`__
-* #28 `installation on multiple virtual env point to same data directory <https://bitbucket.org/cmutel/brightway2-data/issue/28>`__
 * #29 `Switch from JSON serialized dictionaries to SQLite for metadata wherever possible <https://bitbucket.org/cmutel/brightway2-data/issue/29>`__
 
 brightway2-io
@@ -51,6 +50,7 @@ Issues
 ``````
 
 * #1 `BW2Package _create_obj fails sometimes <https://bitbucket.org/cmutel/brightway2-io/issue/1>`__
+* #19 `ecoinvet 3.1 cutoff has unlinked exchanges in bw2 dev / win 7 /py3 <https://bitbucket.org/cmutel/brightway2-io/issue/19>`__
 
 Enhancements
 ````````````
@@ -61,7 +61,6 @@ Enhancements
 * #13 `SimaPro LCIA importer: Waste types seem to be handled incorrectly <https://bitbucket.org/cmutel/brightway2-io/issue/13>`__
 * #14 `Need clever approach to replace formula parameters names that conflict with Python reserved words <https://bitbucket.org/cmutel/brightway2-io/issue/14>`__
 * #15 `Importer for OLCA JSON LD schema <https://bitbucket.org/cmutel/brightway2-io/issue/15>`__
-* #18 `Implement ecoinvent 3.2 changes to LCIA methods <https://bitbucket.org/cmutel/brightway2-io/issue/18>`__
 * #7 `SimaPro CSV should extract and apply unit conversions when possible <https://bitbucket.org/cmutel/brightway2-io/issue/7>`__
 * #8 `Need SimaPro to ecoinvent biosphere migration <https://bitbucket.org/cmutel/brightway2-io/issue/8>`__
 * #9 `Need ecoinvent 2.2 -> 3.01 migration <https://bitbucket.org/cmutel/brightway2-io/issue/9>`__
