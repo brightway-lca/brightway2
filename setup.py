@@ -18,7 +18,6 @@ packages = [
     "nose",
     "numpy",
     "peewee",
-    "psutil",
     "pyprind",
     "requests>=1.1.0",
     "scipy",
