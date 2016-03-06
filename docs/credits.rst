@@ -13,6 +13,7 @@ Authors
 * `Marie de Saxcé <http://lca-net.com/about/who-we-are/>`__
 * `Low Kian Seong <https://bitbucket.org/lowks>`__
 * `Bernhard Steubing <http://www.ifu.ethz.ch/ESD/people/bsteubin>`__
+* `Pascal Lesage <http://www.polymtl.ca/recherche/rc/en/professeurs/details.php?NoProf=551>`__
 
 Logo by `eightz <http://www.fiverr.com/ei8htz>`__.
 
