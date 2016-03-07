@@ -17,6 +17,8 @@ Basically, Brightway2 is for you if your project lies at the intersection of LCA
 
 .. note:: Please subscribe to the `brightway2 updates mailing list <https://tinyletter.com/brightway2-updates>`__ to be informed of new releases. You can also read the `archive of previous messages <http://tinyletter.com/brightway2-updates/archive>`__.
 
+.. note:: See :ref:`new instructions on how to run Brightway2 in the cloud <c9>` without installing anything.
+
 Understanding the manual
 ------------------------
 
