@@ -13,6 +13,7 @@ Authors
 * `Marie de Saxcé <http://lca-net.com/about/who-we-are/>`__
 * `Low Kian Seong <https://bitbucket.org/lowks>`__
 * `Bernhard Steubing <http://www.ifu.ethz.ch/ESD/people/bsteubin>`__
+* `Pascal Lesage <http://www.polymtl.ca/recherche/rc/en/professeurs/details.php?NoProf=551>`__
 
 Logo by `eightz <http://www.fiverr.com/ei8htz>`__.
 
@@ -39,7 +40,7 @@ Brightway2 is licensed under the `BSD license <http://opensource.org/licenses/BS
 
 ::
 
-    Copyright (c) 2014, Chris Mutel and ETH Zürich
+    Copyright (c) 2016, Chris Mutel and ETH Zürich
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
