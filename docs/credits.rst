@@ -40,7 +40,7 @@ Brightway2 is licensed under the `BSD license <http://opensource.org/licenses/BS
 
 ::
 
-    Copyright (c) 2014, Chris Mutel and ETH Zürich
+    Copyright (c) 2016, Chris Mutel and ETH Zürich
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
