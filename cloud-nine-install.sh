@@ -13,6 +13,9 @@ conda install -y numpy ipython ipython-notebook jupyter matplotlib scipy flask l
 pip install --no-cache-dir eight
 pip install --no-cache-dir --pre brightway2
 
+jupyter notebook --generate-config
+echo 'c.NotebookApp.tornado_settings = {"headers": {"Content-Security-Policy": "frame-ancestors '\''self'\'' https://ide.c9.io "}}' >> /home/ubuntu/.jupyter/jupyter_notebook_config.py
+
 echo '#!/bin/bash' > run_notebook.sh
 echo 'export PATH="$HOME/miniconda/bin:$PATH"' >> run_notebook.sh
 echo 'source activate bw2' >> run_notebook.sh
