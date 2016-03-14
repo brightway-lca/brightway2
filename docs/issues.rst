@@ -11,11 +11,13 @@ brightway2
 Issues
 ``````
 
+* #10 `Intro tutorial uncertainify is goofy <https://bitbucket.org/cmutel/brightway2/issue/10>`__
 * #6 `Replace \`hasattr\` <https://bitbucket.org/cmutel/brightway2/issue/6>`__
 
 Enhancements
 ````````````
 
+* #11 `Intro tutorial should cover searching <https://bitbucket.org/cmutel/brightway2/issue/11>`__
 * #4 `Review tutorials and notebooks <https://bitbucket.org/cmutel/brightway2/issue/4>`__
 * #5 `Continuous integration testing for Windows <https://bitbucket.org/cmutel/brightway2/issue/5>`__
 * #7 `Conceptual inconsistencies with activities/products and exchanges in ecoinvent <https://bitbucket.org/cmutel/brightway2/issue/7>`__
@@ -40,6 +42,7 @@ Enhancements
 
 * #25 `Add utility function to sync database changes across projects <https://bitbucket.org/cmutel/brightway2-data/issue/25>`__
 * #29 `Switch from JSON serialized dictionaries to SQLite for metadata wherever possible <https://bitbucket.org/cmutel/brightway2-data/issue/29>`__
+* #34 `Add utility function to delete project directories which are no longer registered projects <https://bitbucket.org/cmutel/brightway2-data/issue/34>`__
 
 brightway2-io
 -------------
@@ -51,6 +54,7 @@ Issues
 
 * #1 `BW2Package _create_obj fails sometimes <https://bitbucket.org/cmutel/brightway2-io/issue/1>`__
 * #19 `ecoinvet 3.1 cutoff has unlinked exchanges in bw2 dev / win 7 /py3 <https://bitbucket.org/cmutel/brightway2-io/issue/19>`__
+* #20 `Default biosphere social flows seem weird <https://bitbucket.org/cmutel/brightway2-io/issue/20>`__
 
 Enhancements
 ````````````
