@@ -21,7 +21,7 @@ In general, this manual tells you *what* to do; the notebooks tell you *how* to 
 * `Projects <http://nbviewer.jupyter.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Projects.ipynb>`__
 * `Databases <http://nbviewer.jupyter.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Databases.ipynb>`__
 * `Parameterized inventories <http://nbviewer.jupyter.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Parameterized%20inventories.ipynb>`__
-* `Using calculation setups <http://nbviewer.jupyter.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Using%20calculation%20setups.ipynb>`__.
+* `Using calculation setups <http://nbviewer.jupyter.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Using%20calculation%20setups.ipynb>`__
 * `Meta-analysis of LCIA methods <http://nbviewer.jupyter.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Meta-analysis%20of%20LCIA%20methods.ipynb>`_
 * `Defining a new matrix - example of Weighting and Normalization matrices <http://nbviewer.jupyter.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Defining%20a%20new%20Matrix%20-%20example%20of%20Weighting%20and%20Normalization.ipynb>`_
 
