@@ -109,6 +109,26 @@ Import a `SimaPro <http://www.pre-sustainability.com/simapro-lca-software>`_ tex
 .. autoclass:: bw2io.importers.simapro_lcia_csv.SimaProLCIACSVImporter
     :members:
 
+Excel
+`````
+
+Import an inventory in an Excel spreadsheet which follows the generic `Excel example <https://bitbucket.org/cmutel/brightway2-io/raw/default/bw2io/data/examples/example.xlsx>`__.
+
+.. note:: both imports and exports are supported.
+
+.. autoclass:: bw2io.importers.excel.ExcelImporter
+    :members:
+
+CSV
+```
+
+Import an inventory in a CSV file which follows the generic `CSV example <https://bitbucket.org/cmutel/brightway2-io/raw/default/bw2io/data/examples/example.csv>`__.
+
+.. note:: both imports and exports are supported.
+
+.. autoclass:: bw2io.importers.csv.CSVImporter
+    :members:
+
 Strategies
 ==========
 
@@ -212,6 +232,10 @@ Special
 
 Export
 ======
+
+.. autofunction:: bw2io.export.excel.write_lci_excel
+
+.. autofunction:: bw2io.export.csv.write_lci_csv
 
 .. autofunction:: bw2io.export.excel.lci_matrices_to_excel
 
