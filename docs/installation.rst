@@ -9,6 +9,41 @@ Brightway2 can be installed pretty much everywhere, on Windows, OS X, Linux, and
 
 .. note:: Please subscribe to the `brightway2 updates mailing list <https://tinyletter.com/brightway2-updates>`__ to be informed of new releases.
 
+.. _c9:
+
+Cloud Nine
+==========
+
+*Contributed by Manuel Klarmann* - see :ref:`complete list of authors <authors>` and :ref:`guide to contributing <contributing>`.
+
+You can try out Brightway2 without installing anything on your computer using the `cloud service cloud 9 <https://c9.io/cmutel>`__. Sign up and verify your account, and then do the following:
+
+1. Create a new workspace:
+
+.. image:: images/c9-1.png
+    :align: center
+
+2. Fill out the name and description, and then create your workspace:
+
+.. image:: images/c9-2.png
+    :align: center
+
+3. In the blue terminal at the bottom of the screen (see screenshot), paste the following command:
+
+.. code-block:: bash
+
+    wget https://bitbucket.org/cmutel/brightway2/raw/default/cloud-nine-install.sh && bash cloud-nine-install.sh
+
+.. image:: images/c9-3.png
+    :align: center
+
+4. Click on `Preview` > `Preview Running Application` to see the introductory Brightway2 notebook. You can also copy/paste the URL into a new tab.
+
+.. image:: images/c9-4.png
+    :align: center
+
+.. _quick-windows-install:
+
 Windows
 =======
 

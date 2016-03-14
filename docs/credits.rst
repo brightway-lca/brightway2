@@ -1,6 +1,8 @@
 Credits & License
 =================
 
+.. _authors:
+
 Authors
 -------
 
@@ -14,6 +16,7 @@ Authors
 * `Low Kian Seong <https://bitbucket.org/lowks>`__
 * `Bernhard Steubing <http://www.ifu.ethz.ch/ESD/people/bsteubin>`__
 * `Pascal Lesage <http://www.polymtl.ca/recherche/rc/en/professeurs/details.php?NoProf=551>`__
+* `Manuel Klarmann <https://twitter.com/mklarmann>`__
 
 Logo by `eightz <http://www.fiverr.com/ei8htz>`__.
 
