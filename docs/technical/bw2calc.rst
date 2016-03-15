@@ -28,6 +28,15 @@ Static life cycle assessment
 .. autoclass:: bw2calc.LCA
     :members:
 
+.. autoclass:: bw2calc.least_squares.LeastSquaresLCA
+    :members:
+
+Graph Traversal
+===============
+
+.. autoclass:: bw2calc.GraphTraversal
+    :members:
+
 .. _montecarlo:
 
 Stochastic Life Cycle Assessment
@@ -49,12 +58,6 @@ Parallel Monte Carlo LCA
 ------------------------
 
 .. autoclass:: bw2calc.ParallelMonteCarlo
-    :members:
-
-Graph Traversal
-===============
-
-.. autoclass:: bw2calc.GraphTraversal
     :members:
 
 Utilities
