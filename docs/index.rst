@@ -17,7 +17,12 @@ Basically, Brightway2 is for you if your project lies at the intersection of LCA
 
 .. note:: Please subscribe to the `brightway2 updates mailing list <https://tinyletter.com/brightway2-updates>`__ to be informed of new releases. You can also read the `archive of previous messages <http://tinyletter.com/brightway2-updates/archive>`__.
 
-.. note:: See :ref:`new instructions on how to run Brightway2 in the cloud <c9>` without installing anything.
+What's new?
+-----------
+
+* March 2016: :ref:`New instructions on how to run Brightway2 in the cloud <c9>` without installing anything.
+* March 2016: Brightway is now a `tag on Stack Overflow <http://stackoverflow.com/questions/tagged/brightway?sort=newest>`__! This is a good forum to ask technical questions and get community answers.
+* March 2016: New `Ocelot project <https://ocelot.space/>`__ will use Brightway2 for metaanalysis of LCA databases.
 
 Understanding the manual
 ------------------------
