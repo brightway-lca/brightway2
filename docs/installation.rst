@@ -143,6 +143,20 @@ bw2-notebook.bat
     CALL C:\bw2-python\Scripts\activate.bat bw2
     CALL jupyter notebook
 
+bw2-activity-browser.bat
+````````````````````````
+
+.. note:: The activity browser is still under heavy development. Use with caution!
+
+.. code-block:: bat
+
+    @ECHO OFF
+    set PATH=C:\bw2-python\envs\bw2\Scripts\;C:\bw2-python\Scripts\;C:\bw2-python\;%PATH%
+    CALL C:\bw2-python\Scripts\activate.bat bw2
+    @ECHO ON
+    CALL activity-browser.exe
+    PAUSE
+
 Mac OS X
 ========
 
