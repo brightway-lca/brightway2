@@ -96,6 +96,16 @@ Find holes in tests
 
 Tests always have edge cases that weren't anticipated by the developers, and coverage doesn't test for exceptions. Finding these edge cases or exceptions is a thankless but extremely important part of making robust software.
 
+Package and test the Intel MKL version of Scipy
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Intel MKL library could provide significant speed benefits, but this needs to be tested. The Intel MKL version of Scipy is packaged with Anaconda, so testing its speed versus the current native BLAS should be relatively easy.
+
+See also:
+
+* https://software.intel.com/en-us/python-distribution
+* https://docs.continuum.io/mkl-optimizations/index
+
 Ecospold exporter
 ~~~~~~~~~~~~~~~~~
 
@@ -108,6 +118,19 @@ The existing `activity-browser <https://bitbucket.org/cmutel/activity-browser>`_
 
 Hard problems
 -------------
+
+Write sparse wrappers to the Intel MKL library
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Intel library could provide significant speed improvements, and does have a sparse solver, but no Python wrappers yet.
+
+See:
+
+* https://software.intel.com/en-us/articles/intel-math-kernel-library-inspector-executor-sparse-blas-routines
+* https://software.intel.com/en-us/node/468524
+* https://software.intel.com/en-us/node/471374
+* http://stackoverflow.com/questions/17158893/does-scipy-support-multithreading-for-sparse-matrix-multiplication-when-using-mk
+* https://software.intel.com/en-us/articles/using-intel-mkl-in-your-python-programs
 
 Sankey flow diagram
 ~~~~~~~~~~~~~~~~~~~
