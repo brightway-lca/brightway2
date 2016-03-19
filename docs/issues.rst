@@ -11,7 +11,6 @@ brightway2
 Issues
 ``````
 
-* #12 `'Projects' is not defined <https://bitbucket.org/cmutel/brightway2/issue/12>`__
 * #6 `Replace \`hasattr\` <https://bitbucket.org/cmutel/brightway2/issue/6>`__
 
 Enhancements
@@ -51,8 +50,7 @@ Issues
 ``````
 
 * #1 `BW2Package _create_obj fails sometimes <https://bitbucket.org/cmutel/brightway2-io/issue/1>`__
-* #19 `ecoinvet 3.1 cutoff has unlinked exchanges in bw2 dev / win 7 /py3 <https://bitbucket.org/cmutel/brightway2-io/issue/19>`__
-* #20 `Default biosphere social flows seem weird <https://bitbucket.org/cmutel/brightway2-io/issue/20>`__
+* #19 `ecoinvent 3.1 cutoff has unlinked exchanges in bw2 dev / win 7 /py3 <https://bitbucket.org/cmutel/brightway2-io/issue/19>`__
 
 Enhancements
 ````````````
