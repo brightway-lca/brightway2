@@ -117,7 +117,6 @@ Import an inventory in an Excel spreadsheet which follows the generic `Excel exa
 .. note:: both imports and exports are supported.
 
 .. autoclass:: bw2io.importers.excel.ExcelImporter
-    :members:
 
 CSV
 ```
