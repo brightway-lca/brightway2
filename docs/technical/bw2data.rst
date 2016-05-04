@@ -149,11 +149,7 @@ New database backends should inherit from ``bw2data.backends.base.LCIBackend``:
 Default backend - databases stored in a SQLite database
 -------------------------------------------------------
 
-This backend is a hybrid between SQLite and a document database. This approach may seem strange at first, but is the result of coding, evaluating, and ultimately rejecting backends based on pickle files, JSON files, `MongoDB <https://www.mongodb.com>`__, `CodernityDB <http://labs.codernity.com/codernitydb/>`__, and `BlitzDB <http://blitzdb.readthedocs.org/en/latest/>`__. SQLite has the following advantages:
-
-* Included with Python, no new dependencies or background processes
-* Well-tested and supported
-* Good speed
+This backend is a hybrid between SQLite and a document database. See also :ref:`whysqlite`
 
 The LCI data is stored in two tables, `ActivityDataset` and `ExchangeDataset`. Interactions with the database are mostly done using the `Peewee ORM <http://docs.peewee-orm.com/en/latest/>`__, although some raw SQL queries are used for performance reasons. The table have the following schemas:
 
