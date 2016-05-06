@@ -12,7 +12,7 @@ Brightway2 is written primarily in Python, and some basic knowledge of the langu
 * `Software carpentry <http://software-carpentry.org/4_0/python/index.html>`_
 * `The official tutorial <https://docs.python.org/3/tutorial/introduction.html>`__
 * `Python scientific lectures <http://scipy-lectures.github.com/index.html>`_
-* `Python for you and me <http://pymbook.readthedocs.org/en/latest/index.html>`__
+* `Python for you and me <http://pymbook.readthedocs.io/en/latest/index.html>`__
 * `Google's Python class <https://developers.google.com/edu/python/>`_
 
 Actual books:
@@ -445,7 +445,7 @@ The schema for an ``uncertainty dictionary`` is:
         "maximum": number
     }
 
-The integer ``uncertainty type`` fields are defined in a separate software package called `stats_arrays <https://stats-arrays.readthedocs.org/en/latest/>`_. The uncertainty types are given below, and their parameters are explained in detail in the `stats_arrays table <https://stats-arrays.readthedocs.org/en/latest/#mapping-parameter-array-columns-to-uncertainty-distributions>`_:
+The integer ``uncertainty type`` fields are defined in a separate software package called `stats_arrays <https://stats-arrays.readthedocs.io/en/latest/>`_. The uncertainty types are given below, and their parameters are explained in detail in the `stats_arrays table <https://stats-arrays.readthedocs.io/en/latest/#mapping-parameter-array-columns-to-uncertainty-distributions>`_:
 
     * ``0``: Undefined or unknown uncertainty.
     * ``1``: No uncertainty.
