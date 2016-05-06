@@ -126,7 +126,7 @@ Storing Python objects in a SQLite3 database is silly! Why not use *X* document 
 
 Where *X* is one of `MongoDB <https://www.mongodb.com>`__, `CouchDB <http://couchdb.apache.org/>`__, `UnQLite <https://unqlite-python.readthedocs.io/en/latest/>`__, `Vedis <https://vedis-python.readthedocs.io/en/latest/>`__, `CDB <https://cr.yp.to/cdb.html>`__, `TinyDB <http://tinydb.readthedocs.io/en/latest/intro.html>`__, etc.
 
-This approach may seem strange at first, but is the result of coding, evaluating, and ultimately rejecting several alternatives. Most document databases can't store all Python objects directly, because they use JSON or some other serialization. We have actually built and tested database backends built on pickle files, JSON files, `MongoDB <https://www.mongodb.com>`__, `CodernityDB <http://labs.codernity.com/codernitydb/>`__, and `BlitzDB <http://blitzdb.readthedocs.org/en/latest/>`__. SQLite3 also has several real advantages:
+This approach may seem strange at first, but is the result of coding, evaluating, and ultimately rejecting several alternatives. Most document databases can't store all Python objects directly, because they use JSON or some other serialization. We have actually built and tested database backends built on pickle files, JSON files, `MongoDB <https://www.mongodb.com>`__, `CodernityDB <http://labs.codernity.com/codernitydb/>`__, and `BlitzDB <http://blitzdb.readthedocs.io/en/latest/>`__. SQLite3 also has several real advantages:
 
 * Most importantly, it is included with Python, no new dependencies or installation steps are required.
 * It is famous for being well tested, and is completely cross-platform.
