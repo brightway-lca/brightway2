@@ -6,9 +6,9 @@ Brightway2 notebooks
 Introduction
 ============
 
-This notebook provides a basic introduction to Brightway2 functionality, including importing and using the FORWAST database: `Getting Started with Brightway2 <http://nbviewer.jupyter.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Getting%20Started%20with%20Brightway2.ipynb>`_.
+`Getting Started with Brightway2 <http://nbviewer.jupyter.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Getting%20Started%20with%20Brightway2.ipynb>`_.
 
-You are ready to start exploring, and the manual will try to help you when you get lost.
+This notebook provides a basic introduction to Brightway2 functionality, including importing and using the FORWAST database. After you go through the introduction notebook, you are ready to start exploring, and the manual will try to help you when you get lost.
 
 .. _example-notebooks:
 
