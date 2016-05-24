@@ -86,6 +86,11 @@ In order to set the persistent environment variables in the virtual environment:
 * For Mac and Linux, the extension must be .sh files. Inside the folder ``./activate.d`` create the file ``whatever_name_you_like.sh`` and inside it write ``export BRIGHTWAY2_DIR="/my/custom/directory"`` while in ``../activate.d`` create ``whatever_name_you_like.sh`` and inside write ``unset BRIGHTWAY2_DIR``.
 * For Windows the procedure is exactly the same, you just need to change the file extension from ``.sh`` into ``.bat`` i.e. instead of ``whatever_name_you_like.sh`` use ``whatever_name_you_like.bat``
 
+How can I rename projects?
+--------------------------
+
+You can't. However, you can quickly copy a project to the new name (``projects.copy_project("my new name")``), and then delete the original (``projects.delete_project("old name")``).
+
 Data formats
 ============
 
