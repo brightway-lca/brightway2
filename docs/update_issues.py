@@ -134,7 +134,7 @@ def get_issues_for_repo(name):
             id=issue['id'],
             title=issue['title'],
             priority=issue['priority'],
-            url=issue['links']['self']['href'],
+            url=issue['links']['html']['href'],
             kind=issue['kind'],
         )
 
