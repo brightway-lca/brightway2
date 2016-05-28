@@ -19,7 +19,7 @@ Brightway2-data
 Brightway2-calc
 
 .. image:: https://ci.appveyor.com/api/projects/status/uqixaochulbu6vjv?svg=true
-   :target: https://ci.appveyor.com/project/cmutel/brightway2-data
+   :target: https://ci.appveyor.com/project/cmutel/brightway2-calc
    :alt: bw2calc build status
 
 Brightway2-io
