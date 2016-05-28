@@ -34,8 +34,13 @@ Brightway2-calc
 
 .. image:: https://ci.appveyor.com/api/projects/status/uqixaochulbu6vjv?svg=true
    :target: https://ci.appveyor.com/project/cmutel/brightway2-data
-   :alt: bw2data build status
+   :alt: bw2calc build status
 
+Brightway2-io
+
+.. image:: https://ci.appveyor.com/api/projects/status/7dox9te430eb2f8h?svg=true
+   :target: https://ci.appveyor.com/project/cmutel/brightway2-io
+   :alt: bw2io build status
 
 .. _knownissues:
 
