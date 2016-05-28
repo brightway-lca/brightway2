@@ -12,7 +12,32 @@ import sys
 import uuid
 
 
-HEADER = """.. _knownissues:
+HEADER = """
+Testing and Known Issues
+************************
+
+Testing
+=======
+
+Continuous integration tests are run using `Appveyor <https://www.appveyor.com/>`__ on Windows using Python 2.7 ad 3.5. Developers should also run test locally during development.
+
+Appveyor build status
+---------------------
+
+Brightway2-data
+
+.. image:: https://ci.appveyor.com/api/projects/status/uqixaochulbu6vjv?svg=true
+   :target: https://ci.appveyor.com/project/cmutel/brightway2-data
+   :alt: bw2data build status
+
+Brightway2-calc
+
+.. image:: https://ci.appveyor.com/api/projects/status/uqixaochulbu6vjv?svg=true
+   :target: https://ci.appveyor.com/project/cmutel/brightway2-data
+   :alt: bw2data build status
+
+
+.. _knownissues:
 
 Known Issues
 ============
