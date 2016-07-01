@@ -515,7 +515,7 @@ Not all technosphere exchanges are linked, however. We need to drop two differen
 
 Additionally, there are some exchanges with listed products and activities - but the given activity doesn't produce the listed product. These exchanges also have to be deleted, using the strategy ``delete_ghost_exchanges``.
 
-.. note:: As of March 2015, only the cutoff version completely avoids the two problems listed above.
+.. note:: Ecoinvent 3.1 includes some dummy biosphere flows (``Fluoranthene_temp``, ``Chrysene_temp``, etc.). They can be safely deleted using using ``.drop_unlinked(True)``.
 
 Importing from SimaPro
 ``````````````````````
