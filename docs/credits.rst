@@ -18,6 +18,7 @@ Authors
 * `Pascal Lesage <http://www.polymtl.ca/recherche/rc/en/professeurs/details.php?NoProf=551>`__
 * `Manuel Klarmann <https://twitter.com/mklarmann>`__
 * `Tomas Navarrete <https://www.linkedin.com/in/tom4m3>`__
+* Guillaume Audard
 
 Logo by `eightz <http://www.fiverr.com/ei8htz>`__.
 
