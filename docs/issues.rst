@@ -14,31 +14,19 @@ Brightway2-data
 
 .. image:: https://ci.appveyor.com/api/projects/status/uqixaochulbu6vjv?svg=true
    :target: https://ci.appveyor.com/project/cmutel/brightway2-data
-   :alt: bw2data appveyor build status
-
-.. image:: https://drone.io/bitbucket.org/cmutel/brightway2-data/status.png
-   :target: https://drone.io/bitbucket.org/cmutel/brightway2-data/latest
-   :alt: bw2data drone.io build status
+   :alt: bw2data build status
 
 Brightway2-calc
 
 .. image:: https://ci.appveyor.com/api/projects/status/uqixaochulbu6vjv?svg=true
    :target: https://ci.appveyor.com/project/cmutel/brightway2-calc
-   :alt: bw2calc appveyor build status
-
-.. image:: https://drone.io/bitbucket.org/cmutel/brightway2-calc/status.png
-   :target: https://drone.io/bitbucket.org/cmutel/brightway2-calc/latest
-   :alt: bw2calc drone.io build status
+   :alt: bw2calc build status
 
 Brightway2-io
 
 .. image:: https://ci.appveyor.com/api/projects/status/7dox9te430eb2f8h?svg=true
    :target: https://ci.appveyor.com/project/cmutel/brightway2-io
-   :alt: bw2io appveyor build status
-
-.. image:: https://drone.io/bitbucket.org/cmutel/brightway2-io/status.png
-   :target: https://drone.io/bitbucket.org/cmutel/brightway2-io/latest
-   :alt: bw2io drone.io build status
+   :alt: bw2io build status
 
 .. _knownissues:
 
@@ -66,14 +54,10 @@ brightway2-calc
 
 `brightway2-calc <http://bitbucket.org/cmutel/brightway2-calc/issues/>`__
 
-Issues
-``````
-
-* #5 `Multiprocessing and projects conflict on Windows <https://bitbucket.org/cmutel/brightway2-calc/issues/5/multiprocessing-and-projects-conflict-on>`__
-
 Enhancements
 ````````````
 
+* #11 `Package scikit-umfpack for Windows (Py3.5 only) <https://bitbucket.org/cmutel/brightway2-calc/issues/11/package-scikit-umfpack-for-windows-py35>`__
 * #4 `Create bw2remote and package functionality for offline calculations <https://bitbucket.org/cmutel/brightway2-calc/issues/4/create-bw2remote-and-package-functionality>`__
 
 brightway2-data
@@ -113,6 +97,8 @@ Enhancements
 * #13 `SimaPro LCIA importer: Waste types seem to be handled incorrectly <https://bitbucket.org/cmutel/brightway2-io/issues/13/simapro-lcia-importer-waste-types-seem-to>`__
 * #14 `Need clever approach to replace formula parameters names that conflict with Python reserved words <https://bitbucket.org/cmutel/brightway2-io/issues/14/need-clever-approach-to-replace-formula>`__
 * #15 `Importer for OLCA JSON LD schema <https://bitbucket.org/cmutel/brightway2-io/issues/15/importer-for-olca-json-ld-schema>`__
+* #26 `Need SimaPro migration for ecoinvent 3.2 names <https://bitbucket.org/cmutel/brightway2-io/issues/26/need-simapro-migration-for-ecoinvent-32>`__
+* #27 `Rework uncertainty with pedigree matrices <https://bitbucket.org/cmutel/brightway2-io/issues/27/rework-uncertainty-with-pedigree-matrices>`__
 * #7 `SimaPro CSV should extract and apply unit conversions when possible <https://bitbucket.org/cmutel/brightway2-io/issues/7/simapro-csv-should-extract-and-apply-unit>`__
 * #8 `Need SimaPro to ecoinvent biosphere migration <https://bitbucket.org/cmutel/brightway2-io/issues/8/need-simapro-to-ecoinvent-biosphere>`__
 * #9 `Need ecoinvent 2.2 -> 3.01 migration <https://bitbucket.org/cmutel/brightway2-io/issues/9/need-ecoinvent-22-301-migration>`__
@@ -127,6 +113,16 @@ Enhancements
 
 * #1 `Better handle circular references <https://bitbucket.org/cmutel/brightway2-parameters/issues/1/better-handle-circular-references>`__
 * #2 `Integrate with Monte Carlo random sampling <https://bitbucket.org/cmutel/brightway2-parameters/issues/2/integrate-with-monte-carlo-random-sampling>`__
+
+brightway2-regional
+-------------------
+
+`brightway2-regional <http://bitbucket.org/cmutel/brightway2-regional/issues/>`__
+
+Issues
+``````
+
+* #1 `display_ia_map changes on multiple executions <https://bitbucket.org/cmutel/brightway2-regional/issues/1/display_ia_map-changes-on-multiple>`__
 
 brightway2-restapi
 ------------------
