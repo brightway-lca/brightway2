@@ -9,3 +9,4 @@ MANIFEST
 brightway2.egg-info
 notebooks/.ipynb_checkpoints
 *.sh
+docs/*.log
