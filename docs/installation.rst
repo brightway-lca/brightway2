@@ -5,42 +5,14 @@ Installation
 
 Brightway2 can be installed pretty much everywhere, on Windows, OS X, Linux, and anywhere else Python can be compiled.
 
-.. note:: Brightway2 supports python 2 and 3, but the recommended version is python 3.4.
+.. note:: Brightway2 supports python 2 and 3, but the recommended version is python 3.5.
 
 .. note:: Please subscribe to the `brightway2 updates mailing list <https://tinyletter.com/brightway2-updates>`__ to be informed of new releases.
 
-.. _c9:
+Cloud installs
+==============
 
-Cloud Nine
-==========
-
-*Contributed by Manuel Klarmann* - see :ref:`complete list of authors <authors>` and :ref:`guide to contributing <contributing>`.
-
-You can try out Brightway2 without installing anything on your computer using the `cloud service cloud 9 <https://c9.io/cmutel>`__. Sign up and verify your account, and then do the following:
-
-1. Create a new workspace:
-
-.. image:: images/c9-1.png
-    :align: center
-
-2. Fill out the name and description, and then create your workspace:
-
-.. image:: images/c9-2.png
-    :align: center
-
-3. In the blue terminal at the bottom of the screen (see screenshot), paste the following command:
-
-.. code-block:: bash
-
-    wget https://bitbucket.org/cmutel/brightway2/raw/default/cloud-nine-install.sh && bash cloud-nine-install.sh
-
-.. image:: images/c9-3.png
-    :align: center
-
-4. Click on `Preview` > `Preview Running Application` to see the introductory Brightway2 notebook. You can also copy/paste the URL into a new tab.
-
-.. image:: images/c9-4.png
-    :align: center
+Brightway2 is designed to run without too much fuss on servers in the cloud. See the instructions for using :ref:`Docker <docker>` and specific instructions for :ref:`Cloud Nine <c9>`.
 
 .. _quick-windows-install:
 
@@ -57,12 +29,12 @@ Installation package
 2. As Brightway2 is in active development, make sure you have the latest sources by running (double-click) ``C:\bw2-python\bw2-update.bat``.
 3. Launch (double-click) the application ``C:\bw2-python\bw2-notebook.bat`` to start a notebook server, or ``C:\bw2-python\bw2-ipython.bat`` to get an IPython shell.
 
-You can safely move these batch files to your desktop for easy access.
+You can safely copy or move these batch files to your desktop for easy access.
 
 Will the installation package mess up other installations of Python?
 --------------------------------------------------------------------
 
-No, the installation package is completely independent, and doesn't write anything into your system registry or any other global files.
+No, the installation package is completely independent directory, and doesn't write anything into your system registry or any other global variables.
 
 Launching and using a command shell
 -----------------------------------
@@ -79,7 +51,7 @@ You can copy and paste, or simply type commands, into the command shell. You wil
 .. image:: images/cmd-shell-2.png
     :align: center
 
-In the command shell, you can enter the ipython interpreter with ``ipython``, or run notebooks with ``jupyter notebook``. Note that you can't launch the notebook server from the root ``C:\`` drive, you must be in a directory, e.g. ``C:\bw2-python\``.
+In the command shell, you can enter the ipython interpreter with ``ipython``, or run notebooks with ``jupyter notebook``. Note that you can't launch the notebook server from the root ``C:\`` drive, you must be in a directory, e.g. ``C:\my-notebooks\``.
 
 Using PowerShell
 ----------------
@@ -184,7 +156,7 @@ Press the space bar to go through the license.
 .. image:: images/osx-3.png
     :align: center
 
-Type ``yes`` to agree to the license terms. Next, change the default installation location to ``/Users/<your user name>/bw2-python``.
+Type ``yes`` to agree to the license terms. Next, change the default installation location to ``/Users/<your user name>/bw2-python``. You don't have to use ``bw2-python``, but if you change this than be sure to adapt the following commands.
 
 .. warning:: You can't easily move this directory later, as its path is hard-coded in many files. If you make a mistake, it is better to start the installation from the beginning.
 
@@ -195,9 +167,20 @@ Finally, I recommend **against** (i.e. type ``no``) adding the install location 
 
 You can always add this line to add the Conda directory to your path later if you want.
 
-3. Next, run the following long command (in the same terminal window). This is one single long command:
+3. Next, run the following commands in the same terminal window:
 
-``cd ~/bw2-python && bin/conda install -q -y conda && bin/conda update -q conda && bin/conda create -y -n bw2 python=3.4 && source bin/activate bw2 && conda install -q -y wheel && conda update -q wheel pip setuptools && conda install -y numpy ipython ipython-notebook jupyter matplotlib scipy flask lxml requests nose docopt whoosh xlsxwriter xlrd unidecode && pip install --no-cache-dir eight && pip install --no-cache-dir --pre brightway2``
+.. code-block:: bash
+
+    cd ~/bw2-python
+    bin/conda install -q -y conda
+    bin/conda update -q conda
+    bin/conda create -y -n bw2 python=3.5
+    source bin/activate bw2
+    conda install -q -y wheel
+    conda update -q wheel pip setuptools
+    conda install -y numpy ipython ipython-notebook jupyter matplotlib scipy flask lxml requests nose docopt whoosh xlsxwriter xlrd unidecode
+    pip install --no-cache-dir eight
+    pip install --no-cache-dir --pre brightway2
 
 This will take a while, but there is a lot to do.
 
@@ -205,9 +188,9 @@ This will take a while, but there is a lot to do.
 
 4. In the same terminal window, you can enter the IPython interpreter with the command ``ipython``, or run Jupyter notebooks with ``jupyter notebook``.
 
-.. note:: In each new terminal window, you will need to activate the bw2 environment with the command ``source ~/bw2-python/bin/activate bw2`` before running IPython or the Jupyter notebook server.
+.. note:: In each new terminal window, you will need to activate the bw2 environment with the command ``source ~/bw2-python/bin/activate bw2`` (adjust for the path you chose) before running IPython or the Jupyter notebook server.
 
-You can also `download scripts <https://brightwaylca.org/data/bw2-osx-scripts.zip>`__ to start both IPython and the Jupyter notebook server. These scripts can be run in the Terminal, or from the Finder, if you `associate them with the Terminal app <https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=os%20x%20associate%20extension%20with%20application>`__.
+You can also `download scripts <https://brightwaylca.org/data/bw2-osx-scripts.zip>`__ to start both IPython and the Jupyter notebook server. These scripts can be run in the Terminal, or from the Finder, if you `associate them with the Terminal app <https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=os%20x%20associate%20extension%20with%20application>`__. These scripts assume you installed into the default path, but can easily be edited to adjust paths.
 
 .. _notebook-directory:
 
