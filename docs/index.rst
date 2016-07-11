@@ -20,26 +20,25 @@ Basically, Brightway2 is for you if your project lies at the intersection of LCA
 What's new?
 -----------
 
-* March 2016: :ref:`New instructions on how to run Brightway2 in the cloud <c9>` without installing anything.
-* March 2016: Brightway is now a `tag on Stack Overflow <http://stackoverflow.com/questions/tagged/brightway?sort=newest>`__! This is a good forum to ask technical questions and get community answers.
-* March 2016: New `Ocelot project <https://ocelot.space/>`__ will use Brightway2 for metaanalysis of LCA databases.
+* July 2016: Official `Brightway2 Docker instance <https://hub.docker.com/r/cmutel/brightway2/>`__.
 
 Understanding the manual
 ------------------------
 
-..
-   .. note:: This manual is `available as a PDF <https://brightwaylca.org/Brightway2%20manual.pdf>`_ or `on the web <https://docs.brightwaylca.org/>`_.
-
-.. note:: In addition to this manual, there is a `discussion mailing list <https://groups.google.com/forum/?fromgroups#!forum/brightway2>`_, and a `Brightway2 development blog <http://chris.mutel.org/>`_.
-
 As this manual covers a lot of material, it can be a bit overwhelming, especially at first. The manual is designed to help you get started in the following order:
 
-* First, :ref:`install Brightway2 <installation>` and set up a :ref:`notebook directory <notebook-directory>`.
-* Second, read the :ref:`introduction to brightway2 concepts <intro>`.
-* Third, look at some of the :ref:`example notebooks <example-notebooks>`.
-* Finally, use the rest of the manual as a reference while creating next-generation LCA studies.
+* :ref:`Install Brightway2 <installation>` and set up a :ref:`notebook directory <notebook-directory>`.
+* Read the :ref:`introduction to brightway2 concepts <intro>`.
+* Look at some of the :ref:`example notebooks <example-notebooks>`.
+* Use the rest of the manual as a reference while creating next-generation LCA studies. If you need additional help, you can search the documentation (search box is on the left), or look in the :ref:`genindex`.
 
-In addition to the main index page and table of contents, in the HTML version you can search the documentation in the box on the left, and look for specific terms in the :ref:`genindex` (if you are reading this as a PDF there is an index at the end of this document).
+This manual is `available as a PDF <https://docs.brightwaylca.org/Brightway2-manual.pdf>`_.
+
+Other resources
+---------------
+
+* Ask `Brightway2 questions on Stack Overflow <http://stackoverflow.com/questions/tagged/brightway?sort=newest>`__ (note: tag is `brightway`).
+* `Brightway2 development blog <http://chris.mutel.org/>`__
 
 Users Manual
 ============
