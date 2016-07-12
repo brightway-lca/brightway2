@@ -33,12 +33,20 @@ See also the `discussion on the Python wiki <https://wiki.python.org/moin/Integr
 Data management
 ===============
 
+How do I resolve errors about read-only projects?
+-------------------------------------------------
+
 How do I backup my data?
 ------------------------
 
-* You can save a snapshot of entire project directory with `backup_data_directory`.
-* You can save any data object (like a `Database` or `Method`) to a `BW2Package` using `BW2Package.export_objs`.
-* You can export a database to Excel using `bw2io.export.excel.write_lci_activities`.
+Each project is just a subdirectory (you can get the path using ``projects.dir``), and this can be backed up using any normal tools, including cloud backups like Dropbox.
+
+You can save a snapshot of entire project directory with ``backup_data_directory``, or save a single project with ``backup_project_directory``. Both functions return the filepath of the created archive file.
+
+You can also:
+
+* Save any data object (like a ``Database`` or ``Method``) to a ``BW2Package`` using ``BW2Package.export_objs``.
+* Export a database to Excel using ``bw2io.export.excel.write_lci_activities``.
 
 How do I find where my data is saved?
 -------------------------------------
@@ -51,13 +59,14 @@ Brightway2 uses the `appdirs <https://pypi.python.org/pypi/appdirs/1.4.0>`__ lib
     * On OS X: ``/Users/<User>/Library/Application Support/Brightway2``
     * On Linux: ``/home/<User>/.local/share/Brightway2``
 
-You can specify a custom data directory path by setting the environment variable ``BRIGHTWAY2_DIR`` , but this is not recommended for normal use, unless you are in particular situation like you have multiple installations of brightway2 and want to have a separate data directory for each.
+You can specify a custom data directory path by setting the environment variable ``BRIGHTWAY2_DIR`` , but this is not recommended for normal use, unless you have multiple installations of brightway2 and want to have a separate data directory for each.
 
-In this case the best is to use conda and set a persistent local environment variables within the virtual environment. By doing so you do not have to set and unset ``BRIGHTWAY2_DIR`` each time the virtual environment is activated but this will be automatically done.
+Setting ``BRIGHTWAY2_DIR`` in a virtual environment
+```````````````````````````````````````````````````
 
-When you create an environment, it lives in a folder that by default is something like ``<YOUR_ANACONDA_INSTALL_DIR>/envs/<YOUR_ENV_NAME>``.  When conda activates or deactivates that environment, it looks for additional scripts in the two subfolders activate.d and deactivate.d. within this folder.
+When you create a virtual environment, it lives in a folder that by default is something like ``<YOUR_ANACONDA_INSTALL_DIR>/envs/<YOUR_ENV_NAME>``.  When conda activates or deactivates an environment, it looks for additional scripts in the two subfolders ``activate.d`` and ``deactivate.d`` within this folder. When virtualenv activates or deactivates an environment, it uses the scripts ``activate`` and ``deactivate`` in ``<YOUR_ENV>\bin\``.
 
-In order to set the persistent environment variables in the virtual environment:
+When using conda, to set the persistent environment variables in the virtual environment, do the following. If using virtualenv, instructions are roughly similar but will need some adaptation.
 
 1.Navigate into your virtual environment folders just doing (both Mac/Linux and Windows):
 
@@ -83,7 +92,7 @@ In order to set the persistent environment variables in the virtual environment:
 
 3.Create scripts in those folders that set and unset the environment variables (in this case ``BRIGHTWAY2_DIR``). The names of the files don't matter, but the file extensions do.
 
-* For Mac and Linux, the extension must be .sh files. Inside the folder ``./activate.d`` create the file ``whatever_name_you_like.sh`` and inside it write ``export BRIGHTWAY2_DIR="/my/custom/directory"`` while in ``../activate.d`` create ``whatever_name_you_like.sh`` and inside write ``unset BRIGHTWAY2_DIR``.
+* For Mac and Linux, the extension must be ``.sh`` files. Inside the folder ``activate.d`` create the file ``whatever_name_you_like.sh`` and inside it write ``export BRIGHTWAY2_DIR=/my/custom/directory`` while in ``activate.d`` create ``whatever_name_you_like.sh`` and inside write ``unset BRIGHTWAY2_DIR``.
 * For Windows the procedure is exactly the same, you just need to change the file extension from ``.sh`` into ``.bat`` i.e. instead of ``whatever_name_you_like.sh`` use ``whatever_name_you_like.bat``
 
 How can I rename projects?
@@ -199,7 +208,7 @@ When upgrading on Windows, I get errors about something called ``vcvarsall.bat``
 
 The problem here is that ``pip -U install foo`` will try to upgrade all dependencies of ``foo``. If, for example, scipy is a dependency, and a newer version is available, then pip will try to compile it. Compilation of scipy requires a C compiler, which is why python looks for ``vcvarsall.bat``, which you don't have.
 
-If you are using something like EPD or Anaconda, you should first make sure that all of your libraries are up to date already. Usually they will build the difficult packages so that you don't have to. In many cases, this should solve the problem, as you will then have the latest version of your dependencies.
+If you are using something like conda, you should first make sure that all of your libraries are up to date already. Usually they will build the difficult packages so that you don't have to. In many cases, this should solve the problem, as you will then have the latest version of your dependencies.
 
 If this doesn't solve the problem, then you have two options:
 
@@ -214,7 +223,7 @@ Second, you can try to install a C compiler. You can find `decent instructions o
 The global warming potential values are different in SimaPro!
 -------------------------------------------------------------
 
-The default LCIA characterization factors in Brightway2 come from version 3.1 of the ecoinvent database. For most LCIA methods, these are identical to those found in SimaPro. However, there are important differences for global warming potential:
+The default LCIA characterization factors in Brightway2 come from version 3.2 of the ecoinvent database. For most LCIA methods, these are identical to those found in SimaPro. However, there are important differences for global warming potential:
 
 1. SimaPro does not include a characterization factors for carbon monoxide, but ecoinvent does. Here is the ecoinvent language:
 
@@ -239,4 +248,4 @@ References:
 Why do I get negative results in ecoinvent 3?
 ---------------------------------------------
 
-It is not an error (probably)... this is sometime the case for some activities and LCIA methods in version 3 of ecoinvent.
+Depending on the LCIA method and functional unit, some LCA scores might be negative. Not everything is bad for the environment in every impact category!
