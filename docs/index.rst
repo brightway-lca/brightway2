@@ -46,7 +46,6 @@ Users Manual
 
    installation
    advanced-installation
-   upgrading
    intro
    notebooks
    cloud
