@@ -14,19 +14,31 @@ Brightway2-data
 
 .. image:: https://ci.appveyor.com/api/projects/status/uqixaochulbu6vjv?svg=true
    :target: https://ci.appveyor.com/project/cmutel/brightway2-data
-   :alt: bw2data build status
+   :alt: bw2data appveyor build status
+
+.. image:: https://drone.io/bitbucket.org/cmutel/brightway2-data/status.png
+   :target: https://drone.io/bitbucket.org/cmutel/brightway2-data/latest
+   :alt: bw2data drone.io build status
 
 Brightway2-calc
 
 .. image:: https://ci.appveyor.com/api/projects/status/uqixaochulbu6vjv?svg=true
    :target: https://ci.appveyor.com/project/cmutel/brightway2-calc
-   :alt: bw2calc build status
+   :alt: bw2calc appveyor build status
+
+.. image:: https://drone.io/bitbucket.org/cmutel/brightway2-calc/status.png
+   :target: https://drone.io/bitbucket.org/cmutel/brightway2-calc/latest
+   :alt: bw2calc drone.io build status
 
 Brightway2-io
 
 .. image:: https://ci.appveyor.com/api/projects/status/7dox9te430eb2f8h?svg=true
    :target: https://ci.appveyor.com/project/cmutel/brightway2-io
-   :alt: bw2io build status
+   :alt: bw2io appveyor build status
+
+.. image:: https://drone.io/bitbucket.org/cmutel/brightway2-io/status.png
+   :target: https://drone.io/bitbucket.org/cmutel/brightway2-io/latest
+   :alt: bw2io drone.io build status
 
 .. _knownissues:
 
