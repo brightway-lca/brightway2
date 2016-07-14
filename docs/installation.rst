@@ -27,6 +27,7 @@ Installation package
 .. note:: It is important that the final directory is exactly ``C:\bw2-python\``, as this is what the batch files expect. If you want something more customized, please see the :ref:`advanced-installation` instructions.
 
 2. As Brightway2 is in active development, make sure you have the latest sources by running (double-click) ``C:\bw2-python\bw2-update.bat``.
+
 3. Launch (double-click) the application ``C:\bw2-python\bw2-notebook.bat`` to start a notebook server, or ``C:\bw2-python\bw2-ipython.bat`` to get an IPython shell.
 
 You can safely copy or move these batch files to your desktop for easy access.
@@ -174,11 +175,12 @@ You can always add this line to add the Conda directory to your path later if yo
     cd ~/bw2-python
     bin/conda install -q -y conda
     bin/conda update -q conda
+    bin/conda config --system --add channels conda-forge
     bin/conda create -y -n bw2 python=3.5
     source bin/activate bw2
     conda install -q -y wheel
     conda update -q wheel pip setuptools
-    conda install -y numpy ipython ipython-notebook jupyter matplotlib scipy flask lxml requests nose docopt whoosh xlsxwriter xlrd unidecode
+    conda install numpy ipython ipython-notebook jupyter matplotlib scipy flask lxml requests nose docopt whoosh xlsxwriter xlrd unidecode appdirs fasteners future psutil unicodecsv wrapt
     pip install --no-cache-dir eight
     pip install --no-cache-dir --pre brightway2
 

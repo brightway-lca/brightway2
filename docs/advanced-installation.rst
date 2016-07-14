@@ -8,7 +8,7 @@ Python 2 or 3
 
 Brightway2 is written for python >= 3.4, but runs on python 2.7 as well. Tests are run against 2.7, 3.4 and 3.5. Python 3 versions less than 3.4 are not supported.
 
-The library `eight <https://github.com/kislyuk/eight>`__ is used to forward-port python 2.7 code to 3.4. This means that ``super``, ``str``, and ``bytes`` have 3.4 semantics. The print function and true division are imported from ``__future__``, as are ``unicode_literals``.
+The library `eight <https://github.com/kislyuk/eight>`__ is used to forward-port python 2.7 code to 3.X. This means that ``super``, ``str``, and ``bytes`` have 3.X semantics. The print function and true division are imported from ``__future__``, as are ``unicode_literals``.
 
 See also:
 
@@ -29,7 +29,7 @@ Building from source: Continuum Miniconda
 
 The easiest way to get started is to download
 
-1. Save `Miniconda 3.4 (64-bit version) <http://conda.pydata.org/miniconda.html>`__ for your OS
+1. Save `Miniconda 3.5 (64-bit version) <http://conda.pydata.org/miniconda.html>`__ for your OS
 
 On Mac OS X, you might have to make the bash shell executable:
 
@@ -39,7 +39,7 @@ On Mac OS X, you might have to make the bash shell executable:
 
 (or whatever version you have; you should probably adjust the path as well)
 
-2. Run the Miniconda installer. Make it your default python.
+2. Run the Miniconda installer. Make it your default python. If you don't want to make it your default python, then adjust paths so that the following commands work (e.g. ``cd c:\bw2-python\Scripts``).
 
 3. In a terminal window or command prompt, make sure ``conda`` is up to date:
 
@@ -47,13 +47,19 @@ On Mac OS X, you might have to make the bash shell executable:
 
     conda install conda && conda update conda
 
-4. Create a python environ for brightway2:
+4. Add the ``conda-forge`` channel, which has additional packages:
 
 .. code-block:: bash
 
-    conda create -n bw2 python=3.4
+   conda config --system --add channels conda-forge
 
-5. Activate your environment:
+5. Create a python environ for brightway2:
+
+.. code-block:: bash
+
+    conda create -n bw2 python=3.5
+
+6. Activate your environment:
 
 .. code-block:: bash
 
@@ -61,31 +67,32 @@ On Mac OS X, you might have to make the bash shell executable:
 
 You will have to activate your brightway2 environment in each new terminal window or command prompt.
 
-6. Install or update some dependencies:
+7. Install or update some dependencies. Each of these commands should be run on a separate line:
 
 .. code-block:: bash
 
-   conda install wheel && conda update pip wheel setuptools && conda install numpy ipython ipython-notebook jupyter matplotlib scipy flask lxml requests nose docopt whoosh xlsxwriter xlrd unidecode
+   conda install wheel && conda update pip wheel setuptools
+   conda install numpy ipython ipython-notebook jupyter matplotlib scipy flask lxml requests nose docopt whoosh xlsxwriter xlrd unidecode appdirs fasteners future psutil unicodecsv wrapt
 
-6a. If you are on Windows, you also need to do:
+7a. If you are on Windows, you also need to do:
 
 .. code-block:: bash
 
     conda install pywin32
 
-7. The package ``eight`` needs to be separately installed, to make sure it gets the exact right dependency packages installed:
+8. The package ``eight`` needs to be separately installed, to make sure it gets the exact right dependency packages installed:
 
 .. code-block:: bash
 
     pip install --no-cache-dir eight
 
-7a. If you are on Linux (or really anything other than OS X or Windows), you will need a C compiler to build the backage `bw2speedups <https://pypi.python.org/pypi/bw2speedups/2.0>`__. This should be provided by your distribution in something like ``build-essentials`` or ``build-essential``.
+8a. If you are on Linux (or really anything other than OS X or Windows), you will need a C compiler to build the backage `bw2speedups <https://pypi.python.org/pypi/bw2speedups/2.0>`__. This should be provided by your distribution in something like ``build-essentials`` or ``build-essential``.
 
-8. Finally, install the development version of brightway2:
+9. Finally, install the development version of brightway2:
 
 .. code-block:: bash
 
-   pip install --no-cache-dir --pre brightway2
+   pip install --no-cache-dir brightway2
 
 You can now use brightway2 from the python shell or in an ipython notebook.
 
@@ -244,18 +251,22 @@ If you want to install packages manually, or not install everything, Brightway2 
 * asteval
 * docopt
 * eight
+* fasteners
 * flask
 * future
 * lxml
 * numpy
 * peewee
+* psutil
 * pyprind
 * requests
 * scipy
 * stats_arrays
 * unicodecsv
+* unidecode
 * voluptuous
 * whoosh
+* wrapt
 * xlrd
 * xlsxwriter
 
@@ -266,7 +277,7 @@ Developers
 
 If you want to develop with Brightway, then you should also install the following:
 
-* nose
+* py.test
 * sphinx
 
 You can install editable Brightway2 packages using `mercurial <http://mercurial.selenic.com/>`_:
@@ -290,10 +301,10 @@ Set up python:
 .. code-block:: bash
 
     sudo port selfupdate
-    sudo port install py27-scipy py27-numpy py27-pip py27-libxml2 py27-nose py27-sphinx py27-requests py27-flask py27-virtualenvwrapper mercurial +bash_completion
-    sudo port select --set python python27
-    sudo port select --set pip pip27
-    sudo port select --set virtualenv virtualenv27
+    sudo port install py35-scipy py35-numpy py35-pip py35-libxml2 py35-nose py35-sphinx py35-requests py35-flask py35-virtualenvwrapper mercurial +bash_completion
+    sudo port select --set python python35
+    sudo port select --set pip pip35
+    sudo port select --set virtualenv virtualenv35
 
 Change the shell to macports ``bash``. First, add the macports bash shell as a possibility:
 
@@ -369,12 +380,6 @@ Next, run the following command. Make sure you are in the correct environment/vi
 .. code-block:: bash
 
     pip install -U --no-deps brightway2 bw2data bw2calc bw2analyzer bw2ui bw2io bw2parameters
-
-On rare occasion, the underlying data formats will change. To see if your data needs to be updated, run the following, and follow the instructions if a change is needed:
-
-.. code-block:: bash
-
-    bw2-uptodate
 
 .. _packages:
 
