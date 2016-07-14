@@ -20,7 +20,7 @@ Creating the Brightway2 installation package
 
 After installing all packages, clean conda:
 
-    conda clean -p -t -i -y
+    ``conda clean -tipsy``
 
 .. _anaconda:
 
