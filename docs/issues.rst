@@ -5,7 +5,7 @@ Testing and Known Issues
 Testing
 =======
 
-Continuous integration tests are run using `Appveyor <https://www.appveyor.com/>`__ on Windows using Python 2.7 ad 3.5. Developers should also run test locally during development.
+Continuous integration tests are run using `Appveyor <https://www.appveyor.com/>`__ (Windows) and `Drone.io <https://drone.io/>`__ (Linux). Developers should also run test locally during development.
 
 Appveyor build status
 ---------------------
@@ -20,6 +20,13 @@ Brightway2-data
    :target: https://drone.io/bitbucket.org/cmutel/brightway2-data/latest
    :alt: bw2data drone.io build status
 
+.. image:: https://coveralls.io/repos/bitbucket/cmutel/brightway2-data/badge.svg?branch=default
+   :target: https://coveralls.io/bitbucket/cmutel/brightway2-data?branch=default
+   :alt: Test coverage report
+
+.. image:: https://badge.fury.io/py/bw2data.svg
+   :target: https://badge.fury.io/py/bw2data
+
 Brightway2-calc
 
 .. image:: https://ci.appveyor.com/api/projects/status/uqixaochulbu6vjv?svg=true
@@ -30,6 +37,13 @@ Brightway2-calc
    :target: https://drone.io/bitbucket.org/cmutel/brightway2-calc/latest
    :alt: bw2calc drone.io build status
 
+.. image:: https://coveralls.io/repos/bitbucket/cmutel/brightway2-calc/badge.svg?branch=master
+   :target: https://coveralls.io/bitbucket/cmutel/brightway2-calc?branch=default
+   :alt: Test coverage report
+
+.. image:: https://badge.fury.io/py/bw2calc.svg
+   :target: https://badge.fury.io/py/bw2calc
+
 Brightway2-io
 
 .. image:: https://ci.appveyor.com/api/projects/status/7dox9te430eb2f8h?svg=true
@@ -39,6 +53,13 @@ Brightway2-io
 .. image:: https://drone.io/bitbucket.org/cmutel/brightway2-io/status.png
    :target: https://drone.io/bitbucket.org/cmutel/brightway2-io/latest
    :alt: bw2io drone.io build status
+
+.. image:: https://coveralls.io/repos/bitbucket/cmutel/brightway2-io/badge.svg?branch=master
+   :target: https://coveralls.io/bitbucket/cmutel/brightway2-io?branch=default
+   :alt: Test coverage report
+
+.. image:: https://badge.fury.io/py/bw2io.svg
+   :target: https://badge.fury.io/py/bw2io
 
 .. _knownissues:
 
