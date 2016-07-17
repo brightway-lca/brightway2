@@ -5,7 +5,7 @@ Testing and Known Issues
 Testing
 =======
 
-Continuous integration tests are run using `Appveyor <https://www.appveyor.com/>`__ on Windows using Python 2.7 ad 3.5. Developers should also run test locally during development.
+Continuous integration tests are run using `Appveyor <https://www.appveyor.com/>`__ (Windows) and `Drone.io <https://drone.io/>`__ (Linux). Developers should also run test locally during development.
 
 Appveyor build status
 ---------------------
@@ -20,8 +20,8 @@ Brightway2-data
    :target: https://drone.io/bitbucket.org/cmutel/brightway2-data/latest
    :alt: bw2data drone.io build status
 
-.. image:: https://coveralls.io/repos/bitbucket/cmutel/brightway2-data/badge.svg?branch=master
-   :target: https://coveralls.io/bitbucket/cmutel/brightway2-data?branch=master
+.. image:: https://coveralls.io/repos/bitbucket/cmutel/brightway2-data/badge.svg?branch=default
+   :target: https://coveralls.io/bitbucket/cmutel/brightway2-data?branch=default
    :alt: Test coverage report
 
 .. image:: https://badge.fury.io/py/bw2data.svg
@@ -38,7 +38,7 @@ Brightway2-calc
    :alt: bw2calc drone.io build status
 
 .. image:: https://coveralls.io/repos/bitbucket/cmutel/brightway2-calc/badge.svg?branch=master
-   :target: https://coveralls.io/bitbucket/cmutel/brightway2-calc?branch=master
+   :target: https://coveralls.io/bitbucket/cmutel/brightway2-calc?branch=default
    :alt: Test coverage report
 
 .. image:: https://badge.fury.io/py/bw2calc.svg
@@ -55,7 +55,7 @@ Brightway2-io
    :alt: bw2io drone.io build status
 
 .. image:: https://coveralls.io/repos/bitbucket/cmutel/brightway2-io/badge.svg?branch=master
-   :target: https://coveralls.io/bitbucket/cmutel/brightway2-io?branch=master
+   :target: https://coveralls.io/bitbucket/cmutel/brightway2-io?branch=default
    :alt: Test coverage report
 
 .. image:: https://badge.fury.io/py/bw2io.svg
