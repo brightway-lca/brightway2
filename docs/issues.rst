@@ -21,8 +21,11 @@ Brightway2-data
    :alt: bw2data drone.io build status
 
 .. image:: https://coveralls.io/repos/bitbucket/cmutel/brightway2-data/badge.svg?branch=master
-    :target: https://coveralls.io/bitbucket/cmutel/brightway2-data?branch=master
-    :alt: Test coverage report
+   :target: https://coveralls.io/bitbucket/cmutel/brightway2-data?branch=master
+   :alt: Test coverage report
+
+.. image:: https://badge.fury.io/py/bw2data.svg
+   :target: https://badge.fury.io/py/bw2data
 
 Brightway2-calc
 
@@ -35,8 +38,11 @@ Brightway2-calc
    :alt: bw2calc drone.io build status
 
 .. image:: https://coveralls.io/repos/bitbucket/cmutel/brightway2-calc/badge.svg?branch=master
-    :target: https://coveralls.io/bitbucket/cmutel/brightway2-calc?branch=master
-    :alt: Test coverage report
+   :target: https://coveralls.io/bitbucket/cmutel/brightway2-calc?branch=master
+   :alt: Test coverage report
+
+.. image:: https://badge.fury.io/py/bw2calc.svg
+   :target: https://badge.fury.io/py/bw2calc
 
 Brightway2-io
 
@@ -49,8 +55,11 @@ Brightway2-io
    :alt: bw2io drone.io build status
 
 .. image:: https://coveralls.io/repos/bitbucket/cmutel/brightway2-io/badge.svg?branch=master
-    :target: https://coveralls.io/bitbucket/cmutel/brightway2-io?branch=master
-    :alt: Test coverage report
+   :target: https://coveralls.io/bitbucket/cmutel/brightway2-io?branch=master
+   :alt: Test coverage report
+
+.. image:: https://badge.fury.io/py/bw2io.svg
+   :target: https://badge.fury.io/py/bw2io
 
 .. _knownissues:
 
