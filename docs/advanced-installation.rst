@@ -156,7 +156,7 @@ You will have to activate your brightway2 environment in each **new** terminal w
 .. code-block:: bash
 
    conda install wheel && conda update -q pip wheel setuptools
-   conda install -q -y -c haasad pypardiso=0.1.0
+   conda install -q -y -c haasad pypardiso
    conda install -q -y ipython ipython-notebook jupyter matplotlib flask lxml requests nose docopt whoosh xlsxwriter xlrd unidecode appdirs future psutil unicodecsv wrapt
 
 7a. If you are on Windows, you also need to do:
