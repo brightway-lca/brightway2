@@ -1,12 +1,14 @@
 .. _advanced-installation:
 
-Advanced Installation
-*********************
+Generic installation instructions
+*********************************
+
+Brightway2 can be installed pretty much everywhere, on Windows, OS X, Linux, and anywhere else Python can be compiled.
 
 Python 2 or 3
 =============
 
-Brightway2 is written for python >= 3.4, but runs on python 2.7 as well. Tests are run against 2.7, 3.4 and 3.5. Python 3 versions less than 3.4 are not supported.
+Brightway2 supports python 2 and 3, but the recommended version is python 3.5. Tests are run against 2.7, 3.4 and 3.5. Python 3 versions less than 3.4 are not supported.
 
 The library `eight <https://github.com/kislyuk/eight>`__ is used to forward-port python 2.7 code to 3.X. This means that ``super``, ``str``, and ``bytes`` have 3.X semantics. The print function and true division are imported from ``__future__``, as are ``unicode_literals``.
 
@@ -15,39 +17,107 @@ See also:
 * `Common migration problems <http://python3porting.com/problems.html>`__
 * `FTFY - library to fix common encoding problems <https://github.com/LuminosoInsight/python-ftfy>`__
 
-Creating the Brightway2 installation package
-============================================
+.. note:: Please subscribe to the `brightway2 updates mailing list <https://tinyletter.com/brightway2-updates>`__ to be informed of new releases.
 
-After installing all packages, clean conda:
+.. _notebook-directory:
 
-    ``conda clean -tipsy``
+Notebook directory
+==================
+
+It is best practice to store your notebooks in a different directory outside of the ``bw2-python`` directory - and probably separate directories for each project you are working on. One reasonable place would be in your ``Documents`` or ``Desktop``. You can safely copy the notebooks script to this other directory (or directories).
+
+Cloud installs
+==============
+
+Brightway2 is designed to run without too much fuss on servers in the cloud. See the instructions for using :ref:`Docker <docker>` and specific instructions for :ref:`Cloud Nine <c9>`.
 
 .. _anaconda:
 
 Building from source: Continuum Miniconda
 =========================================
 
-The easiest way to get started is to download
+The easiest way to get started is to download Miniconda. This is a reduced version of the entire Anaconda suite - we will download the libraries we need.
 
 1. Save `Miniconda 3.5 (64-bit version) <http://conda.pydata.org/miniconda.html>`__ for your OS
 
-On Mac OS X, you might have to make the bash shell executable:
+On Mac OS X, you might have to make the bash script executable:
 
 .. code-block:: bash
 
     chmod +x ~/Downloads/Miniconda3-latest-MacOSX-x86_64.sh
 
-(or whatever version you have; you should probably adjust the path as well)
+(or whatever version you have; you might need to adjust the path as well)
 
-2. Run the Miniconda installer. Make it your default python. If you don't want to make it your default python, then adjust paths so that the following commands work (e.g. ``cd c:\bw2-python\Scripts``).
+2. Run the Miniconda installer.
 
-3. In a terminal window or command prompt, make sure ``conda`` is up to date:
+Windows
+-------
+
+Double click the installer file ``Miniconda3-latest-Windows-x86_64.exe``.
+
+Install just for yourself:
+
+.. image:: images/windows-1.png
+    :align: center
+
+Next, change the default installation location to ``C:\bw2-python``:
+
+.. image:: images/windows-2.png
+    :align: center
+
+We generally recommend against making this your default Python:
+
+.. image:: images/windows-3.png
+    :align: center
+
+Finally, open a command line shell by searching for ``cmd.exe`` in the start menu:
+
+.. image:: images/windows-4.png
+    :align: center
+
+OS X/Linux
+----------
+
+Run ``Miniconda3-latest-MacOSX-x86_64.sh`` (or equivalent) to start the Miniconda installer:
+
+.. image:: images/osx-1.png
+    :align: center
+
+Press enter to start reading the Miniconda license.
+
+.. image:: images/osx-2.png
+    :align: center
+
+Press the space bar to go through the license.
+
+.. image:: images/osx-3.png
+    :align: center
+
+Type ``yes`` to agree to the license terms. Next, change the default installation location to ``/Users/<your user name>/bw2-python`` (OS X) or ``/home/<your user name>/bw2-python/`` (Linux). You don't have to use the directory name ``bw2-python``, but if you change this than be sure to adapt the following commands.
+
+.. warning:: You can't easily move this directory later, as its path is hard-coded in many files. If you make a mistake, it is better to start the installation from the beginning.
+
+If you don't have another copy of Python on your machine, then you can make this your default Python interpreter. However, it will also work just fine if you don't make it your default Python - you will just need to type a bit more to activate this Python version each time you start a terminal or command shell. If you don't want to make it your default python, then you will need to adjust the paths so that the following commands work. For example, instead of running ``conda``, you will probably need to change to the correct directory first, e.g. something like ``cd ~/bw2-python/bin/``.
+
+.. image:: images/osx-4.png
+    :align: center
+
+3. If you didn't make this your default Python, change to the right directory in the same terminal window or command shell:
+
+* Windows: ``cd C:\bw2-python\Scripts\``
+* Otherwise: ``cd ~/bw2-python/bin``
+
+4. In the same terminal window or command prompt, make sure ``conda`` is up to date:
 
 .. code-block:: bash
 
-    conda install conda && conda update conda
+    conda install -q -y conda && conda update -q conda
 
-4. Add the ``conda-forge`` channel, which has additional packages:
+.. note:: On OS X/Linux, you might have to use ``./conda`` instead of ``conda``.
+
+.. note:: To paste in a command Windows, use a right click of the mouse.
+
+4. Add the ``conda-forge`` channel, which has additional and updated packages:
 
 .. code-block:: bash
 
@@ -57,36 +127,45 @@ On Mac OS X, you might have to make the bash shell executable:
 
 .. code-block:: bash
 
-    conda create -n bw2 python=3.5
+    conda create -y -n bw2 python=3.5
 
-6. Activate your environment:
+6. Activate your environment using one of the following:
+
+Windows:
 
 .. code-block:: bash
 
     activate bw2
 
-You will have to activate your brightway2 environment in each new terminal window or command prompt.
-
-7. Install or update some dependencies. Each of these commands should be run on a separate line:
+Otherwise:
 
 .. code-block:: bash
 
-   conda install wheel && conda update pip wheel setuptools
-   conda install numpy ipython ipython-notebook jupyter matplotlib scipy flask lxml requests nose docopt whoosh xlsxwriter xlrd unidecode appdirs fasteners future psutil unicodecsv wrapt
+    source activate bw2
+
+You will have to activate your brightway2 environment in each **new** terminal window or command shell using a command like ``source ~/bw2-python/bin/activate bw2`` (adjust for the path you chose) before running IPython or the Jupyter notebook server.
+
+6b. Then change out of your current directory to avoid conflicts:
+
+.. code-block:: bash
+
+    cd ..
+
+7. Install or update some dependencies. We will first update the tools for installation (pip, setuptools, wheel). Then, we install an awesome wrapper by Adrian Haas of the `Pardiso solver provided in the Intel MKL library <https://software.intel.com/en-us/node/470282>`__. Finally, we install some dependencies for Brightway2. Each of these commands should be run on a separate line:
+
+.. code-block:: bash
+
+   conda install wheel && conda update -q pip wheel setuptools
+   conda install -q -y -c haasad pypardiso=0.1.0
+   conda install -q -y ipython ipython-notebook jupyter matplotlib flask lxml requests nose docopt whoosh xlsxwriter xlrd unidecode appdirs future psutil unicodecsv wrapt
 
 7a. If you are on Windows, you also need to do:
 
 .. code-block:: bash
 
-    conda install pywin32
+    conda install -q -y pywin32
 
-8. The package ``eight`` needs to be separately installed, to make sure it gets the exact right dependency packages installed:
-
-.. code-block:: bash
-
-    pip install --no-cache-dir eight
-
-8a. If you are on Linux (or really anything other than OS X or Windows), you will need a C compiler to build the backage `bw2speedups <https://pypi.python.org/pypi/bw2speedups/2.0>`__. This should be provided by your distribution in something like ``build-essentials`` or ``build-essential``.
+8. If you are on Linux (or really anything other than OS X or Windows), you will need a C compiler to build the backage `bw2speedups <https://pypi.python.org/pypi/bw2speedups/2.0>`__. This should be provided by your distribution in something like ``build-essentials`` or ``build-essential``.
 
 9. Finally, install the development version of brightway2:
 
@@ -95,6 +174,14 @@ You will have to activate your brightway2 environment in each new terminal windo
    pip install --no-cache-dir brightway2
 
 You can now use brightway2 from the python shell or in an ipython notebook.
+
+10. After installing all packages, you can save some disk space by cleaning conda:
+
+.. code-block:: bash
+
+    conda clean -tipsy
+
+You can `download OS X scripts <https://brightwaylca.org/data/bw2-osx-scripts.zip>`__ to start both IPython and the Jupyter notebook server (see also :ref:`scripts for Windows <windows-scripts>`). These scripts can be run in the Terminal, or from the Finder, if you `associate them with the Terminal app <https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=os%20x%20associate%20extension%20with%20application>`__. These scripts assume you installed into the default path, but can easily be edited to adjust paths.
 
 Activity-browser
 ================
@@ -164,32 +251,32 @@ Next, install the needed Python libraries using this command in the Terminal:
 
 .. code-block:: bash
 
-    sudo port install python_select py34-scipy py34-numpy py34-pip py34-libxml2 py34-nose py34-sphinx py34-requests py34-flask
+    sudo port install python_select py35-scipy py35-numpy py35-pip py35-libxml2 py35-nose py35-sphinx py35-requests py35-flask
 
 Point to the correct Python executable:
 
 .. code-block:: bash
 
-    sudo port select --set python python34
+    sudo port select --set python python35
 
 Next, install the Brightway2 source code using another Terminal command:
 
 .. code-block:: bash
 
-    pip-3.4 install --user brightway2
+    pip-3.5 install --user brightway2
 
 Unfortunately, the Brightway2 scripts aren't in our ``PATH`` environment variable yet. Fix this by adding the following line to the end of the ``.profile`` file in your home directory, and then start a new terminal window:
 
 .. code-block:: bash
 
-    export PATH=$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/3.4/bin
+    export PATH=$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/3.5/bin
 
 .. _linux-install:
 
 Linux
 -----
 
-General instructions are provided for Ubuntu 14.04; people using other distributions are assumed smart to be enough to adapt as necessary. See also :ref:`platform-agnostic` instructions above.
+General instructions are provided for Ubuntu 14.04; people using other distributions are assumed smart to be enough to adapt as necessary.
 
 First, install the required ``apt`` packages. You can select them in the graphical interface, or through one command in the terminal:
 
@@ -213,62 +300,6 @@ Next, install Brightway2 using another terminal command:
     pip install -U pip wheel setuptools
     pip install eight bw2speedups scikit-umfpack
     pip install --user brightway2
-
-You may get an error with scikit-umfpack, due to an incompatible UMFPACK. In this case, you will need to download the `source package <https://pypi.python.org/pypi/scikit-umfpack>`__, and then edit the file ``scikits/umfpack/setup.py`` and comment out or delete line 17:
-
-.. code-block:: python
-
-    umf_info['libraries'].insert(0, 'rt')
-
-.. _platform-agnostic:
-
-Platform-agnostic
------------------
-
-Installation of Brightway2 has two steps. First, install the following scientific and numeric libraries:
-
-* scipy >= 0.10
-* numpy >= 1.6
-* lxml
-* pip
-
-.. warning:: Make sure that ``SciPy`` builds with support for `UMFPACK <http://www.cise.ufl.edu/research/sparse/umfpack/>`_; you may need to also install `scikits-umpack <https://github.com/rc/scikit-umfpack>`_.
-
-Second, install the Brightway2 package:
-
-.. code-block:: bash
-
-    pip install --user brightay2
-
-.. _requirements:
-
-Requirements
-````````````
-
-If you want to install packages manually, or not install everything, Brightway2 uses the following Python packages:
-
-* appdirs
-* asteval
-* docopt
-* eight
-* fasteners
-* flask
-* future
-* lxml
-* numpy
-* peewee
-* psutil
-* pyprind
-* requests
-* scipy
-* stats_arrays
-* unicodecsv
-* unidecode
-* voluptuous
-* whoosh
-* wrapt
-* xlrd
-* xlsxwriter
 
 Developers
 ==========
