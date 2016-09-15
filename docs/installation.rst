@@ -1,26 +1,9 @@
-.. _installation:
-
-Installation
-************
-
-Brightway2 can be installed pretty much everywhere, on Windows, OS X, Linux, and anywhere else Python can be compiled.
-
-.. note:: Brightway2 supports python 2 and 3, but the recommended version is python 3.5.
-
-.. note:: Please subscribe to the `brightway2 updates mailing list <https://tinyletter.com/brightway2-updates>`__ to be informed of new releases.
-
-Cloud installs
-==============
-
-Brightway2 is designed to run without too much fuss on servers in the cloud. See the instructions for using :ref:`Docker <docker>` and specific instructions for :ref:`Cloud Nine <c9>`.
-
 .. _quick-windows-install:
 
-Windows
-=======
+Windows Installation Package
+****************************
 
-Installation package
---------------------
+The installation package is a single directory
 
 1. Download the `Brightway2 Windows installation package <https://brightwaylca.org/data/bw2-python-windows.7z>`__, and extract to the ``C:\`` drive, using something like `7-zip <http://www.7-zip.org/>`__. This will create the directory ``C:\bw2-python\``. If you didn't extract it to the right place, you can always move it afterwards.
 
@@ -67,10 +50,10 @@ You will have to do this in each PowerShell session.
 
 PowerShell scripts are more powerful than normal batch scripts, but have more security features which have defeated my efforts to set the correct path programmatically. You are welcome to fix this!
 
-Creating the installation package
----------------------------------
+.. _windows-scripts:
 
-The installation directory is created by following the advanced installation instructions, adding several batch files, and compressing the python directory.
+Scripts in the installation package
+-----------------------------------
 
 bw2-env.bat
 ```````````
@@ -130,73 +113,7 @@ bw2-activity-browser.bat
     CALL activity-browser.exe
     PAUSE
 
-Mac OS X
-========
-
-1. Download the `Python 3 Miniconda installer <https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh>`__ to your ``Downloads`` folder.
-2. Open a new Terminal window. The Terminal is ``Appplications`` > ``Utilities`` > ``Terminal.app``., and enter (copy and paste) the following commands (each line is a separate command):
-
-.. code-block:: bash
-
-    cd ~/Downloads
-    chmod +x Miniconda3-latest-MacOSX-x86_64.sh
-    ./Miniconda3-latest-MacOSX-x86_64.sh
-
-This will start the Miniconda installer:
-
-.. image:: images/osx-1.png
-    :align: center
-
-Press enter to start reading the Miniconda license.
-
-.. image:: images/osx-2.png
-    :align: center
-
-Press the space bar to go through the license.
-
-.. image:: images/osx-3.png
-    :align: center
-
-Type ``yes`` to agree to the license terms. Next, change the default installation location to ``/Users/<your user name>/bw2-python``. You don't have to use ``bw2-python``, but if you change this than be sure to adapt the following commands.
-
-.. warning:: You can't easily move this directory later, as its path is hard-coded in many files. If you make a mistake, it is better to start the installation from the beginning.
-
-Finally, I recommend **against** (i.e. type ``no``) adding the install location to your path:
-
-.. image:: images/osx-4.png
-    :align: center
-
-You can always add this line to add the Conda directory to your path later if you want.
-
-3. Next, run the following commands in the same terminal window:
-
-.. code-block:: bash
-
-    cd ~/bw2-python
-    bin/conda install -q -y conda
-    bin/conda update -q conda
-    bin/conda config --system --add channels conda-forge
-    bin/conda create -y -n bw2 python=3.5
-    source bin/activate bw2
-    conda install -q -y wheel
-    conda update -q wheel pip setuptools
-    conda install numpy ipython ipython-notebook jupyter matplotlib scipy flask lxml requests nose docopt whoosh xlsxwriter xlrd unidecode appdirs fasteners future psutil unicodecsv wrapt
-    pip install --no-cache-dir eight
-    pip install --no-cache-dir --pre brightway2
-
-This will take a while, but there is a lot to do.
-
-.. note:: If you get an error message like ``No packages found in current osx-64 channels matching: conda``, then you need to edit the file ``.condarc`` in your home directory (``/Users/<your user name>/``), and add ``default`` to the channel list. See also `this conda issue <https://github.com/conda/conda/issues/742>`__.
-
-4. In the same terminal window, you can enter the IPython interpreter with the command ``ipython``, or run Jupyter notebooks with ``jupyter notebook``.
-
-.. note:: In each new terminal window, you will need to activate the bw2 environment with the command ``source ~/bw2-python/bin/activate bw2`` (adjust for the path you chose) before running IPython or the Jupyter notebook server.
-
-You can also `download scripts <https://brightwaylca.org/data/bw2-osx-scripts.zip>`__ to start both IPython and the Jupyter notebook server. These scripts can be run in the Terminal, or from the Finder, if you `associate them with the Terminal app <https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=os%20x%20associate%20extension%20with%20application>`__. These scripts assume you installed into the default path, but can easily be edited to adjust paths.
-
-.. _notebook-directory:
-
 Notebook directory
 ==================
 
-It is best practice to store your notebooks in a different directory outside of the ``bw2-python`` directory, and you can copy the notebooks script to this directory. Indeed, you could create subdirectories for each project you will work on.
+It is best practice to store your notebooks in a different directory outside of the ``bw2-python`` directory - and probably separate directories for each project you are working on. One reasonable place would be in your ``Documents`` or ``Desktop``. You can safely copy the notebooks script to this other directory (or directories).

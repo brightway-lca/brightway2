@@ -7,6 +7,7 @@ Authors
 -------
 
 * `Chris Mutel <http://chris.mutel.org/>`__
+* `Adrian Haas <https://www.ethz.ch/content/specialinterest/baug/institute-ifu/institute-ifu/en/das-institut/personen/personen-detail.html?persid=171851>`__
 * `Giuseppe Cardellini <http://www.kuleuven.be/wieiswie/en/person/90387>`__
 * `Andreas Froemelt <http://www.ifu.ethz.ch/ESD/people/andrefro>`__
 * `Niko Heeren <http://www.ifu.ethz.ch/staff/nheeren/index_EN>`__
