@@ -33,8 +33,30 @@ See also the `discussion on the Python wiki <https://wiki.python.org/moin/Integr
 Data management
 ===============
 
+Which ecoinvent file should I download?
+---------------------------------------
+
+Ecoinvent makes several versions of each system model available:
+
+
+* ecoinvent 3.3_xxx_ecoSpold02.7z
+* ecoinvent 3.3_xxx_lci_ecoSpold02.7z
+* ecoinvent 3.3_xxx_lcia_ecoSpold02.7z
+* ecoinvent 3.3_xxx_lcia-cumulated-matrices_xls.7z
+* ecoinvent 3.3_xxx_lci-cumulated-matrices_xls.7z
+
+You want to download and import ``ecoinvent 3.3_xxx_ecoSpold02.7z``. If your import process is taking a long time or a lot of memory, double check to make sure you have the right version.
+
 How do I resolve errors about read-only projects?
 -------------------------------------------------
+
+Brightway2 uses the `fasteners <https://pypi.python.org/pypi/fasteners>`__ library to create lock files that conflicts in written data. More specifically, when you use ``projects.set_current`` to `switch to a new project <https://bitbucket.org/cmutel/brightway2-data/src/default/bw2data/project.py?at=default&fileviewer=file-view-default#project.py-141>`__, Brightway will read a bunch of metadata about things like project databases and LCIA methods into memory. It will then try to acquire a lock that gives it the exclusive right to change this metadata in the future. If a second Python kernel switches to the same project, it will load the latest saved version of the metadata, and will then fail to acquire the lock, so will be set to read-only mode (i.e. ``projects.read_only = True``).
+
+This locking was introduced because people were having trouble with multiple people working on the same project and getting conflicts or even corruption in the metadata. The problem is easy to understand - if two kernels load the metadata into memory, and each make a change somewhere, then whoever saves the latest will overwrite the changes of the other.
+
+You can run into problems if a Python kernel is not shut down properly. To be safe, you should **always manually shut down** each Python shell and each Jupyter notebook. In extreme cases, it may be necessary to manually delete the lock file or restart your computer.
+
+If you are sure that it is safe to write data, then you can trick the ``projects`` object into allowing writes - just set ``projects.read_only = False``. But be careful that you only do this in a single Python kernel.
 
 How do I backup my data?
 ------------------------
