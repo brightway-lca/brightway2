@@ -8,6 +8,11 @@ Contributing
 
 Brightway2 is designed to be easy to use and develop for. The modular structure of Brightway2 means that you don't have to learn everything at once - pick the subject that best suits your interests and skills, download the code, and start hacking!
 
+Code of conduct
+---------------
+
+Brightway follows the `Contributor Covenant <http://contributor-covenant.org/>`__; more details are found in the file `CODE_OF_CONDUCT.md` in each repository.
+
 Required packages
 -----------------
 
