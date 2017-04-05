@@ -1,0 +1,23 @@
+{
+  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
+  "@type": "Code",
+  "author": [
+    {
+      "@id": "0000-0002-7898-9862",
+      "@type": "Person",
+      "email": "cmutel@gmail.com",
+      "name": "Chris Mutel",
+      "affiliation": "Paul Scherrer Institut"
+    }
+  ],
+  "identifier": "",
+  "codeRepository": "https://bitbucket.org/cmutel/brightway2",
+  "datePublished": "2017-04-05",
+  "dateModified": "2017-04-05",
+  "dateCreated": "2017-04-05",
+  "description": "Framework for Life Cycle Assessment",
+  "keywords": "LCA, Python",
+  "license": "BSD 3-clause",
+  "title": "Brightway",
+  "version": "2.0.2"
+}
