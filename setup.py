@@ -8,13 +8,11 @@ packages = [
     "bw2data>=2.0.1",
     "bw2io>=0.4.1",
     "bw2parameters>=0.5.1",
-    "bw2speedups>=2.1",
     "docopt",
     "eight",
     "flask",
     "future",
     "lxml",
-    "nose",
     "numpy",
     "peewee>=2.8",
     "psutil",
@@ -31,7 +29,7 @@ packages = [
 
 setup(
     name='brightway2',
-    version="2.0.2",
+    version="2.0.3",
     packages=["brightway2"],
     author="Chris Mutel",
     author_email="cmutel@gmail.com",
