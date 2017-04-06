@@ -5,8 +5,6 @@ bw2calc
 bw2data
 bw2io
 bw2parameters
-bw2speedups
-bw2ui
 docopt
 eight
 flask
