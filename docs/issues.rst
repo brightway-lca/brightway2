@@ -48,6 +48,16 @@ Enhancements
 
 * #7 `Conceptual inconsistencies with activities/products and exchanges in ecoinvent <https://bitbucket.org/cmutel/brightway2/issues/7/conceptual-inconsistencies-with-activities>`__
 
+brightway2-analyzer
+-------------------
+
+`brightway2-analyzer <http://bitbucket.org/cmutel/brightway2-analyzer/issues/>`__
+
+Enhancements
+````````````
+
+* #2 `Make HTML report for an LCA object <https://bitbucket.org/cmutel/brightway2-analyzer/issues/2/make-html-report-for-an-lca-object>`__
+
 brightway2-calc
 ---------------
 
@@ -75,15 +85,14 @@ Issues
 
 * #35 `location filter uses lowercase only and ignores locations with dashes <https://bitbucket.org/cmutel/brightway2-data/issues/35/location-filter-uses-lowercase-only-and>`__
 * #36 `LCI instead of unit process data imports of 3.2 causes huge CPU/memory issues <https://bitbucket.org/cmutel/brightway2-data/issues/36/lci-instead-of-unit-process-data-imports>`__
-* #43 `All projects default to read-only, enable_writes is powerless <https://bitbucket.org/cmutel/brightway2-data/issues/43/all-projects-default-to-read-only>`__
 
 Enhancements
 ````````````
 
 * #25 `Add utility function to sync database changes across projects <https://bitbucket.org/cmutel/brightway2-data/issues/25/add-utility-function-to-sync-database>`__
-* #29 `Switch from JSON serialized dictionaries to SQLite for metadata wherever possible <https://bitbucket.org/cmutel/brightway2-data/issues/29/switch-from-json-serialized-dictionaries>`__
 * #42 `Set output directory with environment variable <https://bitbucket.org/cmutel/brightway2-data/issues/42/set-output-directory-with-environment>`__
 * #46 `bulk update of exchanges is slow with peewee <https://bitbucket.org/cmutel/brightway2-data/issues/46/bulk-update-of-exchanges-is-slow-with>`__
+* #47 `Improve performance of \`random\` <https://bitbucket.org/cmutel/brightway2-data/issues/47/improve-performance-of-random>`__
 
 brightway2-io
 -------------
@@ -108,6 +117,7 @@ Enhancements
 * #26 `Need SimaPro migration for ecoinvent 3.2 names <https://bitbucket.org/cmutel/brightway2-io/issues/26/need-simapro-migration-for-ecoinvent-32>`__
 * #27 `Rework uncertainty with pedigree matrices <https://bitbucket.org/cmutel/brightway2-io/issues/27/rework-uncertainty-with-pedigree-matrices>`__
 * #29 `biosphere consistency check (for bw2_setup()) <https://bitbucket.org/cmutel/brightway2-io/issues/29/biosphere-consistency-check-for-bw2_setup>`__
+* #34 `Migrations need to be cleaned up <https://bitbucket.org/cmutel/brightway2-io/issues/34/migrations-need-to-be-cleaned-up>`__
 * #7 `SimaPro CSV should extract and apply unit conversions when possible <https://bitbucket.org/cmutel/brightway2-io/issues/7/simapro-csv-should-extract-and-apply-unit>`__
 * #8 `Need SimaPro to ecoinvent biosphere migration <https://bitbucket.org/cmutel/brightway2-io/issues/8/need-simapro-to-ecoinvent-biosphere>`__
 * #9 `Need ecoinvent 2.2 -> 3.01 migration <https://bitbucket.org/cmutel/brightway2-io/issues/9/need-ecoinvent-22-301-migration>`__
@@ -150,7 +160,7 @@ brightway2-temporalis
 Issues
 ``````
 
-* #3 `dynamic LCA skip incomprehensibly some years <https://bitbucket.org/cmutel/brightway2-temporalis/issues/3/dynamic-lca-skip-incomprehensibly-some>`__
+* #4 `Traversal in a graph with a loop never ends <https://bitbucket.org/cmutel/brightway2-temporalis/issues/4/traversal-in-a-graph-with-a-loop-never>`__
 
 Enhancements
 ````````````
