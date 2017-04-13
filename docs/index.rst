@@ -15,17 +15,12 @@ Brightway2 is not for people that want to do the same old LCA studies, just with
 
 Basically, Brightway2 is for you if your project lies at the intersection of LCA and your imagination.
 
-What's new?
------------
-
-* July 2016: Instructions for running Brightway2 on the :ref:`cloud`, including an official `Brightway2 Docker instance <https://hub.docker.com/r/cmutel/brightway2/>`__.
-
 Understanding the manual
 ------------------------
 
 As this manual covers a lot of material, it can be a bit overwhelming, especially at first. The manual is designed to help you get started in the following order:
 
-* Install Brightway (:ref:`Windows quickstart <quick-windows-install>` or :ref:`otherwise <advanced-installation>`) and set up a :ref:`notebook directory <notebook-directory>`.
+* :ref:`Install Brightway <installation>` and set up a :ref:`notebook directory <notebook-directory>`.
 * Read the :ref:`introduction to brightway2 concepts <intro>`.
 * Look at some of the :ref:`example notebooks <example-notebooks>`.
 * Use the rest of the manual as a reference while creating next-generation LCA studies. If you need additional help, you can search the documentation (search box is on the left), or look in the :ref:`genindex`.
@@ -45,7 +40,6 @@ Users Manual
    :maxdepth: 2
 
    installation
-   advanced-installation
    intro
    notebooks
    cloud
