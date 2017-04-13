@@ -20,6 +20,13 @@ Technosphere Biosphere Matrix Builder
 .. autoclass:: bw2calc.TechnosphereBiosphereMatrixBuilder
     :members:
 
+Indexing
+--------
+
+.. autofunction:: bw2calc.indexing.index_with_arrays
+
+.. autofunction:: bw2calc.indexing.index_with_searchsorted
+
 .. _lca:
 
 Static life cycle assessment

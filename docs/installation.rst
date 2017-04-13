@@ -1,24 +1,75 @@
-.. _quick-windows-install:
+.. _installation:
 
-Windows Installation Package
-****************************
+Installation
+************
 
-The installation package is a single directory
+Brightway2 can be installed pretty much everywhere, on Windows, OS X, Linux, and anywhere else Python can be compiled.
 
-1. Download the `Brightway2 Windows installation package <https://brightwaylca.org/data/bw2-python-windows.7z>`__, and extract to the ``C:\`` drive, using something like `7-zip <http://www.7-zip.org/>`__. This will create the directory ``C:\bw2-python\``. If you didn't extract it to the right place, you can always move it afterwards.
+Quickstart
+==========
 
-.. note:: It is important that the final directory is exactly ``C:\bw2-python\``, as this is what the batch files expect. If you want something more customized, please see the :ref:`advanced-installation` instructions.
+1. Install `Miniconda version 3.6 64-bit <https://conda.io/miniconda.html>`__.
 
-2. As Brightway2 is in active development, make sure you have the latest sources by running (double-click) ``C:\bw2-python\bw2-update.bat``.
+2. Update conda
 
-3. Launch (double-click) the application ``C:\bw2-python\bw2-notebook.bat`` to start a notebook server, or ``C:\bw2-python\bw2-ipython.bat`` to get an IPython shell.
+.. code-block:: bash
 
-You can safely copy or move these batch files to your desktop for easy access.
+    conda update conda
 
-Will the installation package mess up other installations of Python?
---------------------------------------------------------------------
+3. In a terminal window or command line shell, create a new `conda environment <https://conda.io/docs/using/envs.html>`__. A conda environment is like a separate computer where software packages don't conflict with each other. You can call it whatever your want:
 
-No, the installation package is completely independent directory, and doesn't write anything into your system registry or any other global variables.
+.. code-block:: bash
+
+    conda create -n <change-me> python=3.6
+
+4. Activate your environment, using one of the following:
+
+.. code-block:: bash
+
+    source activate <change-me>
+    activate <change-me>
+
+5. Install Brightway2:
+
+.. code-block:: bash
+
+    conda install -y -q -c conda-forge -c cmutel -c haasad brightway2 jupyter
+
+6. If you are on Windows, you also need to do:
+
+.. code-block:: bash
+
+    conda install -y -q pywin32
+
+7. After installing all packages, you can save some disk space by cleaning conda:
+
+.. code-block:: bash
+
+    conda clean -tipsy
+
+You can also install Brightway2 using pip, but the numerical libraries are much easier to install from conda.
+
+.. _anaconda:
+
+Running the Miniconda installer
+===============================
+
+Windows
+-------
+
+Double click the installer file ``Miniconda3-latest-Windows-x86_64.exe``.
+
+Install just for yourself:
+
+.. image:: images/windows-1.png
+    :align: center
+
+Next, change the default installation location to somewhere easy to type, like in your home directory or ``C:\miniconda\``:
+
+.. image:: images/windows-2.png
+    :align: center
+
+Unless you have other Python versions installed, it is fine to make this your default Python.
 
 Launching and using a command shell
 -----------------------------------
@@ -30,90 +81,193 @@ You can also manually launch Python in a command shell using the application lau
 
 .. note:: You can usually use the right mouse button to paste into command shell or PowerShell windows.
 
-You can copy and paste, or simply type commands, into the command shell. You will need to run the batch file ``C:\bw2-python\bw2-env.bat`` in each new command shell, to activate the brightway2 environment.
+You can copy and paste, or simply type commands, into the command shell. You will need to activate the environment in each terminal window.
 
 .. image:: images/cmd-shell-2.png
     :align: center
 
 In the command shell, you can enter the ipython interpreter with ``ipython``, or run notebooks with ``jupyter notebook``. Note that you can't launch the notebook server from the root ``C:\`` drive, you must be in a directory, e.g. ``C:\my-notebooks\``.
 
-Using PowerShell
-----------------
+OS X/Linux
+----------
 
-PowerShell is more familiar for some people; in this case, you don't want to run the batch file, but just directly add the relevant directories to your path:
+.. note:: On Mac OS X, you might have to make the bash script executable: ``chmod +x ~/Downloads/Miniconda3-latest-MacOSX-x86_64.sh``
 
-.. code-block:: bat
+Run ``Miniconda3-latest-MacOSX-x86_64.sh`` (or equivalent) to start the Miniconda installer:
 
-    $Env:Path = "c:\bw2-python\envs\bw2\Scripts\;C:\bw2-python\Scripts\;C:\bw2-python\;" + $Env:Path
+.. image:: images/osx-1.png
+    :align: center
 
-You will have to do this in each PowerShell session.
+Press enter to start reading the Miniconda license.
 
-PowerShell scripts are more powerful than normal batch scripts, but have more security features which have defeated my efforts to set the correct path programmatically. You are welcome to fix this!
+.. image:: images/osx-2.png
+    :align: center
 
-.. _windows-scripts:
+Press the space bar to go through the license.
 
-Scripts in the installation package
------------------------------------
+.. image:: images/osx-3.png
+    :align: center
 
-bw2-env.bat
-```````````
+Type ``yes`` to agree to the license terms. Next, change the default installation location to something easy to find and remember, like ``/Users/<your user name>/miniconda/`` (OS X) or ``/home/<your user name>/miniconda/`` (Linux).
 
-.. code-block:: bat
+.. warning:: You can't easily move this directory later, as its path is hard-coded in many files. If you make a mistake, it is better to start the installation from the beginning.
 
-    @ECHO OFF
-    ECHO Setting path to Brightway2 environment
-    set PATH=C:\bw2-python\envs\bw2\Scripts\;C:\bw2-python\Scripts\;C:\bw2-python\;%PATH%
-    CALL C:\bw2-python\Scripts\activate.bat bw2
+If you don't have another copy of Python on your machine, then you can make this your default Python interpreter. However, it will also work just fine if you don't make it your default Python - you will just need to type a bit more to activate this Python version each time you start a terminal or command shell. If you don't want to make it your default python, then you will need to adjust the paths so that the following commands work. For example, instead of running ``conda``, you will probably need to change to the correct directory first, e.g. something like ``cd ~/miniconda/bin/``.
 
-bw2-update.bat
-``````````````
+.. image:: images/osx-4.png
+    :align: center
 
-.. code-block:: bat
+Python 2 or 3
+=============
 
-    @ECHO OFF
-    set PATH=C:\bw2-python\envs\bw2\Scripts\;C:\bw2-python\Scripts\;C:\bw2-python\;%PATH%
-    CALL C:\bw2-python\Scripts\activate.bat bw2
-    @ECHO ON
-    pip install -U --no-deps --pre brightway2 bw2io bw2data bw2calc bw2analyzer
-    PAUSE
+Brightway2 supports python 2 and 3, but the recommended version is python 3.6. Tests are run against 2.7 and 3.6. Python 3 versions less than 3.4 are not supported.
 
-bw2-ipython.bat
-```````````````
+The library `eight <https://github.com/kislyuk/eight>`__ is used to forward-port python 2.7 code to 3.X. This means that ``super``, ``str``, and ``bytes`` have 3.X semantics. The print function and true division are imported from ``__future__``, as are ``unicode_literals``.
 
-.. code-block:: bat
+See also:
 
-    @ECHO OFF
-    ECHO Setting path to Brightway2 environment
-    set PATH=C:\bw2-python\envs\bw2\Scripts\;C:\bw2-python\Scripts\;C:\bw2-python\;%PATH%
-    CALL C:\bw2-python\Scripts\activate.bat bw2
-    CALL ipython
+* `Common migration problems <http://python3porting.com/problems.html>`__
+* `FTFY - library to fix common encoding problems <https://github.com/LuminosoInsight/python-ftfy>`__
 
-bw2-notebook.bat
-````````````````
+.. note:: Please subscribe to the `brightway2 updates mailing list <https://tinyletter.com/brightway2-updates>`__ to be informed of new releases.
 
-.. code-block:: bat
-
-    @ECHO OFF
-    ECHO Setting path to Brightway2 environment
-    set PATH=C:\bw2-python\envs\bw2\Scripts\;C:\bw2-python\Scripts\;C:\bw2-python\;%PATH%
-    CALL C:\bw2-python\Scripts\activate.bat bw2
-    CALL jupyter notebook
-
-bw2-activity-browser.bat
-````````````````````````
-
-.. note:: The activity browser is still under heavy development. Use with caution!
-
-.. code-block:: bat
-
-    @ECHO OFF
-    set PATH=C:\bw2-python\envs\bw2\Scripts\;C:\bw2-python\Scripts\;C:\bw2-python\;%PATH%
-    CALL C:\bw2-python\Scripts\activate.bat bw2
-    @ECHO ON
-    CALL activity-browser.exe
-    PAUSE
+.. _notebook-directory:
 
 Notebook directory
 ==================
 
-It is best practice to store your notebooks in a different directory outside of the ``bw2-python`` directory - and probably separate directories for each project you are working on. One reasonable place would be in your ``Documents`` or ``Desktop``. You can safely copy the notebooks script to this other directory (or directories).
+It is best practice to store your notebooks in separate directories for each project you are working on. One reasonable place would be in your ``Documents`` or ``Desktop``.
+
+Cloud installs
+==============
+
+Brightway2 is designed to run without too much fuss on servers in the cloud. See the instructions for using :ref:`Docker <docker>` and specific instructions for :ref:`Cloud Nine <c9>`.
+
+Activity-browser
+================
+
+.. image:: images/activity-browser.png
+    :align: center
+
+The activity browser is an **experimental** graphical user interface for Brightway2.
+
+To install:
+
+.. code-block:: bash
+
+    conda install networkx seaborn matplotlib
+    pip install https://bitbucket.org/cmutel/activity-browser/get/2.0.zip
+
+You can now run the activity browser with the command:
+
+.. code-block:: bash
+
+    activity-browser
+
+Compiling on Linux
+==================
+
+General instructions are provided for Ubuntu 14.04; people using other distributions are assumed smart to be enough to adapt as necessary.
+
+To compile from source on linux using UMFPACK as a sparse linear algebra library, the following pacakges are required:
+
+.. code-block:: bash
+
+    sudo apt-get update
+    sudo apt-get install python-scipy python-numpy python-nose python-pip python-lxml cython python-virtualenv virtualenvwrapper build-essential libsuitesparse-dev swig
+
+Developers
+==========
+
+If you want to develop with Brightway, then you should also install the following:
+
+* pytest
+* sphinx
+
+You can install editable Brightway2 packages using `mercurial <http://mercurial.selenic.com/>`_:
+
+.. code-block:: bash
+
+    pip install -e hg+https://bitbucket.org/cmutel/brightway2-data#egg=bw2data
+    pip install -e hg+https://bitbucket.org/cmutel/brightway2-calc#egg=bw2calc
+    pip install -e hg+https://bitbucket.org/cmutel/brightway2-ui#egg=bw2ui
+    pip install -e hg+https://bitbucket.org/cmutel/brightway2-analyzer#egg=bw2analyzer
+
+You can also simply clone the bitbucket source code repositories instead of installing them.
+
+.. _upgrading:
+
+Upgrading Brightway2
+====================
+
+Brightway2 is being actively developed, and new releases come frequently.
+
+.. note:: Please subscribe to the `brightway2 updates mailing list <https://tinyletter.com/brightway2-updates>`_ to be informed of new releases.
+
+To upgrade Brightway2, do the following:
+
+First, make sure your background packages are up to date. In anaconda/miniconda, use the following commands (once you have activated your environment):
+
+.. code-block:: bash
+
+    conda update conda
+    conda update brightway2
+
+.. _packages:
+
+Brightway2 Packages
+===================
+
+Brightway2 is split into several packages, where each package fulfills a certain role in the framework. The idea is that you can be an expert on a certain package, but not have to learn anything about other packages.
+
+Core packages
+-------------
+
+brightway2
+``````````
+
+This manual, plus a generic container that imports from brightway2-data and brightway2-calc.
+
+* `source code <https://bitbucket.org/cmutel/brightway2>`__
+
+brightway2-data
+```````````````
+
+This package provides facilities for managing LCI databases and LCIA methods, as well as input and output scripts.
+
+* `source code <https://bitbucket.org/cmutel/brightway2-data>`__
+
+brightway2-calc
+```````````````
+
+This package provides classes for LCA calculations, both static and uncertain, and basic regionalized LCA.
+
+* `source code <https://bitbucket.org/cmutel/brightway2-calc>`__
+
+brightway2-analyzer
+```````````````````
+
+This package provides functions for interpreting and analyzing LCI databases, LCIA methods, and LCA results.
+
+* `source code <https://bitbucket.org/cmutel/brightway2-analyzer>`__
+
+Secondary packages
+------------------
+
+These packages are extensions to Brightway2, and have lower standards for documentation and test coverage. They show how Brightway2 can be extended into new areas of LCA.
+
+brightway2-regional
+```````````````````
+
+Full-fledged regionalization in Brightway2.
+
+* `source code <https://bitbucket.org/cmutel/brightway2-regional>`__
+* `documentation <https://brightway2-regional.readthedocs.io/en/latest/>`__
+
+brightway2-temporalis
+`````````````````````
+
+Dynamic LCA in Brightway2.
+
+* `source code <https://bitbucket.org/cmutel/brightway2-temporalis>`__
+* `documentation <https://brightway2-temporalis.readthedocs.io/en/latest/>`__
