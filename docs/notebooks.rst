@@ -12,6 +12,11 @@ Introduction
 
 This notebook provides a basic introduction to Brightway2 functionality, including importing and using the FORWAST database. After you go through the introduction notebook, you are ready to start exploring, and the manual will try to help you when you get lost.
 
+Brightway2 seminar
+==================
+
+A Brightway2 seminar was held in Zürich in 2017, and the `teaching material is available <https://github.com/PoutineAndRosti/Brightway-Seminar-2017>`__.
+
 .. _example-notebooks:
 
 Example notebooks
