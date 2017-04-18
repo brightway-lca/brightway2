@@ -2,7 +2,7 @@ Brightway2 life cycle assessment framework
 ==========================================
 
 .. image:: http://joss.theoj.org/papers/6c24869ed7f1e66b3b837c31579c6fe5/status.svg
-    :target: http://joss.theoj.org/papers/6c24869ed7f1e66b3b837c31579c6fe5brightway2-calc?branch=default
+    :target: http://joss.theoj.org/papers/6c24869ed7f1e66b3b837c31579c6fe5
     :alt: Publication status
 
 Brightway2 is a framework for advanced life cycle assessment calculations. It consists of several components which each accomplish specific tasks. This package is a container for all the separate components, for ease of documentation and installation.
