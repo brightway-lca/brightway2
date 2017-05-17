@@ -4,6 +4,10 @@
 Brightway2 life cycle assessment framework
 ==========================================
 
+.. image:: http://joss.theoj.org/papers/10.21105/joss.00236/status.svg
+   :target: http://joss.theoj.org/papers/6c24869ed7f1e66b3b837c31579c6fe5
+   :alt: Brightway publication in JOSS
+
 Brightway2 is a open source framework for life cycle assessment (LCA). It is designed to be easy to use, while still being powerful. Brightway2 doesn't try to replace software like SimaPro or OpenLCA, but instead offers possibilities to those who need to go break the limits of conventional LCA. Brightway2 is especially attractive for researchers, especially when used with `Jupyter notebooks <http://jupyter.org/>`__. The core principles of Brightway2 are simplicity, innovation, and power.
 
 Who is Brightway2 for?
