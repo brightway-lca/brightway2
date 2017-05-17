@@ -155,8 +155,8 @@ To install:
 
 .. code-block:: bash
 
-    conda install networkx seaborn matplotlib
-    pip install https://bitbucket.org/cmutel/activity-browser/get/2.0.zip
+    conda install -y -q -c conda-forge arrow pyqt networkx seaborn requests-oauthlib
+    pip install https://github.com/haasad/activity-browser/archive/master.zip
 
 You can now run the activity browser with the command:
 
