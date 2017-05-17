@@ -1,6 +1,13 @@
 Credits & License
 =================
 
+Citing Brightway
+----------------
+
+Brightway has been published in the `Journal of Open Source Software <http://joss.theoj.org/papers/6c24869ed7f1e66b3b837c31579c6fe5>`__. You can find a bibtex reference in the journal, or use the following cite:
+
+Mutel, C. 2017. Brightway: An open source framework for Life Cycle Assessment. Journal of Open Source Software, 12:2. https://doi.org/10.21105%2Fjoss.00236.
+
 .. _authors:
 
 Authors
