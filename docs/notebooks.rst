@@ -58,3 +58,4 @@ Contributed notebooks
 This section will highlight notebooks from people using or exploring Brightway2. Please email Chris Mutel if you have something to add!
 
 * `Comparative static LCA <http://nbviewer.jupyter.org/github/PascalLesage/Shared-BW2-notebooks/blob/master/Comparative%20static%20LCA%20in%20Brightway2.ipynb>`__
+* `The carbon efficiency of the Danish wind turbines fleet (combining Brightway2 with maps) <https://nbviewer.jupyter.org/gist/romainsacchi/8c41266e3f2d1a8951329964b8717c67>`__
