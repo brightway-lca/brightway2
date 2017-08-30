@@ -154,6 +154,11 @@ Production exchanges have the type ``production``.
 
 .. warning:: Multioutput processes (i.e. more than one production process) can be used in Brightway2, but only under special circumstances. See the blog post `Multi-output processes in matrix-based LCA <http://example.com>`_.
 
+Substitution exchanges
+~~~~~~~~~~~~~~~~~~~~~~
+
+A substitution exchange is used in multi-output processes to indicate the avoided production of a product by another activity. Substitution exchanges have positive values, and the type `substitution`.
+
 Technosphere exchanges
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -225,6 +230,28 @@ Where an ``exchange`` is:
 
 .. note::
     Database documents can be validated with ``bw2data.validate.db_validator(my_data)``, or ``Database("my database name").validate(my_data)``.
+
+Getting the signs right
+```````````````````````
+
+Brightway uses the following rules to set values in the technosphere and biosphere matrices:
+
+* `biosphere` exchange values are inserted into the biosphere matrix without any modification.
+* `production` and `substitution` exchanges are inserted into the technosphere matrix without any modification.
+* `technosphere` exchanges values are multiplied by negative one, and then inserted into the technosphere matrix.
+
+In the technosphere matrix, negative values represent the consumption of products, while positive values represent the production of products. Substitution exchanges are positive because this forces the substituted activity to have a negative production amount, representing the avoided production pathway.
+
+These rules are consistent with and grow out of the traditional Leontief inverse of IO tables :math:`x = (I - A)^{-1}d`.
+
+As a consequence of these rules, a technosphere exchange with a negative value is the same as a production exchange, and vice-versa.
+
+Biosphere exchange amounts can occasionally be negative, and some characterization factors are also negative. The default metadata in Brightway follows ecoinvent system assumptions about biosphere flow categories:
+
+* Biosphere flows whose categories are `air`, `soil`, and `water` are emissions into the natural environment.
+* Biosphere flows with the category `natural resource` are consumption of natural resources from the natural environment.
+
+Biosphere exchanges with negative values reverse these assumption; so, a biosphere flow of -2 kg of carbon dioxide with the category air would be the *removal* of carbon dioxide from the natural environment. The signs of biosphere exchanges don't really matter, but they should be consistent with the signs of your impact assessment characterization factors. See also the notebook on `negative Biosphere flows and CFs <http://nbviewer.jupyter.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Negative%20Biosphere%20flows%20and%20CFs.ipynb>`__.
 
 .. _database-backends:
 
