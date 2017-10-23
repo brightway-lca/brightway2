@@ -373,6 +373,8 @@ Brightway2 supports variables and formulas stored as strings, similar to other L
 .. image:: images/parameters.png
     :align: center
 
+.. note:: See also the :ref:`example parameterized notebooks <parameterized-notebooks>`.
+
 .. warning:: Parameterized inventory datasets only work with databases that use the default SQLite backend.
 
 Groups
