@@ -29,8 +29,6 @@ As this manual covers a lot of material, it can be a bit overwhelming, especiall
 * Look at some of the :ref:`example notebooks <example-notebooks>`.
 * Use the rest of the manual as a reference while creating next-generation LCA studies. If you need additional help, you can search the documentation (search box is on the left), or look in the :ref:`genindex`.
 
-This manual is `available as a PDF <https://docs.brightwaylca.org/Brightway2-manual.pdf>`_.
-
 Other resources
 ---------------
 
