@@ -377,6 +377,8 @@ Brightway2 supports variables and formulas stored as strings, similar to other L
 
 .. warning:: Parameterized inventory datasets only work with databases that use the default SQLite backend.
 
+The parameterized table objects use `peewee objects <http://docs.peewee-orm.com/en/latest/index.html>`__ directly, so you will use some different syntax than with `Activity` and `Exchange` (see the `parameters source code <https://bitbucket.org/cmutel/brightway2-data/src/default/bw2data/parameters.py?fileviewer=file-view-default#parameters.py-108>`__). The long-term goal is to transition all objects to peewee directly, instead of using proxies.
+
 Groups
 ``````
 
@@ -388,7 +390,7 @@ Parameters are tricky because you have to parse and understand dependencies in f
 * Single activities cannot be in multiple groups
 * Group dependencies cannot be circular
 
-These restrictions are enforced in the database, so you can't screw up your data, but it might explain why you would get an error.
+These restrictions are enforced in the database, so you can't screw up your data, but they might explain why you would get an error.
 
 Active versus passive parameters
 ````````````````````````````````
