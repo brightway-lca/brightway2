@@ -125,7 +125,7 @@ Import an inventory in a CSV file which follows the generic `CSV example <https:
 
 .. note:: both imports and exports are supported.
 
-.. autoclass:: bw2io.importers.csv.CSVImporter
+.. autoclass:: bw2io.importers.CSVImporter
     :members:
 
 Strategies
