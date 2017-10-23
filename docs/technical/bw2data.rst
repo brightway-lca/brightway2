@@ -255,6 +255,23 @@ User preferences
 .. autoclass:: bw2data.meta.Preferences
     :members:
 
+.. _parameters-manager:
+
+Parameters
+==========
+
+.. autoclass:: bw2data.parameters.ParameterManager
+    :members:
+
+.. autoclass:: bw2data.parameters.ProjectParameter
+    :members:
+
+.. autoclass:: bw2data.parameters.DatabaseParameter
+    :members:
+
+.. autoclass:: bw2data.parameters.ActivityParameter
+    :members:
+
 Utilities
 =========
 

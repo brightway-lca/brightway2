@@ -365,6 +365,39 @@ Default LCIA methods
 
 Starting Brightway2 through the web interface, or when you run ``bw2setup()`` in a python shell, Brightway2 will install around 650 default LCIA methods, as provided by the ecoinvent center. These LCIA methods will work for both ecoinvent 2 and 3.
 
+Parameterized datasets
+----------------------
+
+Brightway2 supports variables and formulas stored as strings, similar to other LCA software. So instead of defining a fixed value for an exchange, you could enter a formula of "fuel_efficiency * average_distance", where both "fuel_efficiency" and "average_distance" were variables stored in a special way, and maybe parameterized themselves. Parsing strings is not trivial, and so the machinery to handle such parameterization is a bit complex:
+
+.. image:: images/parameters.png
+    :align: center
+
+.. warning:: Parameterized inventory datasets only work with databases that use the default SQLite backend.
+
+Groups
+``````
+
+Parameters are tricky because you have to parse and understand dependencies in formula strings. To make these dependencies explicit, Brightway2 uses the ideas of groups to collect parameters, just like databases collect inventory datasets. Inside a group, each parameter has to have a unique name. Groups also have to have unique names, and can be defined at the level of a project, i.e. global parameters; a database; or a set of activities. Groups cannot cross levels. Groups form a hierarchy, with project parameters at the top, and activity parameters at the bottom. When parsing an activity parameter formula, unknown variable names will be searched in that activity parameter set of variables, then in the database parameters defined for the database the activity is in, and finally in the project parameters. Note the following restrictions on groups:
+
+* The group name 'project' is reserved for the group of project parameters
+* Database names are reserved for database parameters (it is also their group name)
+* Activity parameter groups can include more than one activity, but cannot span multiple databases
+* Single activities cannot be in multiple groups
+* Group dependencies cannot be circular
+
+These restrictions are enforced in the database, so you can't screw up your data, but it might explain why you would get an error.
+
+Active versus passive parameters
+````````````````````````````````
+
+Active parameters are stored in a special database for parameters, and their formulas are parsed and checked to make sure there are no missing or unknown symbols. Active parameters are recalculated whenever their upstream groups change, and can be used in calculations. Passive parameters are stored in either ``Database`` instances (as the key ``parameters`` in the metadata), ``Activity`` objects (as the key ``parameters`` in the metadata), or in ``Exchanges`` (as the key ``formula`` in the exchange data). They are not evaluated or otherwise used.
+
+Parameters manager
+``````````````````
+
+The most common way to interact with parameters data is through the :ref:`parameters-manager` manager, provided as ``parameters``.
+
 Intermediate and processed data
 -------------------------------
 
@@ -550,6 +583,65 @@ Importing from SimaPro
 Importing SimaPro CSV files is also a bit of a headache. Pré, the makers of SimaPro, have done a lot of work to make LCA software accessible and understandable. This work includes making changes to process names and other metadata, which makes linking these processes back to original ecoinvent data difficult. Fortunately, Pré has been very helpful is supplying correspondence files, which we can use to move (to the best of our ability) from the "SimaPro world" to "ecoinvent world".
 
 .. note:: Importing SimaPro XML export files is not recommended, as there are bugs with exporting ecoinvent 3 processes.
+
+Importing from the standard Excel template
+``````````````````````````````````````````
+
+.. note:: You can see these ideas in practive in `basic database <https://bitbucket.org/cmutel/brightway2-io/raw/default/tests/fixtures/excel/basic_example.xlsx>`__ and `parameterized database <https://bitbucket.org/cmutel/brightway2-io/raw/default/tests/fixtures/excel/sample_activities_with_variables.xlsx>`__ Excel templates.
+
+You can define inventory datasets in many ways in Excel, but there is a standard template which is supported by the ``ExcelImporter``. The template should be pretty self-explanatory, and follows this general format::
+
+    Project parameters (optional)
+    <column label>, <column label>, <column label>
+    <value>, <value>, <value>
+
+    Database, <name of database>
+    <database field name>, <database field value>
+
+    Database Parameters (Optional)
+    <column label>, <column label>, <column label>
+    <value>, <value>, <value>
+
+    Activity, <name of activity>
+    <database field name>, <database field value>
+    (Optional blank line(s))
+    Parameters (Optional)
+    <column label>, <column label>, <column label>
+    <value>, <value>, <value>
+    (Optional blank line(s))
+    Exchanges
+    <column label>, <column label>, <column label>
+    <value>, <value>, <value>
+    <value>, <value>, <value>
+
+Data can be split over many worksheets. To mark a worksheet as one that should be skipped by the importer, put the string "skip" in cell 1A.
+
+Sections are split by the presence of blank lines. There are two kinds of sections: data and metadata. Metadata sections are used for the descriptions of databases (``Database``) and activities (``Activity``, until ``Exchanges``). In metadata sections, only the first two columns are read - all other columns are ignored. In the data sections — ``Project parameters``, ``Parameters``, and ``Exchanges`` - all columns are read, and should have column headings. You can limit the number of columns read by inserting the string ``cutoff`` in cell 1A, and the column index **after which** the importer should start ignoring columns in cell 1B. For example, if you put ``4`` in cell 1B, the first four columns would be included, and the rest ignored.
+
+Keep in mind the following general restrictions and notes:
+
+    * Provide useful codes! There is no reason to use e.g. UUIDs, unless you are feeling masochistic. You can also skip providing codes at all, they will be autogenerated.
+    * As in the activity data format, there are no required fields, and you can also insert your own.
+    * Each workbook can only describe data for one ``Database``. Multiple ``Database`` sections will raise an error!
+    * Input exchanges must be linked using the data provided in the spreadsheet. That means that you may need to provide an activity name and a reference product when trying to link against ecoinvent.
+    * Linking is done using the column headings exactly as provided. You should check to make sure the capitalization, spelling, and spacing are consistent with the attributes in the background databases you want to link against.
+    * Worksheet names don't have any special meaning to the importer, and are only used to indicate where errors occurred.
+
+Parameters are a bit different - as they are trickier to handle, their sections are stricter:
+
+    * All parameter sections must have the column "name". Names should be unique within a parameter section.
+    * Stochastic variables should have the usual uncertainty columns, e.g. uncertainty type, loc, scale, minimum, maximum.
+    * Variables which are defined by formulas should have the column
+    * Parameters can have an "amount" column, but if there is also a "formula" column, the amount will be overwritten on import as the formula is evaluated.
+    * Formulas should be for consumption by Python, not Excel; they will be interpreted by `asteval <https://newville.github.io/asteval/>`__.
+    * The ``Database``, ``Project parameters``, and ``Database parameters`` don't have to be in any order or in any particular worksheet. There can be multiple ``Project parameters`` and ``Database parameters`` sections, they will be concatenated.
+
+The following data transformations are applied by the ``ExcelImporter``:
+
+    * Numbers are translated from text into actual numbers.
+    * Tuples, separated in the cell by the ``::`` string, are reconstructed, i.e. "this::example" would become ``("this", "example")``.
+    * The strings "True" and "False" (by themselves, not as part of a larger string) are transformed to their respective boolean values.
+    * Fields with the value ``(Unknown)`` are omitted on a per-row basis.
 
 What to do with unmatched exchanges?
 ````````````````````````````````````
