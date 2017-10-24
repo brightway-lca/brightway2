@@ -255,12 +255,15 @@ User preferences
 .. autoclass:: bw2data.meta.Preferences
     :members:
 
-.. _parameters-manager:
+.. _parameters:
 
 Parameters
 ==========
 
 .. autoclass:: bw2data.parameters.ParameterManager
+    :members:
+
+.. autoclass:: bw2data.parameters.Group
     :members:
 
 .. autoclass:: bw2data.parameters.ProjectParameter
