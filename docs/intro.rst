@@ -363,12 +363,12 @@ Each list elements has two required components and a third optional component.
 Default LCIA methods
 ````````````````````
 
-Starting Brightway2 through the web interface, or when you run ``bw2setup()`` in a python shell, Brightway2 will install around 650 default LCIA methods, as provided by the ecoinvent center. These LCIA methods will work for both ecoinvent 2 and 3.
+When you run ``bw2setup()``, Brightway2 will install around 700 default LCIA methods, as provided by the ecoinvent center. These LCIA methods will work for both ecoinvent 2 and 3.
 
 Parameterized datasets
 ----------------------
 
-Brightway2 supports variables and formulas stored as strings, similar to other LCA software. So instead of defining a fixed value for an exchange, you could enter a formula of "fuel_efficiency * average_distance", where both "fuel_efficiency" and "average_distance" were variables stored in a special way, and maybe parameterized themselves. Parsing strings is not trivial, and so the machinery to handle such parameterization is a bit complex:
+Brightway2 supports variables and formulas stored as strings, similar to other LCA software. So instead of defining a fixed value for an exchange, you could enter a formula of "fuel_efficiency * average_distance", where both "fuel_efficiency" and "average_distance" were variables stored in a special way, and maybe even parameterized themselves. Parsing strings is not trivial, and so the machinery to handle such parameterization is a bit complex:
 
 .. image:: images/parameters.png
     :align: center
@@ -377,12 +377,14 @@ Brightway2 supports variables and formulas stored as strings, similar to other L
 
 .. warning:: Parameterized inventory datasets only work with databases that use the default SQLite backend.
 
-The parameterized table objects use `peewee objects <http://docs.peewee-orm.com/en/latest/index.html>`__ directly, so you will use some different syntax than with `Activity` and `Exchange` (see the `parameters source code <https://bitbucket.org/cmutel/brightway2-data/src/default/bw2data/parameters.py?fileviewer=file-view-default#parameters.py-108>`__). The long-term goal is to transition all objects to peewee directly, instead of using proxies.
-
 Groups
 ``````
 
-Parameters are tricky because you have to parse and understand dependencies in formula strings. To make these dependencies explicit, Brightway2 uses the ideas of groups to collect parameters, just like databases collect inventory datasets. Inside a group, each parameter has to have a unique name. Groups also have to have unique names, and can be defined at the level of a project, i.e. global parameters; a database; or a set of activities. Groups cannot cross levels. Groups form a hierarchy, with project parameters at the top, and activity parameters at the bottom. When parsing an activity parameter formula, unknown variable names will be searched in that activity parameter set of variables, then in the database parameters defined for the database the activity is in, and finally in the project parameters. Note the following restrictions on groups:
+Parameters are tricky because you have to parse and understand dependencies in formula strings - where if "efficiency" defined, and is it a Python reserved term or a function or a variable, etc. To make these dependencies explicit, Brightway2 uses the ideas of **groups** to collect parameters, just like databases collect inventory datasets. Each parameter belongs to a group, and inside a group each parameter has to have a unique name. Groups also have unique names, and are defined at the three different levels that parameters exist: project, database, or a set of activities. Groups cannot cross levels.
+
+Groups form a hierarchy used to evaluate and find symbols, with project parameters at the top, and activity parameters at the bottom. When parsing an activity parameter formula, unknown variable names will be searched in that activity parameter set of variables, then in the database parameters defined for the database the activity is in, and finally in the project parameters. An missing value will be taken as soon as it is found - so if "efficiency" exists in a database parameter group and the project parameter group, its value will be taken from the database parameters.
+
+Note the following restrictions on groups:
 
 * The group name 'project' is reserved for the group of project parameters
 * Database names are reserved for database parameters (it is also their group name)
@@ -390,17 +392,49 @@ Parameters are tricky because you have to parse and understand dependencies in f
 * Single activities cannot be in multiple groups
 * Group dependencies cannot be circular
 
-These restrictions are enforced in the database, so you can't screw up your data, but they might explain why you would get an error.
+These restrictions are enforced in the database, so you can't screw up your data, but they might explain any errors you encounter.
 
 Active versus passive parameters
 ````````````````````````````````
 
-Active parameters are stored in a special database for parameters, and their formulas are parsed and checked to make sure there are no missing or unknown symbols. Active parameters are recalculated whenever their upstream groups change, and can be used in calculations. Passive parameters are stored in either ``Database`` instances (as the key ``parameters`` in the metadata), ``Activity`` objects (as the key ``parameters`` in the metadata), or in ``Exchanges`` (as the key ``formula`` in the exchange data). They are not evaluated or otherwise used.
+Some background datasets have lots of parameters, and one doesn't necessarily want them all to be imported into the Brightway parameter machinery - after all, they have been resolved already. We therefore use a distinction between active and passive parameters. Active parameters are stored in a special SQLite database for parameters, and their formulas are parsed and checked to make sure there are no missing or unknown symbols. Active parameters are recalculated whenever their upstream groups change, and can be used in dynamic calculation. Passive parameters are stored in either ``Database`` instances (as the key ``parameters`` in the metadata), ``Activity`` objects (as the key ``parameters`` in the metadata), or in ``Exchanges`` (as the key ``formula`` in the exchange data). They are not evaluated or otherwise used.
+
+The parameters manager has functions for activating activities and exchanges.
 
 Parameters manager
 ``````````````````
 
-The most common way to interact with parameters data is through the :ref:`parameters-manager` manager, provided as ``parameters``.
+The most common way to interact with parameters data is through the parameters manager, provided as ``parameters``:
+
+.. autoclass:: bw2data.parameters.ParameterManager
+    :members:
+    :noindex:
+
+Peewee objects
+``````````````
+
+At a finer level of control, the parameterized table objects use `peewee objects <http://docs.peewee-orm.com/en/latest/index.html>`__ directly, so you will use some different syntax than with `Activity` and `Exchange` (see the `parameters source code <https://bitbucket.org/cmutel/brightway2-data/src/default/bw2data/parameters.py?fileviewer=file-view-default#parameters.py-108>`__). The long-term goal is to transition all objects to peewee directly, instead of using proxies.
+
+The parameters framework is centered around the :ref:`Group, ProjectParameter, DatabaseParameter, and ActivityParameter classes <parameters>`.
+
+Here are some examples of peewee-style queries:
+
+.. code-block:: python
+
+    Group.create(name="some name")
+
+    group, created = Group.get_or_create(name="some name")
+
+    for obj in DatabaseParameter.select().where(
+        DatabaseParameter.database="some db"):
+      print(obj.name, obj.amount, obj.formula)
+
+    ActivityParameter.update(amount = some_new_value
+        ).where(ActivityParameter.name="some name").execute()
+
+    ProjectParameter.delete().where(ProjectParameter.name="some name"
+        ).execute()
+
 
 Intermediate and processed data
 -------------------------------
