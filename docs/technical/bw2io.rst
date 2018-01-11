@@ -238,8 +238,6 @@ Export
 
 .. autofunction:: bw2io.export.excel.lci_matrices_to_excel
 
-.. autofunction:: bw2io.export.excel.write_lci_activities
-
 .. autofunction:: bw2io.export.excel.write_lci_matching
 
 .. autofunction:: bw2io.export.excel.write_lcia_matching
