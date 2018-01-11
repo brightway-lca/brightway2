@@ -156,7 +156,7 @@ To install:
 .. code-block:: bash
 
     conda install -y -q -c conda-forge arrow pyqt networkx seaborn requests-oauthlib
-    pip install https://github.com/haasad/activity-browser/archive/master.zip
+    pip install https://github.com/LCA-ActivityBrowser/activity-browser/archive/master.zip
 
 You can now run the activity browser with the command:
 
