@@ -643,7 +643,7 @@ You can define inventory datasets in many ways in Excel, but there is a standard
     Activity, <name of activity>
     <database field name>, <database field value>
     (Optional blank line(s))
-    Parameters (Optional)
+    Parameters (Optional), <name of parameter group (optional)>
     <column label>, <column label>, <column label>
     <value>, <value>, <value>
     (Optional blank line(s))
