@@ -13,7 +13,7 @@ future
 lxml
 nose
 numpy
-peewee
+peewee<3.0
 pyprind
 requests>=1.1.0
 scipy
