@@ -12,12 +12,12 @@ future
 lxml
 nose
 numpy
-peewee<3.0
+peewee>=3.0
 psutil
 pyprind
-requests>=1.1.0
+requests
 scipy
-stats_arrays>=0.3.1
+stats_arrays
 unicodecsv
 voluptuous
 whoosh

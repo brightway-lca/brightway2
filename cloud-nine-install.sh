@@ -4,14 +4,12 @@ bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/miniconda
 export PATH="$HOME/miniconda/bin:$PATH"
 conda install -q -y conda
 conda update -q conda
-conda create -y -n bw2 python=3.4
+conda create -y -n bw2 python=3.6
 source activate bw2
 
 conda install -q -y wheel
 conda update -q wheel pip setuptools
-conda install -y numpy ipython ipython-notebook jupyter matplotlib scipy flask lxml requests nose docopt whoosh xlsxwriter xlrd unidecode
-pip install --no-cache-dir eight
-pip install --no-cache-dir --pre brightway2
+conda install -y -q -c conda-forge -c cmutel -c haasad brightway2 jupyter matplotlib
 
 jupyter notebook --generate-config
 echo 'c.NotebookApp.tornado_settings = {"headers": {"Content-Security-Policy": "frame-ancestors '\''self'\'' https://ide.c9.io "}}' >> /home/ubuntu/.jupyter/jupyter_notebook_config.py
