@@ -212,7 +212,7 @@ First, make sure your background packages are up to date. In anaconda/miniconda,
 .. code-block:: bash
 
     conda update conda
-    conda update brightway2
+    conda update -c conda-forge -c cmutel -c haasad brightway2 bw2data bw2io bw2calc bw2analyzer
 
 .. _packages:
 
