@@ -6,7 +6,7 @@ packages = [
     "bw2analyzer>=0.9.4",
     "bw2calc>=1.6.4",
     "bw2data>=3.3",
-    "bw2io>=0.5.121",
+    "bw2io>=0.5.12",
     "bw2parameters>=0.6.3",
     "docopt",
     "eight",
