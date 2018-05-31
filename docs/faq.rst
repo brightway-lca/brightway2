@@ -115,7 +115,7 @@ When using conda, to set the persistent environment variables in the virtual env
 3.Create scripts in those folders that set and unset the environment variables (in this case ``BRIGHTWAY2_DIR``). The names of the files don't matter, but the file extensions do.
 
 * For Mac and Linux, the extension must be ``.sh`` files. Inside the folder ``activate.d`` create the file ``whatever_name_you_like.sh`` and inside it write ``export BRIGHTWAY2_DIR=/my/custom/directory`` while in ``activate.d`` create ``whatever_name_you_like.sh`` and inside write ``unset BRIGHTWAY2_DIR``.
-* For Windows the procedure is exactly the same, you just need to change the file extension from ``.sh`` into ``.bat`` i.e. instead of ``whatever_name_you_like.sh`` use ``whatever_name_you_like.bat``
+* For Windows, the extension must be ``.bat``. Inside the folder ``activate.d`` create the file ``whatever_name_you_like.bat`` and inside it write ``set BRIGHTWAY2_DIR=/my/custom/directory`` while in ``deactivate.d`` create ``whatever_name_you_like.bat`` and inside write ``BRIGHTWAY2_DIR=``.
 
 How can I rename projects?
 --------------------------
