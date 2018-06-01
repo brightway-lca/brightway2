@@ -4,10 +4,10 @@ packages = [
     "appdirs",
     "asteval",
     "bw2analyzer>=0.9.4",
-    "bw2calc>=1.6.4",
-    "bw2data>=3.3",
-    "bw2io>=0.5.12",
-    "bw2parameters>=0.6.3",
+    "bw2calc>=1.7.1",
+    "bw2data>=3.4.1",
+    "bw2io>=0.6",
+    "bw2parameters>=0.6.5",
     "docopt",
     "eight",
     "flask",
@@ -29,7 +29,7 @@ packages = [
 
 setup(
     name='brightway2',
-    version="2.2.1",
+    version="2.3",
     packages=["brightway2"],
     author="Chris Mutel",
     author_email="cmutel@gmail.com",
