@@ -16,13 +16,13 @@ Authors
 * `Chris Mutel <http://chris.mutel.org/>`__
 * `Adrian Haas <https://www.ethz.ch/content/specialinterest/baug/institute-ifu/institute-ifu/en/das-institut/personen/personen-detail.html?persid=171851>`__
 * `Giuseppe Cardellini <http://www.kuleuven.be/wieiswie/en/person/90387>`__
-* `Andreas Froemelt <http://www.ifu.ethz.ch/ESD/people/andrefro>`__
-* `Niko Heeren <http://www.ifu.ethz.ch/staff/nheeren/index_EN>`__
-* `Aurelian Jaggi <http://eaternity.ch/team/Aurelian-Jaggi/>`__
-* `Maghimai Marcus <https://www.researchgate.net/profile/Maghimai_Marcus2>`__
+* Andreas Froemelt
+* `Niko Heeren <https://environment.yale.edu/profile/niko-heeren/>`__
+* Aurelian Jaggi
+* Maghimai Marcus
 * `Marie de Saxcé <http://lca-net.com/about/who-we-are/>`__
 * `Low Kian Seong <https://bitbucket.org/lowks>`__
-* `Bernhard Steubing <http://www.ifu.ethz.ch/ESD/people/bsteubin>`__
+* `Bernhard Steubing <https://www.researchgate.net/profile/Maghimai_Marcus2>`__
 * `Pascal Lesage <http://www.polymtl.ca/recherche/rc/en/professeurs/details.php?NoProf=551>`__
 * `Manuel Klarmann <https://twitter.com/mklarmann>`__
 * `Tomas Navarrete <https://www.linkedin.com/in/tom4m3>`__
@@ -33,7 +33,7 @@ Logo by `eightz <http://www.fiverr.com/ei8htz>`__.
 Acknowledgements
 ----------------
 
-Brightway2 would not be possible without the incredibly generous support of `Professor Stefanie Hellweg <http://www.ifu.ethz.ch/staff/hellwegs>`_ of ETH Zürich. Brightway2 was (indirectly) funded by the people of Switzerland.
+Brightway2 would not be possible without the incredibly generous support of `Professor Stefanie Hellweg <http://www.esd.ifu.ethz.ch/the-group/people/person-detail.html?persid=63817>`_ of ETH Zürich. Brightway2 was (indirectly) funded by the people of Switzerland.
 
 .. _contact-developers:
 

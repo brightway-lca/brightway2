@@ -31,22 +31,22 @@ This can be done easily. Try to install these packages through Canopy or anacond
 Using mercurial
 ~~~~~~~~~~~~~~~
 
-Mercurial is a distributed version control system, which records changes made in your source code over time, and allows changes from multiple people to merged to a single code base. `hginit <http://hginit.com/>`_ is a good guide to get started with Mercurial.
+Mercurial is a distributed version control system, which records changes made in your source code over time, and allows changes from multiple people to merged to a single code base. `hginit2 <https://farley.io/hginit2/>`_ is a good guide to get started with Mercurial.
 
 Contributing changes to Brightway2
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The preferred way to submit changes is with a pull request on Bitbucket. A pull request is a fancy way of saying "Hey! I made some changes to what you already had in my own playground over here - how about you merge my changes back into the main source code repository." The instructions on pull requests are slightly different for `Windows users <https://confluence.atlassian.com/display/BITBUCKET/Fork+a+Repo,+Compare+Code,+and+Create+a+Pull+Request>`_ and `OS X/Linux users <https://confluence.atlassian.com/pages/viewpage.action?pageId=271942986>`_. For small changes, and especially things like typos, you can even use the online text editor without having to download anything.
+The preferred way to submit changes is with a pull request on Bitbucket. A pull request is a fancy way of saying "Hey! I made some changes to what you already had in my own playground over here - how about you merge my changes back into the main source code repository." Here is a `quick tutorial on pull requests <https://confluence.atlassian.com/bitbucket/tutorial-learn-about-bitbucket-pull-requests-774243385.html>`__. For small changes, and especially things like typos, you can even use the online text editor without having to download anything.
 
 No Python needed - making graphics better
 -----------------------------------------
 
 One easy way of helping out that doesn't require any knowledge of Python, matrices, or even actually life cycle assessment at all, is to help make the existing graphics better or introduce new ones. Each graphic in the LCA report is also available in a online:
 
-* `Treemap <http://tributary.io/inlet/4951698>`_
-* `Hinton matrix <http://tributary.io/inlet/4951859>`_
-* `Force-directed graph`_
-* `Monte Carlo results <http://tributary.io/inlet/4951873>`_
+* Treemap
+* Hinton matrix
+* Force-directed graph
+* Monte Carlo results
 
 The code here is editable, and the changes you make will be immediately reflected in the display. Feel free to make some tweaks, or even major changes, to make the visualizations nicer, easier to understand, and simpler. If you have for other graphics that would be useful in interpreting LCA results, or in exploring inventory datasets or impact assessment methods, feel free to :ref:`contact-developers` to get a sample dataset.
 
@@ -101,16 +101,6 @@ Find holes in tests
 
 Tests always have edge cases that weren't anticipated by the developers, and coverage doesn't test for exceptions. Finding these edge cases or exceptions is a thankless but extremely important part of making robust software.
 
-Package and test the Intel MKL version of Scipy
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The Intel MKL library could provide significant speed benefits, but this needs to be tested. The Intel MKL version of Scipy is packaged with Anaconda, so testing its speed versus the current native BLAS should be relatively easy.
-
-See also:
-
-* https://software.intel.com/en-us/python-distribution
-* https://docs.continuum.io/mkl-optimizations/index
-
 Ecospold exporter
 ~~~~~~~~~~~~~~~~~
 
@@ -137,14 +127,6 @@ See:
 * http://stackoverflow.com/questions/17158893/does-scipy-support-multithreading-for-sparse-matrix-multiplication-when-using-mk
 * https://software.intel.com/en-us/articles/using-intel-mkl-in-your-python-programs
 
-Sankey flow diagram
-~~~~~~~~~~~~~~~~~~~
-
-Sankey diagrams are helpful for showing the flows of raw material inputs or environmental impact through the supply chain. There are some `initial ideas <http://blog.bitjuice.com.au/2013/02/using-d3-js-to-visualise-hierarchical-classification/>`_, see also `a simpler example <http://bost.ocks.org/mike/sankey/>`_ on how to do this in D3, but the problem here is actually twofold:
-
-    #. Disaggregating the supply chain graph in a reasonable fashion without having it either collapse or retain too many deep links
-    #. Graph layout and display of additional information in D3
-
 .. _Force-directed graph: http://tributary.io/inlet/4681149
 
 Playing well with others
@@ -152,5 +134,5 @@ Playing well with others
 
 Because the data model of Brightway2 is relatively simple, there is a lot of potential for providing data, especially numerical data and matrices, in the formats needed by other programming languages. Here are some examples:
 
-* Calling data management `functions in python <https://github.com/stevengj/PyCall.jl>`_, and then doing `calculations in Julia <http://julia.readthedocs.io/en/latest/stdlib/sparse/>`_.
+* Calling data management `functions in python <https://github.com/stevengj/PyCall.jl>`_, and then doing `calculations in Julia <https://docs.julialang.org/en/v1/stdlib/SparseArrays/index.html>`_.
 * Exporting numerical data to raw binary formats, and then loading and doing calculations in a hip functional language like `scala <http://www.scala-lang.org/>`_ or `f# <http://fsharp.org/>`_.

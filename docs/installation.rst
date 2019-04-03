@@ -170,13 +170,6 @@ Compiling on Linux
 
 General instructions are provided for Ubuntu 14.04; people using other distributions are assumed smart to be enough to adapt as necessary.
 
-To compile from source on linux using UMFPACK as a sparse linear algebra library, the following pacakges are required:
-
-.. code-block:: bash
-
-    sudo apt-get update
-    sudo apt-get install python-scipy python-numpy python-nose python-pip python-lxml cython python-virtualenv virtualenvwrapper build-essential libsuitesparse-dev swig
-
 Developers
 ==========
 
@@ -263,7 +256,6 @@ brightway2-regional
 Full-fledged regionalization in Brightway2.
 
 * `source code <https://bitbucket.org/cmutel/brightway2-regional>`__
-* `documentation <https://brightway2-regional.readthedocs.io/en/latest/>`__
 
 brightway2-temporalis
 `````````````````````
