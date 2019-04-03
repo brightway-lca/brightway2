@@ -8,7 +8,7 @@ Brightway2 can be installed pretty much everywhere, on Windows, OS X, Linux, and
 Quickstart
 ==========
 
-1. Install `Miniconda version 3.6 64-bit <https://conda.io/miniconda.html>`__.
+1. Install `Miniconda version 3.6 64-bit <https://docs.conda.io/en/latest/miniconda.html>`__.
 
 2. Update conda
 
@@ -16,7 +16,7 @@ Quickstart
 
     conda update conda
 
-3. In a terminal window or command line shell, create a new `conda environment <https://conda.io/docs/using/envs.html>`__. A conda environment is like a separate computer where software packages don't conflict with each other. You can call it whatever your want:
+3. In a terminal window or command line shell, create a new `conda environment <https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html>`__. A conda environment is like a separate computer where software packages don't conflict with each other. You can call it whatever your want:
 
 .. code-block:: bash
 
