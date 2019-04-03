@@ -180,7 +180,6 @@ It is too slow!
 ---------------
 
 * Install the `brightway2-speedups library <https://pypi.python.org/pypi/bw2speedups>`_. It will produce significant time savings in LCA calculations.
-* Install `scikits-umfpack <https://github.com/stefanv/umfpack>`_ for faster LCA calculations.
 * Install `anyjson <https://pypi.python.org/pypi/anyjson>`_ and `python-cjson <https://pypi.python.org/pypi/python-cjson>`_.
 
 If your numerical work after LCA calculations is slow, consider the `numexpr <https://github.com/pydata/numexpr>`_ and `Bottleneck <https://pypi.python.org/pypi/Bottleneck>`_ libraries.
@@ -245,7 +244,7 @@ Second, you can try to install a C compiler. You can find `decent instructions o
 The global warming potential values are different in SimaPro!
 -------------------------------------------------------------
 
-The default LCIA characterization factors in Brightway2 come from version 3.2 of the ecoinvent database. For most LCIA methods, these are identical to those found in SimaPro. However, there are important differences for global warming potential:
+The default LCIA characterization factors in Brightway2 come from version 3.5 of the ecoinvent database. For most LCIA methods, these are identical to those found in SimaPro. However, there are important differences for global warming potential:
 
 1. SimaPro does not include a characterization factors for carbon monoxide, but ecoinvent does. Here is the ecoinvent language:
 
@@ -262,8 +261,8 @@ The value of 1.57 is the ratio of the molecular weights of |CO2| and CO.
 
 References:
 
-* `IPCC third assessment report <http://www.ipcc.ch/ipccreports/tar/wg1/249.htm>`_
-* `IPCC fourth assessment report <http://www.ipcc.ch/publications_and_data/ar4/wg1/en/ch2s2-10-3-2.html>`_
+* `IPCC third assessment report <https://www.ipcc.ch/assessment-report/ar3/>`_
+* `IPCC fourth assessment report <https://www.ipcc.ch/assessment-report/ar4/>`_
 * `SimaPro method manual <http://www.pre-sustainability.com/download/DatabaseManualMethods-oct2013.pdf>`_ (see page 38)
 * `ecoinvent report <http://www.ecoinvent.org/fileadmin/documents/en/03_LCIA-Implementation-v2.2.pdf>`_ (see page 26)
 

@@ -9,7 +9,7 @@ Python
 Brightway2 is written primarily in Python, and some basic knowledge of the language is required to use Brightway2. Luckily, Python is a great language for beginners. Here are some good resources to get started:
 
 * `How to think like a computer scientist - Think Python <http://www.greenteapress.com/thinkpython/>`_
-* `Software carpentry <http://software-carpentry.org/4_0/python/index.html>`_
+* `Software carpentry <http://swcarpentry.github.io/python-novice-inflammation/>`_
 * `The official tutorial <https://docs.python.org/3/tutorial/introduction.html>`__
 * `Python scientific lectures <http://scipy-lectures.github.com/index.html>`_
 * `Python for you and me <http://pymbook.readthedocs.io/en/latest/index.html>`__

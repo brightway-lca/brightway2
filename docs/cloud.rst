@@ -36,7 +36,7 @@ This creates an container with STDIN open (``-i``) and a TTY shell (``-t``). Ins
 Using data volumes
 ------------------
 
-Brightway2 can't do much without data. The default data directory in the Docker container is ``/home/jovyan/data/``. You can use an existing data directory by `mounting a data volume <https://docs.docker.com/v1.10/engine/userguide/containers/dockervolumes/>`__, e.g.:
+Brightway2 can't do much without data. The default data directory in the Docker container is ``/home/jovyan/data/``. You can use an existing data directory by `mounting a data volume <https://docs.docker.com/storage/volumes/>`__, e.g.:
 
 .. code-block:: bash
 
