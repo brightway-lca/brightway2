@@ -27,6 +27,7 @@ Authors
 * `Manuel Klarmann <https://twitter.com/mklarmann>`__
 * `Tomas Navarrete <https://www.linkedin.com/in/tom4m3>`__
 * Guillaume Audard
+* `Benjamin Portner <https://www.researchgate.net/profile/Benjamin_Portner>`__
 
 Logo by `eightz <http://www.fiverr.com/ei8htz>`__.
 
