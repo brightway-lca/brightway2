@@ -149,21 +149,7 @@ Activity-browser
 .. image:: images/activity-browser.png
     :align: center
 
-The activity browser is an **experimental** graphical user interface for Brightway2.
-
-To install:
-
-.. code-block:: bash
-
-    conda install -y -q -c conda-forge -c cmutel -c haasad activity-browser
-
-There are more detailed installation instructions at the `activity-browser documentation <https://github.com/LCA-ActivityBrowser/activity-browser/blob/master/README.md#installation>`__.
-
-You can now run the activity browser with the command:
-
-.. code-block:: bash
-
-    activity-browser
+The activity browser is an graphical user interface for Brightway2. Please follow the `official installation instructions <https://github.com/LCA-ActivityBrowser/activity-browser#installation>`__.
 
 Compiling on Linux
 ==================
