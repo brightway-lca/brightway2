@@ -146,7 +146,7 @@ Brightway2 is designed to run without too much fuss on servers in the cloud. See
 Activity-browser
 ================
 
-.. image:: images/activity-browser.png
+.. image:: images/activity-browser-new.png
     :align: center
 
 The activity browser is an graphical user interface for Brightway2. Please follow the `official installation instructions <https://github.com/LCA-ActivityBrowser/activity-browser#installation>`__.
