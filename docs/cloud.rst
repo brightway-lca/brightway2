@@ -59,7 +59,7 @@ Cloud Nine
 
 *Contributed by Manuel Klarmann* - see :ref:`complete list of authors <authors>` and :ref:`guide to contributing <contributing>`.
 
-You can try out Brightway2 without installing anything on your computer using the `cloud service cloud 9 <https://c9.io/cmutel>`__. Sign up and verify your account, and then do the following:
+You can try out Brightway2 without installing anything on your computer using the `cloud service cloud 9 <https://aws.amazon.com/cloud9/>`__. Sign up and verify your account, and then do the following:
 
 1. Create a new workspace:
 
