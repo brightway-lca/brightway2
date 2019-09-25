@@ -29,6 +29,7 @@ Authors
 * Guillaume Audard
 * `Benjamin Portner <https://www.researchgate.net/profile/Benjamin_Portner>`__
 * Jan Machacek
+* Paul Baustert
 
 Logo by `eightz <http://www.fiverr.com/ei8htz>`__.
 
