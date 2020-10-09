@@ -45,7 +45,7 @@ Inside a project we have a number of objects that store data. The most common da
 
 Project are created in a suitable location for your operating system with the help of the `appdirs <https://github.com/ActiveState/appdirs>`__ library.
 
-Projects can be easily created, copied, manipulated, or deleted. See the `projects example notebook <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Projects.ipynb>`__.
+Projects can be easily created, copied, manipulated, or deleted. See the `projects example notebook <https://github.com/brightway-lca/brightway2/blob/master/notebooks/Projects.ipynb>`__.
 
 .. warning:: Brightway2 uses `atomic file writes <https://github.com/abarnert/fatomic>`__ to prevent data corruption, but `files are hard <http://danluu.com/file-consistency/>`__; you should make regular backups using the :ref:`backup-data-directory` function.
 
@@ -56,7 +56,7 @@ In Brightway2, a *database* is the object used to organize a set of nodes and ed
 
 SimaPro differentiates between what it calls *projects* and *libraries*, but both would be a *database* in Brightway2.
 
-Databases can be easily created, copied, modified, iterated over, searched, and delted. See the `databases example notebook <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Databases.ipynb>`__.
+Databases can be easily created, copied, modified, iterated over, searched, and delted. See the `databases example notebook <https://github.com/brightway-lca/brightway2/blob/master/notebooks/Databases.ipynb>`__.
 
 Activities and Exchanges
 ------------------------
@@ -99,7 +99,7 @@ The document structure is:
 * *type* (string): If this is ``"process"``, or omitted completely, Brightway2 will treat this as a inventory process with inputs and output(s). If you want to store additional information in a Database outside of the list of processes, specify a custom type here. For example, the list of biosphere flows is also an inventory database, but as these are flows, not processes, they have the type ``"emission"``. Similarly, if you wanted to separate processes and products, you could create database entries for the products, with the type ``"product"``.
 * *categories* (list of strings, optional): A list of categories and subcategories. No length limits.
 * *location* (string, optional): A location identifier. Default is *GLO*, but this can be changed in the :ref:`user-preferences`.
-* *unit* (string): Unit of this activity. `Units are normalized <https://bitbucket.org/cmutel/brightway2-data/src/default/bw2data/units.py?at=default>`__ when written to disk.
+* *unit* (string): Unit of this activity. `Units are normalized <https://github.com/brightway-lca/brightway2-io/blob/master/bw2io/units.py>`__ when written to disk.
 * *exchanges* (list): A list of activity inputs and outputs, with its own schema.
     * *input* (database name, database code): The technological activity that is linked to, e.g. ``("my new database", "production of ice cream")`` or ``('biosphere', '51447e58e03a40a2bbd9abf45214b7d3')``. See also :ref:`dataset-codes`.
     * *type* (string): One of ``production``, ``technosphere``, and ``biosphere``.  See :ref:`exchanges`.
@@ -251,7 +251,7 @@ Biosphere exchange amounts can occasionally be negative, and some characterizati
 * Biosphere flows whose categories are `air`, `soil`, and `water` are emissions into the natural environment.
 * Biosphere flows with the category `natural resource` are consumption of natural resources from the natural environment.
 
-Biosphere exchanges with negative values reverse these assumption; so, a biosphere flow of -2 kg of carbon dioxide with the category air would be the *removal* of carbon dioxide from the natural environment. The signs of biosphere exchanges don't really matter, but they should be consistent with the signs of your impact assessment characterization factors. See also the notebook on `negative Biosphere flows and CFs <http://nbviewer.jupyter.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Negative%20Biosphere%20flows%20and%20CFs.ipynb>`__.
+Biosphere exchanges with negative values reverse these assumption; so, a biosphere flow of -2 kg of carbon dioxide with the category air would be the *removal* of carbon dioxide from the natural environment. The signs of biosphere exchanges don't really matter, but they should be consistent with the signs of your impact assessment characterization factors. See also the notebook on `negative Biosphere flows and CFs <https://github.com/brightway-lca/brightway2/blob/master/notebooks/Negative%20Biosphere%20flows%20and%20CFs.ipynb>`__.
 
 .. _database-backends:
 
@@ -260,7 +260,7 @@ Databases can be stored in different ways
 
 The default storage backend for databases stores each database in a separate file. This is the easiest and most convenient approach for most cases. However, Brightway2 also supports pluggable database backends, which can change how databases are stored and queried.
 
-Brightway2-data also provides ``bw2data.backends.JSONDatabase``, which stores each dataset as a separate file serialized to `JSON <http://en.wikipedia.org/wiki/JSON>`__. This approach works well with version-control systems, as each dataset change can be saved individually. Use of ``JSONDatabase`` is shown in a simple `ipython notebook <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/JSON%20database.ipynb>`_.
+Brightway2-data also provides ``bw2data.backends.JSONDatabase``, which stores each dataset as a separate file serialized to `JSON <http://en.wikipedia.org/wiki/JSON>`__. This approach works well with version-control systems, as each dataset change can be saved individually. Use of ``JSONDatabase`` is shown in a simple `ipython notebook <https://github.com/brightway-lca/brightway2/blob/master/notebooks/JSON%20database.ipynb>`_.
 
 Before using ``JSONDatabase``, please read its technical documentation carefully: :ref:`json-database`. To create a ``JSONDatabase``, use ``Database("my db name", backend="json")``. To switch backends for a database, use :ref:`convert_backend <switching-backends>`.
 
@@ -413,7 +413,7 @@ The most common way to interact with parameters data is through the parameters m
 Peewee objects
 ``````````````
 
-At a finer level of control, the parameterized table objects use `peewee objects <http://docs.peewee-orm.com/en/latest/index.html>`__ directly, so you will use some different syntax than with `Activity` and `Exchange` (see the `parameters source code <https://bitbucket.org/cmutel/brightway2-data/src/default/bw2data/parameters.py?fileviewer=file-view-default#parameters.py-108>`__). The long-term goal is to transition all objects to peewee directly, instead of using proxies.
+At a finer level of control, the parameterized table objects use `peewee objects <http://docs.peewee-orm.com/en/latest/index.html>`__ directly, so you will use some different syntax than with `Activity` and `Exchange` (see the `parameters source code <https://github.com/brightway-lca/brightway2-data/blob/master/bw2data/parameters.py>`__). The long-term goal is to transition all objects to peewee directly, instead of using proxies.
 
 The parameters framework is centered around the :ref:`Group, ProjectParameter, DatabaseParameter, and ActivityParameter classes <parameters>`.
 
@@ -625,7 +625,7 @@ Importing SimaPro CSV files is also a bit of a headache. Pré, the makers of Sim
 Importing from the standard Excel template
 ``````````````````````````````````````````
 
-.. note:: You can see these ideas in practive in `basic database <https://bitbucket.org/cmutel/brightway2-io/raw/default/tests/fixtures/excel/basic_example.xlsx>`__ and `parameterized database <https://bitbucket.org/cmutel/brightway2-io/raw/default/tests/fixtures/excel/sample_activities_with_variables.xlsx>`__ Excel templates.
+.. note:: You can see these ideas in practive in `basic database <https://github.com/brightway-lca/brightway2-io/blob/master/tests/fixtures/excel/basic_example.xlsx?raw=true>`__ and `parameterized database <https://github.com/brightway-lca/brightway2-io/blob/master/tests/fixtures/excel/sample_activities_with_variables.xlsx?raw=true>`__ Excel templates.
 
 You can define inventory datasets in many ways in Excel, but there is a standard template which is supported by the ``ExcelImporter``. The template should be pretty self-explanatory, and follows this general format::
 

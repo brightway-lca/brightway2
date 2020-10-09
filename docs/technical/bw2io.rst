@@ -112,7 +112,7 @@ Import a `SimaPro <http://www.pre-sustainability.com/simapro-lca-software>`_ tex
 Excel
 `````
 
-Import an inventory in an Excel spreadsheet which follows the generic `Excel example <https://bitbucket.org/cmutel/brightway2-io/raw/default/bw2io/data/examples/example.xlsx>`__.
+Import an inventory in an Excel spreadsheet which follows the generic `Excel example <https://github.com/brightway-lca/brightway2-io/blob/master/bw2io/data/examples/example.xlsx?raw=true>`__.
 
 .. note:: both imports and exports are supported.
 
@@ -121,7 +121,7 @@ Import an inventory in an Excel spreadsheet which follows the generic `Excel exa
 CSV
 ```
 
-Import an inventory in a CSV file which follows the generic `CSV example <https://bitbucket.org/cmutel/brightway2-io/raw/default/bw2io/data/examples/example.csv>`__.
+Import an inventory in a CSV file which follows the generic `CSV example <https://github.com/brightway-lca/brightway2-io/raw/master/bw2io/data/examples/example.csv>`__.
 
 .. note:: both imports and exports are supported.
 

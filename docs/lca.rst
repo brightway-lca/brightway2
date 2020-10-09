@@ -185,7 +185,7 @@ The various stochastic Monte Carlo LCA classes function almost the same as the s
 
 This design is one of the most elegant parts of Brightway2.
 
-Because there is a common procedure to build static and stochastic matrices, any matrix can easily support uncertainty, e.g. not just LCIA characterization factors, but also weighting, normalization, and anything else you can think of; see `Defining a new Matrix - example of Weighting and Normalization matrices <http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Defining%20a%20new%20Matrix%20-%20example%20of%20Weighting%20and%20Normalization.ipynb>`_.
+Because there is a common procedure to build static and stochastic matrices, any matrix can easily support uncertainty, e.g. not just LCIA characterization factors, but also weighting, normalization, and anything else you can think of; see `Defining a new Matrix - example of Weighting and Normalization matrices <https://github.com/brightway-lca/brightway2/blob/master/notebooks/Defining%20a%20new%20Matrix%20-%20example%20of%20Weighting%20and%20Normalization.ipynb>`_.
 
 Brightway2 LCA Reports
 ----------------------

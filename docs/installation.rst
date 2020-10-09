@@ -164,17 +164,6 @@ If you want to develop with Brightway, then you should also install the followin
 * pytest
 * sphinx
 
-You can install editable Brightway2 packages using `mercurial <http://mercurial.selenic.com/>`_:
-
-.. code-block:: bash
-
-    pip install -e hg+https://bitbucket.org/cmutel/brightway2-data#egg=bw2data
-    pip install -e hg+https://bitbucket.org/cmutel/brightway2-calc#egg=bw2calc
-    pip install -e hg+https://bitbucket.org/cmutel/brightway2-ui#egg=bw2ui
-    pip install -e hg+https://bitbucket.org/cmutel/brightway2-analyzer#egg=bw2analyzer
-
-You can also simply clone the bitbucket source code repositories instead of installing them.
-
 .. _upgrading:
 
 Upgrading Brightway2
@@ -208,28 +197,28 @@ brightway2
 
 This manual, plus a generic container that imports from brightway2-data and brightway2-calc.
 
-* `source code <https://bitbucket.org/cmutel/brightway2>`__
+* `source code <https://github.com/brightway-lca/brightway2>`__
 
 brightway2-data
 ```````````````
 
 This package provides facilities for managing LCI databases and LCIA methods, as well as input and output scripts.
 
-* `source code <https://bitbucket.org/cmutel/brightway2-data>`__
+* `source code <https://github.com/brightway-lca/brightway2-data>`__
 
 brightway2-calc
 ```````````````
 
 This package provides classes for LCA calculations, both static and uncertain, and basic regionalized LCA.
 
-* `source code <https://bitbucket.org/cmutel/brightway2-calc>`__
+* `source code <https://github.com/brightway-lca/brightway2-calc>`__
 
 brightway2-analyzer
 ```````````````````
 
 This package provides functions for interpreting and analyzing LCI databases, LCIA methods, and LCA results.
 
-* `source code <https://bitbucket.org/cmutel/brightway2-analyzer>`__
+* `source code <https://github.com/brightway-lca/brightway2-analyzer>`__
 
 Secondary packages
 ------------------
@@ -241,12 +230,11 @@ brightway2-regional
 
 Full-fledged regionalization in Brightway2.
 
-* `source code <https://bitbucket.org/cmutel/brightway2-regional>`__
+* `source code <https://github.com/brightway-lca/brightway2-regional>`__
 
 brightway2-temporalis
 `````````````````````
 
 Dynamic LCA in Brightway2.
 
-* `source code <https://bitbucket.org/cmutel/brightway2-temporalis>`__
-* `documentation <https://brightway2-temporalis.readthedocs.io/en/latest/>`__
+* `source code <https://github.com/brightway-lca/temporalis>`__

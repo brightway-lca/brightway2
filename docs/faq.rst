@@ -50,7 +50,7 @@ You want to download and import ``ecoinvent 3.3_xxx_ecoSpold02.7z``. If your imp
 How do I resolve errors about read-only projects?
 -------------------------------------------------
 
-Brightway2 uses the `fasteners <https://pypi.python.org/pypi/fasteners>`__ library to create lock files that conflicts in written data. More specifically, when you use ``projects.set_current`` to `switch to a new project <https://bitbucket.org/cmutel/brightway2-data/src/default/bw2data/project.py?at=default&fileviewer=file-view-default#project.py-141>`__, Brightway will read a bunch of metadata about things like project databases and LCIA methods into memory. It will then try to acquire a lock that gives it the exclusive right to change this metadata in the future. If a second Python kernel switches to the same project, it will load the latest saved version of the metadata, and will then fail to acquire the lock, so will be set to read-only mode (i.e. ``projects.read_only = True``).
+Brightway2 uses the `fasteners <https://pypi.python.org/pypi/fasteners>`__ library to create lock files that conflicts in written data. More specifically, when you use ``projects.set_current`` to switch to a new project, Brightway will read a bunch of metadata about things like project databases and LCIA methods into memory. It will then try to acquire a lock that gives it the exclusive right to change this metadata in the future. If a second Python kernel switches to the same project, it will load the latest saved version of the metadata, and will then fail to acquire the lock, so will be set to read-only mode (i.e. ``projects.read_only = True``).
 
 This locking was introduced because people were having trouble with multiple people working on the same project and getting conflicts or even corruption in the metadata. The problem is easy to understand - if two kernels load the metadata into memory, and each make a change somewhere, then whoever saves the latest will overwrite the changes of the other.
 
@@ -174,7 +174,7 @@ Problems
 I found a bug! What now?
 ------------------------
 
-First, please check the list of :ref:`knownissues`. However, if your issue isn't listed, by all means please `create a bug report <https://bitbucket.org/cmutel/brightway2/issues/new>`__. Here is some good advice on creating a `short, self contained, correct example <http://sscce.org/>`__ for a bug report.
+First, please check the list of issues for the responsible library. However, if your issue isn't listed, by all means please `create a bug report <https://github.com/brightway-lca/brightway2/issues>`__. Here is some good advice on creating a `short, self contained, correct example <http://sscce.org/>`__ for a bug report.
 
 It is too slow!
 ---------------

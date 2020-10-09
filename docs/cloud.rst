@@ -75,7 +75,7 @@ You can try out Brightway2 without installing anything on your computer using th
 
 .. code-block:: bash
 
-    wget https://bitbucket.org/cmutel/brightway2/raw/default/cloud-nine-install.sh && bash cloud-nine-install.sh
+    wget https://github.com/brightway-lca/brightway2/raw/master/cloud-nine-install.sh && bash cloud-nine-install.sh
 
 .. image:: images/c9-3.png
     :align: center

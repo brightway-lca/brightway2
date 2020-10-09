@@ -36,7 +36,7 @@ Mercurial is a distributed version control system, which records changes made in
 Contributing changes to Brightway2
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The preferred way to submit changes is with a pull request on Bitbucket. A pull request is a fancy way of saying "Hey! I made some changes to what you already had in my own playground over here - how about you merge my changes back into the main source code repository." Here is a `quick tutorial on pull requests <https://confluence.atlassian.com/bitbucket/tutorial-learn-about-bitbucket-pull-requests-774243385.html>`__. For small changes, and especially things like typos, you can even use the online text editor without having to download anything.
+The preferred way to submit changes is with a pull request on Github. A pull request is a fancy way of saying "Hey! I made some changes to what you already had in my own playground over here - how about you merge my changes back into the main source code repository." Here is a `quick tutorial on pull requests <https://guides.github.com/introduction/flow/>`__. For small changes, and especially things like typos, you can even use the online text editor without having to download anything.
 
 No Python needed - making graphics better
 -----------------------------------------
@@ -105,11 +105,6 @@ Ecospold exporter
 ~~~~~~~~~~~~~~~~~
 
 The base Brightway2 data format doesn't include fields for all of the Ecospold data format, but we can still export that data that is available in the Ecospold format. This would help in making Brightway2 data more transportable. It is not necessarily a difficult task, but writing a lot of XML processing code is never very much fun.
-
-Improve the activity-browser
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The existing `activity-browser <https://bitbucket.org/cmutel/activity-browser>`__ has a lot of potential, but still needs a lot of work.
 
 Hard problems
 -------------
