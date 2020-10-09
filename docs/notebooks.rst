@@ -32,7 +32,7 @@ In general, this manual tells you *what* to do; the notebooks tell you *how* to 
 * `Meta-analysis of LCIA methods <https://github.com/brightway-lca/brightway2/blob/master/notebooks/Meta-analysis%20of%20LCIA%20methods.ipynb>`__
 * `Defining a new matrix - example of Weighting and Normalization matrices <https://github.com/brightway-lca/brightway2/blob/master/notebooks/Defining%20a%20new%20Matrix%20-%20example%20of%20Weighting%20and%20Normalization.ipynb>`__
 * `Negative Biosphere flows and CFs <https://github.com/brightway-lca/brightway2/blob/master/notebooks/Negative%20Biosphere%20flows%20and%20CFs.ipynb>`__
-* `Monte Carlo with imported Excel workbook <https://nbviewer.jupyter.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Monte%20Carlo%20from%20Excel%20import.ipynb>`__
+* `Monte Carlo with imported Excel workbook <https://github.com/brightway-lca/brightway2/blob/master/notebooks/Monte%20Carlo%20from%20Excel%20import.ipynb>`__
 
 .. * `Defining a LCA calculation - example of power series expansion <https://github.com/brightway-lca/brightway2/blob/master/notebooks/Power%20Series%20LCA.ipynb>`_
 
