@@ -129,7 +129,7 @@ See also:
 * `Common migration problems <http://python3porting.com/problems.html>`__
 * `FTFY - library to fix common encoding problems <https://github.com/LuminosoInsight/python-ftfy>`__
 
-.. note:: Please subscribe to the `brightway2 updates mailing list <https://tinyletter.com/brightway2-updates>`__ to be informed of new releases.
+.. note:: Please subscribe to the `brightway2 updates mailing list <https://brightway.groups.io/g/updates>`__ to be informed of new releases.
 
 .. _notebook-directory:
 
@@ -182,7 +182,7 @@ Upgrading Brightway2
 
 Brightway2 is being actively developed, and new releases come frequently.
 
-.. note:: Please subscribe to the `brightway2 updates mailing list <https://tinyletter.com/brightway2-updates>`_ to be informed of new releases.
+.. note:: Please subscribe to the `brightway2 updates mailing list <https://brightway.groups.io/g/updates>`_ to be informed of new releases.
 
 To upgrade Brightway2, do the following:
 
