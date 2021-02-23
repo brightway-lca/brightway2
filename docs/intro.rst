@@ -681,6 +681,15 @@ The following data transformations are applied by the ``ExcelImporter``:
     * The strings "True" and "False" (by themselves, not as part of a larger string) are transformed to their respective boolean values.
     * Fields with the value ``(Unknown)`` are omitted on a per-row basis.
 
+Importing from the standard Excel template
+``````````````````````````````````````````
+
+Proper implementation of life cycle impact assessment methods requires a complete set of metadata. However, for simple LCIA methods, Brightway has a simplified importer for Excel and CSV files: ``bw2io.ExcelLCIAImporter`` and bw2io.CSVLCIAImporter``. These function the same as other importer (i.e. you extract data, apply strategies until you are satisfied with the matching, and write the modified data). There are example `Excel workbooks <https://github.com/brightway-lca/brightway2-io/raw/legacy/tests/fixtures/excel/lcia.xlsx>`__ and `CSV files <https://github.com/brightway-lca/brightway2-io/raw/legacy/tests/fixtures/csv/lcia.csv>`__. Please note the following:
+
+* Excel workbooks should only have one worksheet.
+* Default matching to biosphere flows is based on ``name`` and ``categories``. The convention for ``categories`` is the same as for inventory datasets: subcategories should be separated with ``::``, e.g. ``natural resource::in ground``. You can also list the main category and subcategory in separate columns, and use a strategy function to combine them.
+* The call function to instantiate the LCIA importer objects requires ``filepath``, ``name`` (method name as a tuple), ``description``, and ``unit``.
+
 What to do with unmatched exchanges?
 ````````````````````````````````````
 
