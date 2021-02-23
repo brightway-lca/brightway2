@@ -22,5 +22,5 @@ echo 'jupyter notebook --ip=0.0.0.0 --port=8080 --no-browser' >> run_notebook.sh
 chmod +x run_notebook.sh
 
 mkdir notebooks && cd notebooks
-wget https://bitbucket.org/cmutel/brightway2/raw/default/notebooks/Getting%20Started%20with%20Brightway2.ipynb
+wget https://github.com/brightway-lca/brightway2/raw/master/notebooks/Getting%20Started%20with%20Brightway2.ipynb
 jupyter notebook --ip $IP --port $PORT --no-browser

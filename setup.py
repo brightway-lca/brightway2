@@ -35,7 +35,7 @@ setup(
     author_email="cmutel@gmail.com",
     license=open('LICENSE.txt').read(),
     install_requires=packages,
-    url="https://bitbucket.org/cmutel/brightway2",
+    url="https://github.com/brightway-lca/brightway2",
     long_description=open('README.rst').read(),
     classifiers=[
         'Development Status :: 5 - Production/Stable',

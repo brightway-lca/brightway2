@@ -11,9 +11,9 @@
     }
   ],
   "identifier": "",
-  "codeRepository": "https://bitbucket.org/cmutel/brightway2",
+  "codeRepository": "https://github.com/brightway-lca/brightway2",
   "datePublished": "2017-04-05",
-  "dateModified": "2017-04-05",
+  "dateModified": "2021-02-23",
   "dateCreated": "2017-04-05",
   "description": "Framework for Life Cycle Assessment",
   "keywords": "LCA, Python",

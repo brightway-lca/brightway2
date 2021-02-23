@@ -7,11 +7,11 @@ Brightway2 is inspired by the Brightway software, which was developed during Chr
 
 Official site:
 
-* https://brightwaylca.org
+* https://brightway.dev
 
 Online documentation:
 
-* https://docs.brightwaylca.org/
+* https://docs.brightway.dev/
 
 Development blog:
 
@@ -19,7 +19,6 @@ Development blog:
 
 Packages:
 
-* brightway2-data: https://bitbucket.org/cmutel/brightway2-data
-* brightway2-calc: https://bitbucket.org/cmutel/brightway2-calc
-* brightway2-analyzer: https://bitbucket.org/cmutel/brightway2-analyzer
-* brightway2-ui: https://bitbucket.org/cmutel/brightway2-ui
+* brightway2-data: https://github.com/brightway-lca/brightway2-data
+* brightway2-calc: https://github.com/brightway-lca/brightway2-calc
+* brightway2-io: https://github.com/brightway-lca/brightway2-io
