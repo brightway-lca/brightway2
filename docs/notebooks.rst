@@ -35,6 +35,7 @@ In general, this manual tells you *what* to do; the notebooks tell you *how* to 
 * `Monte Carlo with imported Excel workbook <https://github.com/brightway-lca/brightway2/blob/master/notebooks/Monte%20Carlo%20from%20Excel%20import.ipynb>`__
 * `Compare similar activities (with same name and reference product) <https://github.com/brightway-lca/brightway2/blob/master/notebooks/Compare%20similar%20datasets.ipynb>`__
 * `Contribution analysis and comparison <https://github.com/brightway-lca/brightway2/blob/master/notebooks/Contribution%20analysis%20and%20comparison.ipynb>`__
+* `Comparison functions and utilities <https://github.com/brightway-lca/brightway2/blob/master/notebooks/bw2analyzer%20exploration%20functions.ipynb>`__
 
 .. * `Defining a LCA calculation - example of power series expansion <https://github.com/brightway-lca/brightway2/blob/master/notebooks/Power%20Series%20LCA.ipynb>`_
 
