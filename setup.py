@@ -36,7 +36,8 @@ setup(
     license=open('LICENSE.txt').read(),
     install_requires=packages,
     url="https://github.com/brightway-lca/brightway2",
-    long_description=open('README.rst').read(),
+    long_description=open('README.md', encoding="utf-8").read(),
+    long_description_content_type="text/markdown",
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: End Users/Desktop',
