@@ -3,10 +3,10 @@ from setuptools import setup
 packages = [
     "appdirs",
     "asteval",
-    "bw2analyzer>=0.9.4",
-    "bw2calc>=1.7.1",
-    "bw2data>=3.4.1",
-    "bw2io>=0.6",
+    "bw2analyzer<0.10.99",
+    "bw2calc<1.99",
+    "bw2data<3.99",
+    "bw2io<0.8.9",
     "bw2parameters>=0.6.5",
     "docopt",
     "eight",
@@ -19,7 +19,7 @@ packages = [
     "pyprind",
     "requests",
     "scipy",
-    "stats_arrays>=0.4.2",
+    "stats_arrays>=0.6.5",
     "unicodecsv",
     "voluptuous",
     "whoosh",
@@ -29,7 +29,7 @@ packages = [
 
 setup(
     name='brightway2',
-    version="2.3",
+    version="2.4.1",
     packages=["brightway2"],
     author="Chris Mutel",
     author_email="cmutel@gmail.com",
