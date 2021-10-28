@@ -3,51 +3,43 @@
 Installation
 ************
 
-Brightway2 can be installed pretty much everywhere, on Windows, OS X, Linux, and anywhere else Python can be compiled.
+Brightway2 can be installed using ``pip`` with an existing Python installation; however, until very recently we recommended using ``anaconda``, as the fast sparse linear algebra library `pardiso <https://www.pardiso-project.org/>`__ was only easily installed using the ``conda`` ecosystem. This guide uses ``conda``; if you use ``pip``, make sure to also install the ``pypardiso`` library as well to get that sweet, sweet multithreading speed.
+
+For the time being (October 2021), the latest version of Python is 3.10, but as this is brand new many useful libraries are not yet compiled against it, and 3.9 works just fine, so we use that.
 
 Quickstart
 ==========
 
-1. Install `Miniconda version 3.6 64-bit <https://docs.conda.io/en/latest/miniconda.html>`__.
+1. Install `Miniconda version 3.9 64-bit <https://docs.conda.io/en/latest/miniconda.html>`__.
 
-2. Update conda
-
-.. code-block:: bash
-
-    conda update conda
-
-3. In a terminal window or command line shell, create a new `conda environment <https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html>`__. A conda environment is like a separate computer where software packages don't conflict with each other. You can call it whatever your want:
+2. In a terminal window or command line shell, create a new `conda environment <https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html>`__. A conda environment is like a separate computer where software packages don't conflict with each other. You can call it whatever your want:
 
 .. code-block:: bash
 
-    conda create -n <change-me> python=3.6
+    conda create -n bw2 python=3.9
 
-4. Activate your environment, using one of the following:
+You can also change the environment name from ``bw2`` if you want.
 
-.. code-block:: bash
-
-    source activate <change-me>
-    activate <change-me>
-
-5. Install Brightway2:
+3. Activate your environment, using one of the following:
 
 .. code-block:: bash
 
-    conda install -y -q -c conda-forge -c cmutel -c haasad brightway2 jupyter
+    source activate bw2
+    activate bw2
 
-6. If you are on Windows, you also need to do:
+You will need to activate this environment every time you start a new terminal or command line shell.
+
+4. Install Brightway2:
+
+.. code-block:: bash
+
+    conda install -y -q -c conda-forge -c cmutel brightway2 jupyterlab
+
+5. If you are on Windows, you also need to do:
 
 .. code-block:: bash
 
     conda install -y -q pywin32
-
-7. After installing all packages, you can save some disk space by cleaning conda:
-
-.. code-block:: bash
-
-    conda clean -tipsy
-
-You can also install Brightway2 using pip, but the numerical libraries are much easier to install from conda.
 
 .. _anaconda:
 
@@ -120,14 +112,9 @@ If you don't have another copy of Python on your machine, then you can make this
 Python 2 or 3
 =============
 
-Brightway2 supports python 2 and 3, but the recommended version is python 3.6. Tests are run against 2.7 and 3.6. Python 3 versions less than 3.4 are not supported.
+Brightway2 supports python 2 and 3, but really, just use Python 3. Python 3 versions less than 3.4 are not supported.
 
 The library `eight <https://github.com/kislyuk/eight>`__ is used to forward-port python 2.7 code to 3.X. This means that ``super``, ``str``, and ``bytes`` have 3.X semantics. The print function and true division are imported from ``__future__``, as are ``unicode_literals``.
-
-See also:
-
-* `Common migration problems <http://python3porting.com/problems.html>`__
-* `FTFY - library to fix common encoding problems <https://github.com/LuminosoInsight/python-ftfy>`__
 
 .. note:: Please subscribe to the `brightway2 updates mailing list <https://brightway.groups.io/g/updates>`__ to be informed of new releases.
 
@@ -150,11 +137,6 @@ Activity-browser
     :align: center
 
 The activity browser is an graphical user interface for Brightway2. Please follow the `official installation instructions <https://github.com/LCA-ActivityBrowser/activity-browser#installation>`__.
-
-Compiling on Linux
-==================
-
-General instructions are provided for Ubuntu 14.04; people using other distributions are assumed smart to be enough to adapt as necessary.
 
 Developers
 ==========
