@@ -4,7 +4,7 @@ packages = [
     "appdirs",
     "asteval",
     "bw2analyzer<0.10.99",
-    "bw2calc<1.99",
+    "bw2calc==1.8.1",
     "bw2data<3.99",
     "bw2io<0.8.9",
     "bw2parameters>=0.6.5",
@@ -29,7 +29,7 @@ packages = [
 
 setup(
     name='brightway2',
-    version="2.4.1",
+    version="2.4.2",
     packages=["brightway2"],
     author="Chris Mutel",
     author_email="cmutel@gmail.com",
