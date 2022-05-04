@@ -569,8 +569,8 @@ In most cases, if you don't have uncertain values, or don't know enough to be ab
 Importing and exporting
 -----------------------
 
-Importing data - not as easy as you would prefer
-````````````````````````````````````````````````
+Importing data - not as easy as you would like
+``````````````````````````````````````````````
 
 There are some standards for life cycle inventory data, but the sad truth is that there are no really good standards, and each implementation of the standards has its own quirks. The basic strategy for importing data from other programs is the following:
 
@@ -681,6 +681,15 @@ The following data transformations are applied by the ``ExcelImporter``:
     * The strings "True" and "False" (by themselves, not as part of a larger string) are transformed to their respective boolean values.
     * Fields with the value ``(Unknown)`` are omitted on a per-row basis.
 
+Importing LCIA methods from the standard Excel template
+```````````````````````````````````````````````````````
+
+Proper implementation of life cycle impact assessment methods requires a complete set of metadata. However, for simple LCIA methods, Brightway has a simplified importer for Excel and CSV files: ``bw2io.ExcelLCIAImporter`` and bw2io.CSVLCIAImporter``. These function the same as other importer (i.e. you extract data, apply strategies until you are satisfied with the matching, and write the modified data). There are example `Excel workbooks <https://github.com/brightway-lca/brightway2-io/raw/legacy/tests/fixtures/excel/lcia.xlsx>`__ and `CSV files <https://github.com/brightway-lca/brightway2-io/raw/legacy/tests/fixtures/csv/lcia.csv>`__. Please note the following:
+
+* Excel workbooks should only have one worksheet.
+* Default matching to biosphere flows is based on ``name`` and ``categories``. The convention for ``categories`` is the same as for inventory datasets: subcategories should be separated with ``::``, e.g. ``natural resource::in ground``. You can also list the main category and subcategory in separate columns, and use a strategy function to combine them.
+* The call function to instantiate the LCIA importer objects requires ``filepath``, ``name`` (method name as a tuple), ``description``, and ``unit``.
+
 What to do with unmatched exchanges?
 ````````````````````````````````````
 
@@ -775,3 +784,67 @@ If there are unlinked characterization factors, you have several options. If you
     * TODO: You can write all biosphere flows to a new biosphere database with ``.create_new_biosphere("some name")``.
     * If you are satisfied that you don't care about the unlinked characterization factors, you can drop them with ``.drop_unlinked()``.
     * Alternatively, you can add the missing biosphere flows to the biosphere database using ``.add_missing_cfs()``.
+
+Custom strategies
+`````````````````
+
+A ``strategy`` is just a Python callable (usually a function) that follows a few simple conventions: it takes the input data as a single input argument, and returns the modified data as the only returned value. Inventory data is store in ``{ImporterClass}.data``, and has the following form:
+
+.. code-block:: python
+
+    [
+        {
+            'name': "some name",
+            ..., # other metadata in key: value form
+            'exchanges': [
+                {
+                  'amount': float,
+                  ..., # other data in key: value form
+                }
+            ]
+        }
+    ]
+
+Here is an example strategy (from `bw2io.strategies.csv.py <https://github.com/brightway-lca/brightway2-io/blob/master/bw2io/strategies/csv.py>`__):
+
+.. code-block:: python
+
+    def csv_add_missing_exchanges_section(data):
+        for ds in data:
+            if "exchanges" not in ds:
+                ds["exchanges"] = []
+        return data
+
+This is short function, and is not complicated - most strategies will do more.
+
+Data format for LCIA methods
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In order to allow for the re-use of strategies, the data format for LCIA methods is the same as for inventory databases. ``name`` is the name (as a tuple) of the impact category, and ``exchanges`` is the list of characterization factors. It is a bit awkward, but makes other things easier.
+
+Adding other inputs to a strategy
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Strategy functions should only take one input, but sometimes you want to add other input arguments. For example, imagine the following silly strategy:
+
+.. code-block:: python
+
+    def add_silly_string(data, string):
+        for ds in data:
+            ds['name'] += string
+        return data
+
+If you tried to use this, it would raise an error, as ``string`` wouldn't be defined. The right approach here is `currying <https://en.wikipedia.org/wiki/Currying>`__, which allows you to give the values of some input arguments in advance:
+
+.. code-block:: python
+
+    from functools import partial
+
+    add_silly_string_fixed = partial(add_silly_string, string="something silly")
+
+You would then apply the strategy ``add_silly_string_fixed``.
+
+Applying custom strategies
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You apply strategies using the ``{ImporterClass}.apply_strategy(name_of_callable)`` method. You could also append your custom strategy to ``{ImporterClass}.strategies``, so it is used when you call ``{ImporterClass}.apply_strategies``.

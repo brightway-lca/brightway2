@@ -33,6 +33,9 @@ In general, this manual tells you *what* to do; the notebooks tell you *how* to 
 * `Defining a new matrix - example of Weighting and Normalization matrices <https://github.com/brightway-lca/brightway2/blob/master/notebooks/Defining%20a%20new%20Matrix%20-%20example%20of%20Weighting%20and%20Normalization.ipynb>`__
 * `Negative Biosphere flows and CFs <https://github.com/brightway-lca/brightway2/blob/master/notebooks/Negative%20Biosphere%20flows%20and%20CFs.ipynb>`__
 * `Monte Carlo with imported Excel workbook <https://github.com/brightway-lca/brightway2/blob/master/notebooks/Monte%20Carlo%20from%20Excel%20import.ipynb>`__
+* `Compare similar activities (with same name and reference product) <https://github.com/brightway-lca/brightway2/blob/master/notebooks/Compare%20similar%20datasets.ipynb>`__
+* `Contribution analysis and comparison <https://github.com/brightway-lca/brightway2/blob/master/notebooks/Contribution%20analysis%20and%20comparison.ipynb>`__
+* `Comparison functions and utilities <https://github.com/brightway-lca/brightway2/blob/master/notebooks/bw2analyzer%20exploration%20functions.ipynb>`__
 
 .. * `Defining a LCA calculation - example of power series expansion <https://github.com/brightway-lca/brightway2/blob/master/notebooks/Power%20Series%20LCA.ipynb>`_
 
@@ -61,6 +64,7 @@ Importing data can be difficult, due to data incompatibilities between different
 * `Importing FORWAST <https://github.com/brightway-lca/brightway2/blob/master/notebooks/IO%20-%20importing%20FORWAST.ipynb>`__
 * `Importing the World Food database (2.0, version 3) <https://github.com/brightway-lca/brightway2/blob/master/notebooks/IO%20-%20importing%20the%20World%20Food%20database%20(2.0%20v3).ipynb>`__
 * `Importing from CMLCA using ExcelImporter <https://github.com/brightway-lca/brightway2/blob/master/notebooks/IO%20-%20CMLCA.ipynb>`__
+* `Importing the Crustal Scarcity Indicator LCIA method <https://github.com/brightway-lca/brightway2/blob/master/notebooks/Importing%20Crustal%20Scarcity%20Index%20from%20Excel.ipynb>`__ (`source article <https://link.springer.com/article/10.1007%2Fs11367-020-01781-1>`__)
 
 Contributed notebooks
 =====================
