@@ -10,36 +10,52 @@ For the time being (October 2021), the latest version of Python is 3.10, but as 
 Quickstart
 ==========
 
-1. Install `Miniconda version 3.9 64-bit <https://docs.conda.io/en/latest/miniconda.html>`__.
+1. Install `Miniconda version 3.10 64-bit <https://docs.conda.io/en/latest/miniconda.html>`__.
 
 2. In a terminal window or command line shell, create a new `conda environment <https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html>`__. A conda environment is like a separate computer where software packages don't conflict with each other. You can call it whatever your want:
 
 .. code-block:: bash
 
-    conda create -n bw2 python=3.9
+    conda create -n bw2 -c conda-forge -c cmutel brightway2 jupyterlab
 
 You can also change the environment name from ``bw2`` if you want.
 
-3. Activate your environment, using one of the following:
+3. Activate your environment:
 
 .. code-block:: bash
 
-    source activate bw2
-    activate bw2
+    conda activate bw2
 
 You will need to activate this environment every time you start a new terminal or command line shell.
 
-4. Install Brightway2:
+4. If you are on Windows, you also need to do:
 
 .. code-block:: bash
 
-    conda install -y -q -c conda-forge -c cmutel brightway2 jupyterlab
+    conda install pywin32
 
-5. If you are on Windows, you also need to do:
+Installation on Mac M1
+======================
 
-.. code-block:: bash
+Brightway and the Activity Browser work on M1 Macs, but they can't run the super-fast linear solver. These instructions were developed by `Romain Sacchi and Adrian Haas <https://github.com/LCA-ActivityBrowser/activity-browser/issues/705>`__.
 
-    conda install -y -q pywin32
+1. Install `Rosetta <https://support.apple.com/en-us/HT211861>`__.
+
+2. Create a new conda environment - the name given below is `ab`, but this can be changed. As this environment will use x64 instructions, we install it into its own subdirectory:
+
+    CONDA_SUBDIR=osx-64 conda create -n bw_rosetta python=3.9
+    conda activate bw_rosetta
+    conda env config vars set CONDA_SUBDIR=osx-6
+
+2.5. (Optional) Deactivate and reactivate the `ab` environment. I don't know why this would do anything, but the cool kids seem to do it.
+
+3. Install Brightway and the UMFPACK sparse linear algebra library:
+
+    conda install brightway2 scikit-umfpack
+
+4. Remove pypardiso:
+
+    conda remove pypardiso --force
 
 .. _anaconda:
 
