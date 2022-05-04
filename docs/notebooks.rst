@@ -65,6 +65,7 @@ Importing data can be difficult, due to data incompatibilities between different
 * `Importing the World Food database (2.0, version 3) <https://github.com/brightway-lca/brightway2/blob/master/notebooks/IO%20-%20importing%20the%20World%20Food%20database%20(2.0%20v3).ipynb>`__
 * `Importing from CMLCA using ExcelImporter <https://github.com/brightway-lca/brightway2/blob/master/notebooks/IO%20-%20CMLCA.ipynb>`__
 * `Importing the Crustal Scarcity Indicator LCIA method <https://github.com/brightway-lca/brightway2/blob/master/notebooks/Importing%20Crustal%20Scarcity%20Index%20from%20Excel.ipynb>`__ (`source article <https://link.springer.com/article/10.1007%2Fs11367-020-01781-1>`__)
+* `Importing the Material Footprint LCIA method <https://github.com/brightway-lca/brightway2/blob/master/notebooks/Import%20material%20footprint.ipynb>`__.
 
 Contributed notebooks
 =====================
