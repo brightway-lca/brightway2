@@ -43,17 +43,21 @@ Brightway and the Activity Browser work on M1 Macs, but they can't run the super
 
 2. Create a new conda environment - the name given below is `ab`, but this can be changed. As this environment will use x64 instructions, we install it into its own subdirectory:
 
+.. code-block:: bash
+
     CONDA_SUBDIR=osx-64 conda create -n bw_rosetta python=3.9
     conda activate bw_rosetta
-    conda env config vars set CONDA_SUBDIR=osx-6
-
-2.5. (Optional) Deactivate and reactivate the `ab` environment. I don't know why this would do anything, but the cool kids seem to do it.
+    conda env config vars set CONDA_SUBDIR=osx-64
 
 3. Install Brightway and the UMFPACK sparse linear algebra library:
 
-    conda install brightway2 scikit-umfpack
+.. code-block:: bash
+
+    conda install -c conda-forge -c cmutel brightway2 scikit-umfpack
 
 4. Remove pypardiso:
+
+.. code-block:: bash
 
     conda remove pypardiso --force
 
