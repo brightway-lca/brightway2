@@ -95,8 +95,20 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'alabaster'
-
+html_theme = 'furo'
+html_theme_options = {
+    "sidebar_hide_name": True,
+    "light_logo": "bw-logo-light.png",
+    "dark_logo": "bw-logo-dark.png",
+    "light_css_variables": {
+        "color-brand-primary": "#288679",
+        "color-brand-content": "#288679",
+    },
+    "dark_css_variables": {
+        "color-brand-primary": "#9ADAD2",
+        "color-brand-content": "#9ADAD2",
+    },
+}
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.

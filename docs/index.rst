@@ -1,6 +1,3 @@
-.. image:: images/bw2logo.png
-    :align: center
-
 Brightway2 life cycle assessment framework
 ==========================================
 
