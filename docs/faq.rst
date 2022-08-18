@@ -81,7 +81,7 @@ Brightway2 uses the `appdirs <https://pypi.python.org/pypi/appdirs/1.4.0>`__ lib
     * On OS X: ``/Users/<User>/Library/Application Support/Brightway2``
     * On Linux: ``/home/<User>/.local/share/Brightway2``
 
-You can specify a custom data directory path by setting the environment variable ``BRIGHTWAY2_DIR`` , but this is not recommended for normal use, unless you have multiple installations of brightway2 and want to have a separate data directory for each.
+You can specify a custom data directory path by setting the environment variable ``BRIGHTWAY2_DIR``. Brightway will raise an ``OSError`` if this is not a writable directory. This is not recommended for use by beginners, but if you have multiple or non-standard installations of Brightway it might be useful.
 
 Setting ``BRIGHTWAY2_DIR`` in a virtual environment
 ```````````````````````````````````````````````````
