@@ -60,6 +60,7 @@ Importing data can be difficult, due to data incompatibilities between different
 * `Importing a student project from SimaPro <https://github.com/brightway-lca/brightway2/blob/master/notebooks/IO%20-%20student%20project%20SimaPro%20export.ipynb>`__
 * `Importing Agribalyse 1.2 <https://github.com/brightway-lca/brightway2/blob/master/notebooks/IO%20-%20Importing%20Agribalyse%20with%20Ecoinvent%202.2.ipynb>`__
 * `Importing Agribalyse 1.3 <https://github.com/brightway-lca/brightway2/blob/master/notebooks/IO%20-%20Importing%20Agribalyse%201.3%20with%20Ecoinvent%203.2%20cutoff.ipynb>`__
+* `Importing Agribalyse 3.1 <https://github.com/brightway-lca/brightway2/blob/master/notebooks/agribalyse3.1_exploring.ipynb>`__
 * `Importing a SimaPro export with ecoinvent included <https://github.com/brightway-lca/brightway2/blob/master/notebooks/IO%20-%20SimaPro%20export%20with%20ecoinvent.ipynb>`__
 * `Importing FORWAST <https://github.com/brightway-lca/brightway2/blob/master/notebooks/IO%20-%20importing%20FORWAST.ipynb>`__
 * `Importing the World Food database (2.0, version 3) <https://github.com/brightway-lca/brightway2/blob/master/notebooks/IO%20-%20importing%20the%20World%20Food%20database%20(2.0%20v3).ipynb>`__
