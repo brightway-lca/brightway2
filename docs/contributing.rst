@@ -86,12 +86,10 @@ Here are some possibilities we could include in either LCA reports, or in explor
 Improve report layout and CSS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Those who know a bit about design, or at least think that they do, are welcome to make the report page better. Here is an `example report page <http://reports.brightwaylca.org/report/fb20439529cb414784e25acb8b3ef426>`_.
+Those who know a bit about design, or at least think that they do, are welcome to make the report page better.
 
 Improve test coverage
 ~~~~~~~~~~~~~~~~~~~~~
-
-Each of the three calculation packages has an `online report available <http://coverage.brightwaylca.org/>`_. Many of the test coverage failures can be easily resolved with simple tests, and writing simple tests is a great way to get started with Python and Brightway2.
 
 Medium problems
 ---------------
