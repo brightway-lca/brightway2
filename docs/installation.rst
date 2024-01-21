@@ -16,7 +16,7 @@ Quickstart
 
 .. code-block:: bash
 
-    conda create -n bw2 -c conda-forge -c cmutel brightway2 jupyterlab
+    conda create -n bw2 -c conda-forge brightway2 jupyterlab
 
 You can also change the environment name from ``bw2`` if you want.
 
@@ -27,39 +27,6 @@ You can also change the environment name from ``bw2`` if you want.
     conda activate bw2
 
 You will need to activate this environment every time you start a new terminal or command line shell.
-
-4. If you are on Windows, you also need to do:
-
-.. code-block:: bash
-
-    conda install pywin32
-
-Installation on Mac M1
-======================
-
-Brightway and the Activity Browser work on M1 Macs, but they can't run the super-fast linear solver. These instructions were developed by `Romain Sacchi and Adrian Haas <https://github.com/LCA-ActivityBrowser/activity-browser/issues/705>`__.
-
-1. Install `Rosetta <https://support.apple.com/en-us/HT211861>`__.
-
-2. Create a new conda environment - the name given below is `ab`, but this can be changed. As this environment will use x64 instructions, we install it into its own subdirectory:
-
-.. code-block:: bash
-
-    CONDA_SUBDIR=osx-64 conda create -n bw_rosetta python=3.9
-    conda activate bw_rosetta
-    conda env config vars set CONDA_SUBDIR=osx-64
-
-3. Install Brightway and the UMFPACK sparse linear algebra library:
-
-.. code-block:: bash
-
-    conda install -c conda-forge -c cmutel brightway2 scikit-umfpack
-
-4. Remove pypardiso:
-
-.. code-block:: bash
-
-    conda remove pypardiso --force
 
 .. _anaconda:
 
@@ -182,7 +149,7 @@ First, make sure your background packages are up to date. In anaconda/miniconda,
 .. code-block:: bash
 
     conda update conda
-    conda update -c conda-forge -c cmutel -c haasad brightway2 bw2data bw2io bw2calc bw2analyzer
+    conda update -c conda-forge brightway2 bw2data bw2io bw2calc bw2analyzer
 
 .. _packages:
 
