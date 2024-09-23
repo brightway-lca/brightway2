@@ -13,7 +13,7 @@ packages = [
     "flask",
     "future",
     "lxml",
-    "numpy",
+    "numpy<2",
     "peewee>=3.0",
     "psutil",
     "pyprind",
