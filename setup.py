@@ -13,7 +13,7 @@ packages = [
     "flask",
     "future",
     "lxml",
-    "numpy",
+    "numpy<2",
     "peewee>=3.0",
     "psutil",
     "pyprind",
@@ -29,7 +29,7 @@ packages = [
 
 setup(
     name='brightway2',
-    version="2.4.6",
+    version="2.4.7",
     packages=["brightway2"],
     author="Chris Mutel",
     author_email="cmutel@gmail.com",
